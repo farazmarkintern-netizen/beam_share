@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- res/layout/fragment_onboarding_complete.xml -->
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_background">
+
+    <!-- Green Checkmark Circle -->
+    <FrameLayout
+        android:id="@+id/checkContainer"
+        android:layout_width="@dimen/_100sdp"
+        android:layout_height="@dimen/_100sdp"
+        android:background="@drawable/bg_checkmark_circle"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintVertical_bias="0.30">
+
+        <ImageView
+            android:id="@+id/ivCheck"
+            android:layout_width="@dimen/_45sdp"
+            android:layout_height="@dimen/_45sdp"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_check_bold"
+            app:tint="@color/color_white"
+            android:contentDescription="@null" />
+    </FrameLayout>
+
+    <!-- Title -->
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_24sdp"
+        android:text="@string/onboarding_complete_title"
+        android:textColor="@color/color_text_primary"
+        android:textSize="@dimen/_22ssp"
+        android:fontFamily="@font/inter_bold"
+        app:layout_constraintTop_toBottomOf="@id/checkContainer"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Description -->
+    <TextView
+        android:id="@+id/tvDescription"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_8sdp"
+        android:layout_marginHorizontal="@dimen/_32sdp"
+        android:text="@string/onboarding_complete_desc"
+        android:textColor="@color/color_text_secondary"
+        android:textSize="@dimen/_12ssp"
+        android:fontFamily="@font/inter"
+        android:textAlignment="center"
+        android:lineSpacingExtra="@dimen/_2sdp"
+        app:layout_constraintTop_toBottomOf="@id/tvTitle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Category Chips Row -->
+    <LinearLayout
+        android:id="@+id/chipRow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:orientation="horizontal"
+        android:gravity="center"
+        app:layout_constraintTop_toBottomOf="@id/tvDescription"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <!-- Files Chip -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_chip_category"
+            android:paddingHorizontal="@dimen/_14sdp"
+            android:paddingVertical="@dimen/_7sdp"
+            android:gravity="center_vertical"
+            android:layout_marginEnd="@dimen/_8sdp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="@dimen/_14sdp"
+                android:layout_height="@dimen/_14sdp"
+                android:src="@drawable/ic_file_outline"
+                app:tint="@color/color_text_secondary"
+                android:layout_marginEnd="@dimen/_5sdp"
+                android:contentDescription="@null" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/onboarding_chip_files"
+                android:textColor="@color/color_text_secondary"
+                android:textSize="@dimen/_11ssp"
+                android:fontFamily="@font/inter_medium" />
+        </LinearLayout>
+
+        <!-- Apps Chip -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_chip_category"
+            android:paddingHorizontal="@dimen/_14sdp"
+            android:paddingVertical="@dimen/_7sdp"
+            android:gravity="center_vertical"
+            android:layout_marginEnd="@dimen/_8sdp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="@dimen/_14sdp"
+                android:layout_height="@dimen/_14sdp"
+                android:src="@drawable/ic_apps_grid"
+                app:tint="@color/color_text_secondary"
+                android:layout_marginEnd="@dimen/_5sdp"
+                android:contentDescription="@null" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/onboarding_chip_apps"
+                android:textColor="@color/color_text_secondary"
+                android:textSize="@dimen/_11ssp"
+                android:fontFamily="@font/inter_medium" />
+        </LinearLayout>
+
+        <!-- Contacts Chip -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_chip_category"
+            android:paddingHorizontal="@dimen/_14sdp"
+            android:paddingVertical="@dimen/_7sdp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="@dimen/_14sdp"
+                android:layout_height="@dimen/_14sdp"
+                android:src="@drawable/ic_person_outline"
+                app:tint="@color/color_text_secondary"
+                android:layout_marginEnd="@dimen/_5sdp"
+                android:contentDescription="@null" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/onboarding_chip_contacts"
+                android:textColor="@color/color_text_secondary"
+                android:textSize="@dimen/_11ssp"
+                android:fontFamily="@font/inter_medium" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <!-- Page Indicators (Dots) -->
+    <LinearLayout
+        android:id="@+id/dotsContainer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/_14sdp"
+        android:orientation="horizontal"
+        android:gravity="center"
+        app:layout_constraintBottom_toTopOf="@id/btnStart"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <!-- Dot 1 (inactive) -->
+        <View
+            android:layout_width="@dimen/_6sdp"
+            android:layout_height="@dimen/_6sdp"
+            android:background="@drawable/dot_inactive"
+            android:layout_marginEnd="@dimen/_6sdp" />
+
+        <!-- Dot 2 (inactive) -->
+        <View
+            android:layout_width="@dimen/_6sdp"
+            android:layout_height="@dimen/_6sdp"
+            android:background="@drawable/dot_inactive"
+            android:layout_marginEnd="@dimen/_6sdp" />
+
+        <!-- Dot 3 (active - current page) -->
+        <View
+            android:layout_width="@dimen/_18sdp"
+            android:layout_height="@dimen/_6sdp"
+            android:background="@drawable/dot_active" />
+    </LinearLayout>
+
+    <!-- Start Sharing Button -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnStart"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_45sdp"
+        android:layout_marginHorizontal="@dimen/_20sdp"
+        android:layout_marginBottom="@dimen/_30sdp"
+        android:text="@string/onboarding_start_sharing"
+        android:textColor="@color/color_white"
+        android:textSize="@dimen/_14ssp"
+        android:fontFamily="@font/inter_semibold"
+        android:insetTop="0dp"
+        android:insetBottom="0dp"
+        app:backgroundTint="@color/color_primary"
+        app:cornerRadius="@dimen/_12sdp"
+        app:icon="@drawable/ic_arrow_forward"
+        app:iconTint="@color/color_white"
+        app:iconGravity="end"
+        app:iconSize="@dimen/_16sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,507 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- res/layout/fragment_home.xml -->
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_background"
+    android:fillViewport="true"
+    android:clipToPadding="false"
+    android:paddingBottom="@dimen/_16sdp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- ====== TOP BAR ====== -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingHorizontal="@dimen/_16sdp"
+            android:paddingTop="@dimen/_16sdp"
+            android:paddingBottom="@dimen/_8sdp">
+
+            <!-- App Icon -->
+            <FrameLayout
+                android:layout_width="@dimen/_36sdp"
+                android:layout_height="@dimen/_36sdp">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/bg_icon_circle_blue" />
+
+                <ImageView
+                    android:layout_width="@dimen/_18sdp"
+                    android:layout_height="@dimen/_18sdp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_share"
+                    android:contentDescription="@null" />
+            </FrameLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:text="@string/app_name"
+                android:textColor="@color/color_text_primary"
+                android:textSize="@dimen/_16ssp"
+                android:fontFamily="@font/inter_bold" />
+
+        </LinearLayout>
+
+        <!-- ====== HERO SECTION ====== -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="@dimen/_16sdp"
+            android:paddingTop="@dimen/_12sdp"
+            android:paddingBottom="@dimen/_16sdp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/home_title"
+                android:textColor="@color/color_text_primary"
+                android:textSize="@dimen/_22ssp"
+                android:fontFamily="@font/inter_bold"
+                android:lineSpacingExtra="@dimen/_4sdp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_4sdp"
+                android:text="@string/home_subtitle"
+                android:textColor="@color/color_text_secondary"
+                android:textSize="@dimen/_13ssp"
+                android:fontFamily="@font/inter" />
+        </LinearLayout>
+
+        <!-- ====== SEND FILES CARD ====== -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cardSend"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_100sdp"
+            android:layout_marginHorizontal="@dimen/_16sdp"
+            android:background="@drawable/bg_send_card"
+            android:paddingHorizontal="@dimen/_20sdp"
+            android:paddingVertical="@dimen/_18sdp"
+            android:clickable="true"
+            android:focusable="true">
+
+            <ImageView
+                android:id="@+id/iconSend"
+                android:layout_width="@dimen/_36sdp"
+                android:layout_height="@dimen/_36sdp"
+                android:src="@drawable/ic_send"
+                app:tint="@android:color/white"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:contentDescription="@null" />
+
+            <TextView
+                android:id="@+id/titleSend"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_12sdp"
+                android:layout_marginEnd="@dimen/_8sdp"
+                android:text="@string/home_send_title"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/_16ssp"
+                android:fontFamily="@font/inter_semibold"
+                app:layout_constraintStart_toEndOf="@id/iconSend"
+                app:layout_constraintEnd_toStartOf="@id/chevronSend"
+                app:layout_constraintTop_toTopOf="@id/iconSend" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_12sdp"
+                android:layout_marginEnd="@dimen/_8sdp"
+                android:layout_marginTop="@dimen/_2sdp"
+                android:text="@string/home_send_desc"
+                android:textColor="#B3FFFFFF"
+                android:textSize="@dimen/_11ssp"
+                android:fontFamily="@font/inter"
+                app:layout_constraintStart_toEndOf="@id/iconSend"
+                app:layout_constraintEnd_toStartOf="@id/chevronSend"
+                app:layout_constraintTop_toBottomOf="@id/titleSend" />
+
+            <ImageView
+                android:id="@+id/chevronSend"
+                android:layout_width="@dimen/_20sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:src="@drawable/ic_chevron_right"
+                app:tint="@android:color/white"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:contentDescription="@null" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <!-- ====== RECEIVE FILES CARD ====== -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cardReceive"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_100sdp"
+            android:layout_marginHorizontal="@dimen/_16sdp"
+            android:layout_marginTop="@dimen/_12sdp"
+            android:background="@drawable/bg_receive_card"
+            android:paddingHorizontal="@dimen/_20sdp"
+            android:paddingVertical="@dimen/_18sdp"
+            android:clickable="true"
+            android:focusable="true">
+
+            <ImageView
+                android:id="@+id/iconReceive"
+                android:layout_width="@dimen/_36sdp"
+                android:layout_height="@dimen/_36sdp"
+                android:src="@drawable/ic_receive"
+                app:tint="@color/color_primary"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:contentDescription="@null" />
+
+            <TextView
+                android:id="@+id/titleReceive"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_12sdp"
+                android:layout_marginEnd="@dimen/_8sdp"
+                android:text="@string/home_receive_title"
+                android:textColor="@color/color_text_primary"
+                android:textSize="@dimen/_16ssp"
+                android:fontFamily="@font/inter_semibold"
+                app:layout_constraintStart_toEndOf="@id/iconReceive"
+                app:layout_constraintEnd_toStartOf="@id/chevronReceive"
+                app:layout_constraintTop_toTopOf="@id/iconReceive" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_12sdp"
+                android:layout_marginEnd="@dimen/_8sdp"
+                android:layout_marginTop="@dimen/_2sdp"
+                android:text="@string/home_receive_desc"
+                android:textColor="@color/color_text_secondary"
+                android:textSize="@dimen/_11ssp"
+                android:fontFamily="@font/inter"
+                app:layout_constraintStart_toEndOf="@id/iconReceive"
+                app:layout_constraintEnd_toStartOf="@id/chevronReceive"
+                app:layout_constraintTop_toBottomOf="@id/titleReceive" />
+
+            <ImageView
+                android:id="@+id/chevronReceive"
+                android:layout_width="@dimen/_20sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:src="@drawable/ic_chevron_right"
+                app:tint="@color/color_text_tertiary"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:contentDescription="@null" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <!-- ====== BROWSE FILES SECTION ====== -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_16sdp"
+            android:layout_marginTop="@dimen/_24sdp"
+            android:layout_marginBottom="@dimen/_12sdp"
+            android:text="@string/home_browse_files"
+            android:textColor="@color/color_text_tertiary"
+            android:textSize="@dimen/_11ssp"
+            android:fontFamily="@font/inter_semibold"
+            android:letterSpacing="0.08" />
+
+        <!-- Row 1: Photos, Videos -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingHorizontal="@dimen/_16sdp">
+
+            <!-- Photos -->
+            <LinearLayout
+                android:id="@+id/itemPhotos"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginEnd="@dimen/_6sdp"
+                android:background="@drawable/bg_browse_item"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:paddingVertical="@dimen/_16sdp"
+                android:clickable="true"
+                android:focusable="true">
+
+                <FrameLayout
+                    android:layout_width="@dimen/_40sdp"
+                    android:layout_height="@dimen/_40sdp">
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/bg_icon_circle_blue" />
+
+                    <ImageView
+                        android:layout_width="@dimen/_20sdp"
+                        android:layout_height="@dimen/_20sdp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/ic_photo"
+                        app:tint="#2563EB"
+                        android:contentDescription="@null" />
+                </FrameLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:text="@string/home_cat_photos"
+                    android:textColor="@color/color_text_primary"
+                    android:textSize="@dimen/_12ssp"
+                    android:fontFamily="@font/inter_medium" />
+            </LinearLayout>
+
+            <!-- Videos -->
+            <LinearLayout
+                android:id="@+id/itemVideos"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginStart="@dimen/_6sdp"
+                android:background="@drawable/bg_browse_item"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:paddingVertical="@dimen/_16sdp"
+                android:clickable="true"
+                android:focusable="true">
+
+                <FrameLayout
+                    android:layout_width="@dimen/_40sdp"
+                    android:layout_height="@dimen/_40sdp">
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/bg_icon_circle_red" />
+
+                    <ImageView
+                        android:layout_width="@dimen/_20sdp"
+                        android:layout_height="@dimen/_20sdp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/ic_video"
+                        app:tint="#EF4444"
+                        android:contentDescription="@null" />
+                </FrameLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:text="@string/home_cat_videos"
+                    android:textColor="@color/color_text_primary"
+                    android:textSize="@dimen/_12ssp"
+                    android:fontFamily="@font/inter_medium" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!-- Row 2: Music, Documents -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingHorizontal="@dimen/_16sdp"
+            android:layout_marginTop="@dimen/_10sdp">
+
+            <!-- Music -->
+            <LinearLayout
+                android:id="@+id/itemMusic"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginEnd="@dimen/_6sdp"
+                android:background="@drawable/bg_browse_item"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:paddingVertical="@dimen/_16sdp"
+                android:clickable="true"
+                android:focusable="true">
+
+                <FrameLayout
+                    android:layout_width="@dimen/_40sdp"
+                    android:layout_height="@dimen/_40sdp">
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/bg_icon_circle_purple" />
+
+                    <ImageView
+                        android:layout_width="@dimen/_20sdp"
+                        android:layout_height="@dimen/_20sdp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/ic_music"
+                        app:tint="#8B5CF6"
+                        android:contentDescription="@null" />
+                </FrameLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:text="@string/home_cat_music"
+                    android:textColor="@color/color_text_primary"
+                    android:textSize="@dimen/_12ssp"
+                    android:fontFamily="@font/inter_medium" />
+            </LinearLayout>
+
+            <!-- Documents -->
+            <LinearLayout
+                android:id="@+id/itemDocuments"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginStart="@dimen/_6sdp"
+                android:background="@drawable/bg_browse_item"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:paddingVertical="@dimen/_16sdp"
+                android:clickable="true"
+                android:focusable="true">
+
+                <FrameLayout
+                    android:layout_width="@dimen/_40sdp"
+                    android:layout_height="@dimen/_40sdp">
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/bg_icon_circle_orange" />
+
+                    <ImageView
+                        android:layout_width="@dimen/_20sdp"
+                        android:layout_height="@dimen/_20sdp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/ic_document"
+                        app:tint="#F97316"
+                        android:contentDescription="@null" />
+                </FrameLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:text="@string/home_cat_documents"
+                    android:textColor="@color/color_text_primary"
+                    android:textSize="@dimen/_12ssp"
+                    android:fontFamily="@font/inter_medium" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!-- Row 3: Apps, Contacts -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingHorizontal="@dimen/_16sdp"
+            android:layout_marginTop="@dimen/_10sdp">
+
+            <!-- Apps -->
+            <LinearLayout
+                android:id="@+id/itemApps"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginEnd="@dimen/_6sdp"
+                android:background="@drawable/bg_browse_item"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:paddingVertical="@dimen/_16sdp"
+                android:clickable="true"
+                android:focusable="true">
+
+                <FrameLayout
+                    android:layout_width="@dimen/_40sdp"
+                    android:layout_height="@dimen/_40sdp">
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/bg_icon_circle_green" />
+
+                    <ImageView
+                        android:layout_width="@dimen/_20sdp"
+                        android:layout_height="@dimen/_20sdp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/ic_apps"
+                        app:tint="#22C55E"
+                        android:contentDescription="@null" />
+                </FrameLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:text="@string/home_cat_apps"
+                    android:textColor="@color/color_text_primary"
+                    android:textSize="@dimen/_12ssp"
+                    android:fontFamily="@font/inter_medium" />
+            </LinearLayout>
+
+            <!-- Contacts -->
+            <LinearLayout
+                android:id="@+id/itemContacts"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginStart="@dimen/_6sdp"
+                android:background="@drawable/bg_browse_item"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:paddingVertical="@dimen/_16sdp"
+                android:clickable="true"
+                android:focusable="true">
+
+                <FrameLayout
+                    android:layout_width="@dimen/_40sdp"
+                    android:layout_height="@dimen/_40sdp">
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/bg_icon_circle_pink" />
+
+                    <ImageView
+                        android:layout_width="@dimen/_20sdp"
+                        android:layout_height="@dimen/_20sdp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/ic_contact"
+                        app:tint="#EC4899"
+                        android:contentDescription="@null" />
+                </FrameLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:text="@string/home_cat_contacts"
+                    android:textColor="@color/color_text_primary"
+                    android:textSize="@dimen/_12ssp"
+                    android:fontFamily="@font/inter_medium" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>

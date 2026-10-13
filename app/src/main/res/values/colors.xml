@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- res/values/colors.xml — Light Theme Colors -->
+<resources>
+
+    <!-- Primary Brand -->
+    <color name="color_primary">#2563EB</color>
+    <color name="color_primary_light">#DBEAFE</color>
+    <color name="color_primary_dark">#1D4ED8</color>
+    <color name="color_primary_tint">#EFF6FF</color>
+
+    <!-- Semantic Colors -->
+    <color name="color_green">#16A34A</color>
+    <color name="color_green_light">#DCFCE7</color>
+    <color name="color_orange">#EA580C</color>
+    <color name="color_orange_light">#FFF7ED</color>
+    <color name="color_red">#DC2626</color>
+    <color name="color_red_light">#FEF2F2</color>
+    <color name="color_red_tint">#FEF2F2</color>
+    <color name="color_purple">#9333EA</color>
+    <color name="color_purple_light">#F3E8FF</color>
+
+    <!-- Backgrounds & Surfaces -->
+    <color name="color_background">#F8FAFC</color>
+    <color name="color_surface">#FFFFFF</color>
+    <color name="color_surface_elevated">#F1F5F9</color>
+    <color name="color_splash_bg">#2563EB</color>
+    <color name="color_splash">#2563EB</color>
+    <color name="color_white">#FFFFFF</color>
+
+    <!-- Borders & Dividers -->
+    <color name="color_border">#E2E8F0</color>
+    <color name="color_divider">#F1F5F9</color>
+
+    <!-- Text Colors -->
+    <color name="color_text_primary">#0F172A</color>
+    <color name="color_text_secondary">#64748B</color>
+    <color name="color_text_tertiary">#94A3B8</color>
+    <color name="color_text_on_primary">#FFFFFF</color>
+
+    <!-- Bottom Nav -->
+    <color name="color_nav_active">#2563EB</color>
+    <color name="color_nav_inactive">#94A3B8</color>
+
+    <!-- Status Bar -->
+    <color name="color_status_bar">#F8FAFC</color>
+
+    <!-- Ripple / Press -->
+    <color name="color_ripple">#1A2563EB</color>
+
+    <!-- Card Tints (for category icons on Home) -->
+    <color name="color_tint_blue">#EFF6FF</color>
+    <color name="color_tint_green">#F0FDF4</color>
+    <color name="color_tint_purple">#FAF5FF</color>
+    <color name="color_tint_orange">#FFF7ED</color>
+    <color name="color_tint_red">#FEF2F2</color>
+
+    <!-- Progress Bar -->
+    <color name="color_progress_track">#E2E8F0</color>
+    <color name="color_progress_fill">#2563EB</color>
+
+    <!-- Overlay -->
+    <color name="color_overlay">#80000000</color>
+
+</resources>
