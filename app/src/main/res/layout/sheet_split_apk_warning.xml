@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_bottom_sheet"
+    android:orientation="vertical"
+    android:paddingHorizontal="@dimen/_20sdp"
+    android:paddingTop="@dimen/_12sdp"
+    android:paddingBottom="@dimen/_24sdp">
+
+    <View
+        android:layout_width="@dimen/_36sdp"
+        android:layout_height="@dimen/_4sdp"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/bg_sheet_handle" />
+
+    <ImageView
+        android:layout_width="@dimen/_48sdp"
+        android:layout_height="@dimen/_48sdp"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/_16sdp"
+        android:contentDescription="@null"
+        android:src="@drawable/ic_warning_triangle"
+        android:tint="#F59E0B" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/_12sdp"
+        android:fontFamily="@font/inter_bold"
+        android:text="Split APK Detected"
+        android:textColor="@color/color_text_primary"
+        android:textSize="@dimen/_16ssp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/_8sdp"
+        android:fontFamily="@font/inter"
+        android:gravity="center"
+        android:lineSpacingExtra="@dimen/_2sdp"
+        android:text="This app uses a split APK format. It may not install correctly on the receiving device if it has a different CPU architecture or screen density."
+        android:textColor="@color/color_text_secondary"
+        android:textSize="@dimen/_13ssp" />
+
+    <TextView
+        android:id="@+id/btnSendAnyway"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_44sdp"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:background="@drawable/bg_button_primary"
+        android:fontFamily="@font/inter_semibold"
+        android:gravity="center"
+        android:text="Send Anyway"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/_14ssp" />
+
+    <TextView
+        android:id="@+id/btnRemoveApp"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_44sdp"
+        android:layout_marginTop="@dimen/_8sdp"
+        android:background="@drawable/bg_button_outlined"
+        android:fontFamily="@font/inter_semibold"
+        android:gravity="center"
+        android:text="Remove from Selection"
+        android:textColor="@color/color_text_primary"
+        android:textSize="@dimen/_14ssp" />
+</LinearLayout>

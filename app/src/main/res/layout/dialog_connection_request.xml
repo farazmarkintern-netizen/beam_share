@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_dialog_rounded"
+    android:orientation="vertical"
+    android:paddingHorizontal="@dimen/_20sdp"
+    android:paddingTop="@dimen/_24sdp"
+    android:paddingBottom="@dimen/_20sdp">
+
+    <!-- Device icon -->
+    <FrameLayout
+        android:layout_width="@dimen/_48sdp"
+        android:layout_height="@dimen/_48sdp"
+        android:layout_gravity="center">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/bg_icon_circle_blue" />
+
+        <ImageView
+            android:layout_width="@dimen/_24sdp"
+            android:layout_height="@dimen/_24sdp"
+            android:layout_gravity="center"
+            android:contentDescription="@null"
+            android:src="@drawable/ic_phone_device"
+            app:tint="#2563EB" />
+    </FrameLayout>
+
+    <!-- Title: "Galaxy S24 wants to connect" -->
+    <TextView
+        android:id="@+id/tvConnectionTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/_12sdp"
+        android:fontFamily="@font/inter_bold"
+        android:gravity="center"
+        android:textColor="@color/color_text_primary"
+        android:textSize="@dimen/_16ssp" />
+
+    <!-- "Code verified ✓" -->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/_4sdp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/inter"
+            android:text="@string/receive_code_verified"
+            android:textColor="#16A34A"
+            android:textSize="@dimen/_13ssp" />
+
+        <ImageView
+            android:layout_width="@dimen/_14sdp"
+            android:layout_height="@dimen/_14sdp"
+            android:layout_marginStart="@dimen/_4sdp"
+            android:contentDescription="@null"
+            android:src="@drawable/ic_check_bold"
+            app:tint="#16A34A" />
+    </LinearLayout>
+
+    <!-- Auto-accept toggle -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:background="@drawable/bg_surface_card"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingHorizontal="@dimen/_14sdp"
+        android:paddingVertical="@dimen/_12sdp">
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/switchAutoAccept"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:checked="true"
+            android:fontFamily="@font/inter"
+            android:text="@string/receive_auto_accept"
+            android:textColor="@color/color_text_primary"
+            android:textSize="@dimen/_13ssp" />
+    </LinearLayout>
+
+    <!-- Buttons -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:orientation="horizontal">
+
+        <!-- Decline -->
+        <TextView
+            android:id="@+id/btnDecline"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_44sdp"
+            android:layout_marginEnd="@dimen/_8sdp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_button_outlined"
+            android:fontFamily="@font/inter_semibold"
+            android:gravity="center"
+            android:text="@string/receive_decline"
+            android:textColor="@color/color_text_primary"
+            android:textSize="@dimen/_14ssp" />
+
+        <!-- Accept -->
+        <TextView
+            android:id="@+id/btnAccept"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_44sdp"
+            android:layout_marginStart="@dimen/_8sdp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_button_primary"
+            android:fontFamily="@font/inter_semibold"
+            android:gravity="center"
+            android:text="@string/receive_accept"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/_14ssp" />
+    </LinearLayout>
+</LinearLayout>

@@ -1,9 +1,12 @@
-// com/example/beamshare/onboarding/OnboardingActivity.kt
 package com.example.beamshare.onboarding
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
+import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import androidx.viewpager2.widget.ViewPager2
 import com.example.beamshare.R
 import com.example.beamshare.ui.MainActivity
@@ -22,7 +25,20 @@ class OnboardingActivity : AppCompatActivity() {
             return
         }
 
+        enableEdgeToEdge()
         setContentView(R.layout.activity_onboarding)
+
+        val root = findViewById<View>(R.id.main)
+        ViewCompat.setOnApplyWindowInsetsListener(root) { v, insets ->
+            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            v.setPadding(
+                systemBars.left,
+                systemBars.top,
+                systemBars.right,
+                systemBars.bottom
+            )
+            insets
+        }
 
         viewPager = findViewById(R.id.viewPager)
         viewPager.adapter = OnboardingAdapter(this)

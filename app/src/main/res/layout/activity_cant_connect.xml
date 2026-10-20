@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_background"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:paddingHorizontal="@dimen/_24sdp">
+
+    <!-- Red Circle with broken connection icon -->
+    <FrameLayout
+        android:layout_width="@dimen/_80sdp"
+        android:layout_height="@dimen/_80sdp">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/bg_circle_error" />
+
+        <ImageView
+            android:layout_width="@dimen/_36sdp"
+            android:layout_height="@dimen/_36sdp"
+            android:layout_gravity="center"
+            android:contentDescription="@null"
+            android:src="@drawable/ic_connection_broken" />
+    </FrameLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_24sdp"
+        android:fontFamily="@font/inter_bold"
+        android:text="Can't Connect"
+        android:textColor="@color/color_text_primary"
+        android:textSize="@dimen/_20ssp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_8sdp"
+        android:fontFamily="@font/inter"
+        android:gravity="center"
+        android:lineSpacingExtra="@dimen/_2sdp"
+        android:text="Unable to establish a connection with the other device. Please make sure both devices are nearby and try again."
+        android:textColor="@color/color_text_secondary"
+        android:textSize="@dimen/_14ssp" />
+
+    <TextView
+        android:id="@+id/btnTryAgain"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_48sdp"
+        android:layout_marginTop="@dimen/_32sdp"
+        android:background="@drawable/bg_button_error"
+        android:fontFamily="@font/inter_semibold"
+        android:gravity="center"
+        android:text="Try Again"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/_15ssp" />
+
+    <TextView
+        android:id="@+id/btnGoHome"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_48sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:background="@drawable/bg_button_outlined"
+        android:fontFamily="@font/inter_semibold"
+        android:gravity="center"
+        android:text="Go Home"
+        android:textColor="@color/color_text_primary"
+        android:textSize="@dimen/_15ssp" />
+</LinearLayout>

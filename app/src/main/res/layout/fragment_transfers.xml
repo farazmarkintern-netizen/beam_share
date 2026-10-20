@@ -1,35 +1,195 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- res/layout/fragment_transfers.xml -->
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/color_background"
-    android:gravity="center"
-    android:orientation="vertical">
+    android:background="@color/color_background">
 
-    <ImageView
-        android:layout_width="@dimen/_48sdp"
-        android:layout_height="@dimen/_48sdp"
-        android:src="@drawable/ic_clock"
-        android:alpha="0.3"
-        android:contentDescription="@null" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_12sdp"
-        android:text="@string/nav_transfers"
-        android:textColor="@color/color_text_secondary"
-        android:textSize="@dimen/_16ssp"
-        android:fontFamily="@font/inter_semibold" />
+        <!-- ====== TOP BAR: Title + Search ====== -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingHorizontal="@dimen/_16sdp"
+            android:paddingTop="@dimen/_6sdp"
+            android:paddingBottom="@dimen/_8sdp">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_4sdp"
-        android:text="@string/transfers_empty"
-        android:textColor="@color/color_text_tertiary"
-        android:textSize="@dimen/_12ssp"
-        android:fontFamily="@font/inter" />
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/inter_bold"
+                android:text="@string/transfers_title"
+                android:textColor="@color/color_text_primary"
+                android:textSize="@dimen/_20ssp" />
 
-</LinearLayout>
+            <FrameLayout
+                android:id="@+id/btnSearch"
+                android:layout_width="@dimen/_36sdp"
+                android:layout_height="@dimen/_36sdp"
+                android:background="@drawable/bg_browse_item"
+                android:clickable="true"
+                android:focusable="true">
+
+                <ImageView
+                    android:layout_width="@dimen/_17sdp"
+                    android:layout_height="@dimen/_17sdp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_search"
+                    app:tint="@color/color_text_primary"
+                    android:contentDescription="@null" />
+            </FrameLayout>
+        </LinearLayout>
+
+        <!-- ====== FILTER CHIPS ====== -->
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clipToPadding="false"
+            android:paddingHorizontal="@dimen/_16sdp"
+            android:paddingVertical="@dimen/_4sdp"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/filterAll"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_filter_pill_selected"
+                    android:fontFamily="@font/inter_medium"
+                    android:paddingHorizontal="@dimen/_14sdp"
+                    android:paddingVertical="@dimen/_6sdp"
+                    android:text="@string/history_filter_all"
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/_12ssp" />
+
+                <TextView
+                    android:id="@+id/filterSent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_8sdp"
+                    android:background="@drawable/bg_filter_pill_unselected"
+                    android:fontFamily="@font/inter_medium"
+                    android:paddingHorizontal="@dimen/_14sdp"
+                    android:paddingVertical="@dimen/_6sdp"
+                    android:text="@string/history_filter_sent"
+                    android:textColor="@color/color_text_secondary"
+                    android:textSize="@dimen/_12ssp" />
+
+                <TextView
+                    android:id="@+id/filterReceived"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_8sdp"
+                    android:background="@drawable/bg_filter_pill_unselected"
+                    android:fontFamily="@font/inter_medium"
+                    android:paddingHorizontal="@dimen/_14sdp"
+                    android:paddingVertical="@dimen/_6sdp"
+                    android:text="@string/history_filter_received"
+                    android:textColor="@color/color_text_secondary"
+                    android:textSize="@dimen/_12ssp" />
+
+                <TextView
+                    android:id="@+id/filterFailed"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_8sdp"
+                    android:background="@drawable/bg_filter_pill_unselected"
+                    android:fontFamily="@font/inter_medium"
+                    android:paddingHorizontal="@dimen/_14sdp"
+                    android:paddingVertical="@dimen/_6sdp"
+                    android:text="@string/history_filter_failed"
+                    android:textColor="@color/color_text_secondary"
+                    android:textSize="@dimen/_12ssp" />
+            </LinearLayout>
+        </HorizontalScrollView>
+
+        <!-- ====== TRANSFER LIST ====== -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvTransferHistory"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:clipToPadding="false" />
+
+        <!-- ====== EMPTY STATE ====== -->
+        <LinearLayout
+            android:id="@+id/emptyState"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <!-- Blue circle with transfer icon -->
+            <FrameLayout
+                android:layout_width="@dimen/_72sdp"
+                android:layout_height="@dimen/_72sdp">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/bg_empty_state_circle" />
+
+                <ImageView
+                    android:layout_width="@dimen/_32sdp"
+                    android:layout_height="@dimen/_32sdp"
+                    android:layout_gravity="center"
+                    android:contentDescription="@null"
+                    android:src="@drawable/ic_transfer_arrows"
+                    app:tint="@color/color_primary" />
+            </FrameLayout>
+
+            <TextView
+                android:id="@+id/tvEmptyTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_16sdp"
+                android:fontFamily="@font/inter_bold"
+                android:text="@string/transfers_empty_title"
+                android:textColor="@color/color_text_primary"
+                android:textSize="@dimen/_16ssp" />
+
+            <TextView
+                android:id="@+id/tvEmptySubtitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_4sdp"
+                android:fontFamily="@font/inter"
+                android:text="@string/transfers_empty_subtitle"
+                android:textColor="@color/color_text_secondary"
+                android:textSize="@dimen/_12ssp" />
+
+            <!-- Send files button -->
+            <TextView
+                android:id="@+id/btnSendFiles"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_16sdp"
+                android:background="@drawable/bg_button_primary"
+                android:drawableStart="@drawable/ic_send"
+                android:drawablePadding="6dp"
+                android:drawableTint="@android:color/white"
+                android:fontFamily="@font/inter_bold"
+                android:gravity="center"
+                android:paddingHorizontal="@dimen/_20sdp"
+                android:paddingVertical="@dimen/_10sdp"
+                android:text="@string/transfers_send_files"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/_13ssp"
+                android:clickable="true"
+                android:focusable="true" />
+        </LinearLayout>
+    </LinearLayout>
+</FrameLayout>

@@ -36,11 +36,6 @@
         <item name="colorOutline">@color/color_border</item>
         <item name="colorOutlineVariant">@color/color_divider</item>
 
-        <!-- Status bar & Navigation bar -->
-        <item name="android:statusBarColor">@color/color_background</item>
-        <item name="android:windowLightStatusBar">true</item>
-        <item name="android:navigationBarColor">@color/color_surface</item>
-        <item name="android:windowLightNavigationBar">true</item>
 
         <!-- Window -->
         <item name="android:windowBackground">@color/color_background</item>
@@ -214,8 +209,10 @@
         <item name="itemActiveIndicatorStyle">@style/Widget.BeamShare.BottomNav.Indicator</item>
         <item name="labelVisibilityMode">labeled</item>
         <item name="android:minHeight">64dp</item>
-        <item name="itemTextAppearanceActive">@style/TextAppearance.BeamShare.BottomNav.Active</item>
-        <item name="itemTextAppearanceInactive">@style/TextAppearance.BeamShare.BottomNav.Inactive</item>
+        <item name="itemTextAppearanceActive">@style/TextAppearance.BeamShare.BottomNav.Active
+        </item>
+        <item name="itemTextAppearanceInactive">@style/TextAppearance.BeamShare.BottomNav.Inactive
+        </item>
     </style>
 
     <style name="Widget.BeamShare.BottomNav.Indicator" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
@@ -270,29 +267,6 @@
         <item name="chipMinHeight">32dp</item>
         <item name="chipBackgroundColor">@color/color_surface_elevated</item>
         <item name="chipIconSize">18dp</item>
-    </style>
-
-
-    <!-- ====================  BOTTOM SHEET  ==================== -->
-
-    <style name="Theme.BeamShare.BottomSheet" parent="Theme.Material3.Light.BottomSheetDialog">
-        <item name="bottomSheetStyle">@style/Widget.BeamShare.BottomSheet</item>
-        <item name="android:windowIsFloating">false</item>
-        <item name="android:windowSoftInputMode">adjustResize</item>
-        <item name="android:colorBackground">@android:color/transparent</item>
-    </style>
-
-    <style name="Widget.BeamShare.BottomSheet" parent="Widget.Material3.BottomSheet">
-        <item name="backgroundTint">@color/color_surface</item>
-        <item name="shapeAppearance">@style/ShapeAppearance.BeamShare.BottomSheet</item>
-    </style>
-
-    <style name="ShapeAppearance.BeamShare.BottomSheet" parent="">
-        <item name="cornerFamily">rounded</item>
-        <item name="cornerSizeTopLeft">24dp</item>
-        <item name="cornerSizeTopRight">24dp</item>
-        <item name="cornerSizeBottomLeft">0dp</item>
-        <item name="cornerSizeBottomRight">0dp</item>
     </style>
 
 
@@ -386,6 +360,30 @@
         <item name="windowSplashScreenBackground">@color/color_splash</item>
         <item name="windowSplashScreenAnimatedIcon">@drawable/ic_launcher_foreground</item>
         <item name="postSplashScreenTheme">@style/Theme.BeamShare</item>
+    </style>
+
+    <style name="Theme.BeamShare.BottomSheet" parent="Theme.Material3.DayNight.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/Widget.BeamShare.BottomSheet</item>
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:windowSoftInputMode">adjustResize</item>
+    </style>
+
+    <style name="Widget.BeamShare.BottomSheet" parent="Widget.Material3.BottomSheet">
+        <item name="shapeAppearanceOverlay">@style/ShapeAppearance.BeamShare.BottomSheet</item>
+        <item name="backgroundTint">@android:color/transparent</item>
+    </style>
+
+    <style name="ShapeAppearance.BeamShare.BottomSheet" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeTopLeft">20dp</item>
+        <item name="cornerSizeTopRight">20dp</item>
+        <item name="cornerSizeBottomLeft">0dp</item>
+        <item name="cornerSizeBottomRight">0dp</item>
+    </style>
+    <!-- Base application theme. -->
+    <style name="Base.Theme.BeamShare" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your light theme here. -->
+        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
     </style>
 
 </resources>

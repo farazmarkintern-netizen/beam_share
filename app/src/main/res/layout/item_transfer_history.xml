@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/color_surface"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:paddingVertical="@dimen/_10sdp"
+    android:paddingHorizontal="@dimen/_16sdp">
+
+    <!-- File Type Icon -->
+    <FrameLayout
+        android:layout_width="@dimen/_42sdp"
+        android:layout_height="@dimen/_42sdp">
+
+        <View
+            android:id="@+id/viewIconBg"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/bg_icon_circle_blue" />
+
+        <ImageView
+            android:id="@+id/ivFileTypeIcon"
+            android:layout_width="@dimen/_20sdp"
+            android:layout_height="@dimen/_20sdp"
+            android:layout_gravity="center"
+            android:contentDescription="@null"
+            android:src="@drawable/ic_photo"
+            app:tint="#2563EB" />
+
+        <!-- Direction arrow badge (bottom-right) -->
+        <ImageView
+            android:id="@+id/ivDirectionArrow"
+            android:layout_width="@dimen/_14sdp"
+            android:layout_height="@dimen/_14sdp"
+            android:layout_gravity="bottom|end"
+            android:contentDescription="@null"
+            android:visibility="gone" />
+    </FrameLayout>
+
+    <!-- Transfer Info -->
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_12sdp"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvHistoryTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:fontFamily="@font/inter_semibold"
+            android:maxLines="1"
+            android:textColor="@color/color_text_primary"
+            android:textSize="@dimen/_13ssp" />
+
+        <TextView
+            android:id="@+id/tvHistoryDetails"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_2sdp"
+            android:fontFamily="@font/inter"
+            android:textColor="@color/color_text_secondary"
+            android:textSize="@dimen/_11ssp" />
+    </LinearLayout>
+
+    <!-- Status Badge (colored bg + arrow/x icon) -->
+    <FrameLayout
+        android:id="@+id/statusBadge"
+        android:layout_width="@dimen/_32sdp"
+        android:layout_height="@dimen/_32sdp"
+        android:layout_marginStart="@dimen/_8sdp">
+
+        <View
+            android:id="@+id/viewStatusBg"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <ImageView
+            android:id="@+id/ivStatusIcon"
+            android:layout_width="@dimen/_16sdp"
+            android:layout_height="@dimen/_16sdp"
+            android:layout_gravity="center"
+            android:contentDescription="@null" />
+    </FrameLayout>
+</LinearLayout>

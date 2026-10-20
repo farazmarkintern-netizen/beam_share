@@ -123,5 +123,7 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(libs.androidx.navigation.testing)
+
+    implementation("com.facebook.shimmer:shimmer:0.5.0")
 }
 

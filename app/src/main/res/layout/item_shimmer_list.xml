@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingHorizontal="@dimen/_16sdp"
+    android:paddingVertical="@dimen/_6sdp">
+
+    <include layout="@layout/item_shimmer_list_row" />
+    <include layout="@layout/item_shimmer_list_row" />
+    <include layout="@layout/item_shimmer_list_row" />
+    <include layout="@layout/item_shimmer_list_row" />
+    <include layout="@layout/item_shimmer_list_row" />
+    <include layout="@layout/item_shimmer_list_row" />
+    <include layout="@layout/item_shimmer_list_row" />
+    <include layout="@layout/item_shimmer_list_row" />
+
+</LinearLayout>

@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_background"
+    android:orientation="vertical">
+
+    <!-- Top Bar -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_48sdp"
+        android:gravity="center_vertical"
+        android:paddingHorizontal="@dimen/_16sdp">
+
+        <ImageView
+            android:id="@+id/btnBack"
+            android:layout_width="@dimen/_24sdp"
+            android:layout_height="@dimen/_24sdp"
+            android:layout_centerVertical="true"
+            android:contentDescription="@string/back"
+            android:src="@drawable/ic_arrow_back" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="@dimen/_12sdp"
+            android:layout_toEndOf="@id/btnBack"
+            android:fontFamily="@font/inter_semibold"
+            android:text="@string/send_files_title"
+            android:textColor="@color/color_text_primary"
+            android:textSize="@dimen/_16ssp" />
+
+        <TextView
+            android:id="@+id/tvSelectedBadge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/bg_selected_count_badge"
+            android:fontFamily="@font/inter_medium"
+            android:paddingHorizontal="@dimen/_10sdp"
+            android:paddingVertical="@dimen/_4sdp"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/_11ssp"
+            android:visibility="gone" />
+
+    </RelativeLayout>
+
+    <!-- Category Tabs -->
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabLayout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_40sdp"
+        android:background="@color/color_background"
+        app:tabGravity="fill"
+        app:tabIndicatorColor="@color/color_primary"
+        app:tabIndicatorHeight="@dimen/_2sdp"
+        app:tabMode="scrollable"
+        app:tabPaddingEnd="@dimen/_8sdp"
+        app:tabPaddingStart="@dimen/_8sdp"
+        app:tabRippleColor="@android:color/transparent"
+        app:tabSelectedTextColor="@color/color_text_primary"
+        app:tabTextColor="@color/color_text_tertiary" />
+
+    <!-- Content Area -->
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <!-- Media Grid / List -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvMediaGrid"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipToPadding="false"
+            android:padding="@dimen/_2sdp" />
+
+        <!-- Shimmer Loading (Grid) -->
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:id="@+id/shimmerGrid"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:shimmer_auto_start="true"
+            app:shimmer_base_color="#E2E8F0"
+            app:shimmer_highlight_color="#F8FAFC"
+            android:visibility="gone">
+
+            <include layout="@layout/item_shimmer_grid" />
+
+        </com.facebook.shimmer.ShimmerFrameLayout>
+
+        <!-- Shimmer Loading (List) -->
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:id="@+id/shimmerList"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:shimmer_auto_start="true"
+            app:shimmer_base_color="#E2E8F0"
+            app:shimmer_highlight_color="#F8FAFC"
+            android:visibility="gone">
+
+            <include layout="@layout/item_shimmer_list" />
+
+        </com.facebook.shimmer.ShimmerFrameLayout>
+
+        <!-- Empty State -->
+        <LinearLayout
+            android:id="@+id/emptyState"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <ImageView
+                android:layout_width="@dimen/_48sdp"
+                android:layout_height="@dimen/_48sdp"
+                android:alpha="0.3"
+                android:src="@drawable/ic_folder" />
+
+            <TextView
+                android:id="@+id/tvEmptyTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_12sdp"
+                android:fontFamily="@font/inter_medium"
+                android:textColor="@color/color_text_secondary"
+                android:textSize="@dimen/_14ssp" />
+
+        </LinearLayout>
+
+        <!-- Permission Required State -->
+        <LinearLayout
+            android:id="@+id/permissionState"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingHorizontal="@dimen/_32sdp"
+            android:visibility="gone">
+
+            <ImageView
+                android:layout_width="@dimen/_56sdp"
+                android:layout_height="@dimen/_56sdp"
+                android:src="@drawable/ic_lock" />
+
+            <TextView
+                android:id="@+id/tvPermissionTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_16sdp"
+                android:fontFamily="@font/inter_semibold"
+                android:gravity="center"
+                android:text="@string/storage_permission_needed"
+                android:textColor="@color/color_text_primary"
+                android:textSize="@dimen/_15ssp" />
+
+            <TextView
+                android:id="@+id/tvPermissionDesc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:fontFamily="@font/inter"
+                android:gravity="center"
+                android:text="@string/storage_permission_desc"
+                android:textColor="@color/color_text_secondary"
+                android:textSize="@dimen/_12ssp" />
+
+            <TextView
+                android:id="@+id/btnGrantPermission"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:background="@drawable/bg_next_button"
+                android:fontFamily="@font/inter_semibold"
+                android:paddingHorizontal="@dimen/_24sdp"
+                android:paddingVertical="@dimen/_10sdp"
+                android:text="@string/grant_permission"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/_13ssp" />
+
+        </LinearLayout>
+
+    </FrameLayout>
+
+    <!-- Bottom Bar -->
+    <LinearLayout
+        android:id="@+id/bottomBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/color_surface"
+        android:elevation="@dimen/_8sdp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingHorizontal="@dimen/_16sdp"
+        android:paddingVertical="@dimen/_12sdp"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvSelectedItems"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/inter_semibold"
+                android:textColor="@color/color_text_primary"
+                android:textSize="@dimen/_13ssp" />
+
+            <TextView
+                android:id="@+id/tvTotalSize"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_2sdp"
+                android:fontFamily="@font/inter"
+                android:textColor="@color/color_text_secondary"
+                android:textSize="@dimen/_11ssp" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/btnNext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_next_button"
+            android:fontFamily="@font/inter_semibold"
+            android:paddingHorizontal="@dimen/_28sdp"
+            android:paddingVertical="@dimen/_12sdp"
+            android:text="@string/next_arrow"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/_14ssp" />
+
+    </LinearLayout>
+
+</LinearLayout>

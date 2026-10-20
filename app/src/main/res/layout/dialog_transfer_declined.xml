@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_dialog_rounded"
+    android:orientation="vertical"
+    android:paddingHorizontal="@dimen/_20sdp"
+    android:paddingTop="@dimen/_24sdp"
+    android:paddingBottom="@dimen/_20sdp">
+
+    <ImageView
+        android:layout_width="@dimen/_48sdp"
+        android:layout_height="@dimen/_48sdp"
+        android:layout_gravity="center"
+        android:contentDescription="@null"
+        android:src="@drawable/ic_error_circle" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/_12sdp"
+        android:fontFamily="@font/inter_bold"
+        android:text="Transfer Declined"
+        android:textColor="@color/color_text_primary"
+        android:textSize="@dimen/_16ssp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/_8sdp"
+        android:fontFamily="@font/inter"
+        android:gravity="center"
+        android:text="The receiving device declined your transfer request. You can try sending to a different device."
+        android:textColor="@color/color_text_secondary"
+        android:textSize="@dimen/_13ssp" />
+
+    <TextView
+        android:id="@+id/btnSendToOther"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_44sdp"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:background="@drawable/bg_button_primary"
+        android:fontFamily="@font/inter_semibold"
+        android:gravity="center"
+        android:text="Send to Another Device"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/_14ssp" />
+
+    <TextView
+        android:id="@+id/btnDismiss"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_44sdp"
+        android:layout_marginTop="@dimen/_8sdp"
+        android:background="@drawable/bg_button_outlined"
+        android:fontFamily="@font/inter_semibold"
+        android:gravity="center"
+        android:text="Go Home"
+        android:textColor="@color/color_text_primary"
+        android:textSize="@dimen/_14ssp" />
+</LinearLayout>

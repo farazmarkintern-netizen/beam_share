@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- One row in the home "LIVE NOW" card. Direction icon + name/subtitle + percent,
+     with a thin progress bar underneath. Uses only existing colors/drawables. -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingVertical="@dimen/_10sdp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+
+        <FrameLayout
+            android:layout_width="@dimen/_32sdp"
+            android:layout_height="@dimen/_32sdp">
+
+            <View
+                android:id="@+id/iconBg"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/bg_icon_circle_blue" />
+
+            <ImageView
+                android:id="@+id/ivDirection"
+                android:layout_width="@dimen/_16sdp"
+                android:layout_height="@dimen/_16sdp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_send"
+                app:tint="@color/color_primary"
+                android:contentDescription="@null" />
+        </FrameLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxLines="1"
+                android:ellipsize="middle"
+                android:textColor="@color/color_text_primary"
+                android:textSize="@dimen/_13ssp"
+                android:fontFamily="@font/inter_semibold"
+                tools:text="IMG_2041.jpg" />
+
+            <TextView
+                android:id="@+id/tvSub"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="1dp"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:textColor="@color/color_text_secondary"
+                android:textSize="@dimen/_10ssp"
+                android:fontFamily="@font/inter_medium"
+                tools:text="From Galaxy S24 · 3.1 MB" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tvPercent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_8sdp"
+            android:textColor="@color/color_primary"
+            android:textSize="@dimen/_12ssp"
+            android:fontFamily="@font/inter_bold"
+            tools:text="72%" />
+    </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_4sdp"
+        android:layout_marginTop="@dimen/_8sdp"
+        android:max="100"
+        android:progressTint="@color/color_progress_fill"
+        android:progressBackgroundTint="@color/color_progress_track"
+        tools:progress="72" />
+</LinearLayout>

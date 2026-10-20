@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rootLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_background"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+    <View
+        android:layout_width="1dp"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <!-- Error Icon -->
+    <FrameLayout
+        android:layout_width="@dimen/_72sdp"
+        android:layout_height="@dimen/_72sdp">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/bg_circle_error" />
+
+        <ImageView
+            android:layout_width="@dimen/_32sdp"
+            android:layout_height="@dimen/_32sdp"
+            android:layout_gravity="center"
+            android:contentDescription="@null"
+            android:src="@drawable/ic_close"
+            android:tint="@android:color/white" />
+    </FrameLayout>
+
+    <!-- Title -->
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:fontFamily="@font/inter_bold"
+        android:text="@string/transfer_failed_title"
+        android:textColor="@color/color_text_primary"
+        android:textSize="@dimen/_20ssp" />
+
+    <!-- Subtitle -->
+    <TextView
+        android:id="@+id/tvSubtitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_8sdp"
+        android:fontFamily="@font/inter"
+        android:gravity="center"
+        android:paddingHorizontal="@dimen/_32sdp"
+        android:text="@string/transfer_failed_desc"
+        android:textColor="@color/color_text_secondary"
+        android:textSize="@dimen/_13ssp" />
+
+    <!-- Show error details expandable -->
+    <TextView
+        android:id="@+id/tvShowErrorDetails"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_12sdp"
+        android:fontFamily="@font/inter_medium"
+        android:paddingVertical="@dimen/_4sdp"
+        android:text="@string/show_error_details"
+        android:textColor="@color/color_primary"
+        android:textSize="@dimen/_12ssp" />
+
+    <TextView
+        android:id="@+id/tvErrorDetails"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_8sdp"
+        android:background="@drawable/bg_browse_item"
+        android:fontFamily="@font/inter"
+        android:lineSpacingExtra="@dimen/_4sdp"
+        android:layout_marginHorizontal="@dimen/_24sdp"
+        android:padding="@dimen/_12sdp"
+        android:textColor="@color/color_text_secondary"
+        android:textSize="@dimen/_11ssp"
+        android:visibility="gone" />
+
+    <View
+        android:layout_width="1dp"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <!-- Buttons -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingHorizontal="@dimen/_24sdp"
+        android:paddingBottom="@dimen/_16sdp">
+
+        <TextView
+            android:id="@+id/btnTryAgain"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_46sdp"
+            android:background="@drawable/bg_button_error"
+            android:fontFamily="@font/inter_semibold"
+            android:gravity="center"
+            android:text="@string/try_again"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/_15ssp" />
+
+        <!-- Back to Session (visible only when session active) -->
+        <TextView
+            android:id="@+id/btnBackToSession"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_46sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:background="@drawable/bg_button_outlined"
+            android:fontFamily="@font/inter_semibold"
+            android:gravity="center"
+            android:text="@string/back_to_session"
+            android:textColor="@color/color_primary"
+            android:textSize="@dimen/_15ssp"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/btnGoHome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/_12sdp"
+            android:fontFamily="@font/inter_medium"
+            android:paddingVertical="@dimen/_8sdp"
+            android:text="@string/go_home"
+            android:textColor="@color/color_text_secondary"
+            android:textSize="@dimen/_14ssp" />
+    </LinearLayout>
+</LinearLayout>
