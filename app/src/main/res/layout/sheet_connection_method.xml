@@ -1,182 +1,137 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/bg_bottom_sheet"
     android:orientation="vertical"
-    android:paddingHorizontal="@dimen/_20sdp"
-    android:paddingTop="@dimen/_12sdp"
-    android:paddingBottom="@dimen/_24sdp">
-
-    <View
-        android:layout_width="@dimen/_36sdp"
-        android:layout_height="@dimen/_4sdp"
-        android:layout_gravity="center_horizontal"
-        android:background="@drawable/bg_sheet_handle" />
+    android:padding="24dp">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_20sdp"
-        android:fontFamily="@font/inter_bold"
-        android:text="Connection Method"
-        android:textColor="@color/color_text_primary"
-        android:textSize="@dimen/_16ssp" />
+        android:text="@string/sheet_method_title"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="?attr/colorOnSurface" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_4sdp"
-        android:fontFamily="@font/inter"
-        android:text="Choose how to connect to the other device"
-        android:textColor="@color/color_text_secondary"
-        android:textSize="@dimen/_12ssp" />
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="16dp"
+        android:text="@string/sheet_method_desc"
+        android:textSize="13sp"
+        android:textColor="?attr/colorOnSurfaceVariant" />
 
+    <!-- Wi-Fi Direct -->
     <LinearLayout
         android:id="@+id/optionWifiDirect"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_16sdp"
-        android:background="?attr/selectableItemBackground"
-        android:gravity="center_vertical"
         android:orientation="horizontal"
-        android:paddingVertical="@dimen/_12sdp">
-
-        <ImageView
-            android:layout_width="@dimen/_40sdp"
-            android:layout_height="@dimen/_40sdp"
-            android:background="@drawable/bg_icon_circle_blue"
-            android:contentDescription="@null"
-            android:padding="@dimen/_10sdp"
-            android:src="@drawable/ic_wifi_direct" />
+        android:paddingVertical="14dp"
+        android:gravity="center_vertical"
+        android:clickable="true"
+        android:focusable="true"
+        android:background="?attr/selectableItemBackground">
 
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_12sdp"
             android:layout_weight="1"
             android:orientation="vertical">
-
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/inter_semibold"
-                android:text="Wi-Fi Direct"
-                android:textColor="@color/color_text_primary"
-                android:textSize="@dimen/_13ssp" />
-
+                android:text="@string/sheet_method_wifi_direct"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:textColor="?attr/colorOnSurface" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_2sdp"
-                android:fontFamily="@font/inter"
-                android:text="Fastest · No internet needed"
-                android:textColor="@color/color_text_secondary"
-                android:textSize="@dimen/_11ssp" />
+                android:text="@string/sheet_method_wifi_direct_desc"
+                android:textSize="12sp"
+                android:textColor="?attr/colorOnSurfaceVariant"
+                android:layout_marginTop="2dp" />
         </LinearLayout>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/inter_medium"
-            android:text="Recommended"
-            android:textColor="#2563EB"
-            android:textSize="@dimen/_10ssp" />
+            android:text="@string/sheet_method_recommended"
+            android:textSize="11sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/white"
+            android:paddingHorizontal="10dp"
+            android:paddingVertical="4dp"
+            android:background="@drawable/bg_badge_granted" />
     </LinearLayout>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="#F1F5F9" />
+        android:background="?attr/colorOutlineVariant" />
 
+    <!-- Hotspot -->
     <LinearLayout
         android:id="@+id/optionHotspot"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?attr/selectableItemBackground"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:paddingVertical="@dimen/_12sdp">
+        android:orientation="vertical"
+        android:paddingVertical="14dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:background="?attr/selectableItemBackground">
 
-        <ImageView
-            android:layout_width="@dimen/_40sdp"
-            android:layout_height="@dimen/_40sdp"
-            android:background="@drawable/bg_icon_circle_blue"
-            android:contentDescription="@null"
-            android:padding="@dimen/_10sdp"
-            android:src="@drawable/ic_hotspot" />
-
-        <LinearLayout
-            android:layout_width="0dp"
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_12sdp"
-            android:layout_weight="1"
-            android:orientation="vertical">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/inter_semibold"
-                android:text="Hotspot"
-                android:textColor="@color/color_text_primary"
-                android:textSize="@dimen/_13ssp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_2sdp"
-                android:fontFamily="@font/inter"
-                android:text="Good speed · Creates a hotspot"
-                android:textColor="@color/color_text_secondary"
-                android:textSize="@dimen/_11ssp" />
-        </LinearLayout>
+            android:text="@string/sheet_method_hotspot"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:textColor="?attr/colorOnSurface" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/sheet_method_hotspot_desc"
+            android:textSize="12sp"
+            android:textColor="?attr/colorOnSurfaceVariant"
+            android:layout_marginTop="2dp" />
     </LinearLayout>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="#F1F5F9" />
+        android:background="?attr/colorOutlineVariant" />
 
+    <!-- Bluetooth -->
     <LinearLayout
         android:id="@+id/optionBluetooth"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?attr/selectableItemBackground"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:paddingVertical="@dimen/_12sdp">
+        android:orientation="vertical"
+        android:paddingVertical="14dp"
+        android:layout_marginBottom="8dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:background="?attr/selectableItemBackground">
 
-        <ImageView
-            android:layout_width="@dimen/_40sdp"
-            android:layout_height="@dimen/_40sdp"
-            android:background="@drawable/bg_icon_circle_blue"
-            android:contentDescription="@null"
-            android:padding="@dimen/_10sdp"
-            android:src="@drawable/ic_bluetooth" />
-
-        <LinearLayout
-            android:layout_width="0dp"
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_12sdp"
-            android:layout_weight="1"
-            android:orientation="vertical">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/inter_semibold"
-                android:text="Bluetooth"
-                android:textColor="@color/color_text_primary"
-                android:textSize="@dimen/_13ssp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_2sdp"
-                android:fontFamily="@font/inter"
-                android:text="Slower · Works everywhere"
-                android:textColor="@color/color_text_secondary"
-                android:textSize="@dimen/_11ssp" />
-        </LinearLayout>
+            android:text="@string/sheet_method_bluetooth"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:textColor="?attr/colorOnSurface" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/sheet_method_bluetooth_desc"
+            android:textSize="12sp"
+            android:textColor="?attr/colorOnSurfaceVariant"
+            android:layout_marginTop="2dp" />
     </LinearLayout>
+
 </LinearLayout>

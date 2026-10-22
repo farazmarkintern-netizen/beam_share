@@ -16,6 +16,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.example.beamshare.R
+import com.example.beamshare.permissions.PermissionsActivity
 import com.example.beamshare.session.SessionManager
 import com.example.beamshare.session.SessionState
 import com.example.beamshare.ui.discovery.DeviceDiscoveryActivity
@@ -23,6 +24,7 @@ import com.example.beamshare.ui.receive.ReceiveWaitingActivity
 import com.example.beamshare.ui.send.SendFilesActivity
 import com.example.beamshare.session.SessionActivity
 import kotlinx.coroutines.launch
+import kotlin.jvm.java
 
 class HomeFragment : Fragment() {
 
@@ -47,6 +49,8 @@ class HomeFragment : Fragment() {
         setupHeroCard(view)
         setupClickListeners(view)
         observeSessionState()
+        openPermissionActivity()
+
     }
 
     private fun observeSessionState() {
@@ -184,5 +188,11 @@ class HomeFragment : Fragment() {
             putExtra(SendFilesActivity.EXTRA_CATEGORY, category.name)
         }
         startActivity(intent)
+    }
+    private fun openPermissionActivity() {
+        view?.findViewById<View>(R.id.btnPermission)?.setOnClickListener {
+            val intent = Intent(requireContext(), PermissionsActivity::class.java)
+            startActivity(intent)
+        }
     }
 }

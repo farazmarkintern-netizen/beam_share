@@ -27,8 +27,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.beamshare.R
-import com.example.beamshare.ui.session.SessionFile
-import com.example.beamshare.ui.session.SessionFileAdapter
+import com.example.beamshare.ui.send.SendFilesActivity
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import kotlinx.coroutines.launch
 
@@ -37,8 +36,8 @@ class SessionActivity : AppCompatActivity() {
     companion object {
         private const val TAG = "SessionActivity"
         const val EXTRA_REMOTE_DEVICE_NAME = "extra_remote_device_name"
-        const val EXTRA_LOCAL_DEVICE_NAME = "extra_local_device_name"
-        const val EXTRA_PENDING_URIS = "extra_pending_uris"
+        const val EXTRA_LOCAL_DEVICE_NAME  = "extra_local_device_name"
+        const val EXTRA_PENDING_URIS       = "extra_pending_uris"
     }
 
     private lateinit var tvLocalDeviceName: TextView
@@ -56,7 +55,6 @@ class SessionActivity : AppCompatActivity() {
     private lateinit var sessionFileAdapter: SessionFileAdapter
     private var localDeviceName = ""
 
-    // Pending URIs to send once service is bound and session is connected
     private var pendingUris: ArrayList<Uri>? = null
     private var pendingUrisSent = false
 
@@ -67,11 +65,7 @@ class SessionActivity : AppCompatActivity() {
         override fun onServiceConnected(name: ComponentName?, binder: IBinder?) {
             groupService = (binder as GroupSessionService.LocalBinder).getService()
             serviceBound = true
-            Log.d(TAG, "Service bound — checking for pending files")
-            // Service just bound: if session is already Connected, send now
-            if (SessionManager.state.value is SessionState.Connected) {
-                sendPendingFiles()
-            }
+            if (SessionManager.state.value is SessionState.Connected) sendPendingFiles()
         }
         override fun onServiceDisconnected(name: ComponentName?) {
             groupService = null
@@ -79,22 +73,20 @@ class SessionActivity : AppCompatActivity() {
         }
     }
 
-    // File picker (manual pick from within SessionActivity)
     private val pickFiles = registerForActivityResult(
         ActivityResultContracts.OpenMultipleDocuments()
     ) { uris: List<Uri> ->
         if (uris.isNotEmpty()) {
             uris.forEach { uri ->
                 runCatching {
-                    contentResolver.takePersistableUriPermission(uri,
-                        Intent.FLAG_GRANT_READ_URI_PERMISSION)
+                    contentResolver.takePersistableUriPermission(
+                        uri, Intent.FLAG_GRANT_READ_URI_PERMISSION)
                 }
             }
             groupService?.sendUris(uris)
         }
     }
 
-    // Duration timer
     private val handler = Handler(Looper.getMainLooper())
     private var sessionStartMs = 0L
     private val durationRunnable = object : Runnable {
@@ -104,12 +96,13 @@ class SessionActivity : AppCompatActivity() {
         }
     }
 
+    // ── Lifecycle ──────────────────────────────────────────────────────────────
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         WindowCompat.setDecorFitsSystemWindows(window, false)
         setContentView(R.layout.activity_session)
 
-        // Grab pending URIs from intent immediately
         @Suppress("DEPRECATION")
         pendingUris = intent.getParcelableArrayListExtra(EXTRA_PENDING_URIS)
 
@@ -120,7 +113,6 @@ class SessionActivity : AppCompatActivity() {
         observeSession()
     }
 
-    // Called when FLAG_ACTIVITY_SINGLE_TOP re-delivers a new intent
     override fun onNewIntent(intent: Intent) {
         super.onNewIntent(intent)
         setIntent(intent)
@@ -128,13 +120,23 @@ class SessionActivity : AppCompatActivity() {
         val newUris = intent.getParcelableArrayListExtra<Uri>(EXTRA_PENDING_URIS)
         if (!newUris.isNullOrEmpty()) {
             pendingUris = newUris
-            pendingUrisSent = false   // allow re-send for new batch
-            Log.d(TAG, "onNewIntent: ${newUris.size} new pending URIs")
+            pendingUrisSent = false
             if (SessionManager.state.value is SessionState.Connected && serviceBound) {
                 sendPendingFiles()
             }
         }
     }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        handler.removeCallbacks(durationRunnable)
+        if (serviceBound) {
+            unbindService(serviceConn)
+            serviceBound = false
+        }
+    }
+
+    // ── Setup ──────────────────────────────────────────────────────────────────
 
     private fun setupEdgeToEdge() {
         val rootLayout = findViewById<View>(R.id.rootLayout)
@@ -149,54 +151,62 @@ class SessionActivity : AppCompatActivity() {
         localDeviceName = intent.getStringExtra(EXTRA_LOCAL_DEVICE_NAME)
             ?: "${Build.MANUFACTURER} ${Build.MODEL}"
 
-        tvLocalDeviceName = findViewById(R.id.tvLocalDeviceName)
-        tvRemoteDeviceName = findViewById(R.id.tvRemoteDeviceName)
-        tvConnectedDuration = findViewById(R.id.tvConnectedDuration)
-        connectionBadge = findViewById(R.id.connectionBadge)
-        statusDot = findViewById(R.id.statusDot)
-        tvRemoteLiveBadge = findViewById(R.id.tvRemoteLiveBadge)
-        tvStatSent = findViewById(R.id.tvStatSent)
-        tvStatReceived = findViewById(R.id.tvStatReceived)
-        tvStatTotal = findViewById(R.id.tvStatTotal)
-        rvSessionFiles = findViewById(R.id.rvSessionFiles)
-        incomingBanner = findViewById(R.id.incomingBanner)
+        tvLocalDeviceName    = findViewById(R.id.tvLocalDeviceName)
+        tvRemoteDeviceName   = findViewById(R.id.tvRemoteDeviceName)
+        tvConnectedDuration  = findViewById(R.id.tvConnectedDuration)
+        connectionBadge      = findViewById(R.id.connectionBadge)
+        statusDot            = findViewById(R.id.statusDot)
+        tvRemoteLiveBadge    = findViewById(R.id.tvRemoteLiveBadge)
+        tvStatSent           = findViewById(R.id.tvStatSent)
+        tvStatReceived       = findViewById(R.id.tvStatReceived)
+        tvStatTotal          = findViewById(R.id.tvStatTotal)
+        rvSessionFiles       = findViewById(R.id.rvSessionFiles)
+        incomingBanner       = findViewById(R.id.incomingBanner)
 
         tvLocalDeviceName.text = localDeviceName
-
-        // Populate remote name immediately if passed
-        intent.getStringExtra(EXTRA_REMOTE_DEVICE_NAME)?.let {
-            tvRemoteDeviceName.text = it
-        }
+        intent.getStringExtra(EXTRA_REMOTE_DEVICE_NAME)?.let { tvRemoteDeviceName.text = it }
 
         findViewById<ImageView>(R.id.btnBack).setOnClickListener { finish() }
         findViewById<ImageView>(R.id.btnMenu).setOnClickListener { showSessionMenuDialog() }
         findViewById<LinearLayout>(R.id.btnSendFiles).setOnClickListener {
-            pickFiles.launch(arrayOf("*/*"))
+            startActivity(Intent(this, SendFilesActivity::class.java))
         }
-        findViewById<LinearLayout>(R.id.btnReadyToReceive).setOnClickListener {
-            // Receiving is always automatic — informational only
-        }
+        findViewById<LinearLayout>(R.id.btnReadyToReceive).setOnClickListener { }
     }
 
     private fun setupRecyclerView() {
-        sessionFileAdapter = SessionFileAdapter { file ->
-            Log.d(TAG, "File clicked: ${file.fileName}")
-        }
+        sessionFileAdapter = SessionFileAdapter(
+            onCancel = { file ->
+                // Cancel by Long id — parse back from the String id
+                groupService?.cancelTransfer(file.id.toLongOrNull() ?: return@SessionFileAdapter)
+            },
+            onDelete = { file ->
+                SessionManager.removeTransfer(file.id.toLongOrNull() ?: return@SessionFileAdapter)
+            }
+        )
         rvSessionFiles.layoutManager = LinearLayoutManager(this)
         rvSessionFiles.adapter = sessionFileAdapter
+        rvSessionFiles.addItemDecoration(object : RecyclerView.ItemDecoration() {
+            override fun getItemOffsets(
+                outRect: android.graphics.Rect,
+                view: View,
+                parent: RecyclerView,
+                state: RecyclerView.State
+            ) {
+                outRect.bottom = resources.getDimensionPixelSize(com.intuit.sdp.R.dimen._8sdp)
+            }
+        })
     }
 
     private fun bindGroupService() {
-        val intent = Intent(this, GroupSessionService::class.java)
-        bindService(intent, serviceConn, Context.BIND_AUTO_CREATE)
+        bindService(Intent(this, GroupSessionService::class.java), serviceConn, Context.BIND_AUTO_CREATE)
     }
 
-    // ── Observe SessionManager ──────────────────────────────────────────────
+    // ── Observe ────────────────────────────────────────────────────────────────
 
     private fun observeSession() {
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
-                // Observe session state
                 launch {
                     SessionManager.state.collect { state ->
                         when (state) {
@@ -210,7 +220,6 @@ class SessionActivity : AppCompatActivity() {
                                     getString(R.string.connected),
                                     0xFF16A34A.toInt()
                                 )
-                                // Send pending files once Connected AND service is bound
                                 if (serviceBound) sendPendingFiles()
                             }
                             is SessionState.Reconnecting -> {
@@ -245,7 +254,6 @@ class SessionActivity : AppCompatActivity() {
                     }
                 }
 
-                // Observe transfers → update history list
                 launch {
                     SessionManager.transfers.collect { transfers ->
                         updateTransferUI(transfers)
@@ -255,33 +263,36 @@ class SessionActivity : AppCompatActivity() {
         }
     }
 
+    // ── Transfer UI ────────────────────────────────────────────────────────────
+
     private fun updateTransferUI(transfers: List<LiveTransfer>) {
         val files = transfers.map { t ->
             SessionFile(
-                fileName = t.name,
-                fileSize = formatSize(t.size),
-                direction = if (t.direction == TransferDirection.OUT) "Sent" else "Received",
-                time = when (t.status) {
-                    TransferStatus.ACTIVE -> "${t.progress}%"
-                    TransferStatus.COMPLETED -> "Done"
-                    TransferStatus.FAILED -> "Failed"
-                }
+                id        = t.id.toString(),   // LiveTransfer.id is Long → String
+                fileName  = t.name,
+                fileSize  = formatSize(t.size),
+                direction = if (t.direction == TransferDirection.OUT) FileDirection.SENT
+                else FileDirection.RECEIVED,
+                status    = when (t.status) {
+                    TransferStatus.ACTIVE    -> FileStatus.ACTIVE
+                    TransferStatus.COMPLETED -> FileStatus.COMPLETED
+                    TransferStatus.FAILED    -> FileStatus.FAILED
+                    TransferStatus.CANCELLED -> FileStatus.CANCELLED
+                },
+                progress  = t.progress,
+                // savedPath is a file-system path → wrap in Uri for the adapter
+                savedUri  = t.savedPath?.let { Uri.parse("file://$it") }
             )
         }
         sessionFileAdapter.submitList(files)
 
-        val sentCount = transfers.count {
-            it.direction == TransferDirection.OUT && it.status == TransferStatus.COMPLETED
-        }
-        val receivedCount = transfers.count {
-            it.direction == TransferDirection.IN && it.status == TransferStatus.COMPLETED
-        }
-        val totalBytes = transfers.filter { it.status == TransferStatus.COMPLETED }
-            .sumOf { it.size }
+        val sentCount     = transfers.count { it.direction == TransferDirection.OUT && it.status == TransferStatus.COMPLETED }
+        val receivedCount = transfers.count { it.direction == TransferDirection.IN  && it.status == TransferStatus.COMPLETED }
+        val totalBytes    = transfers.filter { it.status == TransferStatus.COMPLETED }.sumOf { it.size }
 
-        tvStatSent.text = sentCount.toString()
+        tvStatSent.text     = sentCount.toString()
         tvStatReceived.text = receivedCount.toString()
-        tvStatTotal.text = formatSize(totalBytes)
+        tvStatTotal.text    = formatSize(totalBytes)
 
         val activeIncoming = transfers.firstOrNull {
             it.direction == TransferDirection.IN && it.status == TransferStatus.ACTIVE
@@ -289,13 +300,15 @@ class SessionActivity : AppCompatActivity() {
         if (activeIncoming != null) {
             showIncomingBanner(
                 activeIncoming.name,
-                formatSize(activeIncoming.transferred) + " / " + formatSize(activeIncoming.size),
+                "${formatSize(activeIncoming.transferred)} / ${formatSize(activeIncoming.size)}",
                 activeIncoming.progress
             )
         } else {
             hideIncomingBanner()
         }
     }
+
+    // ── Connection badge ───────────────────────────────────────────────────────
 
     private fun setConnectionBadge(badgeBg: Int, dotBg: Int, text: String, textColor: Int) {
         connectionBadge.setBackgroundResource(badgeBg)
@@ -304,12 +317,15 @@ class SessionActivity : AppCompatActivity() {
         tvConnectedDuration.setTextColor(textColor)
 
         val isConnected = SessionManager.state.value is SessionState.Connected
-        tvRemoteLiveBadge.text = if (isConnected) getString(R.string.session_live) else getString(R.string.session_disconnected)
+        tvRemoteLiveBadge.text = if (isConnected) getString(R.string.session_live)
+        else getString(R.string.session_disconnected)
         tvRemoteLiveBadge.setTextColor(if (isConnected) 0xFF16A34A.toInt() else 0xFFDC2626.toInt())
         tvRemoteLiveBadge.setBackgroundResource(
             if (isConnected) R.drawable.bg_badge_live else R.drawable.bg_badge_offline
         )
     }
+
+    // ── Duration timer ─────────────────────────────────────────────────────────
 
     private fun startDurationTimer() {
         handler.removeCallbacks(durationRunnable)
@@ -322,17 +338,17 @@ class SessionActivity : AppCompatActivity() {
         val elapsed = (System.currentTimeMillis() - sessionStartMs) / 1000
         val minutes = elapsed / 60
         val seconds = elapsed % 60
-        val durationText = if (minutes > 0) {
+        tvConnectedDuration.text = if (minutes > 0)
             getString(R.string.connected) + " · ${minutes}m ${seconds}s"
-        } else {
+        else
             getString(R.string.connected) + " · ${seconds}s"
-        }
-        tvConnectedDuration.text = durationText
     }
+
+    // ── Incoming banner ────────────────────────────────────────────────────────
 
     private fun showIncomingBanner(title: String, subtitle: String, progress: Int) {
         incomingBanner.visibility = View.VISIBLE
-        findViewById<TextView>(R.id.tvBannerTitle).text = title
+        findViewById<TextView>(R.id.tvBannerTitle).text    = title
         findViewById<TextView>(R.id.tvBannerSubtitle).text = subtitle
         findViewById<TextView>(R.id.tvBannerProgress).text = "$progress%"
     }
@@ -341,35 +357,33 @@ class SessionActivity : AppCompatActivity() {
         incomingBanner.visibility = View.GONE
     }
 
+    // ── Size formatter ─────────────────────────────────────────────────────────
+
     private fun formatSize(bytes: Long): String = when {
         bytes >= 1_073_741_824 -> String.format("%.1f GB", bytes / 1_073_741_824.0)
-        bytes >= 1_048_576 -> String.format("%.1f MB", bytes / 1_048_576.0)
-        bytes >= 1024 -> String.format("%.0f KB", bytes / 1024.0)
-        else -> "$bytes B"
+        bytes >= 1_048_576     -> String.format("%.1f MB", bytes / 1_048_576.0)
+        bytes >= 1024          -> String.format("%.0f KB", bytes / 1024.0)
+        else                   -> "$bytes B"
     }
 
-    // ── Auto-send pending files ─────────────────────────────────────────────
-    // Called from: onServiceConnected (if already Connected) + state collector (if service already bound)
+    // ── Pending files ──────────────────────────────────────────────────────────
 
     private fun sendPendingFiles() {
         if (pendingUrisSent) return
         val uris = pendingUris ?: return
         if (uris.isEmpty()) return
-        val svc = groupService ?: return   // service not yet bound — will retry from onServiceConnected
-
+        val svc = groupService ?: return
         pendingUrisSent = true
-        Log.d(TAG, "═══ AUTO-SENDING ${uris.size} pending files ═══")
         uris.forEach { uri ->
             runCatching {
                 contentResolver.takePersistableUriPermission(
-                    uri, Intent.FLAG_GRANT_READ_URI_PERMISSION
-                )
+                    uri, Intent.FLAG_GRANT_READ_URI_PERMISSION)
             }
         }
         svc.sendUris(uris)
     }
 
-    // ── Menu / Leave ────────────────────────────────────────────────────────
+    // ── Menus ──────────────────────────────────────────────────────────────────
 
     private fun showSessionMenuDialog() {
         val dialog = BottomSheetDialog(this)
@@ -380,18 +394,11 @@ class SessionActivity : AppCompatActivity() {
 
         view.findViewById<LinearLayout>(R.id.menuRename).setOnClickListener {
             dialog.dismiss()
-            Log.d(TAG, "Rename device clicked")
         }
-
         view.findViewById<LinearLayout>(R.id.menuOpenFolder).setOnClickListener {
             dialog.dismiss()
-            Log.d(TAG, "Open folder clicked")
         }
-
-        view.findViewById<SwitchCompat>(R.id.switchAutoAccept).setOnCheckedChangeListener { _, isChecked ->
-            Log.d(TAG, "Auto-accept toggled: $isChecked")
-        }
-
+        view.findViewById<SwitchCompat>(R.id.switchAutoAccept).setOnCheckedChangeListener { _, _ -> }
         view.findViewById<LinearLayout>(R.id.menuLeave).setOnClickListener {
             dialog.dismiss()
             showLeaveSessionDialog()
@@ -409,10 +416,7 @@ class SessionActivity : AppCompatActivity() {
         view.findViewById<TextView>(R.id.tvLeaveDesc).text =
             getString(R.string.session_leave_desc, peerName)
 
-        view.findViewById<TextView>(R.id.btnStay).setOnClickListener {
-            dialog.dismiss()
-        }
-
+        view.findViewById<TextView>(R.id.btnStay).setOnClickListener { dialog.dismiss() }
         view.findViewById<TextView>(R.id.btnLeave).setOnClickListener {
             dialog.dismiss()
             groupService?.leave()
@@ -421,14 +425,5 @@ class SessionActivity : AppCompatActivity() {
 
         dialog.setContentView(view)
         dialog.show()
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        handler.removeCallbacks(durationRunnable)
-        if (serviceBound) {
-            unbindService(serviceConn)
-            serviceBound = false
-        }
     }
 }

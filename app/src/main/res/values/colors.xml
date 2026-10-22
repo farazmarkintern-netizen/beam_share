@@ -57,8 +57,47 @@
     <!-- Progress Bar -->
     <color name="color_progress_track">#E2E8F0</color>
     <color name="color_progress_fill">#2563EB</color>
+    <color name="color_primary_10">#1A2563EB</color>
 
     <!-- Overlay -->
     <color name="color_overlay">#80000000</color>
+    <color name="perm_card_bg">#FFFFFF</color>
+    <color name="perm_chip_bg">#F1F5F9</color>
+
+    <color name="bg_screen">#F8FAFC</color>
+    <color name="fg_primary">#0F172A</color>
+    <color name="fg_secondary">#64748B</color>
+    <color name="fg_tertiary">#94A3B8</color>
+    <color name="card_border">#E2E8F0</color>
+    <color name="accent">#2563EB</color>
+    <color name="accent_soft_border">#93C5FD</color>
+    <color name="perm_denied">#DC2626</color>
+
+    <color name="perm_wifi">#2563EB</color>
+    <color name="perm_wifi_bg">#DBEAFE</color>
+    <color name="perm_location">#16A34A</color>
+    <color name="perm_location_bg">#DCFCE7</color>
+    <color name="perm_bluetooth">#9333EA</color>
+    <color name="perm_bluetooth_bg">#F3E8FF</color>
+    <color name="perm_storage">#EA580C</color>
+    <color name="perm_storage_bg">#FFF7ED</color>
+    <color name="perm_save">#0D9488</color>
+    <color name="perm_save_bg">#CCFBF1</color>
+    <color name="perm_camera">#E11D48</color>
+    <color name="perm_camera_bg">#FFE4E6</color>
+    <color name="perm_notif">#D97706</color>
+    <color name="perm_notif_bg">#FEF3C7</color>
+    <color name="divider">#E2E8F0</color>
+    <color name="accent_soft_bg">#EFF6FF</color>
+    <!-- Add these color tokens to your existing res/values/colors.xml -->
+    <!-- (or res/values/colors_perm.xml if that's where the others live) -->
+
+    <!-- Contacts -->
+    <color name="perm_contacts">#8B5CF6</color>       <!-- purple -->
+    <color name="perm_contacts_bg">#EDE9FE</color>    <!-- light purple -->
+
+    <!-- Install Apps -->
+    <color name="perm_install">#0EA5E9</color>        <!-- sky blue -->
+    <color name="perm_install_bg">#E0F2FE</color>     <!-- light sky -->
 
 </resources>

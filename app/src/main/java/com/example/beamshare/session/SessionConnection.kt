@@ -39,7 +39,7 @@ class SessionConnection(
     private val scope: CoroutineScope,
     private val listener: Listener,
     private val pingIntervalMs: Long = 5_000,
-    private val pongTimeoutMs: Long = 15_000
+    private val pongTimeoutMs: Long = 30_000
 ) {
 
     interface Listener {
@@ -153,15 +153,21 @@ class SessionConnection(
         incoming.values.forEach { runCatching { it.file.abort() } }
         incoming.clear()
         runCatching { socket.close() }
-        listener.onDisconnected(reason)
+        // FIX 1: Do NOT call onDisconnected here when it was a clean user-initiated close.
+        // Only call onDisconnected for unexpected closes (reader/heartbeat errors call it
+        // directly). For "left" and "service destroyed" we skip the callback to avoid
+        // spurious reconnect attempts after intentional shutdown.
+        if (reason != "left" && reason != "service destroyed") {
+            listener.onDisconnected(reason)
+        }
     }
 
     // ── Sending ──────────────────────────────────────────────────────────────
 
     /**
-     * Send a batch of files. Can be called at any time, even while files are being
-     * received — the chunks interleave on the wire. Each file gets its own id.
-     * Runs on IO; returns immediately.
+     * Send a list of files sequentially (one at a time).
+     * GroupSessionService already sends one file per call via its send queue,
+     * so this just launches the single file's coroutine.
      */
     fun sendFiles(files: List<OutgoingFile>) {
         for (file in files) {
@@ -187,14 +193,13 @@ class SessionConnection(
                 while (true) {
                     val read = stream.read(buffer)
                     if (read == -1) break
-                    val chunk = if (read == buffer.size) buffer else buffer.copyOf(read)
-                    // One chunk = one atomic frame. Releasing the lock between chunks
-                    // lets the reverse direction's chunks and PINGs get through.
+                    // FIX 2: write only the bytes actually read — never a full-size
+                    // buffer with stale tail bytes when the last read is smaller.
                     writeFrame {
                         it.writeByte(SessionProtocol.Frame.FILE_CHUNK)
                         it.writeLong(id)
                         it.writeInt(read)
-                        it.write(chunk, 0, read)
+                        it.write(buffer, 0, read)
                     }
                     sent += read
                     val now = System.currentTimeMillis()
@@ -212,13 +217,17 @@ class SessionConnection(
             listener.onProgress(id, Direction.OUT, file.name, file.size, file.size)
             listener.onComplete(id, Direction.OUT, file.name, file.size, null)
         } catch (e: Exception) {
-            runCatching {
-                writeFrame {
-                    it.writeByte(SessionProtocol.Frame.FILE_CANCEL)
-                    it.writeLong(id)
+            if (!closed) {
+                runCatching {
+                    writeFrame {
+                        it.writeByte(SessionProtocol.Frame.FILE_CANCEL)
+                        it.writeLong(id)
+                    }
                 }
             }
             listener.onFailed(id, Direction.OUT, file.name, e.message ?: "Send failed")
+            // FIX 3: a send exception must NOT close the whole session.
+            // The session stays alive; GroupSessionService's queue will move to the next file.
         }
     }
 
@@ -229,20 +238,35 @@ class SessionConnection(
             while (scope.isActive && !closed) {
                 val type = input.readByte().toInt()
                 when (type) {
-                    SessionProtocol.Frame.FILE_OFFER -> handleOffer()
-                    SessionProtocol.Frame.FILE_CHUNK -> handleChunk()
-                    SessionProtocol.Frame.FILE_DONE -> handleDone()
+                    SessionProtocol.Frame.FILE_OFFER  -> handleOffer()
+                    SessionProtocol.Frame.FILE_CHUNK  -> handleChunk()
+                    SessionProtocol.Frame.FILE_DONE   -> handleDone()
                     SessionProtocol.Frame.FILE_CANCEL -> handleCancel()
                     SessionProtocol.Frame.PING -> writeFrame { it.writeByte(SessionProtocol.Frame.PONG) }
                     SessionProtocol.Frame.PONG -> lastPongAt = System.currentTimeMillis()
-                    SessionProtocol.Frame.LEAVE -> { listener.onPeerLeft(); close("peer left"); return }
+                    SessionProtocol.Frame.LEAVE -> {
+                        listener.onPeerLeft()
+                        closed = true          // mark closed BEFORE calling close() to suppress onDisconnected
+                        readerJob?.cancel()
+                        heartbeatJob?.cancel()
+                        incoming.values.forEach { runCatching { it.file.abort() } }
+                        incoming.clear()
+                        runCatching { socket.close() }
+                        return
+                    }
                     else -> { /* unknown frame type: ignore for forward-compat */ }
                 }
             }
         } catch (e: EOFException) {
-            if (!closed) close("connection closed")
+            if (!closed) {
+                closed = true
+                listener.onDisconnected("connection closed")
+            }
         } catch (e: Exception) {
-            if (!closed) close(e.message ?: "read error")
+            if (!closed) {
+                closed = true
+                listener.onDisconnected(e.message ?: "read error")
+            }
         }
     }
 
@@ -310,10 +334,18 @@ class SessionConnection(
         while (scope.isActive && !closed) {
             delay(pingIntervalMs)
             if (closed) return
-            try { writeFrame { it.writeByte(SessionProtocol.Frame.PING) } } catch (_: Exception) {}
+            try {
+                writeFrame { it.writeByte(SessionProtocol.Frame.PING) }
+            } catch (_: Exception) {
+                // Socket already dead — reader will catch the real error
+                return
+            }
             if (System.currentTimeMillis() - lastPongAt > pongTimeoutMs) {
-                listener.onHeartbeatTimeout()
-                close("heartbeat timeout")
+                if (!closed) {
+                    closed = true
+                    listener.onHeartbeatTimeout()
+                    runCatching { socket.close() }
+                }
                 return
             }
         }

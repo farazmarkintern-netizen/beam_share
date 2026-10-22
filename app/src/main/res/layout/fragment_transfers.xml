@@ -10,15 +10,16 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <!-- ====== TOP BAR: Title + Search ====== -->
+        <!-- ====== TOP BAR: Title + Search toggle ====== -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
             android:gravity="center_vertical"
-            android:paddingHorizontal="@dimen/_16sdp"
-            android:paddingTop="@dimen/_6sdp"
-            android:paddingBottom="@dimen/_8sdp">
+            android:orientation="horizontal"
+            android:paddingBottom="@dimen/_8sdp"
+            android:paddingLeft="@dimen/_16sdp"
+            android:paddingRight="@dimen/_16sdp"
+            android:paddingTop="@dimen/_6sdp">
 
             <TextView
                 android:layout_width="0dp"
@@ -41,9 +42,119 @@
                     android:layout_width="@dimen/_17sdp"
                     android:layout_height="@dimen/_17sdp"
                     android:layout_gravity="center"
+                    android:contentDescription="@null"
                     android:src="@drawable/ic_search"
-                    app:tint="@color/color_text_primary"
-                    android:contentDescription="@null" />
+                    app:tint="@color/color_text_primary" />
+            </FrameLayout>
+        </LinearLayout>
+
+        <!-- ====== SELECTION BAR (shown when items are selected) ====== -->
+        <LinearLayout
+            android:id="@+id/selectionBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:background="@color/color_primary"
+            android:paddingLeft="@dimen/_12sdp"
+            android:paddingRight="@dimen/_8sdp"
+            android:paddingTop="@dimen/_8sdp"
+            android:paddingBottom="@dimen/_8sdp"
+            android:visibility="gone">
+
+            <ImageView
+                android:id="@+id/btnCancelSelection"
+                android:layout_width="@dimen/_32sdp"
+                android:layout_height="@dimen/_32sdp"
+                android:padding="@dimen/_6sdp"
+                android:src="@drawable/ic_close"
+                android:contentDescription="@null"
+                app:tint="@android:color/white"
+                android:clickable="true"
+                android:focusable="true" />
+
+            <TextView
+                android:id="@+id/tvSelectionCount"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginLeft="@dimen/_8sdp"
+                android:fontFamily="@font/inter_medium"
+                android:text="0 selected"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/_14ssp" />
+
+            <TextView
+                android:id="@+id/btnSelectAll"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/_10sdp"
+                android:paddingRight="@dimen/_10sdp"
+                android:paddingTop="@dimen/_6sdp"
+                android:paddingBottom="@dimen/_6sdp"
+                android:fontFamily="@font/inter_medium"
+                android:text="@string/select_all"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/_13ssp"
+                android:clickable="true"
+                android:focusable="true" />
+
+            <ImageView
+                android:id="@+id/btnDeleteSelected"
+                android:layout_width="@dimen/_36sdp"
+                android:layout_height="@dimen/_36sdp"
+                android:padding="@dimen/_8sdp"
+                android:layout_marginLeft="@dimen/_4sdp"
+                android:src="@drawable/ic_delete"
+                android:contentDescription="@null"
+                app:tint="@android:color/white"
+                android:clickable="true"
+                android:focusable="true" />
+        </LinearLayout>
+
+        <!-- ====== SEARCH BAR (hidden by default, shown on search tap) ====== -->
+        <LinearLayout
+            android:id="@+id/searchContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingLeft="@dimen/_16sdp"
+            android:paddingRight="@dimen/_16sdp"
+            android:paddingBottom="@dimen/_8sdp"
+            android:visibility="gone">
+
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_42sdp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_search_field">
+
+                <ImageView
+                    android:layout_width="@dimen/_16sdp"
+                    android:layout_height="@dimen/_16sdp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/_12sdp"
+                    android:contentDescription="@null"
+                    android:src="@drawable/ic_search"
+                    app:tint="@color/color_text_secondary" />
+
+                <EditText
+                    android:id="@+id/etSearch"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/_36sdp"
+                    android:layout_marginRight="@dimen/_8sdp"
+                    android:background="@android:color/transparent"
+                    android:fontFamily="@font/inter"
+                    android:hint="@string/transfers_search_hint"
+                    android:imeOptions="actionSearch"
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:textColor="@color/color_text_primary"
+                    android:textColorHint="@color/color_text_secondary"
+                    android:textSize="@dimen/_14ssp" />
             </FrameLayout>
         </LinearLayout>
 
@@ -52,8 +163,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:clipToPadding="false"
-            android:paddingHorizontal="@dimen/_16sdp"
-            android:paddingVertical="@dimen/_4sdp"
+            android:paddingLeft="@dimen/_16sdp"
+            android:paddingRight="@dimen/_16sdp"
+            android:paddingTop="@dimen/_4sdp"
+            android:paddingBottom="@dimen/_4sdp"
             android:scrollbars="none">
 
             <LinearLayout
@@ -67,8 +180,10 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/bg_filter_pill_selected"
                     android:fontFamily="@font/inter_medium"
-                    android:paddingHorizontal="@dimen/_14sdp"
-                    android:paddingVertical="@dimen/_6sdp"
+                    android:paddingLeft="@dimen/_14sdp"
+                    android:paddingRight="@dimen/_14sdp"
+                    android:paddingTop="@dimen/_6sdp"
+                    android:paddingBottom="@dimen/_6sdp"
                     android:text="@string/history_filter_all"
                     android:textColor="@android:color/white"
                     android:textSize="@dimen/_12ssp" />
@@ -80,8 +195,10 @@
                     android:layout_marginStart="@dimen/_8sdp"
                     android:background="@drawable/bg_filter_pill_unselected"
                     android:fontFamily="@font/inter_medium"
-                    android:paddingHorizontal="@dimen/_14sdp"
-                    android:paddingVertical="@dimen/_6sdp"
+                    android:paddingLeft="@dimen/_14sdp"
+                    android:paddingRight="@dimen/_14sdp"
+                    android:paddingTop="@dimen/_6sdp"
+                    android:paddingBottom="@dimen/_6sdp"
                     android:text="@string/history_filter_sent"
                     android:textColor="@color/color_text_secondary"
                     android:textSize="@dimen/_12ssp" />
@@ -93,8 +210,10 @@
                     android:layout_marginStart="@dimen/_8sdp"
                     android:background="@drawable/bg_filter_pill_unselected"
                     android:fontFamily="@font/inter_medium"
-                    android:paddingHorizontal="@dimen/_14sdp"
-                    android:paddingVertical="@dimen/_6sdp"
+                    android:paddingLeft="@dimen/_14sdp"
+                    android:paddingRight="@dimen/_14sdp"
+                    android:paddingTop="@dimen/_6sdp"
+                    android:paddingBottom="@dimen/_6sdp"
                     android:text="@string/history_filter_received"
                     android:textColor="@color/color_text_secondary"
                     android:textSize="@dimen/_12ssp" />
@@ -106,8 +225,10 @@
                     android:layout_marginStart="@dimen/_8sdp"
                     android:background="@drawable/bg_filter_pill_unselected"
                     android:fontFamily="@font/inter_medium"
-                    android:paddingHorizontal="@dimen/_14sdp"
-                    android:paddingVertical="@dimen/_6sdp"
+                    android:paddingLeft="@dimen/_14sdp"
+                    android:paddingRight="@dimen/_14sdp"
+                    android:paddingTop="@dimen/_6sdp"
+                    android:paddingBottom="@dimen/_6sdp"
                     android:text="@string/history_filter_failed"
                     android:textColor="@color/color_text_secondary"
                     android:textSize="@dimen/_12ssp" />
@@ -132,7 +253,6 @@
             android:orientation="vertical"
             android:visibility="gone">
 
-            <!-- Blue circle with transfer icon -->
             <FrameLayout
                 android:layout_width="@dimen/_72sdp"
                 android:layout_height="@dimen/_72sdp">
@@ -171,25 +291,26 @@
                 android:textColor="@color/color_text_secondary"
                 android:textSize="@dimen/_12ssp" />
 
-            <!-- Send files button -->
             <TextView
                 android:id="@+id/btnSendFiles"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_16sdp"
                 android:background="@drawable/bg_button_primary"
+                android:clickable="true"
                 android:drawableStart="@drawable/ic_send"
                 android:drawablePadding="6dp"
                 android:drawableTint="@android:color/white"
+                android:focusable="true"
                 android:fontFamily="@font/inter_bold"
                 android:gravity="center"
-                android:paddingHorizontal="@dimen/_20sdp"
-                android:paddingVertical="@dimen/_10sdp"
+                android:paddingLeft="@dimen/_20sdp"
+                android:paddingRight="@dimen/_20sdp"
+                android:paddingTop="@dimen/_10sdp"
+                android:paddingBottom="@dimen/_10sdp"
                 android:text="@string/transfers_send_files"
                 android:textColor="@android:color/white"
-                android:textSize="@dimen/_13ssp"
-                android:clickable="true"
-                android:focusable="true" />
+                android:textSize="@dimen/_13ssp" />
         </LinearLayout>
     </LinearLayout>
 </FrameLayout>

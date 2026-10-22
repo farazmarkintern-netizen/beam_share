@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Accordion permission card.
+  Collapsed: icon + title + badge chip + chevron (one row, ~60dp tall).
+  Expanded: same header row + divider + description + perm-name chip.
+
+  Usage: <include layout="@layout/item_permission_card_accordion" android:id="@+id/cardWifi" …/>
+  Then inflate via ItemPermissionCardAccordionBinding and call PermissionsActivity.bind(…)
+-->
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="@dimen/_14sdp"
+    app:cardElevation="0dp"
+    app:strokeWidth="@dimen/_1sdp"
+    app:strokeColor="@color/card_border"
+    app:cardBackgroundColor="@color/perm_card_bg">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- ── Header row (always visible) ─────────────────────────────── -->
+        <LinearLayout
+            android:id="@+id/llHeader"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingLeft="@dimen/_14sdp"
+            android:paddingRight="@dimen/_14sdp"
+            android:paddingTop="@dimen/_10sdp"
+            android:paddingBottom="@dimen/_10sdp"
+            android:background="?attr/selectableItemBackground"
+            android:clickable="true"
+            android:focusable="true">
+
+            <!-- Icon badge -->
+            <ImageView
+                android:id="@+id/ivIcon"
+                android:layout_width="@dimen/_36sdp"
+                android:layout_height="@dimen/_36sdp"
+                android:background="@drawable/bg_permission_icon"
+                android:padding="@dimen/_9sdp"
+                android:scaleType="fitCenter"
+                android:contentDescription="@null" />
+
+            <!-- Title + badge -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_marginStart="@dimen/_12sdp">
+
+                <TextView
+                    android:id="@+id/tvTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/_14ssp"
+                    android:textStyle="bold"
+                    android:textColor="@color/fg_primary"
+                    tools:text="Wi-Fi Direct" />
+
+                <!-- Chips row: Required / Optional -->
+                <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/chipGroupHeader"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_3sdp"
+                    app:singleLine="true">
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chipRequired"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/perm_badge_required"
+                        android:textSize="@dimen/_10ssp"
+                        android:textColor="@color/accent"
+                        app:chipBackgroundColor="@color/accent_soft_bg"
+                        app:chipStrokeColor="@android:color/transparent"
+                        app:chipMinHeight="@dimen/_22sdp"
+                        app:ensureMinTouchTargetSize="false"
+                        app:chipStartPadding="@dimen/_6sdp"
+                        app:chipEndPadding="@dimen/_6sdp"
+                        android:visibility="visible" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chipOptional"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/perm_badge_optional"
+                        android:textSize="@dimen/_10ssp"
+                        android:textColor="@color/fg_tertiary"
+                        app:chipBackgroundColor="@color/perm_chip_bg"
+                        app:chipStrokeColor="@color/card_border"
+                        app:chipStrokeWidth="@dimen/_1sdp"
+                        app:chipMinHeight="@dimen/_22sdp"
+                        app:ensureMinTouchTargetSize="false"
+                        app:chipStartPadding="@dimen/_6sdp"
+                        app:chipEndPadding="@dimen/_6sdp"
+                        android:visibility="gone" />
+
+                </com.google.android.material.chip.ChipGroup>
+
+            </LinearLayout>
+
+            <!-- Chevron -->
+            <ImageView
+                android:id="@+id/ivChevron"
+                android:layout_width="@dimen/_20sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:src="@drawable/ic_chevron_down"
+                app:tint="@color/fg_tertiary"
+                android:contentDescription="@null"
+                android:layout_marginStart="@dimen/_8sdp" />
+
+        </LinearLayout>
+
+        <!-- ── Expanded section (GONE by default) ───────────────────────── -->
+        <LinearLayout
+            android:id="@+id/llExpanded"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone"
+            tools:visibility="visible">
+
+            <!-- Divider -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_1sdp"
+                android:layout_marginLeft="@dimen/_14sdp"
+                android:layout_marginRight="@dimen/_14sdp"
+                android:background="@color/divider" />
+
+            <!-- Description text -->
+            <TextView
+                android:id="@+id/tvDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/_14sdp"
+                android:paddingRight="@dimen/_14sdp"
+                android:paddingTop="@dimen/_10sdp"
+                android:paddingBottom="@dimen/_6sdp"
+                android:textSize="@dimen/_13ssp"
+                android:textColor="@color/fg_secondary"
+                android:lineSpacingMultiplier="1.45"
+                tools:text="Finds nearby devices and establishes a direct peer-to-peer Wi-Fi connection for fast local file transfer without internet." />
+
+            <!-- Permission name chip -->
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipPermName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_14sdp"
+                android:layout_marginRight="@dimen/_14sdp"
+                android:layout_marginBottom="@dimen/_12sdp"
+                android:text=""
+                android:textSize="@dimen/_10ssp"
+                android:textColor="@color/fg_tertiary"
+                app:chipBackgroundColor="@color/perm_chip_bg"
+                app:chipStrokeColor="@android:color/transparent"
+                app:chipMinHeight="@dimen/_22sdp"
+                app:ensureMinTouchTargetSize="false"
+                app:chipStartPadding="@dimen/_6sdp"
+                app:chipEndPadding="@dimen/_6sdp"
+                tools:text="NEARBY_WIFI_DEVICES" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>

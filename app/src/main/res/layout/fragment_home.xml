@@ -47,6 +47,22 @@
                     android:textSize="@dimen/_11ssp"
                     android:fontFamily="@font/inter_medium" />
             </LinearLayout>
+            <FrameLayout
+                android:id="@+id/btnPermission"
+                android:layout_width="@dimen/_36sdp"
+                android:layout_height="@dimen/_36sdp"
+                android:background="@drawable/bg_browse_item"
+                android:clickable="true"
+                android:focusable="true">
+
+                <ImageView
+                    android:layout_width="@dimen/_17sdp"
+                    android:layout_height="@dimen/_17sdp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_shield_check"
+                    app:tint="@color/color_text_primary"
+                    android:contentDescription="@null" />
+            </FrameLayout>
 
             <FrameLayout
                 android:id="@+id/btnNotifications"

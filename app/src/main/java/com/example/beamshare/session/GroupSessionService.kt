@@ -125,6 +125,10 @@ class GroupSessionService : Service() {
     private val isReconnecting = AtomicBoolean(false)
     private val userLeft = AtomicBoolean(false)
 
+    // ── Send queue (one file at a time) ─────────────────────────────────────
+    private val sendQueue = ArrayDeque<Uri>()
+    private var isSending = false
+
     inner class LocalBinder : Binder() {
         fun getService(): GroupSessionService = this@GroupSessionService
     }
@@ -320,6 +324,10 @@ class GroupSessionService : Service() {
                 SessionManager.setConnected(result.peerName)
                 if (isHost) SessionManager.addMember(result.peerName)
                 updateNotification("Connected · ${result.peerName}")
+
+                if (sendQueue.isNotEmpty() && !isSending) {
+                    processNextInQueue()
+                }
             }
             is HandshakeResult.Failed -> {
                 Log.e(TAG, "bringUp: HANDSHAKE FAILED — wrong code (triesLeft=${result.triesLeft})")
@@ -340,21 +348,61 @@ class GroupSessionService : Service() {
 
     // ── Public API (via binder) ────────────────────────────────────────────────
 
+    /**
+     * Enqueue [uris] for sending. Files are sent one at a time in order;
+     * the next file starts only after the previous one completes or fails.
+     */
     fun sendUris(uris: List<Uri>) {
-        val conn = connection ?: run {
+        if (connection == null) {
             Log.w(TAG, "sendUris: no active connection — dropping ${uris.size} uris")
             return
         }
-        scope.launch(Dispatchers.IO) {
-            val files = uris.mapNotNull { uri -> toOutgoing(uri) }
-            Log.d(TAG, "sendUris: sending ${files.size} files")
-            conn.sendFiles(files)
-        }
+        sendQueue.addAll(uris)
+        Log.d(TAG, "sendUris: queued ${uris.size} files, queue size=${sendQueue.size}, isSending=$isSending")
+        if (!isSending) processNextInQueue()
+    }
+
+    fun cancelTransfer(id: Long) {
+        SessionManager.cancelTransfer(id)
     }
 
     fun leave() {
         userLeft.set(true)
         connection?.leave()
+    }
+
+    // ── Send queue processor ───────────────────────────────────────────────────
+
+    private fun processNextInQueue() {
+        val conn = connection
+        if (conn == null) {
+            isSending = false
+            sendQueue.clear()
+            Log.d(TAG, "processNextInQueue: no connection — clearing queue and resetting isSending")
+            return
+        }
+        val next = sendQueue.removeFirstOrNull()
+        if (next == null) {
+            isSending = false
+            Log.d(TAG, "processNextInQueue: queue empty — idle")
+            return
+        }
+        isSending = true
+        Log.d(TAG, "processNextInQueue: starting send for $next, remaining=${sendQueue.size}")
+        scope.launch(Dispatchers.IO) {
+            try {
+                val file = toOutgoing(next)
+                if (file != null) {
+                    conn.sendFiles(listOf(file))
+                } else {
+                    Log.w(TAG, "processNextInQueue: skipping unreadable uri $next")
+                    scope.launch(Dispatchers.Main) { processNextInQueue() }
+                }
+            } catch (e: Exception) {
+                Log.e(TAG, "processNextInQueue: exception sending $next", e)
+                scope.launch(Dispatchers.Main) { processNextInQueue() }
+            }
+        }
     }
 
     // ── SessionConnection -> SessionManager + history bridge ───────────────────
@@ -373,12 +421,20 @@ class GroupSessionService : Service() {
             Log.i(TAG, "bridge: complete id=$id dir=$direction name='$name' size=$size path='$path'")
             SessionManager.onTransferComplete(id, name, size, direction.toModel(), path)
             writeHistory(name, size, direction.toModel(), HistoryStatus.DONE, path)
+            // If this was an outgoing transfer, advance the send queue
+            if (direction == SessionConnection.Direction.OUT) {
+                scope.launch(Dispatchers.Main) { processNextInQueue() }
+            }
         }
 
         override fun onFailed(id: Long, direction: SessionConnection.Direction, name: String, reason: String) {
             Log.w(TAG, "bridge: failed id=$id dir=$direction name='$name' reason='$reason'")
             SessionManager.onTransferFailed(id, name, 0, direction.toModel(), reason)
             writeHistory(name, 0, direction.toModel(), HistoryStatus.FAILED, null)
+            // Advance queue even on failure so the rest still send
+            if (direction == SessionConnection.Direction.OUT) {
+                scope.launch(Dispatchers.Main) { processNextInQueue() }
+            }
         }
 
         override fun onPeerLeft() {
@@ -409,6 +465,8 @@ class GroupSessionService : Service() {
         if (userLeft.get()) return
         if (!isReconnecting.compareAndSet(false, true)) return
 
+        sendQueue.clear()
+        isSending = false
         connection?.close("reconnecting")
         connection = null
 
@@ -514,9 +572,16 @@ class GroupSessionService : Service() {
     }
 
     private fun stopEverything() {
+        sendQueue.clear()
+        isSending = false
         connection = null
         runCatching { wifi.disconnect() }
-        stopForeground(STOP_FOREGROUND_REMOVE)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            stopForeground(STOP_FOREGROUND_REMOVE)
+        } else {
+            @Suppress("DEPRECATION")
+            stopForeground(true)
+        }
         stopSelf()
     }
 

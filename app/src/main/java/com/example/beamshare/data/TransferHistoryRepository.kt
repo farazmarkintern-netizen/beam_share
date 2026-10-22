@@ -43,6 +43,12 @@ class TransferHistoryRepository private constructor(context: Context) {
         save(current)
     }
 
+    fun deleteByIds(ids: Set<String>) {
+        val current = getAllItems().toMutableList()
+        current.removeAll { it.id in ids }
+        save(current)
+    }
+
     fun clearAll() {
         prefs.edit().remove(KEY_HISTORY).apply()
     }
@@ -89,12 +95,12 @@ class TransferHistoryRepository private constructor(context: Context) {
         filePath = o.optString("filePath", "").takeIf { it.isNotBlank() }
     )
 
-    // ── Singleton + date helpers (single companion object) ────────────────────
+    // ── Singleton + date helpers ──────────────────────────────────────────────
 
     companion object {
-        private const val PREFS_NAME = "beamshare_history"
+        private const val PREFS_NAME  = "beamshare_history"
         private const val KEY_HISTORY = "history_items"
-        private const val MAX_ITEMS = 200
+        private const val MAX_ITEMS   = 200
 
         @Volatile
         private var INSTANCE: TransferHistoryRepository? = null
@@ -107,40 +113,33 @@ class TransferHistoryRepository private constructor(context: Context) {
             }
         }
 
-        // Date helpers (previously a separate companion object — merged here)
-
-        private val DAY_FMT = SimpleDateFormat("MMM d, yyyy", Locale.getDefault())
-        private val TODAY_FMT = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+        private val DAY_FMT   = SimpleDateFormat("MMM d, yyyy", Locale.getDefault())
+        private val TODAY_FMT = SimpleDateFormat("yyyy-MM-dd",  Locale.getDefault())
 
         fun todayLabel(): String = "Today"
 
-        /**
-         * Returns "Today", "Yesterday", or "Oct 10, 2026" based on a stored
-         * ISO date string (yyyy-MM-dd).  Stored by [dateStamp].
-         */
         fun friendlyDate(isoDate: String): String {
             return try {
-                val stored = TODAY_FMT.parse(isoDate) ?: return isoDate
-                val todayCal = java.util.Calendar.getInstance()
+                val stored    = TODAY_FMT.parse(isoDate) ?: return isoDate
+                val todayCal  = java.util.Calendar.getInstance()
                 val storedCal = java.util.Calendar.getInstance().also { it.time = stored }
 
-                val todayStr = TODAY_FMT.format(todayCal.time)
-                val storedStr = TODAY_FMT.format(storedCal.time)
+                val todayStr   = TODAY_FMT.format(todayCal.time)
+                val storedStr  = TODAY_FMT.format(storedCal.time)
 
                 todayCal.add(java.util.Calendar.DAY_OF_YEAR, -1)
                 val yesterdayStr = TODAY_FMT.format(todayCal.time)
 
                 when (storedStr) {
-                    todayStr -> "Today"
+                    todayStr     -> "Today"
                     yesterdayStr -> "Yesterday"
-                    else -> DAY_FMT.format(stored)
+                    else         -> DAY_FMT.format(stored)
                 }
             } catch (_: Exception) {
                 isoDate
             }
         }
 
-        /** Returns a yyyy-MM-dd stamp to store alongside each history entry. */
         fun dateStamp(): String = TODAY_FMT.format(Date())
     }
 }

@@ -1,8 +1,10 @@
 // com/example/beamshare/model/TransferHistoryItem.kt
 package com.example.beamshare.model
 
+import java.util.UUID
+
 data class TransferHistoryItem(
-    val id: String,
+    val id: String = UUID.randomUUID().toString(),   // ← added for delete/selection
     val title: String,
     val direction: TransferDirection,
     val deviceName: String,
@@ -14,7 +16,7 @@ data class TransferHistoryItem(
     val duration: String? = null,
     val method: String? = null,
     val fileType: String = "mixed",
-    /** Absolute path on disk (received files) or null for sent files whose URI is no longer stored. */
+    /** Absolute path on disk (received files) or null for sent files. */
     val filePath: String? = null
 )
 

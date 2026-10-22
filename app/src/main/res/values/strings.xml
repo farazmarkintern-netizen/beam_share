@@ -349,7 +349,6 @@
     <string name="home_total_shared">%s shared</string>
 
 
-
     <string name="back_to_session">Back to session</string>
 
     <string name="transfers_title">Transfers</string>
@@ -445,464 +444,80 @@
     <string name="home_to_group">To everyone in the group</string>
     <string name="home_send_while_receiving">You can send while receiving</string>
     <string name="home_connect_first">Create or join a group first</string>
-
+    <string name="select_all">Select All</string>
     <!-- Home: LIVE NOW card -->
+    <!-- Add these strings to your existing strings.xml -->
+
+    <string name="dialog_open_file">Open file</string>
+    <string name="dialog_show_in_folder">Show in folder</string>
+    <string name="dialog_delete_history">Delete from history</string>
+    <!-- "cancel" likely already exists; add if not: -->
+    <!-- <string name="cancel">Cancel</string> -->
     <string name="live_now">LIVE NOW</string>
     <string name="live_more_transfers">+%1$d more · View all</string>
     <string name="live_from">From %1$s</string>
     <string name="live_to">To %1$s</string>
+    <!-- Add this ONE line to strings.xml (alongside perm_badge_required / perm_badge_optional which already exist) -->
+    <string name="perm_badge_granted">Granted</string>
 
     <!-- Send Files: group subtitle -->
     <string name="send_to_group_subtitle">To everyone in the group</string>
+    <string name="direction_sent">SENT</string>
+    <string name="direction_received">RECEIVED</string>
+    <string name="delete_transfer_title">Delete transfer?</string>
+    <string name="delete_transfer_message">Remove "%1$s" from history?</string>
+    <string name="delete">Delete</string>
+    <string name="file_not_found">File not found</string>
+    <string name="no_app_to_open">No app to open this file</string>
+
+    <string name="perm_wifi_desc1">Finds nearby devices and establishes a peer-to-peer connection for fast local file transfer without internet.</string>
+    <string name="perm_location_desc">Required by Android to scan for Wi-Fi Direct peers. WeShare never stores or shares your location.</string>
+    <string name="perm_bt_desc">Discovers nearby devices via Bluetooth. Required on Android 12+ for peer discovery.</string>
+    <string name="perm_read_desc">Lets you pick photos, videos, and documents from your device to share with session members.</string>
+    <string name="perm_save_desc">Saves received files to your Downloads folder. Without this, files are kept in-app only.</string>
+    <string name="perm_camera_desc2">Used to scan QR codes for quick device pairing. Not used for photos.</string>
+    <string name="perm_notif_desc">Shows transfer progress and completion alerts when the app is in the background.</string>
+    <string name="perm_denied">R.color.perm_denied</string>
+
+    <string name="perm_wifi_title">Nearby Wi-Fi Devices</string>
+    <string name="perm_location_title">Location</string>
+    <string name="perm_bt_title">Bluetooth</string>
+    <string name="perm_read_title">Read Files</string>
+    <string name="perm_save_title">Save Files</string>
+    <string name="perm_camera_title">Camera</string>
+    <string name="perm_notif_title">Notifications</string>
+
+
+    <string name="perm_header_title">Required Permissions</string>
+    <string name="perm_header_sub">BeamShare needs these permissions to function properly</string>
+    <string name="perm_banner_title">Privacy First</string>
+    <string name="perm_banner_body">We respect your privacy. Permissions are only used for local file sharing.</string>
+    <string name="perm_btn_grant">Grant Permissions</string>
+    <string name="perm_btn_skip">Skip for Now</string>
+    <string name="perm_footer_note">You can change permissions later in settings</string>
+    <string name="section_wifi">Wi-Fi &amp; Network</string>
+    <string name="section_bluetooth">Bluetooth</string>
+    <string name="section_storage">Files &amp; Storage</string>
+    <string name="section_camera">Camera</string>
+    <string name="section_notif">Notifications</string>
+    <string name="transfers_search_hint">Search by name, type or device…</string>
+
+    <!-- Add these strings to your existing res/values/strings.xml -->
+
+    <!-- Section labels -->
+    <string name="section_contacts">CONTACTS</string>
+    <string name="section_install_apps">INSTALL APPS</string>
+
+    <!-- Bluetooth Advertise -->
+    <string name="perm_bt_advertise_title">Bluetooth Advertise</string>
+    <string name="perm_bt_advertise_desc">Make BeamShare discoverable to nearby devices via Bluetooth</string>
+
+    <!-- Contacts -->
+    <string name="perm_contacts_title">Contacts</string>
+    <string name="settings_notif_progress">Transfer in progress</string>
+    <string name="settings_notif_complete">Transfer complete</string>
+    <string name="settings_notif_failed">Transfer failed</string>
+    <!-- Install Packages -->
+    <string name="perm_install_title">Install Packages</string>
+    <string name="perm_install_desc">Install APK files received from other BeamShare devices</string>
 </resources>
-
-<!--<?xml version="1.0" encoding="utf-8"?>-->
-<!--<resources>-->
-
-<!--    &lt;!&ndash; App &ndash;&gt;-->
-<!--    <string name="app_name">BeamShare</string>-->
-
-<!--    &lt;!&ndash; Onboarding Permissions &ndash;&gt;-->
-<!--    <string name="perm_wifi_name">Nearby Wi-Fi Devices</string>-->
-<!--    <string name="perm_wifi_desc">Required to discover and connect to nearby devices</string>-->
-<!--    <string name="perm_bluetooth_name">Bluetooth</string>-->
-<!--    <string name="perm_bluetooth_desc">Required to find and pair with nearby devices</string>-->
-<!--    <string name="perm_storage_name">Files &amp; Storage</string>-->
-<!--    <string name="perm_storage_desc">Required to access and share files on your device</string>-->
-<!--    <string name="perm_camera_name">Camera</string>-->
-<!--    <string name="perm_camera_desc">Required to scan QR codes for quick pairing</string>-->
-<!--    <string name="perm_contacts_name">Contacts</string>-->
-<!--    <string name="perm_contacts_desc">Allows sharing and receiving contact cards</string>-->
-<!--    <string name="perm_notifications_name">Notifications</string>-->
-<!--    <string name="perm_notifications_desc">Get notified about incoming transfers</string>-->
-<!--    <string name="perm_badge_required">Required</string>-->
-<!--    <string name="perm_badge_optional">Optional</string>-->
-
-<!--    &lt;!&ndash; Navigation &ndash;&gt;-->
-<!--    <string name="nav_home">Home</string>-->
-<!--    <string name="nav_transfers">Transfers</string>-->
-<!--    <string name="nav_settings">Settings</string>-->
-
-<!--    &lt;!&ndash; Home &ndash;&gt;-->
-<!--    <string name="home_title">BeamShare</string>-->
-<!--    <string name="home_send">Send</string>-->
-<!--    <string name="home_receive">Receive</string>-->
-<!--    <string name="home_send_desc">Share files with nearby devices</string>-->
-<!--    <string name="home_receive_desc">Get files from other devices</string>-->
-<!--    <string name="home_recent_transfers">Recent Transfers</string>-->
-<!--    <string name="home_see_all">See All</string>-->
-
-<!--    &lt;!&ndash; Onboarding &ndash;&gt;-->
-<!--    <string name="onboarding_welcome_title">Welcome to BeamShare</string>-->
-<!--    <string name="onboarding_welcome_desc">Share files quickly and easily with nearby devices</string>-->
-<!--    <string name="onboarding_permissions_title">Permissions</string>-->
-<!--    <string name="onboarding_permissions_desc">BeamShare needs a few permissions to work properly</string>-->
-<!--    <string name="onboarding_complete_title">You\'re All Set!</string>-->
-<!--    <string name="onboarding_complete_desc">Start sharing files with nearby devices</string>-->
-<!--    <string name="onboarding_next">Next</string>-->
-<!--    <string name="onboarding_get_started">Get Started</string>-->
-<!--    <string name="onboarding_skip">Skip</string>-->
-
-<!--    &lt;!&ndash; Send Files &ndash;&gt;-->
-<!--    <string name="send_files_title">Select Files</string>-->
-<!--    <string name="send_files_send">Send</string>-->
-<!--    <string name="send_selected">%d selected</string>-->
-<!--    <string name="send_total_size">Total: %s</string>-->
-<!--    <string name="tab_photos">Photos</string>-->
-<!--    <string name="tab_videos">Videos</string>-->
-<!--    <string name="tab_music">Music</string>-->
-<!--    <string name="tab_apps">Apps</string>-->
-<!--    <string name="tab_documents">Documents</string>-->
-<!--    <string name="tab_contacts">Contacts</string>-->
-
-<!--    &lt;!&ndash; Device Discovery &ndash;&gt;-->
-<!--    <string name="discovery_title">Find Device</string>-->
-<!--    <string name="tab_scan_qr">Scan QR</string>-->
-<!--    <string name="tab_enter_code">Enter Code</string>-->
-<!--    <string name="discovery_nearby_devices">Nearby Devices</string>-->
-<!--    <string name="discovery_scanning">Scanning for devices…</string>-->
-<!--    <string name="discovery_connect">Connect</string>-->
-<!--    <string name="discovery_connecting">Connecting…</string>-->
-<!--    <string name="discovery_enter_code_title">Enter 6-digit Code</string>-->
-<!--    <string name="discovery_enter_code_desc">Enter the code shown on the receiving device</string>-->
-<!--    <string name="discovery_invalid_code">Invalid code. Please try again.</string>-->
-<!--    <string name="discovery_no_devices_title">No Devices Found</string>-->
-<!--    <string name="discovery_no_devices_desc">Make sure the other device has BeamShare open and is set to receive.</string>-->
-<!--    <string name="discovery_scan_again">Scan Again</string>-->
-<!--    <string name="discovery_use_code">Use code instead</string>-->
-
-<!--    &lt;!&ndash; Receive Waiting &ndash;&gt;-->
-<!--    <string name="receive_title">Receive Files</string>-->
-<!--    <string name="receive_your_qr">Your QR Code</string>-->
-<!--    <string name="receive_pairing_code">Pairing Code</string>-->
-<!--    <string name="receive_device_name">Your Device</string>-->
-<!--    <string name="receive_waiting">Waiting for sender…</string>-->
-<!--    <string name="receive_stop">Stop Receiving</string>-->
-
-<!--    &lt;!&ndash; Transfer Progress &ndash;&gt;-->
-<!--    <string name="transfer_progress_title">Transferring</string>-->
-<!--    <string name="transfer_sending">Sending…</string>-->
-<!--    <string name="transfer_receiving">Receiving…</string>-->
-<!--    <string name="transfer_speed">%s/s</string>-->
-<!--    <string name="transfer_time_remaining">%s remaining</string>-->
-<!--    <string name="transfer_queue_title">Queue</string>-->
-<!--    <string name="transfer_of">%1$d of %2$d</string>-->
-
-<!--    &lt;!&ndash; Transfer Results &ndash;&gt;-->
-<!--    <string name="result_success_title">Transfer Complete!</string>-->
-<!--    <string name="result_success_subtitle">All files transferred successfully</string>-->
-<!--    <string name="result_error_title">Transfer Failed</string>-->
-<!--    <string name="result_error_subtitle">Something went wrong during transfer</string>-->
-<!--    <string name="result_partial_title">Partially Transferred</string>-->
-<!--    <string name="result_partial_subtitle">Some files could not be transferred</string>-->
-<!--    <string name="result_view_files">View Files</string>-->
-<!--    <string name="result_share_again">Share Again</string>-->
-<!--    <string name="result_done">Done</string>-->
-<!--    <string name="result_try_again">Try Again</string>-->
-<!--    <string name="result_go_home">Go Home</string>-->
-<!--    <string name="result_retry_failed">Retry Failed</string>-->
-<!--    <string name="result_error_details">Error Details</string>-->
-<!--    <string name="result_failed_files">Failed Files</string>-->
-
-<!--    &lt;!&ndash; Transfer History &ndash;&gt;-->
-<!--    <string name="history_title">Transfer History</string>-->
-<!--    <string name="history_filter_all">All</string>-->
-<!--    <string name="history_filter_sent">Sent</string>-->
-<!--    <string name="history_filter_received">Received</string>-->
-<!--    <string name="history_filter_failed">Failed</string>-->
-<!--    <string name="history_status_done">Done</string>-->
-<!--    <string name="history_status_failed">Failed</string>-->
-<!--    <string name="history_status_cancelled">Cancelled</string>-->
-<!--    <string name="history_sent_to">Sent to %s</string>-->
-<!--    <string name="history_received_from">Received from %s</string>-->
-<!--    <string name="history_files_count">%d files</string>-->
-
-<!--    &lt;!&ndash; Transfers Empty State &ndash;&gt;-->
-<!--    <string name="transfers_empty">Your transfer history will appear here</string>-->
-<!--    <string name="transfers_no_transfers">No transfers yet</string>-->
-
-<!--    &lt;!&ndash; Dialogs &ndash;&gt;-->
-<!--    <string name="dialog_cancel_title">Cancel Transfer?</string>-->
-<!--    <string name="dialog_cancel_message">This will stop the current transfer. Files already transferred will be kept.</string>-->
-<!--    <string name="dialog_cancel_yes">Yes, Cancel</string>-->
-<!--    <string name="dialog_cancel_keep">Keep Transferring</string>-->
-
-<!--    <string name="dialog_stop_title">Stop Receiving?</string>-->
-<!--    <string name="dialog_stop_message">You will no longer be visible to nearby devices. Any pending connections will be dropped.</string>-->
-<!--    <string name="dialog_stop_yes">Stop Receiving</string>-->
-<!--    <string name="dialog_stop_keep">Keep Waiting</string>-->
-
-<!--    <string name="dialog_timeout_title">Connection Timed Out</string>-->
-<!--    <string name="dialog_timeout_message">Could not establish a connection with the other device. Make sure both devices are on the same network.</string>-->
-
-<!--    <string name="dialog_declined_title">Transfer Declined</string>-->
-<!--    <string name="dialog_declined_message">The receiving device declined your transfer request. You can try sending to a different device.</string>-->
-<!--    <string name="dialog_declined_send_other">Send to Another Device</string>-->
-
-<!--    <string name="dialog_install_title">Allow App Installation</string>-->
-<!--    <string name="dialog_install_message">To install shared apps, you need to allow installation from unknown sources in your device settings.</string>-->
-<!--    <string name="dialog_install_open_settings">Open Settings</string>-->
-<!--    <string name="dialog_install_not_now">Not Now</string>-->
-
-<!--    <string name="dialog_connection_lost_title">Connection Lost</string>-->
-<!--    <string name="dialog_connection_lost_message">The connection was interrupted during transfer. Your progress has been saved and you can retry.</string>-->
-<!--    <string name="dialog_retry">Retry</string>-->
-<!--    <string name="dialog_cancel">Cancel</string>-->
-
-<!--    &lt;!&ndash; Bottom Sheets &ndash;&gt;-->
-<!--    <string name="sheet_split_apk_title">Split APK Detected</string>-->
-<!--    <string name="sheet_split_apk_message">This app uses a split APK format. It may not install correctly on the receiving device if it has a different CPU architecture or screen density.</string>-->
-<!--    <string name="sheet_split_apk_send">Send Anyway</string>-->
-<!--    <string name="sheet_split_apk_remove">Remove from Selection</string>-->
-
-<!--    <string name="sheet_edit_name_title">Edit Device Name</string>-->
-<!--    <string name="sheet_edit_name_desc">This name will be visible to other devices</string>-->
-<!--    <string name="sheet_edit_name_hint">Enter device name</string>-->
-<!--    <string name="sheet_edit_name_save">Save</string>-->
-
-<!--    <string name="sheet_method_title">Connection Method</string>-->
-<!--    <string name="sheet_method_desc">Choose how to connect to the other device</string>-->
-<!--    <string name="sheet_method_wifi_direct">Wi-Fi Direct</string>-->
-<!--    <string name="sheet_method_wifi_direct_desc">Fastest · No internet needed</string>-->
-<!--    <string name="sheet_method_recommended">Recommended</string>-->
-<!--    <string name="sheet_method_hotspot">Hotspot</string>-->
-<!--    <string name="sheet_method_hotspot_desc">Good speed · Creates a hotspot</string>-->
-<!--    <string name="sheet_method_bluetooth">Bluetooth</string>-->
-<!--    <string name="sheet_method_bluetooth_desc">Slower · Works everywhere</string>-->
-
-<!--    <string name="sheet_details_title">Transfer Details</string>-->
-<!--    <string name="sheet_details_file">File</string>-->
-<!--    <string name="sheet_details_direction">Direction</string>-->
-<!--    <string name="sheet_details_device">Device</string>-->
-<!--    <string name="sheet_details_size">Size</string>-->
-<!--    <string name="sheet_details_speed">Speed</string>-->
-<!--    <string name="sheet_details_duration">Duration</string>-->
-<!--    <string name="sheet_details_method">Method</string>-->
-<!--    <string name="sheet_details_status">Status</string>-->
-
-<!--    <string name="sheet_incoming_title">Incoming Transfer</string>-->
-<!--    <string name="sheet_incoming_info">wants to send %1$d file%2$s (%3$s)</string>-->
-<!--    <string name="sheet_incoming_accept">Accept</string>-->
-<!--    <string name="sheet_incoming_decline">Decline</string>-->
-
-<!--    &lt;!&ndash; Can\'t Connect &ndash;&gt;-->
-<!--    <string name="cant_connect_title">Can\'t Connect</string>-->
-<!--    <string name="cant_connect_message">Unable to establish a connection with the other device. Please make sure both devices are nearby and try again.</string>-->
-<!--    <string name="cant_connect_try_again">Try Again</string>-->
-
-<!--    &lt;!&ndash; Camera Permission &ndash;&gt;-->
-<!--    <string name="camera_denied_title">Camera Permission Required</string>-->
-<!--    <string name="camera_denied_message">Camera access is needed to scan QR codes. Please grant permission in your device settings.</string>-->
-<!--    <string name="camera_denied_settings">Open Settings</string>-->
-<!--    <string name="camera_denied_use_code">Enter code instead</string>-->
-
-<!--    &lt;!&ndash; Banners &ndash;&gt;-->
-<!--    <string name="banner_wifi_direct_unavailable">Wi-Fi Direct is not available on this device</string>-->
-<!--    <string name="banner_bluetooth_off">Bluetooth is turned off</string>-->
-<!--    <string name="banner_wifi_off">Wi-Fi is turned off</string>-->
-<!--    <string name="banner_storage_full">Storage is full. Free up space to receive files.</string>-->
-<!--    <string name="banner_wifi_permission">Wi-Fi permission is required for nearby sharing</string>-->
-<!--    <string name="banner_turn_on">Turn On</string>-->
-<!--    <string name="banner_manage">Manage</string>-->
-<!--    <string name="banner_grant">Grant</string>-->
-
-<!--    &lt;!&ndash; Toasts &ndash;&gt;-->
-<!--    <string name="toast_failed_send">Failed to send files. Please try again.</string>-->
-<!--    <string name="toast_file_too_large">File is too large to transfer.</string>-->
-<!--    <string name="toast_export_failed">Couldn\'t export the file. Check storage permissions.</string>-->
-<!--    <string name="toast_install_failed">App installation failed.</string>-->
-<!--    <string name="toast_contacts_saved">%d contact(s) saved successfully.</string>-->
-<!--    <string name="toast_transfer_cancelled">Transfer cancelled.</string>-->
-<!--    <string name="toast_device_name_saved">Device name updated.</string>-->
-
-<!--    &lt;!&ndash; Settings &ndash;&gt;-->
-<!--    <string name="settings_title">Settings</string>-->
-<!--    <string name="settings_device_name">Device Name</string>-->
-<!--    <string name="settings_connection_method">Default Connection</string>-->
-<!--    <string name="settings_save_location">Save Location</string>-->
-<!--    <string name="settings_auto_accept">Auto-Accept Transfers</string>-->
-<!--    <string name="settings_notifications">Notifications</string>-->
-<!--    <string name="settings_about">About</string>-->
-<!--    <string name="settings_version">Version</string>-->
-
-<!--    &lt;!&ndash; Common &ndash;&gt;-->
-<!--    <string name="try_again">Try Again</string>-->
-<!--    <string name="go_home">Go Home</string>-->
-<!--    <string name="open_settings">Open Settings</string>-->
-<!--    <string name="not_now">Not Now</string>-->
-<!--    <string name="save">Save</string>-->
-<!--    <string name="sent">Sent</string>-->
-<!--    <string name="received">Received</string>-->
-<!--    <string name="completed">Completed</string>-->
-
-
-<!--    &lt;!&ndash; Send Files Empty States &ndash;&gt;-->
-<!--    <string name="no_photos_found">No photos found</string>-->
-<!--    <string name="no_videos_found">No videos found</string>-->
-<!--    <string name="no_music_found">No music found</string>-->
-<!--    <string name="no_documents_found">No documents found</string>-->
-<!--    <string name="no_apps_found">No apps found</string>-->
-<!--    <string name="no_contacts_found">No contacts found</string>-->
-
-<!--    &lt;!&ndash; Send Files &ndash;&gt;-->
-<!--    <string name="select_files_first">Select files first</string>-->
-<!--    <string name="n_selected">%d selected</string>-->
-<!--    <string name="contacts_selected">%d contacts selected</string>-->
-<!--    <string name="items_selected">%d items selected</string>-->
-<!--    <string name="total_size">Total: %s</string>-->
-
-<!--    &lt;!&ndash; Send Files Permissions &ndash;&gt;-->
-<!--    <string name="contacts_permission_needed">Contacts Permission Required</string>-->
-<!--    <string name="contacts_permission_desc">Allow access to contacts to share them with nearby devices.</string>-->
-<!--    <string name="files_permission_needed">Storage Permission Required</string>-->
-<!--    <string name="files_permission_desc">Allow access to storage to browse and share files.</string>-->
-<!--    <string name="storage_permission_needed">Storage Permission Required</string>-->
-<!--    <string name="storage_permission_desc">Allow access to storage to browse and share files.</string>-->
-
-<!--    <string name="sending_files">Sending Files</string>-->
-<!--    <string name="transfer_queue">Queue</string>-->
-<!--    <string name="back">Back</string>-->
-<!--    <string name="cancel">Cancel</string>-->
-
-<!--    &lt;!&ndash; Transfer Complete &ndash;&gt;-->
-<!--    <string name="transfer_complete_title">Transfer Complete</string>-->
-<!--    <string name="transfer_complete_desc">All files sent successfully</string>-->
-<!--    <string name="transfer_complete_desc_format">%d files sent successfully</string>-->
-
-<!--    &lt;!&ndash; Transfer Failed &ndash;&gt;-->
-<!--    <string name="transfer_failed_title">Transfer Failed</string>-->
-<!--    <string name="transfer_failed_desc">Could not complete the transfer</string>-->
-
-<!--    &lt;!&ndash; Transfer Partial &ndash;&gt;-->
-<!--    <string name="transfer_partial_title">Partial Transfer</string>-->
-<!--    <string name="transfer_partial_desc">Some files could not be sent</string>-->
-<!--    <string name="transfer_partial_desc_format">%1$d of %2$d files sent successfully</string>-->
-
-<!--    &lt;!&ndash; Result Actions &ndash;&gt;-->
-<!--    <string name="view_files">View Files</string>-->
-<!--    <string name="share_again">Share Again</string>-->
-<!--    <string name="done">Done</string>-->
-<!--    <string name="retry_failed_files">Retry Failed Files</string>-->
-
-<!--    &lt;!&ndash; Error Details &ndash;&gt;-->
-<!--    <string name="show_error_details">Show error details</string>-->
-<!--    <string name="hide_error_details">Hide error details</string>-->
-<!--    <string name="failed_files_count">Failed files</string>-->
-<!--    <string name="failed_files_count_format">%d files failed</string>-->
-
-<!--    &lt;!&ndash; Additional UI Strings &ndash;&gt;-->
-<!--    <string name="receive_files">Receive Files</string>-->
-<!--    <string name="qr_code">QR Code</string>-->
-<!--    <string name="pairing_code">Pairing Code</string>-->
-<!--    <string name="waiting_for_sender">Waiting for sender…</string>-->
-<!--    <string name="stop_receiving">Stop Receiving</string>-->
-<!--    <string name="grant_permission">Grant Permission</string>-->
-<!--    <string name="next_arrow">Next →</string>-->
-<!--    <string name="splash_tagline">Fast &amp; Secure File Sharing</string>-->
-<!--    <string name="splash_loading_init">Initializing…</string>-->
-<!--    <string name="home_subtitle">Fast, secure, and offline file sharing</string>-->
-<!--    <string name="home_send_title">Send Files</string>-->
-<!--    <string name="home_receive_title">Receive Files</string>-->
-<!--    <string name="home_browse_files">BROWSE FILES</string>-->
-<!--    <string name="home_cat_photos">Photos</string>-->
-<!--    <string name="home_cat_videos">Videos</string>-->
-<!--    <string name="home_cat_music">Music</string>-->
-<!--    <string name="home_cat_documents">Documents</string>-->
-<!--    <string name="home_cat_apps">Apps</string>-->
-<!--    <string name="home_cat_contacts">Contacts</string>-->
-<!--    <string name="onboarding_chip_files">Files</string>-->
-<!--    <string name="onboarding_chip_apps">Apps</string>-->
-<!--    <string name="onboarding_chip_contacts">Contacts</string>-->
-<!--    <string name="onboarding_start_sharing">Start Sharing</string>-->
-<!--    <string name="onboarding_permissions_subtitle">BeamShare needs the following permissions to connect and transfer files with nearby devices.</string>-->
-<!--    <string name="onboarding_allow_permissions">Allow Permissions</string>-->
-<!--    <string name="settings_coming_soon">Coming soon</string>-->
-
-
-<!--    <string name="next">Next</string>-->
-<!--    <string name="previous">Previous</string>-->
-
-<!--    <string name="connect">Connect</string>-->
-<!--    <string name="connecting">Connecting…</string>-->
-<!--    <string name="select_device">Select Device</string>-->
-<!--    <string name="close">Close</string>-->
-<!--    <string name="scan_qr">Scan QR</string>-->
-<!--    <string name="enter_code">Enter Code</string>-->
-<!--    <string name="point_camera_at_qr">Point camera at QR code</string>-->
-<!--    <string name="nearby_devices">Nearby Devices</string>-->
-<!--    <string name="type_code_instead">Type code instead</string>-->
-<!--    <string name="searching_for_devices">Searching for devices…</string>-->
-<!--    <string name="enter_pairing_code">Enter Pairing Code</string>-->
-<!--    <string name="enter_code_desc">Enter the 6-digit code shown on the other device</string>-->
-<!--    <string name="wrong_code">Wrong code. Please try again.</string>-->
-<!--    <string name="home_browse">BROWSE</string>-->
-<!--    <string name="home_session_active">Session active · %s</string>-->
-
-
-<!--    <string name="home_greeting">Hi there 👋</string>-->
-<!--    <string name="home_greeting_subtitle">Ready to share?</string>-->
-<!--    <string name="home_this_device">This device</string>-->
-<!--    <string name="home_wifi_on">Wi-Fi on</string>-->
-<!--    <string name="home_total_shared">%s shared</string>-->
-
-
-
-<!--    <string name="back_to_session">Back to session</string>-->
-
-<!--    <string name="transfers_title">Transfers</string>-->
-<!--    <string name="transfers_empty_title">No transfers yet</string>-->
-<!--    <string name="transfers_empty_subtitle">Files you send and receive will show up here.</string>-->
-<!--    <string name="transfers_send_files">Send files</string>-->
-
-<!--    <string name="connect_nearby_label">NEARBY</string>-->
-<!--    <string name="connect_searching">Searching</string>-->
-<!--    <string name="connect_code_subtitle">Find the 6 digits on the receiver\'s screen.</string>-->
-<!--    <string name="connect_code_error_title">Code didn\'t match</string>-->
-<!--    <string name="connect_code_error_subtitle">Check the code on the other phone and try again.</string>-->
-<!--    <string name="connect_wrong_code_tries">Wrong pairing code — %d tries left</string>-->
-<!--    <string name="connect_try_again">Try again</string>-->
-<!--    <string name="receive_screen_title">Receive</string>-->
-<!--    <string name="receive_instruction">Scan this on the sending phone, or type the code below.</string>-->
-<!--    <string name="receive_visible_as">Visible as this name</string>-->
-<!--    <string name="receive_code_verified">Code verified</string>-->
-<!--    <string name="receive_auto_accept">Auto-accept files from this device during the session</string>-->
-<!--    <string name="receive_decline">Decline</string>-->
-<!--    <string name="receive_accept">Accept</string>-->
-<!--    <string name="receive_connected_title">Connected!</string>-->
-<!--    <string name="receive_connected_desc">You and %s can now send files both ways. The connection stays on until one of you leaves.</string>-->
-<!--    <string name="receive_link_label">Link</string>-->
-<!--    <string name="receive_est_speed">Est. speed</string>-->
-<!--    <string name="receive_open_session">Open session</string>-->
-<!--    <string name="receive_stop_title">Stop Receiving?</string>-->
-<!--    <string name="receive_stop_desc">You will no longer be visible to nearby devices. Any pending connections will be dropped.</string>-->
-<!--    <string name="receive_keep_waiting">Keep Waiting</string>-->
-<!--    <string name="session_live">LIVE</string>-->
-<!--    <string name="session_ready_to_receive">Ready to receive</string>-->
-<!--    <string name="session_stat_sent">Sent</string>u-->
-<!--    <string name="session_stat_total">Total</string>-->
-<!--    <string name="session_this_session">THIS SESSION</string>-->
-<!--    <string name="session_rename_device">Rename this device</string>-->
-<!--    <string name="session_open_folder">Open received folder</string>-->
-<!--    <string name="session_auto_accept">Auto-accept files</string>-->
-<!--    <string name="session_leave_title">Leave session?</string>-->
-<!--    <string name="session_leave_desc">You\'ll disconnect from %s. To share again you\'ll need to pair with a new code.</string>-->
-<!--    <string name="session_stay">Stay</string>-->
-<!--    <string name="connected">Connected</string>-->
-<!--    <string name="session_home_title">Session</string>-->
-<!--    <string name="session_send_files">Send files</string>-->
-<!--    <string name="session_options">SESSION OPTIONS</string>-->
-<!--    <string name="session_leave">Leave session</string>-->
-<!--    <string name="session_method_label">Wi-Fi Direct</string>-->
-
-<!--    <string name="transfer_to_device">to %s</string>-->
-<!--    <string name="transfer_from_device">from %s</string>-->
-<!--    <string name="transfer_saving_to">Saving to Downloads/BeamShare/Images</string>-->
-<!--    <string name="transfer_file_count">%1$d of %2$d</string>-->
-<!--    <string name="transfer_mbps">Mbps</string>-->
-<!--    <string name="transfer_time_left">Left</string>-->
-<!--    <string name="transfer_total_sent">Sent</string>-->
-<!--    <string name="transfer_total_received">Received</string>-->
-<!--    <string name="transfer_incoming">Incoming</string>-->
-<!--    <string name="transfer_cancel_action">Cancel transfer</string>-->
-<!--    <string name="transfer_item_done">Done</string>-->
-<!--    <string name="transfer_item_saved">Saved</string>-->
-<!--    <string name="home_create_group">Create Group</string>-->
-<!--    <string name="home_create_group_sub">Show a QR code</string>-->
-<!--    <string name="home_join_group">Join Group</string>-->
-<!--    <string name="home_join_group_sub">Scan or enter code</string>-->
-<!--    <string name="home_send_files">Send Files</string>-->
-<!--    <string name="home_send_subtitle">Tap to choose files to send</string>-->
-<!--    <string name="home_receive_subtitle">Waiting for files…</string>-->
-<!--    <string name="home_auto_accepting">Also accepting incoming files</string>-->
-<!--    <string name="home_connected_to">Connected to %s</string>-->
-<!--    <string name="home_send_to">Send to %s</string>-->
-<!--    <string name="home_session_status">● Session active</string>-->
-<!--    <string name="home_unknown_device">Nearby Device</string>-->
-
-<!--    &lt;!&ndash; ============================================================= &ndash;&gt;-->
-<!--    &lt;!&ndash; Add these to res/values/strings.xml  (Phase 2 - group model)  &ndash;&gt;-->
-<!--    &lt;!&ndash; These reuse existing ones already in your strings.xml:        &ndash;&gt;-->
-<!--    &lt;!&ndash;   home_unknown_device, home_send_subtitle, home_auto_accepting &ndash;&gt;-->
-<!--    &lt;!&ndash; ============================================================= &ndash;&gt;-->
-
-<!--    &lt;!&ndash; Home: connected banner &ndash;&gt;-->
-<!--    <string name="home_group_active">Group active · %1$d phones</string>-->
-<!--    <string name="home_with_peer">With %1$s · %2$s</string>-->
-<!--    <string name="home_just_now">just now</string>-->
-<!--    <string name="home_minutes">%1$d min</string>-->
-
-<!--    &lt;!&ndash; Home: hero pill + send card &ndash;&gt;-->
-<!--    <string name="home_not_in_group">Not in a group</string>-->
-<!--    <string name="home_to_group">To everyone in the group</string>-->
-<!--    <string name="home_send_while_receiving">You can send while receiving</string>-->
-<!--    <string name="home_connect_first">Create or join a group first</string>-->
-
-<!--    &lt;!&ndash; Home: LIVE NOW card &ndash;&gt;-->
-<!--    <string name="live_now">LIVE NOW</string>-->
-<!--    <string name="live_more_transfers">+%1$d more · View all</string>-->
-<!--    <string name="live_from">From %1$s</string>-->
-<!--    <string name="live_to">To %1$s</string>-->
-
-<!--    &lt;!&ndash; Send Files: group subtitle &ndash;&gt;-->
-<!--    <string name="send_to_group_subtitle">To everyone in the group</string>-->
-<!--</resources>-->

@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/bg_screen"
+    tools:context=".permissions.PermissionsActivity">
+
+    <!-- ── Sticky header ──────────────────────────────────────────────── -->
+    <LinearLayout
+        android:id="@+id/headerLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingLeft="@dimen/_16sdp"
+        android:paddingRight="@dimen/_16sdp"
+        android:paddingTop="@dimen/_12sdp"
+        android:paddingBottom="@dimen/_12sdp"
+        android:background="@color/bg_screen"
+        android:elevation="@dimen/_2sdp">
+
+        <ImageButton
+            android:id="@+id/btnBack"
+            android:layout_width="@dimen/_36sdp"
+            android:layout_height="@dimen/_36sdp"
+            android:background="@drawable/bg_btn_back"
+            android:src="@drawable/ic_arrow_back"
+            android:contentDescription="@string/back"
+            android:padding="@dimen/_8sdp" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:layout_marginStart="@dimen/_12sdp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/perm_header_title"
+                android:textSize="@dimen/_17ssp"
+                android:textStyle="bold"
+                android:textColor="@color/fg_primary" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/perm_header_sub"
+                android:textSize="@dimen/_13ssp"
+                android:textColor="@color/fg_secondary"
+                android:layout_marginTop="@dimen/_2sdp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_1sdp"
+        android:background="@color/divider" />
+
+    <!-- ── Scrollable content ─────────────────────────────────────────── -->
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/nestedScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true"
+        android:clipToPadding="false"
+        android:paddingBottom="@dimen/_16sdp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingLeft="@dimen/_16sdp"
+            android:paddingRight="@dimen/_16sdp"
+            android:paddingTop="@dimen/_16sdp">
+
+            <!-- Privacy trust banner -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_18sdp"
+                app:cardCornerRadius="@dimen/_14sdp"
+                app:cardElevation="0dp"
+                app:strokeWidth="@dimen/_1sdp"
+                app:strokeColor="@color/accent_soft_border"
+                app:cardBackgroundColor="@color/accent_soft_bg">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/_14sdp"
+                    android:gravity="top">
+
+                    <ImageView
+                        android:layout_width="@dimen/_38sdp"
+                        android:layout_height="@dimen/_38sdp"
+                        android:src="@drawable/ic_shield_check"
+                        android:background="@drawable/bg_icon_accent"
+                        android:padding="@dimen/_9sdp"
+                        android:contentDescription="@null" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:layout_marginStart="@dimen/_12sdp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/perm_banner_title"
+                            android:textSize="@dimen/_13ssp"
+                            android:textStyle="bold"
+                            android:textColor="@color/fg_primary" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/perm_banner_body"
+                            android:textSize="@dimen/_12ssp"
+                            android:textColor="@color/fg_secondary"
+                            android:layout_marginTop="@dimen/_3sdp"
+                            android:lineSpacingMultiplier="1.4" />
+
+                    </LinearLayout>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- ── Wi-Fi & Network ──────────────────────────────────────── -->
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="@string/section_wifi" style="@style/SectionLabel"
+                android:layout_marginBottom="@dimen/_8sdp" />
+
+            <include layout="@layout/item_permission_card_accordion"
+                android:id="@+id/cardWifiDirect"
+                android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_8sdp" />
+
+            <include layout="@layout/item_permission_card_accordion"
+                android:id="@+id/cardLocation"
+                android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_16sdp" />
+
+            <!-- ── Bluetooth ────────────────────────────────────────────── -->
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="@string/section_bluetooth" style="@style/SectionLabel"
+                android:layout_marginBottom="@dimen/_8sdp" />
+
+            <include layout="@layout/item_permission_card_accordion"
+                android:id="@+id/cardBluetooth"
+                android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_16sdp" />
+
+            <!-- ── Files & Storage ──────────────────────────────────────── -->
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="@string/section_storage" style="@style/SectionLabel"
+                android:layout_marginBottom="@dimen/_8sdp" />
+
+            <include layout="@layout/item_permission_card_accordion"
+                android:id="@+id/cardReadFiles"
+                android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_8sdp" />
+
+            <include layout="@layout/item_permission_card_accordion"
+                android:id="@+id/cardSaveFiles"
+                android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_16sdp" />
+
+            <!-- ── Camera ───────────────────────────────────────────────── -->
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="@string/section_camera" style="@style/SectionLabel"
+                android:layout_marginBottom="@dimen/_8sdp" />
+
+            <include layout="@layout/item_permission_card_accordion"
+                android:id="@+id/cardCamera"
+                android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_16sdp" />
+
+            <!-- ── Contacts ─────────────────────────────────────────────── -->
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="@string/section_contacts" style="@style/SectionLabel"
+                android:layout_marginBottom="@dimen/_8sdp" />
+
+            <include layout="@layout/item_permission_card_accordion"
+                android:id="@+id/cardContacts"
+                android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_16sdp" />
+
+            <!-- ── Notifications ────────────────────────────────────────── -->
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="@string/section_notif" style="@style/SectionLabel"
+                android:layout_marginBottom="@dimen/_8sdp" />
+
+            <include layout="@layout/item_permission_card_accordion"
+                android:id="@+id/cardNotifications"
+                android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_16sdp" />
+
+            <!-- ── Install Apps ─────────────────────────────────────────── -->
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="@string/section_install_apps" style="@style/SectionLabel"
+                android:layout_marginBottom="@dimen/_8sdp" />
+
+            <include layout="@layout/item_permission_card_accordion"
+                android:id="@+id/cardInstallPackages"
+                android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_24sdp" />
+
+            <!-- ── CTA ──────────────────────────────────────────────────── -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnGrantPermissions"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_52sdp"
+                android:text="@string/perm_btn_grant"
+                android:textSize="@dimen/_15ssp"
+                android:textStyle="bold"
+                app:cornerRadius="@dimen/_14sdp"
+                app:backgroundTint="@color/accent" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnSkip"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/perm_btn_skip"
+                android:textSize="@dimen/_13ssp"
+                android:textColor="@color/fg_secondary"
+                android:layout_marginTop="@dimen/_4sdp"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                app:backgroundTint="@android:color/transparent" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/perm_footer_note"
+                android:textSize="@dimen/_11ssp"
+                android:textColor="@color/fg_tertiary"
+                android:gravity="center"
+                android:lineSpacingMultiplier="1.4"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:layout_marginBottom="@dimen/_8sdp" />
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</LinearLayout>

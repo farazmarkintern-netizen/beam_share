@@ -60,5 +60,33 @@
 
     <!-- Overlay -->
     <color name="color_overlay">#B3000000</color>
+    <color name="perm_card_bg">#1E293B</color>
+    <color name="perm_chip_bg">#0F172A</color>
+
+    <color name="bg_screen">#0F172A</color>
+    <color name="fg_primary">#F1F5F9</color>
+    <color name="fg_secondary">#94A3B8</color>
+    <color name="fg_tertiary">#64748B</color>
+    <color name="card_border">#334155</color>
+    <color name="accent">#3B82F6</color>
+    <color name="accent_soft_border">#1D4ED8</color>
+    <color name="perm_denied">#EF4444</color>
+
+    <color name="perm_wifi">#3B82F6</color>
+    <color name="perm_wifi_bg">#1E3A5F</color>
+    <color name="perm_location">#22C55E</color>
+    <color name="perm_location_bg">#14532D</color>
+    <color name="perm_bluetooth">#A855F7</color>
+    <color name="perm_bluetooth_bg">#3B0764</color>
+    <color name="perm_storage">#F97316</color>
+    <color name="perm_storage_bg">#431407</color>
+    <color name="perm_save">#14B8A6</color>
+    <color name="perm_save_bg">#134E4A</color>
+    <color name="perm_camera">#FB7185</color>
+    <color name="perm_camera_bg">#450A0A</color>
+    <color name="perm_notif">#FBBF24</color>
+    <color name="perm_notif_bg">#451A03</color>
+    <color name="divider">#334155</color>
+    <color name="accent_soft_bg">#1E3A5F</color>
 
 </resources>

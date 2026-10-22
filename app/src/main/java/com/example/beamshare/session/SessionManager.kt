@@ -3,19 +3,8 @@ package com.example.beamshare.session
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.update
 
-/**
- * App-wide, process-singleton holder of session + live-transfer state.
- *
- * GroupSessionService writes to it from the SessionConnection callbacks; every
- * screen (HomeFragment, SessionActivity, SendFilesActivity, the Create-group screen)
- * just collects these flows with repeatOnLifecycle(STARTED). No polling, and the UI
- * is correct after rotation or returning from the background because the state lives
- * here, not in any one screen.
- *
- * Kept as a plain object (not a Hilt-injected type) so it survives Activity/Fragment
- * recreation and is trivially testable.
- */
 object SessionManager {
 
     private val _state = MutableStateFlow<SessionState>(SessionState.Idle)
@@ -24,7 +13,6 @@ object SessionManager {
     private val _transfers = MutableStateFlow<List<LiveTransfer>>(emptyList())
     val transfers: StateFlow<List<LiveTransfer>> = _transfers.asStateFlow()
 
-    /** Only the transfers still in flight — this is what the LIVE NOW card binds to. */
     val liveTransfers: List<LiveTransfer>
         get() = _transfers.value.filter { it.status == TransferStatus.ACTIVE }
 
@@ -59,7 +47,6 @@ object SessionManager {
 
     fun setEnded(reason: String) {
         _state.value = SessionState.Ended(reason)
-        // Mark any still-active transfers as failed so the LIVE NOW card clears.
         _transfers.value = _transfers.value.map {
             if (it.status == TransferStatus.ACTIVE)
                 it.copy(status = TransferStatus.FAILED, updatedAtMs = System.currentTimeMillis())
@@ -112,6 +99,22 @@ object SessionManager {
                 status = TransferStatus.FAILED, updatedAtMs = System.currentTimeMillis()
             )
         )
+    }
+
+    /** Mark a transfer CANCELLED (called from cancel button in SessionActivity). */
+    fun cancelTransfer(id: Long) {
+        _transfers.update { list ->
+            list.map { t ->
+                if (t.id == id && t.status == TransferStatus.ACTIVE)
+                    t.copy(status = TransferStatus.CANCELLED, updatedAtMs = System.currentTimeMillis())
+                else t
+            }
+        }
+    }
+
+    /** Remove a transfer row entirely (called from long-press delete in SessionActivity). */
+    fun removeTransfer(id: Long) {
+        _transfers.update { list -> list.filterNot { it.id == id } }
     }
 
     fun clearFinished() {
