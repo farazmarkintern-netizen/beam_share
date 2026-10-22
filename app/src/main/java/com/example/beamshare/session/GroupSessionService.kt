@@ -125,6 +125,12 @@ class GroupSessionService : Service() {
     private val isReconnecting = AtomicBoolean(false)
     private val userLeft = AtomicBoolean(false)
 
+    // ── Session options ──────────────────────────────────────────────────────
+    private var autoAcceptEnabled = true
+    private var deviceName: String = selfName
+    /** Callbacks keyed by transfer id — resolved by acceptTransfer / rejectTransfer */
+    private val pendingAcceptCallbacks = mutableMapOf<Long, (Boolean) -> Unit>()
+
     // ── Send queue (one file at a time) ─────────────────────────────────────
     private val sendQueue = ArrayDeque<Uri>()
     private var isSending = false
@@ -409,8 +415,28 @@ class GroupSessionService : Service() {
 
     private val bridge = object : SessionConnection.Listener {
         override fun onIncomingStart(id: Long, name: String, size: Long) {
-            Log.d(TAG, "bridge: incomingStart id=$id name='$name' size=$size")
+            Log.d(TAG, "bridge: incomingStart id=$id name='$name' size=$size autoAccept=$autoAcceptEnabled")
             SessionManager.onTransferStart(id, name, size, TransferDirection.IN)
+            if (!autoAcceptEnabled) {
+                // Hold the transfer — ask the bound activity to confirm
+                // The callback resumes or cancels the transfer when the user decides
+                pendingAcceptCallbacks[id] = { accepted ->
+                    if (!accepted) {
+                        connection?.cancelIncomingTransfer(id)
+                    }
+                }
+                // Find the bound activity and show the dialog on the main thread
+                scope.launch(Dispatchers.Main) {
+                    val activity = getBoundSessionActivity()
+                    if (activity != null) {
+                        activity.showIncomingFileAcceptDialog(name, formatSize(size), id)
+                    } else {
+                        // No activity visible — auto-accept as fallback
+                        Log.w(TAG, "onIncomingStart: no bound activity — auto-accepting id=$id")
+                        pendingAcceptCallbacks.remove(id)
+                    }
+                }
+            }
         }
 
         override fun onProgress(id: Long, direction: SessionConnection.Direction, name: String, sent: Long, total: Long) {
@@ -565,10 +591,32 @@ class GroupSessionService : Service() {
     }
 
     private fun formatSize(bytes: Long): String = when {
-        bytes >= 1_073_741_824 -> String.format("%.1f GB", bytes / 1_073_741_824.0)
-        bytes >= 1_048_576 -> String.format("%.1f MB", bytes / 1_048_576.0)
-        bytes >= 1024 -> String.format("%.0f KB", bytes / 1024.0)
-        else -> "$bytes B"
+        bytes >= 1_073_741_824 -> String.format(java.util.Locale.US, "%.1f GB", bytes / 1_073_741_824.0)
+        bytes >= 1_048_576     -> String.format(java.util.Locale.US, "%.1f MB", bytes / 1_048_576.0)
+        bytes >= 1024          -> String.format(java.util.Locale.US, "%.0f KB", bytes / 1024.0)
+        else                   -> "$bytes B"
+    }
+
+    /**
+     * Returns the currently bound [SessionActivity] if it is in a resumed state, or null.
+     * Used to forward incoming-file dialogs to the visible UI.
+     */
+    private fun getBoundSessionActivity(): SessionActivity? {
+        // Walk the app's activity stack via ActivityManager is not reliable;
+        // instead we keep a weak reference updated by the activity itself.
+        return boundActivity?.get()
+    }
+
+    /** Weak reference to the currently bound SessionActivity (set/cleared by the activity). */
+    private var boundActivity: java.lang.ref.WeakReference<SessionActivity>? = null
+
+    /** Called by SessionActivity.onServiceConnected / onDestroy to register itself. */
+    fun registerActivity(activity: SessionActivity) {
+        boundActivity = java.lang.ref.WeakReference(activity)
+    }
+
+    fun unregisterActivity() {
+        boundActivity = null
     }
 
     private fun stopEverything() {
@@ -625,6 +673,43 @@ class GroupSessionService : Service() {
         connection?.close("service destroyed")
         wifi.release()
         scope.cancel()
+    }
+    // ── Public API — session options ──────────────────────────────────────────
+
+    /** Toggle auto-accept. When false, the bound activity is asked to confirm each incoming file. */
+    fun setAutoAccept(enabled: Boolean) {
+        autoAcceptEnabled = enabled
+    }
+
+    /** Update the name this device advertises to peers (takes effect on next connection). */
+    fun setDeviceName(name: String) {
+        deviceName = name
+    }
+
+    /**
+     * Accept a pending incoming transfer that was held because autoAccept = false.
+     * Resumes the SessionConnection receive path for [transferId].
+     */
+    fun acceptTransfer(transferId: Long) {
+        val cb = pendingAcceptCallbacks.remove(transferId)
+        if (cb != null) {
+            cb(true)
+        } else {
+            Log.w(TAG, "acceptTransfer: no pending callback for id=$transferId")
+        }
+    }
+
+    /**
+     * Reject a pending incoming transfer.
+     */
+    fun rejectTransfer(transferId: Long) {
+        val cb = pendingAcceptCallbacks.remove(transferId)
+        if (cb != null) {
+            cb(false)
+            SessionManager.onTransferFailed(transferId, "", 0, TransferDirection.IN, "Declined by user")
+        } else {
+            Log.w(TAG, "rejectTransfer: no pending callback for id=$transferId")
+        }
     }
 
     private fun SessionConnection.Direction.toModel(): TransferDirection =

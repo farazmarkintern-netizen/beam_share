@@ -15,9 +15,25 @@
     <string name="perm_notifications_desc">Get notified about incoming transfers</string>
     <string name="perm_badge_required">Required</string>
     <string name="perm_badge_optional">Optional</string>
+    <!-- Add these to your res/values/strings.xml -->
 
+    <!-- Session menu / incoming dialog -->
+    <string name="incoming_file">Incoming File</string>
+    <string name="incoming_file_desc">%1$s\n%2$s</string>
+    <string name="accept">Accept</string>
+    <string name="decline">Decline</string>
+
+    <!-- Duration display — Connected badge -->
+    <!-- e.g. "Connected · 2m 30s" -->
+    <string name="session_duration_mins">Connected · %1$dm %2$ds</string>
+    <!-- e.g. "Connected · 45s" -->
+    <string name="session_duration_secs">Connected · %1$ds</string>
+
+    <!-- Transfer progress percentage -->
+    <string name="session_progress_pct">%1$d%%</string>
     <!-- Navigation -->
     <string name="nav_home">Home</string>
+    <string name="session_leave_sub">Disconnect and end this session</string>
     <string name="nav_transfers">Transfers</string>
     <string name="nav_settings">Settings</string>
 

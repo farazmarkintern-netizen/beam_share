@@ -112,8 +112,7 @@
             android:textSize="@dimen/_16ssp" />
     </LinearLayout>
 
-    <!-- Scrollable content + sticky RecyclerView -->
-    <!-- NestedScrollView holds the fixed cards; RecyclerView fills remaining space -->
+    <!-- Scrollable content -->
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -283,6 +282,7 @@
                 android:layout_marginTop="@dimen/_16sdp"
                 android:orientation="horizontal">
 
+                <!-- Send Files -->
                 <LinearLayout
                     android:id="@+id/btnSendFiles"
                     android:layout_width="0dp"
@@ -311,13 +311,14 @@
                         android:textSize="@dimen/_13ssp" />
                 </LinearLayout>
 
+                <!-- End Session -->
                 <LinearLayout
-                    android:id="@+id/btnReadyToReceive"
+                    android:id="@+id/btnEndSession"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_6sdp"
                     android:layout_weight="1"
-                    android:background="@drawable/bg_action_card_green"
+                    android:background="@drawable/bg_action_card_red"
                     android:gravity="center_horizontal"
                     android:orientation="vertical"
                     android:paddingVertical="@dimen/_16sdp">
@@ -326,16 +327,16 @@
                         android:layout_width="@dimen/_28sdp"
                         android:layout_height="@dimen/_28sdp"
                         android:contentDescription="@null"
-                        android:src="@drawable/ic_download"
-                        app:tint="#16A34A" />
+                        android:src="@drawable/ic_log_out"
+                        app:tint="#DC2626" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_8sdp"
                         android:fontFamily="@font/inter_semibold"
-                        android:text="@string/session_ready_to_receive"
-                        android:textColor="#16A34A"
+                        android:text="@string/session_leave"
+                        android:textColor="#DC2626"
                         android:textSize="@dimen/_13ssp" />
                 </LinearLayout>
             </LinearLayout>
@@ -453,7 +454,7 @@
                 android:textColor="@color/color_text_tertiary"
                 android:textSize="@dimen/_11ssp" />
 
-            <!-- File list — nestedScrollingEnabled=false so NestedScrollView scrolls it -->
+            <!-- File list -->
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvSessionFiles"
                 android:layout_width="match_parent"

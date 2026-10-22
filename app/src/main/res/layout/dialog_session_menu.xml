@@ -46,6 +46,7 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/tvRenameTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/inter_medium"
@@ -90,6 +91,7 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/tvOpenFolderTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/inter_medium"
@@ -110,6 +112,7 @@
 
     <!-- Auto-accept files toggle -->
     <LinearLayout
+        android:id="@+id/menuAutoAccept"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
@@ -125,6 +128,7 @@
             app:tint="@color/color_text_secondary" />
 
         <TextView
+            android:id="@+id/tvAutoAcceptTitle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_14sdp"
@@ -141,39 +145,5 @@
             android:checked="true" />
     </LinearLayout>
 
-    <!-- Divider -->
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginHorizontal="@dimen/_20sdp"
-        android:layout_marginVertical="@dimen/_4sdp"
-        android:background="@color/color_border" />
 
-    <!-- Leave session -->
-    <LinearLayout
-        android:id="@+id/menuLeave"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="?attr/selectableItemBackground"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:paddingHorizontal="@dimen/_20sdp"
-        android:paddingVertical="@dimen/_14sdp">
-
-        <ImageView
-            android:layout_width="@dimen/_22sdp"
-            android:layout_height="@dimen/_22sdp"
-            android:contentDescription="@null"
-            android:src="@drawable/ic_log_out"
-            app:tint="#EF4444" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_14sdp"
-            android:fontFamily="@font/inter_medium"
-            android:text="@string/session_leave"
-            android:textColor="#EF4444"
-            android:textSize="@dimen/_14ssp" />
-    </LinearLayout>
 </LinearLayout>

@@ -102,7 +102,7 @@
                 android:contentDescription="@string/cancel"
                 android:src="@drawable/ic_error_circle"
                 android:visibility="gone"
-                app:tint="#DC2626"
+
                 tools:visibility="visible" />
 
             <!-- Status icon — shown when COMPLETED or FAILED -->
@@ -114,7 +114,7 @@
                 android:contentDescription="@null"
                 android:src="@drawable/ic_check_circle_filled"
                 android:visibility="gone"
-                app:tint="#16A34A"
+
                 tools:visibility="gone" />
         </FrameLayout>
     </LinearLayout>

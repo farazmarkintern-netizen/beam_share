@@ -7,15 +7,18 @@ import android.content.ServiceConnection
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
+import android.os.Environment
 import android.os.Handler
 import android.os.IBinder
 import android.os.Looper
-import android.util.Log
 import android.view.View
+import android.widget.EditText
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SwitchCompat
 import androidx.core.view.ViewCompat
@@ -34,7 +37,6 @@ import kotlinx.coroutines.launch
 class SessionActivity : AppCompatActivity() {
 
     companion object {
-        private const val TAG = "SessionActivity"
         const val EXTRA_REMOTE_DEVICE_NAME = "extra_remote_device_name"
         const val EXTRA_LOCAL_DEVICE_NAME  = "extra_local_device_name"
         const val EXTRA_PENDING_URIS       = "extra_pending_uris"
@@ -60,30 +62,19 @@ class SessionActivity : AppCompatActivity() {
 
     private var groupService: GroupSessionService? = null
     private var serviceBound = false
+    private var autoAcceptEnabled = true
 
     private val serviceConn = object : ServiceConnection {
         override fun onServiceConnected(name: ComponentName?, binder: IBinder?) {
             groupService = (binder as GroupSessionService.LocalBinder).getService()
+            groupService?.registerActivity(this@SessionActivity)
             serviceBound = true
             if (SessionManager.state.value is SessionState.Connected) sendPendingFiles()
         }
         override fun onServiceDisconnected(name: ComponentName?) {
+            groupService?.unregisterActivity()
             groupService = null
             serviceBound = false
-        }
-    }
-
-    private val pickFiles = registerForActivityResult(
-        ActivityResultContracts.OpenMultipleDocuments()
-    ) { uris: List<Uri> ->
-        if (uris.isNotEmpty()) {
-            uris.forEach { uri ->
-                runCatching {
-                    contentResolver.takePersistableUriPermission(
-                        uri, Intent.FLAG_GRANT_READ_URI_PERMISSION)
-                }
-            }
-            groupService?.sendUris(uris)
         }
     }
 
@@ -131,6 +122,7 @@ class SessionActivity : AppCompatActivity() {
         super.onDestroy()
         handler.removeCallbacks(durationRunnable)
         if (serviceBound) {
+            groupService?.unregisterActivity()
             unbindService(serviceConn)
             serviceBound = false
         }
@@ -171,7 +163,9 @@ class SessionActivity : AppCompatActivity() {
         findViewById<LinearLayout>(R.id.btnSendFiles).setOnClickListener {
             startActivity(Intent(this, SendFilesActivity::class.java))
         }
-        findViewById<LinearLayout>(R.id.btnReadyToReceive).setOnClickListener { }
+        findViewById<LinearLayout>(R.id.btnEndSession).setOnClickListener {
+            showLeaveSessionDialog()
+        }
     }
 
     private fun setupRecyclerView() {
@@ -200,6 +194,25 @@ class SessionActivity : AppCompatActivity() {
 
     private fun bindGroupService() {
         bindService(Intent(this, GroupSessionService::class.java), serviceConn, Context.BIND_AUTO_CREATE)
+    }
+
+    /** Called by service when a file offer arrives and autoAccept is OFF */
+    fun showIncomingFileAcceptDialog(fileName: String, fileSize: String, transferId: Long) {
+        if (autoAcceptEnabled) {
+            groupService?.acceptTransfer(transferId)
+            return
+        }
+        AlertDialog.Builder(this)
+            .setTitle(getString(R.string.incoming_file))
+            .setMessage(getString(R.string.incoming_file_desc, fileName, fileSize))
+            .setPositiveButton(getString(R.string.accept)) { _, _ ->
+                groupService?.acceptTransfer(transferId)
+            }
+            .setNegativeButton(getString(R.string.decline)) { _, _ ->
+                groupService?.rejectTransfer(transferId)
+            }
+            .setCancelable(false)
+            .show()
     }
 
     // ── Observe ────────────────────────────────────────────────────────────────
@@ -339,9 +352,9 @@ class SessionActivity : AppCompatActivity() {
         val minutes = elapsed / 60
         val seconds = elapsed % 60
         tvConnectedDuration.text = if (minutes > 0)
-            getString(R.string.connected) + " · ${minutes}m ${seconds}s"
+            getString(R.string.session_duration_mins, minutes, seconds)
         else
-            getString(R.string.connected) + " · ${seconds}s"
+            getString(R.string.session_duration_secs, seconds)
     }
 
     // ── Incoming banner ────────────────────────────────────────────────────────
@@ -350,7 +363,7 @@ class SessionActivity : AppCompatActivity() {
         incomingBanner.visibility = View.VISIBLE
         findViewById<TextView>(R.id.tvBannerTitle).text    = title
         findViewById<TextView>(R.id.tvBannerSubtitle).text = subtitle
-        findViewById<TextView>(R.id.tvBannerProgress).text = "$progress%"
+        findViewById<TextView>(R.id.tvBannerProgress).text = getString(R.string.session_progress_pct, progress)
     }
 
     private fun hideIncomingBanner() {
@@ -360,9 +373,9 @@ class SessionActivity : AppCompatActivity() {
     // ── Size formatter ─────────────────────────────────────────────────────────
 
     private fun formatSize(bytes: Long): String = when {
-        bytes >= 1_073_741_824 -> String.format("%.1f GB", bytes / 1_073_741_824.0)
-        bytes >= 1_048_576     -> String.format("%.1f MB", bytes / 1_048_576.0)
-        bytes >= 1024          -> String.format("%.0f KB", bytes / 1024.0)
+        bytes >= 1_073_741_824 -> String.format(java.util.Locale.US, "%.1f GB", bytes / 1_073_741_824.0)
+        bytes >= 1_048_576     -> String.format(java.util.Locale.US, "%.1f MB", bytes / 1_048_576.0)
+        bytes >= 1024          -> String.format(java.util.Locale.US, "%.0f KB", bytes / 1024.0)
         else                   -> "$bytes B"
     }
 
@@ -390,22 +403,74 @@ class SessionActivity : AppCompatActivity() {
         val view = layoutInflater.inflate(R.layout.dialog_session_menu, null)
 
         view.findViewById<TextView>(R.id.tvCurrentDeviceName).text = localDeviceName
-        view.findViewById<TextView>(R.id.tvFolderPath).text = "/BeamShare/"
+        view.findViewById<TextView>(R.id.tvFolderPath).text =
+            "${Environment.getExternalStorageDirectory()}/BeamShare/"
 
+        // ── Rename device ──────────────────────────────────────────────
         view.findViewById<LinearLayout>(R.id.menuRename).setOnClickListener {
             dialog.dismiss()
+            showRenameDialog()
         }
+
+        // ── Open received folder ───────────────────────────────────────
         view.findViewById<LinearLayout>(R.id.menuOpenFolder).setOnClickListener {
             dialog.dismiss()
+            openBeamShareFolder()
         }
-        view.findViewById<SwitchCompat>(R.id.switchAutoAccept).setOnCheckedChangeListener { _, _ -> }
-        view.findViewById<LinearLayout>(R.id.menuLeave).setOnClickListener {
-            dialog.dismiss()
-            showLeaveSessionDialog()
+
+        // ── Auto-accept toggle ─────────────────────────────────────────
+        val switchAutoAccept = view.findViewById<SwitchCompat>(R.id.switchAutoAccept)
+        switchAutoAccept.isChecked = autoAcceptEnabled
+        switchAutoAccept.setOnCheckedChangeListener { _, isChecked ->
+            autoAcceptEnabled = isChecked
+            groupService?.setAutoAccept(isChecked)
         }
 
         dialog.setContentView(view)
         dialog.show()
+    }
+
+    private fun showRenameDialog() {
+        val editText = EditText(this).apply {
+            setText(localDeviceName)
+            selectAll()
+            setPadding(48, 32, 48, 16)
+        }
+        AlertDialog.Builder(this)
+            .setTitle(getString(R.string.session_rename_device))
+            .setView(editText)
+            .setPositiveButton(getString(R.string.save)) { _, _ ->
+                val newName = editText.text.toString().trim()
+                if (newName.isNotEmpty()) {
+                    localDeviceName = newName
+                    tvLocalDeviceName.text = newName
+                    groupService?.setDeviceName(newName)
+                }
+            }
+            .setNegativeButton(getString(R.string.cancel), null)
+            .show()
+    }
+
+    private fun openBeamShareFolder() {
+        val beamShareDir = java.io.File(
+            Environment.getExternalStorageDirectory(), "BeamShare"
+        )
+        if (!beamShareDir.exists()) beamShareDir.mkdirs()
+
+        val uri = androidx.core.content.FileProvider.getUriForFile(
+            this,
+            "${packageName}.provider",
+            beamShareDir
+        )
+        val intent = Intent(Intent.ACTION_VIEW).apply {
+            setDataAndType(uri, "resource/folder")
+            addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+        }
+        // Fallback: some devices don't handle resource/folder — try Files app
+        val chooser = Intent.createChooser(intent, getString(R.string.session_open_folder))
+        runCatching { startActivity(chooser) }.onFailure {
+            Toast.makeText(this, beamShareDir.absolutePath, Toast.LENGTH_LONG).show()
+        }
     }
 
     private fun showLeaveSessionDialog() {
@@ -420,6 +485,7 @@ class SessionActivity : AppCompatActivity() {
         view.findViewById<TextView>(R.id.btnLeave).setOnClickListener {
             dialog.dismiss()
             groupService?.leave()
+            SessionManager.setEnded("user_left")
             finish()
         }
 

@@ -137,6 +137,27 @@ class SessionConnection(
         heartbeatJob = scope.launch(Dispatchers.IO) { heartbeatLoop() }
     }
 
+    /**
+     * Cancel an incoming transfer that we have already started receiving
+     * (e.g. user rejected the file when autoAccept is OFF).
+     * Removes the local state, aborts the temp file, and tells the sender to stop.
+     */
+    fun cancelIncomingTransfer(id: Long) {
+        val state = incoming.remove(id) ?: return
+        sinks.remove(state)?.runCatching { close() }
+        state.file.abort()
+        // Notify the sender so it stops streaming chunks for this id
+        scope.launch(Dispatchers.IO) {
+            runCatching {
+                writeFrame {
+                    it.writeByte(SessionProtocol.Frame.FILE_CANCEL)
+                    it.writeLong(id)
+                }
+            }
+        }
+        listener.onFailed(id, Direction.IN, state.file.name, "Declined by user")
+    }
+
     /** Send LEAVE to the peer, then close. */
     fun leave() {
         scope.launch(Dispatchers.IO) {
