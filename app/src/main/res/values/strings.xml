@@ -6,15 +6,11 @@
 
     <!-- Onboarding Permissions -->
     <string name="perm_wifi_name">Nearby Wi-Fi Devices</string>
-    <string name="perm_wifi_desc">Required to discover and connect to nearby devices</string>
     <string name="perm_bluetooth_name">Bluetooth</string>
-    <string name="perm_bluetooth_desc">Required to find and pair with nearby devices</string>
     <string name="perm_storage_name">Files &amp; Storage</string>
     <string name="perm_storage_desc">Required to access and share files on your device</string>
     <string name="perm_camera_name">Camera</string>
-    <string name="perm_camera_desc">Required to scan QR codes for quick pairing</string>
     <string name="perm_contacts_name">Contacts</string>
-    <string name="perm_contacts_desc">Allows sharing and receiving contact cards</string>
     <string name="perm_notifications_name">Notifications</string>
     <string name="perm_notifications_desc">Get notified about incoming transfers</string>
     <string name="perm_badge_required">Required</string>
@@ -471,12 +467,10 @@
     <string name="no_app_to_open">No app to open this file</string>
 
     <string name="perm_wifi_desc1">Finds nearby devices and establishes a peer-to-peer connection for fast local file transfer without internet.</string>
-    <string name="perm_location_desc">Required by Android to scan for Wi-Fi Direct peers. WeShare never stores or shares your location.</string>
     <string name="perm_bt_desc">Discovers nearby devices via Bluetooth. Required on Android 12+ for peer discovery.</string>
     <string name="perm_read_desc">Lets you pick photos, videos, and documents from your device to share with session members.</string>
     <string name="perm_save_desc">Saves received files to your Downloads folder. Without this, files are kept in-app only.</string>
     <string name="perm_camera_desc2">Used to scan QR codes for quick device pairing. Not used for photos.</string>
-    <string name="perm_notif_desc">Shows transfer progress and completion alerts when the app is in the background.</string>
     <string name="perm_denied">R.color.perm_denied</string>
 
     <string name="perm_wifi_title">Nearby Wi-Fi Devices</string>
@@ -512,6 +506,48 @@
     <string name="perm_bt_advertise_title">Bluetooth Advertise</string>
     <string name="perm_bt_advertise_desc">Make BeamShare discoverable to nearby devices via Bluetooth</string>
 
+    <!-- ── PermissionsActivity toggle cards — missing strings ──────────── -->
+
+    <!-- Wi-Fi -->
+
+    <!-- Location -->
+
+    <!-- Bluetooth -->
+    <string name="perm_bluetooth_title">Bluetooth</string>
+
+    <!-- Read Files -->
+    <string name="perm_read_files_title">Read Files</string>
+
+    <!-- Save Files -->
+    <string name="perm_save_files_title">Save Files</string>
+
+    <!-- Grant button — "continue" state (all granted) -->
+    <string name="perm_btn_continue">Continue</string>
+    <string name="perm_wifi_sub">Finds nearby devices for fast transfer</string>
+    <string name="perm_location_sub">Required by Android to scan for Wi-Fi peers</string>
+    <string name="perm_bluetooth_sub">Connects nearby devices via Bluetooth</string>
+    <string name="perm_read_files_sub">Pick files from your device to share</string>
+    <string name="perm_save_files_sub">Saves received files to Downloads</string>
+    <string name="perm_camera_sub">Scan QR codes for quick device pairing</string>
+    <string name="perm_contacts_sub">Share contact cards with nearby devices</string>
+    <string name="perm_notif_sub">Shows transfer progress in background</string>
+    <string name="perm_install_sub">Install APK files from other devices</string>
+
+    <string name="perm_dialog_allow">Allow</string>
+    <string name="perm_dialog_cancel">Not Now</string>
+    <string name="perm_dialog_open_settings">Open Settings</string>
+    <string name="perm_status_granted">Granted</string>
+    <string name="perm_status_required">Required</string>
+
+    <!-- Dialog descriptions (longer text) -->
+    <string name="perm_wifi_desc">BeamShare uses Wi-Fi Direct to find and connect nearby devices for fast file transfer without internet.</string>
+    <string name="perm_location_desc">Android requires location access to scan for nearby Wi-Fi devices. BeamShare does not track your location.</string>
+    <string name="perm_bluetooth_desc">Used to discover and connect nearby devices via Bluetooth for file sharing.</string>
+    <string name="perm_read_files_desc">Allows you to pick images, videos, and audio files from your device to share.</string>
+    <string name="perm_save_files_desc">Saves received files directly to your Downloads folder.</string>
+    <string name="perm_camera_desc">Used to scan QR codes for quick device pairing without manual setup.</string>
+    <string name="perm_contacts_desc">Allows sharing contact cards with nearby devices.</string>
+    <string name="perm_notif_desc">Shows transfer progress and completion status in the notification bar.</string>
     <!-- Contacts -->
     <string name="perm_contacts_title">Contacts</string>
     <string name="settings_notif_progress">Transfer in progress</string>

@@ -95,9 +95,15 @@
     <!-- Contacts -->
     <color name="perm_contacts">#8B5CF6</color>       <!-- purple -->
     <color name="perm_contacts_bg">#EDE9FE</color>    <!-- light purple -->
+    <!-- themes.xml (light) mein -->
 
     <!-- Install Apps -->
     <color name="perm_install">#0EA5E9</color>        <!-- sky blue -->
     <color name="perm_install_bg">#E0F2FE</color>     <!-- light sky -->
+
+    <!-- Dark Theme Fallback Colors for Perm Custom Attrs -->
+    <color name="perm_card_bg_dark">#1E293B</color>
+    <color name="fg_primary_dark">#F1F5F9</color>
+    <color name="fg_secondary_dark">#94A3B8</color>
 
 </resources>

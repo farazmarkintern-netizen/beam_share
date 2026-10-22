@@ -88,5 +88,8 @@
     <color name="perm_notif_bg">#451A03</color>
     <color name="divider">#334155</color>
     <color name="accent_soft_bg">#1E3A5F</color>
+    <!-- res/values-night/colors.xml -->
+
+
 
 </resources>
