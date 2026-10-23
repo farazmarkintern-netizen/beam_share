@@ -278,7 +278,6 @@
             android:layout_marginTop="@dimen/_14sdp"
             android:visibility="gone">
 
-            <!-- Same gradient background as heroCard -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -286,7 +285,6 @@
                 android:background="@drawable/bg_hero_gradient"
                 android:padding="@dimen/_16sdp">
 
-                <!-- "Connected to" label -->
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -295,7 +293,6 @@
                     android:textSize="@dimen/_11ssp"
                     android:fontFamily="@font/inter_medium" />
 
-                <!-- Peer device name — big, bold, white -->
                 <TextView
                     android:id="@+id/tvSessionPeer"
                     android:layout_width="wrap_content"
@@ -305,7 +302,6 @@
                     android:textSize="@dimen/_15ssp"
                     android:fontFamily="@font/inter_bold" />
 
-                <!-- Status + action row -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -313,7 +309,6 @@
                     android:layout_marginTop="@dimen/_10sdp"
                     android:gravity="center_vertical">
 
-                    <!-- Status pill (same style as pillWifi) -->
                     <TextView
                         android:id="@+id/tvSessionStatus"
                         android:layout_width="wrap_content"
@@ -335,7 +330,6 @@
                         android:layout_height="1dp"
                         android:layout_weight="1" />
 
-                    <!-- Send Files button — right-aligned, pill-shaped -->
                     <LinearLayout
                         android:id="@+id/cardSendFiles"
                         android:layout_width="wrap_content"
@@ -367,7 +361,6 @@
                 </LinearLayout>
             </LinearLayout>
 
-            <!-- Same decorative circle overlay as heroCard -->
             <View
                 android:layout_width="130dp"
                 android:layout_height="130dp"
@@ -376,7 +369,6 @@
                 android:layout_marginEnd="-30dp"
                 android:background="@drawable/bg_hero_circle_overlay" />
 
-            <!-- Tap whole card → SessionActivity -->
             <View
                 android:id="@+id/sessionBanner"
                 android:layout_width="match_parent"
@@ -640,6 +632,303 @@
                     android:textColor="@color/color_text_primary" android:textSize="@dimen/_11ssp"
                     android:fontFamily="@font/inter_semibold" />
             </LinearLayout>
+        </LinearLayout>
+
+        <!-- ====== MORE TOOLS SECTION HEADER ====== -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginHorizontal="@dimen/_16sdp"
+            android:layout_marginTop="@dimen/_24sdp"
+            android:layout_marginBottom="@dimen/_12sdp">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/home_more_tools"
+                    android:textColor="@color/color_text_primary"
+                    android:textSize="@dimen/_15ssp"
+                    android:fontFamily="@font/inter_bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="1dp"
+                    android:text="@string/home_more_tools_sub"
+                    android:textColor="@color/color_text_secondary"
+                    android:textSize="@dimen/_11ssp"
+                    android:fontFamily="@font/inter_medium" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- ====== MORE TOOLS GRID — Row 1: Document Scanner | Private Folder ====== -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:baselineAligned="false"
+            android:paddingHorizontal="@dimen/_16sdp">
+
+            <!-- Card: Document Scanner -->
+            <LinearLayout
+                android:id="@+id/cardDocumentScanner"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_marginEnd="5dp"
+                android:background="@drawable/bg_action_card"
+                android:orientation="vertical"
+                android:padding="@dimen/_14sdp"
+                android:minHeight="@dimen/_110sdp"
+                android:clickable="true"
+                android:focusable="true">
+
+                <!-- Icon container -->
+                <FrameLayout
+                    android:layout_width="@dimen/_44sdp"
+                    android:layout_height="@dimen/_44sdp">
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/bg_icon_container_blue" />
+
+                    <ImageView
+                        android:layout_width="@dimen/_22sdp"
+                        android:layout_height="@dimen/_22sdp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/ic_camera"
+                        app:tint="@color/brand_primary"
+                        android:contentDescription="@null" />
+                </FrameLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:text="@string/tool_doc_scanner"
+                    android:textColor="@color/color_text_primary"
+                    android:textSize="@dimen/_13ssp"
+                    android:fontFamily="@font/inter_bold"
+                    android:minLines="2"
+                    android:maxLines="2" />
+
+            </LinearLayout>
+
+            <!-- Card: Private Folder -->
+            <LinearLayout
+                android:id="@+id/cardPrivateFolder"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_marginStart="5dp"
+                android:background="@drawable/bg_action_card"
+                android:orientation="vertical"
+                android:padding="@dimen/_14sdp"
+                android:minHeight="@dimen/_110sdp"
+                android:clickable="true"
+                android:focusable="true">
+
+                <FrameLayout
+                    android:layout_width="@dimen/_44sdp"
+                    android:layout_height="@dimen/_44sdp">
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/bg_icon_container_purple" />
+
+                    <ImageView
+                        android:layout_width="@dimen/_22sdp"
+                        android:layout_height="@dimen/_22sdp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/ic_lock"
+                        app:tint="@color/private_accent"
+                        android:contentDescription="@null" />
+                </FrameLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:text="@string/tool_private_folder"
+                    android:textColor="@color/color_text_primary"
+                    android:textSize="@dimen/_13ssp"
+                    android:fontFamily="@font/inter_bold"
+                    android:minLines="2"
+                    android:maxLines="2" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- ====== MORE TOOLS GRID — Row 2: Image Enhancer | Video to Audio ====== -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:baselineAligned="false"
+            android:paddingHorizontal="@dimen/_16sdp"
+            android:layout_marginTop="@dimen/_8sdp">
+
+            <!-- Card: Image Enhancer -->
+            <LinearLayout
+                android:id="@+id/cardImageEnhancer"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_marginEnd="5dp"
+                android:background="@drawable/bg_action_card"
+                android:orientation="vertical"
+                android:padding="@dimen/_14sdp"
+                android:minHeight="@dimen/_110sdp"
+                android:clickable="true"
+                android:focusable="true">
+
+                <FrameLayout
+                    android:layout_width="@dimen/_44sdp"
+                    android:layout_height="@dimen/_44sdp">
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/bg_icon_container_blue" />
+
+                    <ImageView
+                        android:layout_width="@dimen/_22sdp"
+                        android:layout_height="@dimen/_22sdp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/ic_photo"
+                        app:tint="@color/brand_primary"
+                        android:contentDescription="@null" />
+                </FrameLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:text="@string/tool_image_enhancer"
+                    android:textColor="@color/color_text_primary"
+                    android:textSize="@dimen/_13ssp"
+                    android:fontFamily="@font/inter_bold"
+                    android:minLines="2"
+                    android:maxLines="2" />
+
+            </LinearLayout>
+
+            <!-- Card: Video to Audio -->
+            <LinearLayout
+                android:id="@+id/cardVideoToAudio"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_marginStart="5dp"
+                android:background="@drawable/bg_action_card"
+                android:orientation="vertical"
+                android:padding="@dimen/_14sdp"
+                android:minHeight="@dimen/_110sdp"
+                android:clickable="true"
+                android:focusable="true">
+
+                <FrameLayout
+                    android:layout_width="@dimen/_44sdp"
+                    android:layout_height="@dimen/_44sdp">
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/bg_icon_container_orange" />
+
+                    <ImageView
+                        android:layout_width="@dimen/_22sdp"
+                        android:layout_height="@dimen/_22sdp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/ic_video"
+                        app:tint="@color/tool_video_accent"
+                        android:contentDescription="@null" />
+                </FrameLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:text="@string/tool_video_to_audio"
+                    android:textColor="@color/color_text_primary"
+                    android:textSize="@dimen/_13ssp"
+                    android:fontFamily="@font/inter_bold"
+                    android:minLines="2"
+                    android:maxLines="2" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- ====== MORE TOOLS GRID — Row 3: Quick Share via Link | (empty) ====== -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:baselineAligned="false"
+            android:paddingHorizontal="@dimen/_16sdp"
+            android:layout_marginTop="@dimen/_8sdp">
+
+            <!-- Card: Quick Share via Link -->
+            <LinearLayout
+                android:id="@+id/cardQuickShare"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginEnd="5dp"
+                android:background="@drawable/bg_action_card"
+                android:orientation="vertical"
+                android:padding="@dimen/_14sdp"
+                android:minHeight="@dimen/_110sdp"
+                android:clickable="true"
+                android:focusable="true">
+
+                <FrameLayout
+                    android:layout_width="@dimen/_44sdp"
+                    android:layout_height="@dimen/_44sdp">
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/bg_icon_container_blue" />
+
+                    <ImageView
+                        android:layout_width="@dimen/_22sdp"
+                        android:layout_height="@dimen/_22sdp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/ic_chevron_right"
+                        app:tint="@color/brand_primary"
+                        android:contentDescription="@null" />
+                </FrameLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:text="@string/tool_quick_share"
+                    android:textColor="@color/color_text_primary"
+                    android:textSize="@dimen/_13ssp"
+                    android:fontFamily="@font/inter_bold"
+                    android:minLines="2"
+                    android:maxLines="2" />
+
+            </LinearLayout>
+
+            <!-- Empty spacer to keep Quick Share left-aligned -->
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1"
+                android:layout_marginStart="5dp" />
         </LinearLayout>
 
     </LinearLayout>

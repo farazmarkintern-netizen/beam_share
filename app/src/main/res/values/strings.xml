@@ -569,6 +569,19 @@
     <string name="settings_notif_progress">Transfer in progress</string>
     <string name="settings_notif_complete">Transfer complete</string>
     <string name="settings_notif_failed">Transfer failed</string>
+
+    <string name="home_more_tools">More Tools</string>
+    <string name="home_more_tools_sub">Useful tools for your files</string>
+    <string name="tool_doc_scanner">Document Scanner</string>
+    <string name="tool_doc_scanner_sub">Scan and export documents</string>
+    <string name="tool_private_folder">Private Folder</string>
+    <string name="tool_private_folder_sub">Keep files private</string>
+    <string name="tool_image_enhancer">Image Enhancer</string>
+    <string name="tool_image_enhancer_sub">Improve image quality</string>
+    <string name="tool_video_to_audio">Video to Audio</string>
+    <string name="tool_video_to_audio_sub">Extract audio from videos</string>
+    <string name="tool_quick_share">Quick Share via Link</string>
+    <string name="tool_quick_share_sub">Share files using a link</string>
     <!-- Install Packages -->
     <string name="perm_install_title">Install Packages</string>
     <string name="perm_install_desc">Install APK files received from other BeamShare devices</string>

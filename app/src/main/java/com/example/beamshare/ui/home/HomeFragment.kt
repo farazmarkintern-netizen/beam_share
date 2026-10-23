@@ -7,16 +7,17 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.FrameLayout
-import android.widget.LinearLayout
-import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.example.beamshare.R
+import com.example.beamshare.databinding.FragmentHomeBinding
 import com.example.beamshare.permissions.PermissionsActivity
+import com.example.beamshare.privatefolder.PinManager
+import com.example.beamshare.privatefolder.SetupPinActivity
+import com.example.beamshare.privatefolder.UnlockPinActivity
 import com.example.beamshare.session.SessionManager
 import com.example.beamshare.session.SessionState
 import com.example.beamshare.ui.discovery.DeviceDiscoveryActivity
@@ -24,7 +25,6 @@ import com.example.beamshare.ui.receive.ReceiveWaitingActivity
 import com.example.beamshare.ui.send.SendFilesActivity
 import com.example.beamshare.session.SessionActivity
 import kotlinx.coroutines.launch
-import kotlin.jvm.java
 
 class HomeFragment : Fragment() {
 
@@ -32,8 +32,9 @@ class HomeFragment : Fragment() {
         private const val TAG = "HomeFragment"
     }
 
-    /** Track whether we were in a connecting/connected state so we can show
-     *  an error toast if the session ends unexpectedly. */
+    private var _binding: FragmentHomeBinding? = null
+    private val binding get() = _binding!!
+
     private var wasSessionActive = false
 
     override fun onCreateView(
@@ -41,16 +42,20 @@ class HomeFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        return inflater.inflate(R.layout.fragment_home, container, false)
+        _binding = FragmentHomeBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setupHeroCard(view)
-        setupClickListeners(view)
+        setupHeroCard()
+        setupClickListeners()
         observeSessionState()
-        openPermissionActivity()
+    }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
     private fun observeSessionState() {
@@ -77,15 +82,15 @@ class HomeFragment : Fragment() {
                         }
                         is SessionState.Ended -> {
                             updateSessionUI(false, "", "")
-                            if (wasSessionActive) {
-                                wasSessionActive = false
-                                Log.w(TAG, "Session ended: ${state.reason}")
+                            if (wasSessionActive && state.reason != null && state.reason != "user_left") {
+                                Log.w(TAG, "Session ended unexpectedly: ${state.reason}")
                                 Toast.makeText(
                                     requireContext(),
-                                    "Connection failed: ${state.reason}",
+                                    "Connection lost: ${state.reason}",
                                     Toast.LENGTH_LONG
                                 ).show()
                             }
+                            wasSessionActive = false
                         }
                         else -> {
                             wasSessionActive = false
@@ -98,86 +103,72 @@ class HomeFragment : Fragment() {
     }
 
     private fun updateSessionUI(sessionActive: Boolean, remoteName: String, statusText: String) {
-        val v = view ?: return
-
-        val heroCard = v.findViewById<FrameLayout>(R.id.heroCard)
-        val layoutNotConnected = v.findViewById<LinearLayout>(R.id.layoutNotConnected)
-        val layoutConnected = v.findViewById<FrameLayout>(R.id.layoutConnected)
-
         if (sessionActive) {
-            heroCard.visibility = View.GONE
-            layoutNotConnected.visibility = View.GONE
-            layoutConnected.visibility = View.VISIBLE
+            binding.heroCard.visibility = View.GONE
+            binding.layoutNotConnected.visibility = View.GONE
+            binding.layoutConnected.visibility = View.VISIBLE
 
-            val displayName = remoteName.ifEmpty { getString(R.string.home_unknown_device) }
-            v.findViewById<TextView>(R.id.tvSessionPeer).text = displayName
-            v.findViewById<TextView>(R.id.tvSessionStatus).text = statusText
+            binding.tvSessionPeer.text = remoteName.ifEmpty { getString(R.string.home_unknown_device) }
+            binding.tvSessionStatus.text = statusText
         } else {
-            heroCard.visibility = View.VISIBLE
-            layoutNotConnected.visibility = View.VISIBLE
-            layoutConnected.visibility = View.GONE
+            binding.heroCard.visibility = View.VISIBLE
+            binding.layoutNotConnected.visibility = View.VISIBLE
+            binding.layoutConnected.visibility = View.GONE
         }
     }
 
-    private fun setupHeroCard(view: View) {
-        val tvDeviceName = view.findViewById<TextView>(R.id.tvDeviceName)
-        val pillShared = view.findViewById<TextView>(R.id.pillShared)
-
-        tvDeviceName.text = Build.MODEL
-        pillShared.text = getString(R.string.home_total_shared, "0 MB")
+    private fun setupHeroCard() {
+        binding.tvDeviceName.text = Build.MODEL
+        binding.pillShared.text = getString(R.string.home_total_shared, "0 MB")
     }
 
-    private fun setupClickListeners(view: View) {
+    private fun setupClickListeners() {
         // ── Disconnected state ────────────────────────────────────────
-        // "Create Group" — this device becomes the group owner (receiver/QR host)
-        view.findViewById<View>(R.id.cardSend).setOnClickListener {
+        binding.cardSend.setOnClickListener {
             startActivity(Intent(requireContext(), ReceiveWaitingActivity::class.java))
         }
-
-        // "Join Group" — this device scans QR and connects as non-owner (sender)
-        view.findViewById<View>(R.id.cardReceive).setOnClickListener {
+        binding.cardReceive.setOnClickListener {
             startActivity(Intent(requireContext(), DeviceDiscoveryActivity::class.java))
         }
 
         // ── Connected state ───────────────────────────────────────────
-        // "Send Files" — opens file picker; SessionActivity is reached after selecting files
-        view.findViewById<View>(R.id.cardSendFiles).setOnClickListener {
+        binding.cardSendFiles.setOnClickListener {
             openSendFiles(SendFilesActivity.Category.PHOTOS)
         }
-
-        // Connected banner tap → SessionActivity (view active session)
-        view.findViewById<View>(R.id.sessionBanner).setOnClickListener {
+        binding.sessionBanner.setOnClickListener {
             val s = SessionManager.state.value
             if (s is SessionState.Connected || s is SessionState.Reconnecting) {
                 openSessionActivity()
             }
         }
 
-        // ── Browse grid — always open SendFilesActivity ───────────────
-        view.findViewById<View>(R.id.itemPhotos).setOnClickListener {
-            openSendFiles(SendFilesActivity.Category.PHOTOS)
+        // ── Browse grid ───────────────────────────────────────────────
+        binding.itemPhotos.setOnClickListener    { openSendFiles(SendFilesActivity.Category.PHOTOS) }
+        binding.itemVideos.setOnClickListener    { openSendFiles(SendFilesActivity.Category.VIDEOS) }
+        binding.itemMusic.setOnClickListener     { openSendFiles(SendFilesActivity.Category.MUSIC) }
+        binding.itemDocuments.setOnClickListener { openSendFiles(SendFilesActivity.Category.DOCUMENTS) }
+        binding.itemApps.setOnClickListener      { openSendFiles(SendFilesActivity.Category.APPS) }
+        binding.itemContacts.setOnClickListener  { openSendFiles(SendFilesActivity.Category.CONTACTS) }
+
+        // ── More Tools ────────────────────────────────────────────────
+        binding.cardPrivateFolder.setOnClickListener {
+            val intent = if (PinManager.isPinSet(requireContext())) {
+                Intent(requireContext(), UnlockPinActivity::class.java)
+            } else {
+                Intent(requireContext(), SetupPinActivity::class.java)
+            }
+            startActivity(intent)
         }
-        view.findViewById<View>(R.id.itemVideos).setOnClickListener {
-            openSendFiles(SendFilesActivity.Category.VIDEOS)
-        }
-        view.findViewById<View>(R.id.itemMusic).setOnClickListener {
-            openSendFiles(SendFilesActivity.Category.MUSIC)
-        }
-        view.findViewById<View>(R.id.itemDocuments).setOnClickListener {
-            openSendFiles(SendFilesActivity.Category.DOCUMENTS)
-        }
-        view.findViewById<View>(R.id.itemApps).setOnClickListener {
-            openSendFiles(SendFilesActivity.Category.APPS)
-        }
-        view.findViewById<View>(R.id.itemContacts).setOnClickListener {
-            openSendFiles(SendFilesActivity.Category.CONTACTS)
+
+        // ── Permissions ───────────────────────────────────────────────
+        binding.btnPermission.setOnClickListener {
+            startActivity(Intent(requireContext(), PermissionsActivity::class.java))
         }
     }
 
     private fun openSessionActivity() {
-        val peerName = SessionManager.peerName()
         val intent = Intent(requireContext(), SessionActivity::class.java).apply {
-            putExtra(SessionActivity.EXTRA_REMOTE_DEVICE_NAME, peerName)
+            putExtra(SessionActivity.EXTRA_REMOTE_DEVICE_NAME, SessionManager.peerName())
             flags = Intent.FLAG_ACTIVITY_SINGLE_TOP
         }
         startActivity(intent)
@@ -188,11 +179,5 @@ class HomeFragment : Fragment() {
             putExtra(SendFilesActivity.EXTRA_CATEGORY, category.name)
         }
         startActivity(intent)
-    }
-    private fun openPermissionActivity() {
-        view?.findViewById<View>(R.id.btnPermission)?.setOnClickListener {
-            val intent = Intent(requireContext(), PermissionsActivity::class.java)
-            startActivity(intent)
-        }
     }
 }

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="@dimen/_10sdp"
+    android:background="@android:color/transparent">
+
+    <!-- Folder icon container -->
+    <FrameLayout
+        android:layout_width="@dimen/_72sdp"
+        android:layout_height="@dimen/_72sdp">
+
+        <!-- Soft amber background circle -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/bg_folder_icon" />
+
+        <ImageView
+            android:id="@+id/ivFolderIcon"
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_folder"
+            app:tint="#F59E0B"
+            android:contentDescription="@null" />
+    </FrameLayout>
+
+    <!-- Folder name -->
+    <TextView
+        android:id="@+id/tvFolderName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_6sdp"
+        android:gravity="center"
+        android:maxLines="2"
+        android:ellipsize="end"
+        android:text="Folder"
+        android:textColor="@color/color_text_primary"
+        android:textSize="@dimen/_11ssp"
+        android:fontFamily="@font/inter_semibold" />
+
+    <!-- Item count + 3-dot row -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginTop="2dp">
+
+        <TextView
+            android:id="@+id/tvFolderCount"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="0 items"
+            android:textColor="@color/color_text_tertiary"
+            android:textSize="@dimen/_10ssp"
+            android:fontFamily="@font/inter_regular" />
+
+        <ImageView
+            android:id="@+id/ivFolderMore"
+            android:layout_width="@dimen/_20sdp"
+            android:layout_height="@dimen/_20sdp"
+            android:src="@drawable/ic_more_vertical"
+            app:tint="@color/color_text_tertiary"
+            android:padding="2dp"
+            android:contentDescription="More"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="?attr/selectableItemBackgroundBorderless" />
+    </LinearLayout>
+
+</LinearLayout>

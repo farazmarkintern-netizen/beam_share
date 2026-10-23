@@ -359,16 +359,6 @@
                 style="@style/Widget.MaterialComponents.Button.TextButton"
                 app:backgroundTint="@android:color/transparent" />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/perm_footer_note"
-                android:textSize="@dimen/_11ssp"
-                android:textColor="@color/fg_tertiary"
-                android:gravity="center"
-                android:lineSpacingMultiplier="1.4"
-                android:layout_marginTop="@dimen/_8sdp"
-                android:layout_marginBottom="@dimen/_8sdp" />
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>

@@ -13,6 +13,9 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.DrawableCompat
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowCompat
+import androidx.core.view.WindowInsetsCompat
 import com.example.beamshare.R
 import com.example.beamshare.databinding.ActivityPermissionsAccordionBinding
 import com.example.beamshare.databinding.ItemPermissionCardToggleBinding
@@ -47,8 +50,17 @@ class PermissionsActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        WindowCompat.setDecorFitsSystemWindows(window, false)
         binding = ActivityPermissionsAccordionBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        // Push content below status bar and above nav bar
+        ViewCompat.setOnApplyWindowInsetsListener(binding.root) { view, insets ->
+            val bars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            view.setPadding(0, bars.top, 0, bars.bottom)
+            insets
+        }
+
         binding.btnBack.setOnClickListener { finish() }
         bindAllCards()
         setupGrantButton()

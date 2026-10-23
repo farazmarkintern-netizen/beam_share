@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/color_background">
+
+    <!-- Top bar -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingHorizontal="@dimen/_8sdp"
+        android:paddingTop="@dimen/_12sdp"
+        android:paddingBottom="@dimen/_8sdp">
+
+        <View
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="@dimen/_40sdp" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="Security Question"
+            android:textColor="@color/color_text_primary"
+            android:textSize="@dimen/_15ssp"
+            android:fontFamily="@font/inter_bold" />
+
+        <View
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="@dimen/_40sdp" />
+    </LinearLayout>
+
+    <!-- Icon -->
+    <FrameLayout
+        android:layout_width="@dimen/_72sdp"
+        android:layout_height="@dimen/_72sdp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/_24sdp">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/bg_icon_container_purple" />
+
+        <ImageView
+            android:layout_width="@dimen/_36sdp"
+            android:layout_height="@dimen/_36sdp"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_lock"
+            app:tint="@color/private_accent"
+            android:contentDescription="@null" />
+    </FrameLayout>
+
+    <!-- Title -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/_16sdp"
+        android:text="Add a Recovery Question"
+        android:textColor="@color/color_text_primary"
+        android:textSize="@dimen/_18ssp"
+        android:fontFamily="@font/inter_bold" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/_6sdp"
+        android:gravity="center"
+        android:text="If you forget your PIN, you can recover\naccess without losing your files"
+        android:textColor="@color/color_text_secondary"
+        android:textSize="@dimen/_13ssp"
+        android:fontFamily="@font/inter_medium" />
+
+    <!-- Question Spinner -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_20sdp"
+        android:layout_marginTop="@dimen/_28sdp"
+        android:text="Choose a question"
+        android:textColor="@color/color_text_secondary"
+        android:textSize="@dimen/_12ssp"
+        android:fontFamily="@font/inter_medium" />
+
+    <Spinner
+        android:id="@+id/spinnerQuestion"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_52sdp"
+        android:layout_marginHorizontal="@dimen/_20sdp"
+        android:layout_marginTop="@dimen/_6sdp"
+        android:background="@drawable/bg_action_card"
+        android:paddingHorizontal="@dimen/_12sdp" />
+
+    <!-- Answer input -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_20sdp"
+        android:layout_marginTop="@dimen/_16sdp"
+        android:text="Your answer"
+        android:textColor="@color/color_text_secondary"
+        android:textSize="@dimen/_12ssp"
+        android:fontFamily="@font/inter_medium" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_20sdp"
+        android:layout_marginTop="@dimen/_6sdp"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etAnswer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Type your answer"
+            android:inputType="text"
+            android:textSize="@dimen/_14ssp"
+            android:fontFamily="@font/inter" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- Save button -->
+    <LinearLayout
+        android:id="@+id/btnSave"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_52sdp"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:background="@drawable/bg_btn_primary"
+        android:layout_marginHorizontal="@dimen/_20sdp"
+        android:layout_marginTop="@dimen/_24sdp"
+        android:clickable="true"
+        android:focusable="true">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Save &amp; Continue"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/_14ssp"
+            android:fontFamily="@font/inter_semibold" />
+    </LinearLayout>
+
+    <!-- Skip -->
+    <TextView
+        android:id="@+id/tvSkip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/_14sdp"
+        android:text="Skip for now"
+        android:textColor="@color/color_text_secondary"
+        android:textSize="@dimen/_12ssp"
+        android:fontFamily="@font/inter_medium"
+        android:clickable="true"
+        android:focusable="true" />
+
+</LinearLayout>

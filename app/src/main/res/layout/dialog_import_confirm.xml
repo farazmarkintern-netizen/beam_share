@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="@dimen/_20sdp">
+
+    <TextView
+        android:id="@+id/tvImportMessage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Import files into Private Folder?"
+        android:textColor="@color/color_text_primary"
+        android:textSize="@dimen/_14ssp"
+        android:fontFamily="@font/inter_medium" />
+
+</LinearLayout>

@@ -106,4 +106,11 @@
     <color name="fg_primary_dark">#F1F5F9</color>
     <color name="fg_secondary_dark">#94A3B8</color>
 
+    <color name="brand_primary">#2563EB</color>
+    <color name="private_accent">#7C3AED</color>
+    <color name="tool_video_accent">#EA580C</color>
+    <color name="private_bg_dark">#1E1B4B</color>
+    <color name="private_accent_light">#A78BFA</color>
+    <color name="color_card_background">#FFFFFF</color>
+
 </resources>

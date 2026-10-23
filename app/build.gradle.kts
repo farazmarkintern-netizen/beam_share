@@ -125,5 +125,9 @@ dependencies {
     androidTestImplementation(libs.androidx.navigation.testing)
 
     implementation("com.facebook.shimmer:shimmer:0.5.0")
+
+
+    // for privte pin
+    implementation("androidx.security:security-crypto:1.1.0-alpha06")
 }
 

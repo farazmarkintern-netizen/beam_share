@@ -1,0 +1,347 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:fitsSystemWindows="false"
+    android:background="@color/color_background">
+
+    <!-- ====== TOP BAR ====== -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingHorizontal="@dimen/_8sdp"
+        android:paddingTop="@dimen/_12sdp"
+        android:paddingBottom="@dimen/_8sdp">
+
+        <FrameLayout
+            android:id="@+id/btnBack"
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="@dimen/_40sdp"
+            android:background="@drawable/bg_browse_item"
+            android:clickable="true"
+            android:focusable="true">
+
+            <ImageView
+                android:layout_width="@dimen/_18sdp"
+                android:layout_height="@dimen/_18sdp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_arrow_back"
+                app:tint="@color/color_text_primary"
+                android:contentDescription="@null" />
+        </FrameLayout>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="Folder Lock"
+            android:textColor="@color/color_text_primary"
+            android:textSize="@dimen/_15ssp"
+            android:fontFamily="@font/inter_bold" />
+
+        <!-- Settings button -->
+        <FrameLayout
+            android:id="@+id/btnSettings"
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="@dimen/_40sdp"
+            android:background="@drawable/bg_browse_item"
+            android:clickable="true"
+            android:focusable="true">
+
+            <ImageView
+                android:layout_width="@dimen/_18sdp"
+                android:layout_height="@dimen/_18sdp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_settings"
+                app:tint="@color/color_text_primary"
+                android:contentDescription="@null" />
+        </FrameLayout>
+    </LinearLayout>
+
+    <!-- Encrypted badge -->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginBottom="@dimen/_10sdp">
+
+        <ImageView
+            android:layout_width="@dimen/_12sdp"
+            android:layout_height="@dimen/_12sdp"
+            android:src="@drawable/ic_lock"
+            app:tint="@color/private_accent"
+            android:contentDescription="@null" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:text="Encrypted · Files visible only after unlock"
+            android:textColor="@color/private_accent"
+            android:textSize="@dimen/_11ssp"
+            android:fontFamily="@font/inter_medium" />
+    </LinearLayout>
+
+    <!-- ====== SEARCH BAR (shown when files exist) ====== -->
+    <FrameLayout
+        android:id="@+id/layoutSearch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="@dimen/_16sdp"
+        android:paddingBottom="@dimen/_10sdp"
+        android:visibility="gone">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            app:boxCornerRadiusTopStart="10dp"
+            app:boxCornerRadiusTopEnd="10dp"
+            app:boxCornerRadiusBottomStart="10dp"
+            app:boxCornerRadiusBottomEnd="10dp"
+            app:boxStrokeColor="@color/color_divider"
+            app:hintEnabled="false"
+            app:startIconDrawable="@drawable/ic_search"
+            app:startIconTint="@color/color_text_tertiary">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etSearch"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_44sdp"
+                android:hint="Search files…"
+                android:inputType="text"
+                android:textSize="@dimen/_13ssp"
+                android:fontFamily="@font/inter_regular"
+                android:background="@null" />
+        </com.google.android.material.textfield.TextInputLayout>
+    </FrameLayout>
+
+    <!-- ====== EMPTY STATE ====== -->
+    <LinearLayout
+        android:id="@+id/layoutEmpty"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <!-- Folder illustration container -->
+        <FrameLayout
+            android:layout_width="@dimen/_96sdp"
+            android:layout_height="@dimen/_96sdp">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/bg_icon_container_purple" />
+
+            <ImageView
+                android:layout_width="@dimen/_48sdp"
+                android:layout_height="@dimen/_48sdp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_folder"
+                app:tint="@color/private_accent"
+                android:contentDescription="@null" />
+        </FrameLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_16sdp"
+            android:text="No files yet"
+            android:textColor="@color/color_text_primary"
+            android:textSize="@dimen/_16ssp"
+            android:fontFamily="@font/inter_bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_6sdp"
+            android:gravity="center"
+            android:text="Import files to keep them\nprivate and encrypted"
+            android:textColor="@color/color_text_secondary"
+            android:textSize="@dimen/_13ssp"
+            android:fontFamily="@font/inter_medium" />
+
+        <!-- Import from Files -->
+        <LinearLayout
+            android:id="@+id/btnImportFromFiles"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_52sdp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:background="@drawable/bg_action_card"
+            android:layout_marginHorizontal="@dimen/_24sdp"
+            android:layout_marginTop="@dimen/_28sdp"
+            android:paddingHorizontal="@dimen/_16sdp"
+            android:clickable="true"
+            android:focusable="true">
+
+            <FrameLayout
+                android:layout_width="@dimen/_32sdp"
+                android:layout_height="@dimen/_32sdp">
+                <View android:layout_width="match_parent" android:layout_height="match_parent"
+                    android:background="@drawable/bg_icon_container_blue" />
+                <ImageView android:layout_width="@dimen/_16sdp" android:layout_height="@dimen/_16sdp"
+                    android:layout_gravity="center" android:src="@drawable/ic_document"
+                    app:tint="@color/brand_primary" android:contentDescription="@null" />
+            </FrameLayout>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginStart="@dimen/_12sdp"
+                android:text="Import from Files"
+                android:textColor="@color/color_text_primary"
+                android:textSize="@dimen/_13ssp"
+                android:fontFamily="@font/inter_semibold" />
+
+            <ImageView
+                android:layout_width="@dimen/_16sdp"
+                android:layout_height="@dimen/_16sdp"
+                android:src="@drawable/ic_chevron_right"
+                app:tint="@color/color_text_tertiary"
+                android:contentDescription="@null" />
+        </LinearLayout>
+
+        <!-- Import from Gallery -->
+        <LinearLayout
+            android:id="@+id/btnImportFromGallery"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_52sdp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:background="@drawable/bg_action_card"
+            android:layout_marginHorizontal="@dimen/_24sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:paddingHorizontal="@dimen/_16sdp"
+            android:clickable="true"
+            android:focusable="true">
+
+            <FrameLayout
+                android:layout_width="@dimen/_32sdp"
+                android:layout_height="@dimen/_32sdp">
+                <View android:layout_width="match_parent" android:layout_height="match_parent"
+                    android:background="@drawable/bg_icon_circle_green" />
+                <ImageView android:layout_width="@dimen/_16sdp" android:layout_height="@dimen/_16sdp"
+                    android:layout_gravity="center" android:src="@drawable/ic_photo"
+                    app:tint="#22C55E" android:contentDescription="@null" />
+            </FrameLayout>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginStart="@dimen/_12sdp"
+                android:text="Import from Gallery"
+                android:textColor="@color/color_text_primary"
+                android:textSize="@dimen/_13ssp"
+                android:fontFamily="@font/inter_semibold" />
+
+            <ImageView
+                android:layout_width="@dimen/_16sdp"
+                android:layout_height="@dimen/_16sdp"
+                android:src="@drawable/ic_chevron_right"
+                app:tint="@color/color_text_tertiary"
+                android:contentDescription="@null" />
+        </LinearLayout>
+
+        <!-- + Import Files button -->
+        <LinearLayout
+            android:id="@+id/btnImportFab"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_52sdp"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:background="@drawable/bg_btn_primary"
+            android:layout_marginHorizontal="@dimen/_24sdp"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:clickable="true"
+            android:focusable="true">
+
+            <ImageView
+                android:layout_width="@dimen/_16sdp"
+                android:layout_height="@dimen/_16sdp"
+                android:src="@drawable/ic_add"
+                app:tint="@android:color/white"
+                android:contentDescription="@null" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_8sdp"
+                android:text="Import Files"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/_14ssp"
+                android:fontFamily="@font/inter_semibold" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <!-- ====== FILE GRID (shown when files exist) ====== -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvFiles"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:paddingHorizontal="@dimen/_12sdp"
+        android:paddingTop="@dimen/_6sdp"
+        android:paddingBottom="@dimen/_80sdp"
+        android:clipToPadding="false"
+        android:overScrollMode="never"
+        android:visibility="gone" />
+
+    <!-- ====== BOTTOM FAB (shown when files exist) ====== -->
+    <FrameLayout
+        android:id="@+id/layoutFab"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone">
+
+        <!-- Gradient overlay above FAB -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_60sdp"
+            android:layout_gravity="bottom"
+            android:background="@drawable/bg_fab_gradient" />
+
+        <LinearLayout
+            android:id="@+id/btnImportFabGrid"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_48sdp"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:background="@drawable/bg_btn_primary"
+            android:layout_gravity="bottom|center_horizontal"
+            android:layout_marginBottom="@dimen/_20sdp"
+            android:paddingHorizontal="@dimen/_24sdp"
+            android:clickable="true"
+            android:focusable="true">
+
+            <ImageView
+                android:layout_width="@dimen/_16sdp"
+                android:layout_height="@dimen/_16sdp"
+                android:src="@drawable/ic_add"
+                app:tint="@android:color/white"
+                android:contentDescription="@null" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_8sdp"
+                android:text="+ Import"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/_13ssp"
+                android:fontFamily="@font/inter_semibold" />
+        </LinearLayout>
+    </FrameLayout>
+
+</LinearLayout>

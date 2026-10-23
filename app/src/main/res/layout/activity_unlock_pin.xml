@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/private_bg_dark">
+
+    <!-- Top bar -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingHorizontal="@dimen/_8sdp"
+        android:paddingTop="@dimen/_12sdp"
+        android:paddingBottom="@dimen/_8sdp">
+
+        <FrameLayout
+            android:id="@+id/btnBack"
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="@dimen/_40sdp"
+            android:background="@drawable/bg_pin_key_dark"
+            android:clickable="true"
+            android:focusable="true">
+
+            <ImageView
+                android:layout_width="@dimen/_18sdp"
+                android:layout_height="@dimen/_18sdp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_arrow_back"
+                app:tint="@android:color/white"
+                android:contentDescription="@null" />
+        </FrameLayout>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="Private Folder"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/_15ssp"
+            android:fontFamily="@font/inter_bold" />
+
+        <View
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="@dimen/_40sdp" />
+    </LinearLayout>
+
+    <!-- Icon -->
+    <FrameLayout
+        android:layout_width="@dimen/_72sdp"
+        android:layout_height="@dimen/_72sdp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/_32sdp">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/bg_icon_container_purple_dark" />
+
+        <ImageView
+            android:layout_width="@dimen/_36sdp"
+            android:layout_height="@dimen/_36sdp"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_lock"
+            app:tint="@color/private_accent_light"
+            android:contentDescription="@null" />
+    </FrameLayout>
+
+    <!-- Title -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:text="Enter your PIN"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/_20ssp"
+        android:fontFamily="@font/inter_bold" />
+
+    <TextView
+        android:id="@+id/tvSubtitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/_4sdp"
+        android:text="Private Folder is locked"
+        android:textColor="@color/private_accent_light"
+        android:textSize="@dimen/_12ssp"
+        android:fontFamily="@font/inter_medium" />
+
+    <!-- PIN dots -->
+    <LinearLayout
+        android:id="@+id/layoutPinDots"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/_28sdp"
+        android:gravity="center">
+
+        <View android:id="@+id/dot1"
+            android:layout_width="@dimen/_14sdp"
+            android:layout_height="@dimen/_14sdp"
+            android:layout_marginHorizontal="@dimen/_8sdp"
+            android:background="@drawable/bg_pin_dot_empty_dark" />
+
+        <View android:id="@+id/dot2"
+            android:layout_width="@dimen/_14sdp"
+            android:layout_height="@dimen/_14sdp"
+            android:layout_marginHorizontal="@dimen/_8sdp"
+            android:background="@drawable/bg_pin_dot_empty_dark" />
+
+        <View android:id="@+id/dot3"
+            android:layout_width="@dimen/_14sdp"
+            android:layout_height="@dimen/_14sdp"
+            android:layout_marginHorizontal="@dimen/_8sdp"
+            android:background="@drawable/bg_pin_dot_empty_dark" />
+
+        <View android:id="@+id/dot4"
+            android:layout_width="@dimen/_14sdp"
+            android:layout_height="@dimen/_14sdp"
+            android:layout_marginHorizontal="@dimen/_8sdp"
+            android:background="@drawable/bg_pin_dot_empty_dark" />
+    </LinearLayout>
+
+    <!-- Numpad -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginHorizontal="@dimen/_32sdp"
+        android:layout_marginTop="@dimen/_32sdp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <TextView android:id="@+id/key1"
+                style="@style/PinKeyDarkStyle"
+                android:layout_width="@dimen/_64sdp"
+                android:layout_height="@dimen/_56sdp"
+                android:text="1" />
+            <TextView android:id="@+id/key2"
+                style="@style/PinKeyDarkStyle"
+                android:layout_width="@dimen/_64sdp"
+                android:layout_height="@dimen/_56sdp"
+                android:layout_marginHorizontal="@dimen/_12sdp"
+                android:text="2" />
+            <TextView android:id="@+id/key3"
+                style="@style/PinKeyDarkStyle"
+                android:layout_width="@dimen/_64sdp"
+                android:layout_height="@dimen/_56sdp"
+                android:text="3" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginTop="@dimen/_12sdp">
+
+            <TextView android:id="@+id/key4"
+                style="@style/PinKeyDarkStyle"
+                android:layout_width="@dimen/_64sdp"
+                android:layout_height="@dimen/_56sdp"
+                android:text="4" />
+            <TextView android:id="@+id/key5"
+                style="@style/PinKeyDarkStyle"
+                android:layout_width="@dimen/_64sdp"
+                android:layout_height="@dimen/_56sdp"
+                android:layout_marginHorizontal="@dimen/_12sdp"
+                android:text="5" />
+            <TextView android:id="@+id/key6"
+                style="@style/PinKeyDarkStyle"
+                android:layout_width="@dimen/_64sdp"
+                android:layout_height="@dimen/_56sdp"
+                android:text="6" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginTop="@dimen/_12sdp">
+
+            <TextView android:id="@+id/key7"
+                style="@style/PinKeyDarkStyle"
+                android:layout_width="@dimen/_64sdp"
+                android:layout_height="@dimen/_56sdp"
+                android:text="7" />
+            <TextView android:id="@+id/key8"
+                style="@style/PinKeyDarkStyle"
+                android:layout_width="@dimen/_64sdp"
+                android:layout_height="@dimen/_56sdp"
+                android:layout_marginHorizontal="@dimen/_12sdp"
+                android:text="8" />
+            <TextView android:id="@+id/key9"
+                style="@style/PinKeyDarkStyle"
+                android:layout_width="@dimen/_64sdp"
+                android:layout_height="@dimen/_56sdp"
+                android:text="9" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginTop="@dimen/_12sdp">
+
+            <View
+                android:layout_width="@dimen/_64sdp"
+                android:layout_height="@dimen/_56sdp" />
+
+            <TextView android:id="@+id/key0"
+                style="@style/PinKeyDarkStyle"
+                android:layout_width="@dimen/_64sdp"
+                android:layout_height="@dimen/_56sdp"
+                android:layout_marginHorizontal="@dimen/_12sdp"
+                android:text="0" />
+
+            <FrameLayout
+                android:id="@+id/keyBackspace"
+                android:layout_width="@dimen/_64sdp"
+                android:layout_height="@dimen/_56sdp"
+                android:background="@drawable/bg_pin_key_dark"
+                android:clickable="true"
+                android:focusable="true">
+
+                <ImageView
+                    android:layout_width="@dimen/_22sdp"
+                    android:layout_height="@dimen/_22sdp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_backspace"
+                    app:tint="@android:color/white"
+                    android:contentDescription="@null" />
+            </FrameLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- Fingerprint button -->
+    <LinearLayout
+        android:id="@+id/btnFingerprint"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_52sdp"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:background="@drawable/bg_btn_primary"
+        android:layout_marginHorizontal="@dimen/_32sdp"
+        android:layout_marginTop="@dimen/_24sdp"
+        android:clickable="true"
+        android:focusable="true">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Use Fingerprint 🖐"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/_14ssp"
+            android:fontFamily="@font/inter_semibold" />
+    </LinearLayout>
+
+    <!-- Forgot PIN -->
+    <TextView
+        android:id="@+id/tvForgotPin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/_14sdp"
+        android:text="Forgot PIN?"
+        android:textColor="@color/color_text_secondary"
+        android:textSize="@dimen/_12ssp"
+        android:fontFamily="@font/inter_medium"
+        android:clickable="true"
+        android:focusable="true" />
+
+</LinearLayout>
