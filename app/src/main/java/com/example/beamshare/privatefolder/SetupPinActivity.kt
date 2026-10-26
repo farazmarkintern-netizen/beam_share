@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.view.View
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import com.example.beamshare.R
 import com.example.beamshare.databinding.ActivitySetupPinBinding
 
@@ -24,6 +26,17 @@ class SetupPinActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivitySetupPinBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        val root = binding.root
+        ViewCompat.setOnApplyWindowInsetsListener(root) { v, insets ->
+            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            v.setPadding(
+                systemBars.left,
+                systemBars.top,
+                systemBars.right,
+                systemBars.bottom
+            )
+            insets
+        }
 
         binding.btnBack.setOnClickListener {
             if (isConfirming) {

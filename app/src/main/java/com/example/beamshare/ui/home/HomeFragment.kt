@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
 import com.example.beamshare.R
 import com.example.beamshare.databinding.FragmentHomeBinding
 import com.example.beamshare.permissions.PermissionsActivity
@@ -158,6 +159,10 @@ class HomeFragment : Fragment() {
                 Intent(requireContext(), SetupPinActivity::class.java)
             }
             startActivity(intent)
+        }
+
+        binding.cardVideoToAudio.setOnClickListener {
+            findNavController().navigate(R.id.videoToAudioFragment)
         }
 
         // ── Permissions ───────────────────────────────────────────────

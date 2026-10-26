@@ -87,10 +87,13 @@ class PrivateFolderVaultActivity : AppCompatActivity() {
         // Apply insets: top bar gets status bar padding, RecyclerView gets nav bar padding
         ViewCompat.setOnApplyWindowInsetsListener(binding.root) { view, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            // Pad the top bar for status bar height
-            binding.root.setPadding(0, systemBars.top, 0, 0)
-            // Pad RecyclerView bottom for nav bar (already has 80sdp internal padding)
             val extraBottomPadding = (80 * resources.displayMetrics.density).toInt()
+            binding.root.setPadding(
+                systemBars.left,
+                systemBars.top,
+                systemBars.right,
+                systemBars.bottom
+            )
             binding.rvFiles.setPadding(
                 binding.rvFiles.paddingLeft,
                 binding.rvFiles.paddingTop,

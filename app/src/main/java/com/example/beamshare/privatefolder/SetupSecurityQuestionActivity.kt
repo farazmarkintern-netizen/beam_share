@@ -5,7 +5,11 @@ import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
+import com.example.beamshare.R
 import com.example.beamshare.databinding.ActivitySetupSecurityQuestionBinding
 
 class SetupSecurityQuestionActivity : AppCompatActivity() {
@@ -27,6 +31,21 @@ class SetupSecurityQuestionActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivitySetupSecurityQuestionBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        val root = binding.root
+        ViewCompat.setOnApplyWindowInsetsListener(root) { v, insets ->
+            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            v.setPadding(
+                systemBars.left,
+                systemBars.top,
+                systemBars.right,
+                systemBars.bottom
+            )
+            insets
+        }
+
+        onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() { finish() }
+        })
 
         // Populate spinner
         val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, questions)
