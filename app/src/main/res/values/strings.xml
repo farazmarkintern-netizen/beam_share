@@ -585,4 +585,136 @@
     <!-- Install Packages -->
     <string name="perm_install_title">Install Packages</string>
     <string name="perm_install_desc">Install APK files received from other BeamShare devices</string>
+
+
+
+    <!-- ─── Shared / navigation ──────────────────────────────────── -->
+    <string name="va_eyebrow">Video to Audio</string>
+    <string name="va_badge_mp3">MP3</string>
+    <string name="va_see_all">See all</string>
+
+    <!-- Steps pill -->
+    <string name="va_step_select">Select</string>
+    <string name="va_step_format">Format</string>
+    <string name="va_step_convert">Convert</string>
+    <string name="va_step_done">Done</string>
+
+    <!-- ─── VA01 · Select Video ───────────────────────────────────── -->
+    <string name="va_select_title">Convert any video\nto MP3 audio</string>
+    <string name="va_select_subtitle">Fast, lossless extraction. Pick your bitrate and save directly to your device.</string>
+
+    <!-- Drop zone -->
+    <string name="va_dz_title">Tap to pick a video</string>
+    <string name="va_dz_subtitle">or browse from your gallery</string>
+
+    <!-- Format chips -->
+    <string name="va_fmt_mp4">MP4</string>
+    <string name="va_fmt_mov">MOV</string>
+    <string name="va_fmt_mkv">MKV</string>
+    <string name="va_fmt_avi">AVI</string>
+    <string name="va_fmt_webm">WEBM</string>
+
+    <!-- Recent section -->
+    <string name="va_recent_title">Recent videos</string>
+
+    <!-- ─── VA02 · Format &amp; Quality ──────────────────────────────── -->
+    <string name="va_format_title">Format &amp; Quality</string>
+    <string name="va_format_subtitle">Step 2 of 4 — Choose your output settings</string>
+
+    <!-- Section labels -->
+    <string name="va_section_format">Output Format</string>
+    <string name="va_section_bitrate">Bitrate</string>
+
+    <!-- MP3 info row -->
+    <string name="va_format_mp3_title">MP3 — MPEG Audio Layer III</string>
+    <string name="va_format_mp3_desc">Universal compatibility. Plays on every device, platform, and media player.</string>
+
+    <!-- Bitrate chips -->
+    <string name="va_bitrate_64">64 kbps</string>
+    <string name="va_bitrate_128">128 kbps</string>
+    <string name="va_bitrate_192">192 kbps</string>
+    <string name="va_bitrate_256">256 kbps</string>
+    <string name="va_bitrate_320">320 kbps</string>
+
+    <!-- Estimated size -->
+    <string name="va_est_size_label">Estimated size</string>
+    <string name="va_est_size_note">Based on source duration</string>
+    <string name="va_est_size_default">~26 MB</string>
+    <!-- Dynamic: use getString(R.string.va_est_size_value, "~26 MB") or set directly via binding -->
+    <string name="va_est_size_value">%1$s</string>
+
+    <!-- ─── VA03 · Converting ──────────────────────────────────────── -->
+    <string name="va_converting_title">Converting…</string>
+    <string name="va_converting_subtitle">Step 3 of 4 — Please keep the app open</string>
+
+    <!-- Progress ring -->
+    <string name="va_progress_percent_default">70%</string>
+    <string name="va_progress_label">complete</string>
+    <!-- Dynamic: use String.format or binding -->
+    <string name="va_progress_percent_format">%1$d%%</string>
+
+    <!-- Status -->
+    <string name="va_status_encoding">Encoding MP3…</string>
+    <string name="va_status_sub">Extracting audio stream\nfrom vacation_2024.mp4</string>
+
+    <!-- Stats -->
+    <string name="va_stat_elapsed_label">Elapsed</string>
+    <string name="va_stat_elapsed_default">0:12</string>
+    <string name="va_stat_remaining_label">Remaining</string>
+    <string name="va_stat_remaining_default">~0:05</string>
+    <string name="va_stat_speed_label">Speed</string>
+    <string name="va_stat_speed_default">3.2×</string>
+
+    <!-- Process log section -->
+    <string name="va_log_title">Process log</string>
+
+    <!-- Log step labels (set in adapter) -->
+    <string name="va_log_step_demux">Demuxing audio stream</string>
+    <string name="va_log_step_decode">Decoding AAC frames</string>
+    <string name="va_log_step_encode">Encoding MP3 @ 192 kbps</string>
+    <string name="va_log_step_write">Writing output file</string>
+
+    <!-- ─── VA04 · Done ───────────────────────────────────────────── -->
+    <string name="va_done_title">Conversion Complete</string>
+    <string name="va_done_subtitle">Step 4 of 4 — Your file is ready!</string>
+
+    <string name="va_done_hero_title">Conversion Done!</string>
+    <string name="va_done_hero_sub">Your MP3 file is ready to use</string>
+
+    <!-- Output stats labels -->
+    <string name="va_stat_size">Size</string>
+    <string name="va_stat_bitrate">Bitrate</string>
+    <string name="va_stat_duration">Duration</string>
+
+    <!-- Action grid -->
+    <string name="va_action_save">Save to Device</string>
+    <string name="va_action_share">Share File</string>
+    <string name="va_action_open_player">Open in Player</string>
+    <string name="va_action_convert_more">Convert More</string>
+
+    <!-- ─── Buttons ───────────────────────────────────────────────── -->
+    <string name="va_btn_browse">Browse Files</string>
+    <string name="va_btn_start_converting">Start Converting</string>
+    <string name="va_btn_cancel">Cancel</string>
+    <string name="va_btn_save_device">Save to Device</string>
+    <string name="va_btn_share_file">Share File</string>
+    <string name="va_share_title">Share MP3 Audio</string>
+
+    <!-- ─── Accessibility ─────────────────────────────────────────── -->
+    <string name="va_cd_back">Go back</string>
+    <string name="va_cd_drop_zone">Tap to select a video file</string>
+    <string name="va_cd_thumbnail">Video thumbnail</string>
+    <string name="va_cd_check_icon">Selected</string>
+    <string name="va_cd_progress">Conversion progress: %1$d%%</string>
+
+
+    <string name="va_audio_options_title">Audio File Options</string>
+    <string name="va_option_play">Play in Player</string>
+    <string name="va_option_play_sub">Open with your music app</string>
+    <string name="va_option_share">Share File</string>
+    <string name="va_option_share_sub">Send via WhatsApp, Drive…</string>
+    <string name="va_option_save">Save to Device</string>
+    <string name="va_option_save_sub">Open in file manager</string>
+    <string name="va_option_convert_another">Convert Another Video</string>
+
 </resources>

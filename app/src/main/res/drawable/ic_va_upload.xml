@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Upload / add file icon: arrow pointing up from a tray -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+
+    <!-- Arrow shaft + head pointing up -->
+    <path
+        android:pathData="M12,4 L12,16"
+        android:strokeWidth="2"
+        android:strokeColor="@color/va_accent"
+        android:strokeLineCap="round" />
+    <path
+        android:pathData="M7.5,8.5 L12,4 L16.5,8.5"
+        android:strokeWidth="2"
+        android:strokeColor="@color/va_accent"
+        android:strokeLineJoin="round"
+        android:strokeLineCap="round" />
+
+    <!-- Tray base -->
+    <path
+        android:pathData="M4,17 L4,19 C4,19.552 4.448,20 5,20 L19,20 C19.552,20 20,19.552 20,19 L20,17"
+        android:strokeWidth="2"
+        android:strokeColor="@color/va_accent"
+        android:strokeLineCap="round" />
+</vector>

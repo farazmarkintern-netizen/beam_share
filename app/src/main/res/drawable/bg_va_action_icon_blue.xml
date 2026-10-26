@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Action icon background: 15% blue alpha tinted rounded square (Save to Device) -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <solid android:color="#264F7EFF" />
+    <corners android:radius="10dp" />
+</shape>

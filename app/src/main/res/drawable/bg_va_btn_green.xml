@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Green gradient button (VA04 primary save action) -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <gradient
+        android:angle="135"
+        android:startColor="#15803D"
+        android:endColor="#22C55E"
+        android:type="linear" />
+    <corners android:radius="14dp" />
+</shape>

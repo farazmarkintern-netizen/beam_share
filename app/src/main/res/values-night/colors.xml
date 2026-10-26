@@ -88,8 +88,19 @@
     <color name="perm_notif_bg">#451A03</color>
     <color name="divider">#334155</color>
     <color name="accent_soft_bg">#1E3A5F</color>
-    <!-- res/values-night/colors.xml -->
 
-
+    <!-- Video to Audio Colors (Dark) -->
+    <color name="va_bg">#0F1117</color>
+    <color name="va_surface">#1A1D27</color>
+    <color name="va_surface2">#22263A</color>
+    <color name="va_fg">#F4F5F9</color>
+    <color name="va_fg2">#8B91A8</color>
+    <color name="va_border">#2A2E3F</color>
+    <color name="va_card_border">#2E334A</color>
+    <color name="va_accent">#4F7EFF</color>
+    <color name="va_accent2">#7B5CFF</color>
+    <color name="va_accent_glow">#294F7EFF</color>
+    <color name="va_green">#22C55E</color>
+    <color name="va_orange">#F59E0B</color>
 
 </resources>

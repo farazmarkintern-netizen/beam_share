@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_va_surface_r14"
+    android:orientation="horizontal"
+    android:paddingStart="@dimen/_16sdp"
+    android:paddingEnd="@dimen/_16sdp"
+    android:paddingTop="@dimen/_14sdp"
+    android:paddingBottom="@dimen/_14sdp">
+
+    <!-- Step 1 -->
+    <LinearLayout
+        android:id="@+id/step1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvStep1Dot"
+            style="@style/VaStepDot"
+            android:text="1" />
+
+        <TextView
+            android:id="@+id/tvStep1Label"
+            style="@style/VaStepLabel"
+            android:text="@string/va_step_select" />
+    </LinearLayout>
+
+    <!-- Connector 1-2: top-aligned then offset down by half dot height -->
+    <View
+        android:id="@+id/divider12"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/_2sdp"
+        android:layout_weight="0.6"
+        android:layout_gravity="top"
+        android:layout_marginTop="@dimen/_11sdp"
+        android:background="@color/va_border" />
+
+    <!-- Step 2 -->
+    <LinearLayout
+        android:id="@+id/step2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvStep2Dot"
+            style="@style/VaStepDot"
+            android:text="2" />
+
+        <TextView
+            android:id="@+id/tvStep2Label"
+            style="@style/VaStepLabel"
+            android:text="@string/va_step_format" />
+    </LinearLayout>
+
+    <!-- Connector 2-3 -->
+    <View
+        android:id="@+id/divider23"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/_2sdp"
+        android:layout_weight="0.6"
+        android:layout_gravity="top"
+        android:layout_marginTop="@dimen/_11sdp"
+        android:background="@color/va_border" />
+
+    <!-- Step 3 -->
+    <LinearLayout
+        android:id="@+id/step3"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvStep3Dot"
+            style="@style/VaStepDot"
+            android:text="3" />
+
+        <TextView
+            android:id="@+id/tvStep3Label"
+            style="@style/VaStepLabel"
+            android:text="@string/va_step_convert" />
+    </LinearLayout>
+
+    <!-- Connector 3-4 -->
+    <View
+        android:id="@+id/divider34"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/_2sdp"
+        android:layout_weight="0.6"
+        android:layout_gravity="top"
+        android:layout_marginTop="@dimen/_11sdp"
+        android:background="@color/va_border" />
+
+    <!-- Step 4 -->
+    <LinearLayout
+        android:id="@+id/step4"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvStep4Dot"
+            style="@style/VaStepDot"
+            android:text="4" />
+
+        <TextView
+            android:id="@+id/tvStep4Label"
+            style="@style/VaStepLabel"
+            android:text="@string/va_step_done" />
+    </LinearLayout>
+
+</LinearLayout>

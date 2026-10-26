@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Music / audio note icon: eighth note for MP3 output file card -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+
+    <!-- Note stem -->
+    <path
+        android:pathData="M9,17 L9,7 L18,5 L18,15"
+        android:strokeWidth="2"
+        android:strokeColor="@color/va_green"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round" />
+
+    <!-- Note head left -->
+    <path
+        android:fillColor="@color/va_green"
+        android:pathData="M9,17 m-3,0 a3,2 0 1,0 6,0 a3,2 0 1,0 -6,0" />
+
+    <!-- Note head right -->
+    <path
+        android:fillColor="@color/va_green"
+        android:pathData="M18,15 m-3,0 a3,2 0 1,0 6,0 a3,2 0 1,0 -6,0" />
+</vector>

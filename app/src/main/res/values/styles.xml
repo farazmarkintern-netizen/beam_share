@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <style name="Widget.BeamShare" parent="android:Widget" />
+
     <style name="SectionLabel" parent="Widget.AppCompat.TextView">
         <item name="android:textSize">13sp</item>
         <item name="android:textStyle">bold</item>
@@ -24,5 +26,112 @@
         <item name="android:fontFamily">@font/inter_semibold</item>
         <item name="android:clickable">true</item>
         <item name="android:focusable">true</item>
+    </style>
+
+
+    <!-- ── Step dot (circular number badge) ─────────────────────── -->
+    <style name="VaStepDot">
+        <item name="android:layout_width">@dimen/_22sdp</item>
+        <item name="android:layout_height">@dimen/_22sdp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:textSize">@dimen/_10ssp</item>
+        <item name="android:textColor">@color/va_fg2</item>
+        <item name="android:fontFamily">@font/inter_bold</item>
+        <item name="android:background">@drawable/bg_va_step_dot_inactive</item>
+    </style>
+
+    <!-- Active override — set in fragment code:
+         tvStep1Dot.setBackgroundResource(R.drawable.bg_va_step_dot_active)
+         tvStep1Dot.setTextColor(ContextCompat.getColor(ctx, android.R.color.white)) -->
+
+    <!-- ── Step label ─────────────────────────────────────────────── -->
+    <style name="VaStepLabel">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">@dimen/_4sdp</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:textSize">@dimen/_10ssp</item>
+        <item name="android:textColor">@color/va_fg2</item>
+        <item name="android:fontFamily">@font/inter_medium</item>
+    </style>
+
+    <!-- ── Format chip (drop zone) ───────────────────────────────── -->
+    <style name="Widget.BeamShare.Chip.VaFormat" parent="Widget.Material3.Chip.Filter">
+        <item name="android:textSize">@dimen/_11ssp</item>
+        <item name="android:fontFamily">@font/inter_semibold</item>
+        <item name="android:textColor">@color/va_fg2</item>
+        <item name="chipBackgroundColor">@color/va_surface2</item>
+        <item name="chipStrokeColor">@color/va_card_border</item>
+        <item name="chipStrokeWidth">@dimen/_1sdp</item>
+        <item name="chipCornerRadius">@dimen/_20sdp</item>
+        <item name="chipMinHeight">@dimen/_26sdp</item>
+        <item name="android:paddingStart">@dimen/_10sdp</item>
+        <item name="android:paddingEnd">@dimen/_10sdp</item>
+        <item name="chipIconVisible">false</item>
+        <item name="checkedIconVisible">false</item>
+    </style>
+
+    <style name="Widget.BeamShare.Chip.VaFormat.Accent">
+        <item name="android:textColor">@color/va_accent</item>
+        <item name="chipBackgroundColor">@color/va_accent_glow</item>
+        <item name="chipStrokeColor">@color/va_accent</item>
+    </style>
+
+    <!-- ── Bitrate chip (VA02) ────────────────────────────────────── -->
+    <style name="Widget.BeamShare.Chip.VaBitrate" parent="Widget.Material3.Chip.Filter">
+        <item name="android:textSize">@dimen/_12ssp</item>
+        <item name="android:fontFamily">@font/inter_bold</item>
+        <item name="android:textColor">@color/selector_va_bitrate_text</item>
+        <item name="chipBackgroundColor">@color/selector_va_bitrate_bg</item>
+        <item name="chipStrokeColor">@color/selector_va_bitrate_stroke</item>
+        <item name="chipStrokeWidth">@dimen/_1sdp</item>
+        <item name="chipCornerRadius">@dimen/_12sdp</item>
+        <item name="chipMinHeight">@dimen/_40sdp</item>
+        <item name="chipIconVisible">false</item>
+        <item name="checkedIconVisible">false</item>
+    </style>
+
+    <!-- ── Primary gradient button (blue→purple) ─────────────────── -->
+    <!--
+      MaterialButton doesn't support gradient backgrounds natively.
+      Use a FrameLayout wrapping a View (gradient bg) + a Button,
+      OR set background programmatically in fragment.
+
+      In fragment:
+          binding.btnStartConverting.background =
+              AppCompatResources.getDrawable(ctx, R.drawable.bg_va_btn_primary)
+    -->
+    <style name="Widget.BeamShare.Button.VaPrimary" parent="Widget.Material3.Button">
+        <item name="android:textSize">@dimen/_15ssp</item>
+        <item name="android:fontFamily">@font/inter_bold</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:letterSpacing">0.01</item>
+        <item name="backgroundTint">@null</item>
+        <item name="android:background">@drawable/bg_va_btn_primary</item>
+        <item name="cornerRadius">@dimen/_14sdp</item>
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+        <item name="android:paddingStart">@dimen/_20sdp</item>
+        <item name="android:paddingEnd">@dimen/_20sdp</item>
+        <item name="elevation">0dp</item>
+    </style>
+
+    <!-- ── Green primary button (VA04) ───────────────────────────── -->
+    <style name="Widget.BeamShare.Button.VaGreen" parent="Widget.BeamShare.Button.VaPrimary">
+        <item name="android:background">@drawable/bg_va_btn_green</item>
+    </style>
+
+    <!-- ── Secondary ghost button ────────────────────────────────── -->
+    <style name="Widget.BeamShare.Button.VaSecondary" parent="Widget.Material3.Button.OutlinedButton">
+        <item name="android:textSize">@dimen/_14ssp</item>
+        <item name="android:fontFamily">@font/inter_semibold</item>
+        <item name="android:textColor">@color/va_fg2</item>
+        <item name="backgroundTint">@color/va_surface2</item>
+        <item name="strokeColor">@null</item>
+        <item name="cornerRadius">@dimen/_14sdp</item>
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+        <item name="elevation">0dp</item>
     </style>
 </resources>

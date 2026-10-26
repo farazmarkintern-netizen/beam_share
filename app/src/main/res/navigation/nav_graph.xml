@@ -24,4 +24,55 @@
         android:label="Settings"
         tools:layout="@layout/fragment_settings" />
 
+    <!-- VA01 — entry point -->
+    <fragment
+        android:id="@+id/videoToAudioFragment"
+        android:name="com.example.beamshare.videotoaudio.VideoToAudioFragment"
+        android:label="Video to Audio"
+        tools:layout="@layout/fragment_va01_select_video">
+
+        <action
+            android:id="@+id/action_videoToAudioFragment_to_formatQualityFragment"
+            app:destination="@id/formatQualityFragment" />
+    </fragment>
+
+    <!-- VA02 -->
+    <fragment
+        android:id="@+id/formatQualityFragment"
+        android:name="com.example.beamshare.videotoaudio.FormatQualityFragment"
+        android:label="Format &amp; Quality"
+        tools:layout="@layout/fragment_va02_format_quality">
+
+        <action
+            android:id="@+id/action_formatQualityFragment_to_convertingFragment"
+            app:destination="@id/convertingFragment" />
+    </fragment>
+
+    <!-- VA03 -->
+    <fragment
+        android:id="@+id/convertingFragment"
+        android:name="com.example.beamshare.videotoaudio.ConvertingFragment"
+        android:label="Converting"
+        tools:layout="@layout/fragment_va03_converting">
+
+        <action
+            android:id="@+id/action_convertingFragment_to_doneFragment"
+            app:destination="@id/doneFragment" />
+    </fragment>
+
+    <!-- VA04 -->
+    <!-- VA04 -->
+    <fragment
+        android:id="@+id/doneFragment"
+        android:name="com.example.beamshare.videotoaudio.DoneFragment"
+        android:label="Done"
+        tools:layout="@layout/fragment_va04_done">
+
+        <action
+            android:id="@+id/action_doneFragment_to_videoToAudioFragment"
+            app:destination="@id/videoToAudioFragment"
+            app:popUpTo="@id/videoToAudioFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+
 </navigation>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Back button background: surface fill + card_border stroke, 12dp corners -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <solid android:color="@color/va_surface" />
+    <stroke
+        android:width="1dp"
+        android:color="@color/va_card_border" />
+    <corners android:radius="12dp" />
+</shape>

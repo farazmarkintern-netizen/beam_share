@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- VA04 action grid card: surface bg + card_border stroke, 16dp corners -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <solid android:color="@color/va_surface" />
+    <stroke
+        android:width="1dp"
+        android:color="@color/va_card_border" />
+    <corners android:radius="16dp" />
+</shape>

@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.activity.addCallback
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -33,49 +34,83 @@ class MainActivity : AppCompatActivity() {
     private lateinit var labelTransfers: TextView
     private lateinit var labelSettings: TextView
 
+    // VA fragment IDs — navbar hidden on these
+    private val vaFragments = setOf(
+        R.id.videoToAudioFragment,
+        R.id.formatQualityFragment,
+        R.id.convertingFragment,
+        R.id.doneFragment
+    )
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         enableEdgeToEdge()
-
         setContentView(R.layout.activity_main)
-
         setupEdgeToEdge()
         setupBottomNav()
         setupNavigation()
+        setupBackPressed()
     }
+
+    private fun setupBackPressed() {
+        onBackPressedDispatcher.addCallback(this) {
+            if (navController.currentDestination?.id != R.id.homeFragment) {
+                if (!navController.popBackStack()) {
+                    navController.navigate(R.id.homeFragment)
+                }
+            } else {
+                finish()
+            }
+        }
+    }
+
 
     private fun setupEdgeToEdge() {
         val root = findViewById<View>(R.id.main)
         val bottomNav = findViewById<View>(R.id.bottomNavigation)
-        val initialBottomPadding = bottomNav.paddingBottom
+
+        val rootLeft = root.paddingLeft
+        val rootTop = root.paddingTop
+        val rootRight = root.paddingRight
+        val rootBottom = root.paddingBottom
+
+        val navLeft = bottomNav.paddingLeft
+        val navTop = bottomNav.paddingTop
+        val navRight = bottomNav.paddingRight
+        val navBottom = bottomNav.paddingBottom
 
         ViewCompat.setOnApplyWindowInsetsListener(root) { view, insets ->
-            val systemBars = insets.getInsets(
+            val bars = insets.getInsets(
                 WindowInsetsCompat.Type.systemBars()
             )
 
-            // Apply status bar padding to root layout
+            // Apply the status-bar inset consistently.
             view.setPadding(
-                view.paddingLeft,
-                systemBars.top,
-                view.paddingRight,
-                0
+                rootLeft,
+                rootTop + bars.top,
+                rootRight,
+                rootBottom
             )
 
-            // Apply navigation bar inset to bottomNav bottom padding
+            // Reset padding every time, regardless of visibility.
             bottomNav.setPadding(
-                bottomNav.paddingLeft,
-                bottomNav.paddingTop,
-                bottomNav.paddingRight,
-                initialBottomPadding + systemBars.bottom
+                navLeft,
+                navTop,
+                navRight,
+                navBottom + if (bottomNav.visibility == View.VISIBLE) {
+                    bars.bottom
+                } else {
+                    0
+                }
             )
 
+            // Allow descendants to receive insets.
             insets
         }
 
         ViewCompat.requestApplyInsets(root)
     }
+
 
     private fun setupNavigation() {
         val navHostFragment = supportFragmentManager
@@ -83,11 +118,21 @@ class MainActivity : AppCompatActivity() {
 
         navController = navHostFragment.navController
 
+        val bottomNav = findViewById<View>(R.id.bottomNavigation)
+
         navController.addOnDestinationChangedListener { _, destination, _ ->
-            when (destination.id) {
-                R.id.homeFragment -> selectTab(Tab.HOME)
-                R.id.transfersFragment -> selectTab(Tab.TRANSFERS)
-                R.id.settingsFragment -> selectTab(Tab.SETTINGS)
+            if (destination.id in vaFragments) {
+                bottomNav.visibility = View.GONE
+                // Re-request insets so VA fragment gets fresh delivery
+                ViewCompat.requestApplyInsets(findViewById(R.id.main))
+            } else {
+                bottomNav.visibility = View.VISIBLE
+                ViewCompat.requestApplyInsets(findViewById(R.id.main))
+                when (destination.id) {
+                    R.id.homeFragment      -> selectTab(Tab.HOME)
+                    R.id.transfersFragment -> selectTab(Tab.TRANSFERS)
+                    R.id.settingsFragment  -> selectTab(Tab.SETTINGS)
+                }
             }
         }
     }
@@ -109,17 +154,9 @@ class MainActivity : AppCompatActivity() {
         labelTransfers = findViewById(R.id.labelTransfers)
         labelSettings = findViewById(R.id.labelSettings)
 
-        navHome.setOnClickListener {
-            navigateTo(R.id.homeFragment, Tab.HOME)
-        }
-
-        navTransfers.setOnClickListener {
-            navigateTo(R.id.transfersFragment, Tab.TRANSFERS)
-        }
-
-        navSettings.setOnClickListener {
-            navigateTo(R.id.settingsFragment, Tab.SETTINGS)
-        }
+        navHome.setOnClickListener { navigateTo(R.id.homeFragment, Tab.HOME) }
+        navTransfers.setOnClickListener { navigateTo(R.id.transfersFragment, Tab.TRANSFERS) }
+        navSettings.setOnClickListener { navigateTo(R.id.settingsFragment, Tab.SETTINGS) }
     }
 
     private fun navigateTo(destinationId: Int, tab: Tab) {
@@ -130,12 +167,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun selectTab(tab: Tab) {
-        val primaryColor = ContextCompat.getColor(
-            this, R.color.color_primary
-        )
-        val inactiveColor = ContextCompat.getColor(
-            this, R.color.color_text_tertiary
-        )
+        val primaryColor = ContextCompat.getColor(this, R.color.color_primary)
+        val inactiveColor = ContextCompat.getColor(this, R.color.color_text_tertiary)
 
         indicatorHome.visibility = View.INVISIBLE
         indicatorTransfers.visibility = View.INVISIBLE
@@ -155,13 +188,11 @@ class MainActivity : AppCompatActivity() {
                 iconHome.setColorFilter(primaryColor)
                 labelHome.setTextColor(primaryColor)
             }
-
             Tab.TRANSFERS -> {
                 indicatorTransfers.visibility = View.VISIBLE
                 iconTransfers.setColorFilter(primaryColor)
                 labelTransfers.setTextColor(primaryColor)
             }
-
             Tab.SETTINGS -> {
                 indicatorSettings.visibility = View.VISIBLE
                 iconSettings.setColorFilter(primaryColor)

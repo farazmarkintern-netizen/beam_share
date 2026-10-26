@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Video-to-Audio custom dimens
+  Add to: app/src/main/res/values/dimens_videotoaudio.xml
+
+  NOTE: All screen-size-sensitive values use @dimen/_Xsdp (from Intuit sdp library).
+        This file only declares values that DON'T exist in sdp's auto-generated
+        dimens (negative margins, very large dp, and non-standard sizes).
+
+  sdp covers: _1sdp through _600sdp  →  use those directly in layouts.
+  ssp covers: _1ssp through _100ssp  →  use those for textSize.
+
+  Intuit sdp auto-generates at compile time; no manual dimen file is needed
+  for standard sizes. This file only patches gaps.
+-->
+<resources>
+
+    <!-- Negative margins (not in sdp library) -->
+    <dimen name="_minus40sdp">-40dp</dimen>
+    <dimen name="_minus60sdp">-60dp</dimen>
+    <dimen name="_minus6sdp">-6dp</dimen>
+
+    <!-- stroke / border width alias -->
+    <dimen name="va_stroke_width">1dp</dimen>
+
+    <!-- Dot sizes for steps pill / log -->
+    <dimen name="va_step_dot_size">22dp</dimen>   <!-- matches @dimen/_22sdp -->
+    <dimen name="va_log_dot_size">8dp</dimen>      <!-- matches @dimen/_8sdp  -->
+
+    <!--
+    Reminder: use sdp/ssp for everything else, e.g.:
+      layout_width="@dimen/_44sdp"
+      textSize="@dimen/_13ssp"
+    -->
+</resources>

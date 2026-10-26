@@ -49,218 +49,232 @@
             android:layout_height="@dimen/_40sdp" />
     </LinearLayout>
 
-    <!-- Icon -->
-    <FrameLayout
-        android:layout_width="@dimen/_72sdp"
-        android:layout_height="@dimen/_72sdp"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="@dimen/_32sdp">
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/bg_icon_container_purple" />
-
-        <ImageView
-            android:layout_width="@dimen/_36sdp"
-            android:layout_height="@dimen/_36sdp"
-            android:layout_gravity="center"
-            android:src="@drawable/ic_lock"
-            app:tint="@color/private_accent"
-            android:contentDescription="@null" />
-    </FrameLayout>
-
-    <!-- Title + subtitle -->
-    <TextView
-        android:id="@+id/tvTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="@dimen/_20sdp"
-        android:text="Create a 4-digit PIN"
-        android:textColor="@color/color_text_primary"
-        android:textSize="@dimen/_20ssp"
-        android:fontFamily="@font/inter_bold" />
-
-    <TextView
-        android:id="@+id/tvSubtitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="@dimen/_6sdp"
-        android:gravity="center"
-        android:text="You'll use this to unlock\nyour private folder"
-        android:textColor="@color/color_text_secondary"
-        android:textSize="@dimen/_13ssp"
-        android:fontFamily="@font/inter_medium" />
-
-    <!-- PIN dots -->
-    <LinearLayout
-        android:id="@+id/layoutPinDots"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:orientation="horizontal"
-        android:layout_marginTop="@dimen/_28sdp"
-        android:gravity="center">
-
-        <View android:id="@+id/dot1"
-            android:layout_width="@dimen/_14sdp"
-            android:layout_height="@dimen/_14sdp"
-            android:layout_marginHorizontal="@dimen/_8sdp"
-            android:background="@drawable/bg_pin_dot_empty" />
-
-        <View android:id="@+id/dot2"
-            android:layout_width="@dimen/_14sdp"
-            android:layout_height="@dimen/_14sdp"
-            android:layout_marginHorizontal="@dimen/_8sdp"
-            android:background="@drawable/bg_pin_dot_empty" />
-
-        <View android:id="@+id/dot3"
-            android:layout_width="@dimen/_14sdp"
-            android:layout_height="@dimen/_14sdp"
-            android:layout_marginHorizontal="@dimen/_8sdp"
-            android:background="@drawable/bg_pin_dot_empty" />
-
-        <View android:id="@+id/dot4"
-            android:layout_width="@dimen/_14sdp"
-            android:layout_height="@dimen/_14sdp"
-            android:layout_marginHorizontal="@dimen/_8sdp"
-            android:background="@drawable/bg_pin_dot_empty" />
-    </LinearLayout>
-
-    <!-- Numpad -->
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginHorizontal="@dimen/_32sdp"
-        android:layout_marginTop="@dimen/_32sdp">
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true"
+        android:clipToPadding="false"
+        android:paddingBottom="@dimen/_24sdp">
 
-        <!-- Row 1: 1 2 3 -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center">
+            android:orientation="vertical"
+            android:gravity="center_horizontal">
 
-            <TextView android:id="@+id/key1"
-                style="@style/PinKeyStyle"
-                android:layout_width="@dimen/_64sdp"
-                android:layout_height="@dimen/_56sdp"
-                android:text="1" />
-            <TextView android:id="@+id/key2"
-                style="@style/PinKeyStyle"
-                android:layout_width="@dimen/_64sdp"
-                android:layout_height="@dimen/_56sdp"
-                android:layout_marginHorizontal="@dimen/_12sdp"
-                android:text="2" />
-            <TextView android:id="@+id/key3"
-                style="@style/PinKeyStyle"
-                android:layout_width="@dimen/_64sdp"
-                android:layout_height="@dimen/_56sdp"
-                android:text="3" />
-        </LinearLayout>
-
-        <!-- Row 2: 4 5 6 -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center"
-            android:layout_marginTop="@dimen/_12sdp">
-
-            <TextView android:id="@+id/key4"
-                style="@style/PinKeyStyle"
-                android:layout_width="@dimen/_64sdp"
-                android:layout_height="@dimen/_56sdp"
-                android:text="4" />
-            <TextView android:id="@+id/key5"
-                style="@style/PinKeyStyle"
-                android:layout_width="@dimen/_64sdp"
-                android:layout_height="@dimen/_56sdp"
-                android:layout_marginHorizontal="@dimen/_12sdp"
-                android:text="5" />
-            <TextView android:id="@+id/key6"
-                style="@style/PinKeyStyle"
-                android:layout_width="@dimen/_64sdp"
-                android:layout_height="@dimen/_56sdp"
-                android:text="6" />
-        </LinearLayout>
-
-        <!-- Row 3: 7 8 9 -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center"
-            android:layout_marginTop="@dimen/_12sdp">
-
-            <TextView android:id="@+id/key7"
-                style="@style/PinKeyStyle"
-                android:layout_width="@dimen/_64sdp"
-                android:layout_height="@dimen/_56sdp"
-                android:text="7" />
-            <TextView android:id="@+id/key8"
-                style="@style/PinKeyStyle"
-                android:layout_width="@dimen/_64sdp"
-                android:layout_height="@dimen/_56sdp"
-                android:layout_marginHorizontal="@dimen/_12sdp"
-                android:text="8" />
-            <TextView android:id="@+id/key9"
-                style="@style/PinKeyStyle"
-                android:layout_width="@dimen/_64sdp"
-                android:layout_height="@dimen/_56sdp"
-                android:text="9" />
-        </LinearLayout>
-
-        <!-- Row 4: (empty) 0 backspace -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center"
-            android:layout_marginTop="@dimen/_12sdp">
-
-            <View
-                android:layout_width="@dimen/_64sdp"
-                android:layout_height="@dimen/_56sdp" />
-
-            <TextView android:id="@+id/key0"
-                style="@style/PinKeyStyle"
-                android:layout_width="@dimen/_64sdp"
-                android:layout_height="@dimen/_56sdp"
-                android:layout_marginHorizontal="@dimen/_12sdp"
-                android:text="0" />
-
+            <!-- Icon -->
             <FrameLayout
-                android:id="@+id/keyBackspace"
-                android:layout_width="@dimen/_64sdp"
-                android:layout_height="@dimen/_56sdp"
-                android:background="@drawable/bg_pin_key"
-                android:clickable="true"
-                android:focusable="true">
+                android:layout_width="@dimen/_72sdp"
+                android:layout_height="@dimen/_72sdp"
+                android:layout_marginTop="@dimen/_24sdp">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/bg_icon_container_purple" />
 
                 <ImageView
-                    android:layout_width="@dimen/_22sdp"
-                    android:layout_height="@dimen/_22sdp"
+                    android:layout_width="@dimen/_36sdp"
+                    android:layout_height="@dimen/_36sdp"
                     android:layout_gravity="center"
-                    android:src="@drawable/ic_backspace"
+                    android:src="@drawable/ic_lock"
                     app:tint="@color/private_accent"
                     android:contentDescription="@null" />
             </FrameLayout>
-        </LinearLayout>
-    </LinearLayout>
 
-    <!-- Hint -->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="@dimen/_20sdp"
-        android:text="Confirm you remember this PIN"
-        android:textColor="@color/color_text_tertiary"
-        android:textSize="@dimen/_11ssp"
-        android:fontFamily="@font/inter_medium" />
+            <!-- Title + subtitle -->
+            <TextView
+                android:id="@+id/tvTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_16sdp"
+                android:text="Create a 4-digit PIN"
+                android:textColor="@color/color_text_primary"
+                android:textSize="@dimen/_20ssp"
+                android:fontFamily="@font/inter_bold" />
+
+            <TextView
+                android:id="@+id/tvSubtitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_6sdp"
+                android:gravity="center"
+                android:text="You'll use this to unlock\nyour private folder"
+                android:textColor="@color/color_text_secondary"
+                android:textSize="@dimen/_13ssp"
+                android:fontFamily="@font/inter_medium" />
+
+            <!-- PIN dots -->
+            <LinearLayout
+                android:id="@+id/layoutPinDots"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/_24sdp"
+                android:gravity="center">
+
+                <View android:id="@+id/dot1"
+                    android:layout_width="@dimen/_14sdp"
+                    android:layout_height="@dimen/_14sdp"
+                    android:layout_marginHorizontal="@dimen/_8sdp"
+                    android:background="@drawable/bg_pin_dot_empty" />
+
+                <View android:id="@+id/dot2"
+                    android:layout_width="@dimen/_14sdp"
+                    android:layout_height="@dimen/_14sdp"
+                    android:layout_marginHorizontal="@dimen/_8sdp"
+                    android:background="@drawable/bg_pin_dot_empty" />
+
+                <View android:id="@+id/dot3"
+                    android:layout_width="@dimen/_14sdp"
+                    android:layout_height="@dimen/_14sdp"
+                    android:layout_marginHorizontal="@dimen/_8sdp"
+                    android:background="@drawable/bg_pin_dot_empty" />
+
+                <View android:id="@+id/dot4"
+                    android:layout_width="@dimen/_14sdp"
+                    android:layout_height="@dimen/_14sdp"
+                    android:layout_marginHorizontal="@dimen/_8sdp"
+                    android:background="@drawable/bg_pin_dot_empty" />
+            </LinearLayout>
+
+            <!-- Numpad -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginHorizontal="@dimen/_32sdp"
+                android:layout_marginTop="@dimen/_24sdp"
+                android:gravity="center_horizontal">
+
+                <!-- Row 1: 1 2 3 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center">
+
+                    <TextView android:id="@+id/key1"
+                        style="@style/PinKeyStyle"
+                        android:layout_width="@dimen/_64sdp"
+                        android:layout_height="@dimen/_56sdp"
+                        android:text="1" />
+                    <TextView android:id="@+id/key2"
+                        style="@style/PinKeyStyle"
+                        android:layout_width="@dimen/_64sdp"
+                        android:layout_height="@dimen/_56sdp"
+                        android:layout_marginHorizontal="@dimen/_12sdp"
+                        android:text="2" />
+                    <TextView android:id="@+id/key3"
+                        style="@style/PinKeyStyle"
+                        android:layout_width="@dimen/_64sdp"
+                        android:layout_height="@dimen/_56sdp"
+                        android:text="3" />
+                </LinearLayout>
+
+                <!-- Row 2: 4 5 6 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    android:layout_marginTop="@dimen/_12sdp">
+
+                    <TextView android:id="@+id/key4"
+                        style="@style/PinKeyStyle"
+                        android:layout_width="@dimen/_64sdp"
+                        android:layout_height="@dimen/_56sdp"
+                        android:text="4" />
+                    <TextView android:id="@+id/key5"
+                        style="@style/PinKeyStyle"
+                        android:layout_width="@dimen/_64sdp"
+                        android:layout_height="@dimen/_56sdp"
+                        android:layout_marginHorizontal="@dimen/_12sdp"
+                        android:text="5" />
+                    <TextView android:id="@+id/key6"
+                        style="@style/PinKeyStyle"
+                        android:layout_width="@dimen/_64sdp"
+                        android:layout_height="@dimen/_56sdp"
+                        android:text="6" />
+                </LinearLayout>
+
+                <!-- Row 3: 7 8 9 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    android:layout_marginTop="@dimen/_12sdp">
+
+                    <TextView android:id="@+id/key7"
+                        style="@style/PinKeyStyle"
+                        android:layout_width="@dimen/_64sdp"
+                        android:layout_height="@dimen/_56sdp"
+                        android:text="7" />
+                    <TextView android:id="@+id/key8"
+                        style="@style/PinKeyStyle"
+                        android:layout_width="@dimen/_64sdp"
+                        android:layout_height="@dimen/_56sdp"
+                        android:layout_marginHorizontal="@dimen/_12sdp"
+                        android:text="8" />
+                    <TextView android:id="@+id/key9"
+                        style="@style/PinKeyStyle"
+                        android:layout_width="@dimen/_64sdp"
+                        android:layout_height="@dimen/_56sdp"
+                        android:text="9" />
+                </LinearLayout>
+
+                <!-- Row 4: (empty) 0 backspace -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    android:layout_marginTop="@dimen/_12sdp">
+
+                    <View
+                        android:layout_width="@dimen/_64sdp"
+                        android:layout_height="@dimen/_56sdp" />
+
+                    <TextView android:id="@+id/key0"
+                        style="@style/PinKeyStyle"
+                        android:layout_width="@dimen/_64sdp"
+                        android:layout_height="@dimen/_56sdp"
+                        android:layout_marginHorizontal="@dimen/_12sdp"
+                        android:text="0" />
+
+                    <FrameLayout
+                        android:id="@+id/keyBackspace"
+                        android:layout_width="@dimen/_64sdp"
+                        android:layout_height="@dimen/_56sdp"
+                        android:background="@drawable/bg_pin_key"
+                        android:clickable="true"
+                        android:focusable="true">
+
+                        <ImageView
+                            android:layout_width="@dimen/_22sdp"
+                            android:layout_height="@dimen/_22sdp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/ic_backspace"
+                            app:tint="@color/private_accent"
+                            android:contentDescription="@null" />
+                    </FrameLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Hint -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_16sdp"
+                android:layout_marginBottom="@dimen/_16sdp"
+                android:text="Confirm you remember this PIN"
+                android:textColor="@color/color_text_tertiary"
+                android:textSize="@dimen/_11ssp"
+                android:fontFamily="@font/inter_medium" />
+
+        </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>

@@ -1,0 +1,354 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/va_bg"
+    tools:context=".videotoaudio.Va02FormatQualityFragment">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        >
+
+        <LinearLayout
+            android:id="@+id/scrollContent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingStart="@dimen/_20sdp"
+            android:paddingEnd="@dimen/_20sdp"
+            android:paddingTop="@dimen/_10sdp"
+            android:paddingBottom="@dimen/_10sdp">
+
+            <!-- Header row -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="@dimen/_16sdp"
+                android:orientation="horizontal">
+
+                <!-- Back button — same as VA01 -->
+                <FrameLayout
+                    android:id="@+id/btnBack"
+                    android:layout_width="@dimen/_38sdp"
+                    android:layout_height="@dimen/_38sdp"
+                    android:background="@drawable/bg_va_back_btn"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:layout_marginEnd="@dimen/_14sdp"
+                    android:foreground="?attr/selectableItemBackgroundBorderless">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="@dimen/_25sdp"
+                        android:layout_height="@dimen/_22sdp"
+                        android:layout_gravity="center"
+                        android:scaleX="-1"
+                        android:src="@drawable/ic_chevron_right"
+                        app:tint="@color/va_fg2" />
+                </FrameLayout>
+
+                <!-- Eyebrow label — same accent color as VA01 -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/inter_semibold"
+                    android:includeFontPadding="false"
+                    android:letterSpacing="0.05"
+                    android:text="@string/va_format_title"
+                    android:textColor="@color/va_accent"
+                    android:textSize="@dimen/_15ssp" />
+
+            </LinearLayout>
+
+            <!-- Steps pill -->
+            <include
+                android:id="@+id/stepsPill"
+                layout="@layout/include_va_steps_pill"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_20sdp" />
+
+            <!-- Selected file chip -->
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_20sdp"
+                android:background="@drawable/bg_va_surface_r16">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/_14sdp">
+
+                    <!-- Video icon -->
+                    <FrameLayout
+                        android:layout_width="@dimen/_48sdp"
+                        android:layout_height="@dimen/_48sdp"
+                        android:layout_marginEnd="@dimen/_14sdp"
+                        android:background="@drawable/bg_va_icon_video_thumb">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="@dimen/_22sdp"
+                            android:layout_height="@dimen/_22sdp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/ic_video"
+                            app:tint="@android:color/white" />
+                    </FrameLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tvSelectedFileName"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:ellipsize="end"
+                            android:fontFamily="@font/inter_bold"
+                            android:includeFontPadding="false"
+                            android:maxLines="1"
+                            android:textColor="@color/va_fg"
+                            android:textSize="@dimen/_14ssp"
+                            tools:text="vacation_2024.mp4" />
+
+                        <TextView
+                            android:id="@+id/tvSelectedFileMeta"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_3sdp"
+                            android:fontFamily="@font/inter"
+                            android:includeFontPadding="false"
+                            android:textColor="@color/va_fg2"
+                            android:textSize="@dimen/_11ssp"
+                            tools:text="234 MB · MP4 · 1080p · 18:02" />
+                    </LinearLayout>
+
+                    <!-- Check badge -->
+                    <FrameLayout
+                        android:layout_width="@dimen/_28sdp"
+                        android:layout_height="@dimen/_28sdp"
+                        android:background="@drawable/bg_va_check_badge">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="@dimen/_14sdp"
+                            android:layout_height="@dimen/_14sdp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/ic_check_bold"
+                            app:tint="@color/va_green" />
+                    </FrameLayout>
+                </LinearLayout>
+            </FrameLayout>
+
+            <!-- Section: Output format label -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_14sdp"
+                android:fontFamily="@font/inter_bold"
+                android:includeFontPadding="false"
+                android:letterSpacing="0.08"
+                android:text="@string/va_section_format"
+                android:textAllCaps="true"
+                android:textColor="@color/va_fg2"
+                android:textSize="@dimen/_11ssp" />
+
+            <!-- MP3 info row -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_20sdp"
+                android:background="@drawable/bg_va_surface_r14"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="@dimen/_14sdp">
+
+                <!-- Icon -->
+                <FrameLayout
+                    android:layout_width="@dimen/_38sdp"
+                    android:layout_height="@dimen/_38sdp"
+                    android:layout_marginEnd="@dimen/_12sdp"
+                    android:background="@drawable/bg_va_info_icon">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="@dimen/_18sdp"
+                        android:layout_height="@dimen/_18sdp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/ic_music"
+                        app:tint="@color/va_accent" />
+                </FrameLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/inter_bold"
+                        android:includeFontPadding="false"
+                        android:text="@string/va_format_mp3_title"
+                        android:textColor="@color/va_fg"
+                        android:textSize="@dimen/_13ssp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_3sdp"
+                        android:fontFamily="@font/inter"
+                        android:includeFontPadding="false"
+                        android:lineSpacingMultiplier="1.5"
+                        android:text="@string/va_format_mp3_desc"
+                        android:textColor="@color/va_fg2"
+                        android:textSize="@dimen/_12ssp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Section: Bitrate label -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_14sdp"
+                android:fontFamily="@font/inter_bold"
+                android:includeFontPadding="false"
+                android:letterSpacing="0.08"
+                android:text="@string/va_section_bitrate"
+                android:textAllCaps="true"
+                android:textColor="@color/va_fg2"
+                android:textSize="@dimen/_11ssp" />
+
+            <!-- Bitrate chip group -->
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/bitrateChipGroup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_20sdp"
+                app:chipSpacingHorizontal="@dimen/_8sdp"
+                app:chipSpacingVertical="@dimen/_8sdp"
+                app:selectionRequired="true"
+                app:singleLine="false"
+                app:singleSelection="true">
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip64"
+                    style="@style/Widget.BeamShare.Chip.VaBitrate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/va_bitrate_64" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip128"
+                    style="@style/Widget.BeamShare.Chip.VaBitrate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/va_bitrate_128" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip192"
+                    style="@style/Widget.BeamShare.Chip.VaBitrate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="true"
+                    android:text="@string/va_bitrate_192" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip256"
+                    style="@style/Widget.BeamShare.Chip.VaBitrate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/va_bitrate_256" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip320"
+                    style="@style/Widget.BeamShare.Chip.VaBitrate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/va_bitrate_320" />
+            </com.google.android.material.chip.ChipGroup>
+
+            <!-- Estimated size bar -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_va_surface_r14"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="@dimen/_14sdp">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/inter_semibold"
+                        android:includeFontPadding="false"
+                        android:text="@string/va_est_size_label"
+                        android:textColor="@color/va_fg2"
+                        android:textSize="@dimen/_12ssp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_2sdp"
+                        android:fontFamily="@font/inter"
+                        android:includeFontPadding="false"
+                        android:text="@string/va_est_size_note"
+                        android:textColor="@color/va_fg2"
+                        android:textSize="@dimen/_11ssp"
+                        android:alpha="0.7" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tvEstSize"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/inter_bold"
+                    android:includeFontPadding="false"
+                    android:text="@string/va_est_size_default"
+                    android:textColor="@color/va_fg"
+                    android:textSize="@dimen/_22ssp" />
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_10sdp"/>
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <!-- Sticky footer -->
+    <LinearLayout
+        android:id="@+id/footer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:background="@color/va_surface"
+        android:orientation="vertical"
+        android:paddingStart="@dimen/_20sdp"
+        android:paddingEnd="@dimen/_20sdp"
+        android:paddingTop="@dimen/_10sdp"
+        android:paddingBottom="@dimen/_10sdp">
+
+        <Button
+            android:id="@+id/btnStartConverting"
+            style="@style/Widget.BeamShare.Button.VaPrimary"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_52sdp"
+            android:text="@string/va_btn_start_converting" />
+    </LinearLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

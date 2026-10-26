@@ -142,15 +142,12 @@
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
 
-        <!-- Transfer Progress -->
-
-
         <!-- Can't Connect -->
         <activity
             android:name=".connection.CantConnectActivity"
             android:exported="false" />
 
-        <!-- File provider for sharing -->
+        <!-- File provider for sharing (used by VA DoneFragment + rest of app) -->
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.fileprovider"
@@ -172,7 +169,6 @@
         <activity
             android:name=".privatefolder.SetupPinActivity"
             android:exported="false"
-
             android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".privatefolder.PrivateFolderVaultActivity"
