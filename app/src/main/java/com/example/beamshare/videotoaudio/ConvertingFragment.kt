@@ -46,53 +46,25 @@ class ConvertingFragment : Fragment() {
         }
     }
 
-
     private fun applyWindowInsets() {
-        val initialScrollTop = binding.scrollContent.paddingTop
-        val innerFooter = binding.footer.getChildAt(0) as? ViewGroup
-        val initialFooterBottom = innerFooter?.paddingBottom ?: binding.footer.paddingBottom
-        val initialScrollBottom = binding.scrollContent.paddingBottom
+        val initialFooterBottom = binding.footer.paddingBottom
 
-        ViewCompat.setOnApplyWindowInsetsListener(binding.root) { _, insets ->
-            val systemBars = insets.getInsets(
-                WindowInsetsCompat.Type.systemBars()
+        ViewCompat.setOnApplyWindowInsetsListener(binding.root) { view, insets ->
+            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+
+            // Top padding on root (for status bar)
+            view.updatePadding(top = systemBars.top)
+
+            // Footer gets nav bar inset only — NestedScrollView is constrained to footer top
+            binding.footer.updatePadding(
+                bottom = initialFooterBottom + systemBars.bottom
             )
 
-            // Top status bar inset for scroll content
-            binding.scrollContent.updatePadding(
-                top = initialScrollTop + systemBars.top
-            )
-
-            // Bottom navigation bar inset for inner footer layout
-            if (innerFooter != null) {
-                innerFooter.updatePadding(
-                    bottom = initialFooterBottom + systemBars.bottom
-                )
-            } else {
-                binding.footer.updatePadding(
-                    bottom = initialFooterBottom + systemBars.bottom
-                )
-            }
-
-            // Update scroll space after the footer has been measured.
-            binding.footer.post {
-                val currentBinding = _binding ?: return@post
-                val footerHeight = currentBinding.footer.height
-
-                if (footerHeight > 0) {
-                    currentBinding.scrollContent.updatePadding(
-                        bottom = initialScrollBottom + footerHeight
-                    )
-                }
-            }
-
-            // Allow insets to continue to child views.
             insets
         }
 
         ViewCompat.requestApplyInsets(binding.root)
     }
-
 
     private fun setupStepPill(activeStep: Int) {
         val dots = listOf(
@@ -150,8 +122,27 @@ class ConvertingFragment : Fragment() {
                         findNavController().navigate(R.id.action_convertingFragment_to_doneFragment)
                     }
                     is ConversionState.Error -> {
+                        // Custom error message
                         binding.tvPercent.text = "!"
-                        binding.tvStatusTitle.text = state.message
+                        binding.tvStatusTitle.text = "Conversion Failed"
+                        binding.tvStatusSub.text =
+                            "Invalid or unsupported file format. Please select another video and try again."
+
+                        // Change circular progress ring to red
+                        binding.circularProgress.setProgressColor(
+                            androidx.core.content.ContextCompat.getColor(
+                                requireContext(),
+                                R.color.perm_denied
+                            )
+                        )
+
+                        // Change horizontal progress bar to red
+                        binding.linearProgress.setIndicatorColor(
+                            androidx.core.content.ContextCompat.getColor(
+                                requireContext(),
+                                R.color.perm_denied
+                            )
+                        )
                     }
                     is ConversionState.Cancelled -> Unit
                     else -> Unit

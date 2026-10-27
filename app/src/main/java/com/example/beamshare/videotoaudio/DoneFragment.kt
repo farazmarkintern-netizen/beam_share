@@ -2,7 +2,6 @@ package com.example.beamshare.videotoaudio
 
 import androidx.activity.addCallback
 import android.Manifest
-import android.content.ContentValues
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
@@ -27,6 +26,7 @@ import com.example.beamshare.R
 import com.example.beamshare.databinding.FragmentVa04DoneBinding
 import com.example.beamshare.videotoaudio.model.ConversionResult
 import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -88,53 +88,27 @@ class DoneFragment : Fragment() {
 
     // ── Window insets ─────────────────────────────────────────────────────────
 
-
     private fun applyWindowInsets() {
-        val initialScrollTop = binding.scrollContent.paddingTop
-        val innerFooter = binding.footer.getChildAt(0) as? ViewGroup
-        val initialFooterBottom = innerFooter?.paddingBottom ?: binding.footer.paddingBottom
-        val initialScrollBottom = binding.scrollContent.paddingBottom
+        val initialFooterBottom = binding.footer.paddingBottom
 
-        ViewCompat.setOnApplyWindowInsetsListener(binding.root) { _, insets ->
-            val systemBars = insets.getInsets(
-                WindowInsetsCompat.Type.systemBars()
+        ViewCompat.setOnApplyWindowInsetsListener(binding.root) { view, insets ->
+            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+
+            // Top padding on root (for status bar)
+            view.updatePadding(top = systemBars.top)
+
+            // Footer gets nav bar inset — NestedScrollView is constrained to footer top
+            binding.footer.updatePadding(
+                bottom = initialFooterBottom + systemBars.bottom
             )
 
-            // Top status bar inset for scroll content
-            binding.scrollContent.updatePadding(
-                top = initialScrollTop + systemBars.top
-            )
+            // NO scrollContent.updatePadding — NestedScrollView is already bounded above footer
 
-            // Bottom navigation bar inset for inner footer layout
-            if (innerFooter != null) {
-                innerFooter.updatePadding(
-                    bottom = initialFooterBottom + systemBars.bottom
-                )
-            } else {
-                binding.footer.updatePadding(
-                    bottom = initialFooterBottom + systemBars.bottom
-                )
-            }
-
-            // Ensure scroll content can move above the footer.
-            binding.footer.post {
-                val currentBinding = _binding ?: return@post
-                val footerHeight = currentBinding.footer.height
-
-                if (footerHeight > 0) {
-                    currentBinding.scrollContent.updatePadding(
-                        bottom = initialScrollBottom + footerHeight
-                    )
-                }
-            }
-
-            // Allow child views to receive insets.
             insets
         }
 
         ViewCompat.requestApplyInsets(binding.root)
     }
-
 
     // ── Step pill ─────────────────────────────────────────────────────────────
 
@@ -145,8 +119,8 @@ class DoneFragment : Fragment() {
             binding.stepsPill.tvStep3Dot,
             binding.stepsPill.tvStep4Dot
         )
-        // VA04: all 4 steps done (activeStep = 4, every dot is "done")
-        dots.forEachIndexed { index, dot ->
+        // VA04: all 4 steps done
+        dots.forEach { dot ->
             dot.setBackgroundResource(R.drawable.bg_va_step_dot_done)
             dot.setTextColor(android.graphics.Color.WHITE)
         }
@@ -209,8 +183,7 @@ class DoneFragment : Fragment() {
      */
     private fun handleSaveClick() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-            // Already saved to MediaStore during conversion — just confirm
-            showToast("File already saved to Music/BeamShare")
+            showSnackbar("File saved to Music/BeamShare")
             return
         }
         when {
@@ -229,9 +202,7 @@ class DoneFragment : Fragment() {
 
     private fun performSave() {
         val result = doneResult ?: return
-        // On API < 29 the file is in getExternalFilesDir — copy to public Music dir if needed
-        // For now the outputPath is already the saved location; just notify the user
-        showToast("Saved: ${result.outputFileName}")
+        showSnackbar("Saved: ${result.outputFileName}")
     }
 
     // ── Share logic ───────────────────────────────────────────────────────────
@@ -338,7 +309,11 @@ class DoneFragment : Fragment() {
         return "%d:%02d".format(min, sec)
     }
 
-    private fun showToast(msg: String) {
-        android.widget.Toast.makeText(requireContext(), msg, android.widget.Toast.LENGTH_SHORT).show()
+    private fun showSnackbar(msg: String) {
+        if (_binding == null) return
+        Snackbar.make(binding.root, msg, Snackbar.LENGTH_SHORT).apply {
+            anchorView = binding.footer
+            show()
+        }
     }
 }

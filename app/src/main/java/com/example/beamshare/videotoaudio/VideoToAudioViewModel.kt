@@ -35,7 +35,7 @@ sealed class ConversionState {
         val logs: List<LogEntry>
     ) : ConversionState()
     data class Done(val result: ConversionResult) : ConversionState()
-    data class Error(val message: String) : ConversionState()
+    data class Error(val message: String, val details: String? = null) : ConversionState()
     object Cancelled : ConversionState()
 }
 
@@ -217,7 +217,10 @@ class VideoToAudioViewModel(app: Application) : AndroidViewModel(app) {
                     }
                 }
                 if (audioTrackIndex == -1) {
-                    _conversionState.value = ConversionState.Error("No audio track found in this video.")
+                    _conversionState.value = ConversionState.Error(
+                        message = "No audio track found in this video.",
+                        details = "The selected video file appears to have no audio stream or uses an unsupported codec."
+                    )
                     extractor.release()
                     return@launch
                 }
@@ -289,7 +292,17 @@ class VideoToAudioViewModel(app: Application) : AndroidViewModel(app) {
                 )
 
             } catch (e: Exception) {
-                _conversionState.value = ConversionState.Error(e.message ?: "Conversion failed")
+                val userMsg = when {
+                    e is java.io.FileNotFoundException -> "Video file not found or cannot be opened. Please check storage access."
+                    e is IllegalArgumentException -> "Unsupported video format: ${e.localizedMessage}"
+                    e is SecurityException -> "Storage permission denied while reading video file."
+                    e is IllegalStateException -> "Decoder error: ${e.localizedMessage ?: "Failed to process audio stream."}"
+                    else -> e.localizedMessage ?: e.message ?: "An unexpected error occurred during conversion."
+                }
+                _conversionState.value = ConversionState.Error(
+                    message = userMsg,
+                    details = "${e.javaClass.simpleName}: ${e.message ?: "Extraction failed"}"
+                )
             }
         }
     }

@@ -1,92 +1,87 @@
-<?xml version="1.0" encoding="utf-8"?><!--
-  VA03 · Converting / Progress
-  Binding: FragmentVa03ConvertingBinding
--->
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/va_bg"
-    tools:context=".videotoaudio.Va03ConvertingFragment">
+    tools:context=".videotoaudio.ConvertingFragment">
 
+    <!-- HEADER -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnBack"
+        style="@style/Widget.Material3.Button.IconButton"
+        android:layout_width="@dimen/_38sdp"
+        android:layout_height="@dimen/_38sdp"
+        android:layout_marginStart="@dimen/_20sdp"
+        android:layout_marginTop="@dimen/_16sdp"
+        android:scaleX="-1"
+        android:backgroundTint="@color/color_white"
+        app:icon="@drawable/ic_chevron_right"
+        app:iconTint="@color/va_fg2"
+        app:iconGravity="textStart"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:fontFamily="@font/inter_semibold"
+        android:includeFontPadding="false"
+        android:letterSpacing="0.05"
+        android:text="@string/va_converting_title"
+        android:textColor="@color/va_accent"
+        android:textSize="@dimen/_15ssp"
+        app:layout_constraintStart_toEndOf="@id/btnBack"
+        app:layout_constraintTop_toTopOf="@id/btnBack"
+        app:layout_constraintBottom_toBottomOf="@id/btnBack" />
+
+    <!-- SCROLLABLE CONTENT -->
     <androidx.core.widget.NestedScrollView
+        android:id="@+id/scrollView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="0dp"
+        android:fillViewport="false"
+        app:layout_constraintTop_toBottomOf="@id/btnBack"
+        app:layout_constraintBottom_toTopOf="@id/footer"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/scrollContent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingStart="@dimen/_20sdp"
-            android:paddingTop="@dimen/_10sdp"
             android:paddingEnd="@dimen/_20sdp"
-            android:paddingBottom="@dimen/_10sdp">
+            android:paddingTop="@dimen/_10sdp"
+            android:paddingBottom="@dimen/_24sdp">
 
-            <!-- ── Back button ── -->
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/btnBack"
-                android:layout_width="@dimen/_38sdp"
-                android:layout_height="@dimen/_38sdp"
-                android:background="@drawable/bg_va_back_btn"
-                android:clickable="true"
-                android:focusable="true"
-                android:foreground="?attr/selectableItemBackgroundBorderless"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:layout_width="@dimen/_25sdp"
-                    android:layout_height="@dimen/_22sdp"
-                    android:scaleX="-1"
-                    android:src="@drawable/ic_chevron_right"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:tint="@color/va_fg2" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <!-- ── Screen title ── -->
-            <TextView
-                android:id="@+id/tvTitle"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_14sdp"
-                android:fontFamily="@font/inter_bold"
-                android:includeFontPadding="false"
-                android:text="@string/va_converting_title"
-                android:textColor="@color/va_accent"
-                android:textSize="@dimen/_17ssp"
-                app:layout_constraintBottom_toBottomOf="@id/btnBack"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/btnBack"
-                app:layout_constraintTop_toTopOf="@id/btnBack" />
-
-            <!-- ── Steps pill ── -->
+            <!-- STEPS PILL -->
             <include
                 android:id="@+id/stepsPill"
                 layout="@layout/include_va_steps_pill"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_16sdp"
+                android:layout_marginBottom="@dimen/_28sdp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/btnBack" />
+                app:layout_constraintTop_toTopOf="parent" />
 
-            <!-- ── Progress ring hero ── -->
+            <!-- HERO GLOW -->
             <View
                 android:id="@+id/heroGlow"
                 android:layout_width="@dimen/_200sdp"
                 android:layout_height="@dimen/_200sdp"
-                android:layout_marginTop="@dimen/_28sdp"
                 android:background="@drawable/bg_va_hero_glow_blue"
                 android:importantForAccessibility="no"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/stepsPill" />
 
+            <!-- CIRCULAR PROGRESS -->
             <com.example.beamshare.videotoaudio.CircularProgressView
                 android:id="@+id/circularProgress"
                 android:layout_width="@dimen/_140sdp"
@@ -100,7 +95,7 @@
                 app:layout_constraintStart_toStartOf="@id/heroGlow"
                 app:layout_constraintTop_toTopOf="@id/heroGlow" />
 
-            <!-- Percent + label centered inside ring via chain on circularProgress -->
+            <!-- PERCENTAGE -->
             <TextView
                 android:id="@+id/tvPercent"
                 android:layout_width="wrap_content"
@@ -131,13 +126,14 @@
                 app:layout_constraintStart_toStartOf="@id/circularProgress"
                 app:layout_constraintTop_toBottomOf="@id/tvPercent" />
 
-            <!-- ── Status text ── -->
+            <!-- STATUS TITLE -->
             <TextView
                 android:id="@+id/tvStatusTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_28sdp"
                 android:fontFamily="@font/inter_bold"
+                android:gravity="center"
                 android:includeFontPadding="false"
                 android:text="@string/va_status_encoding"
                 android:textColor="@color/va_fg"
@@ -146,6 +142,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/heroGlow" />
 
+            <!-- STATUS SUBTITLE -->
             <TextView
                 android:id="@+id/tvStatusSub"
                 android:layout_width="0dp"
@@ -162,7 +159,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tvStatusTitle" />
 
-            <!-- ── Linear progress bar ── -->
+            <!-- LINEAR PROGRESS -->
             <com.google.android.material.progressindicator.LinearProgressIndicator
                 android:id="@+id/linearProgress"
                 android:layout_width="0dp"
@@ -170,30 +167,35 @@
                 android:layout_marginTop="@dimen/_20sdp"
                 android:progress="70"
                 app:indicatorColor="@color/va_accent"
+                app:trackColor="@color/va_surface2"
+                app:trackCornerRadius="@dimen/_3sdp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tvStatusSub"
-                app:trackColor="@color/va_surface2"
-                app:trackCornerRadius="@dimen/_3sdp" />
+                app:layout_constraintTop_toBottomOf="@id/tvStatusSub" />
 
-            <!-- ── Stats row: Elapsed / Remaining / Speed ── -->
+            <!-- STATS ROW: ELAPSED + SPEED ONLY -->
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/cardElapsed"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_20sdp"
+                android:layout_marginEnd="@dimen/_4sdp"
                 app:cardBackgroundColor="@color/va_surface"
                 app:cardCornerRadius="@dimen/_14sdp"
                 app:cardElevation="0dp"
-                app:layout_constraintEnd_toStartOf="@id/cardRemaining"
+                app:strokeWidth="0dp"
+                app:layout_constraintEnd_toStartOf="@id/cardSpeed"
                 app:layout_constraintHorizontal_chainStyle="spread"
+                app:layout_constraintHorizontal_weight="1"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/linearProgress">
 
-                <androidx.constraintlayout.widget.ConstraintLayout
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="vertical"
                     android:padding="@dimen/_14sdp">
 
                     <TextView
@@ -204,12 +206,7 @@
                         android:includeFontPadding="false"
                         android:text="@string/va_stat_elapsed_default"
                         android:textColor="@color/va_fg"
-                        android:textSize="@dimen/_16ssp"
-                        app:layout_constraintBottom_toTopOf="@id/tvElapsedLabel"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_chainStyle="packed" />
+                        android:textSize="@dimen/_16ssp" />
 
                     <TextView
                         android:id="@+id/tvElapsedLabel"
@@ -220,78 +217,30 @@
                         android:includeFontPadding="false"
                         android:text="@string/va_stat_elapsed_label"
                         android:textColor="@color/va_fg2"
-                        android:textSize="@dimen/_10ssp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/tvElapsed" />
-                </androidx.constraintlayout.widget.ConstraintLayout>
-            </com.google.android.material.card.MaterialCardView>
+                        android:textSize="@dimen/_10ssp" />
+                </LinearLayout>
 
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/cardRemaining"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_8sdp"
-                android:layout_marginEnd="@dimen/_8sdp"
-                app:cardBackgroundColor="@color/va_surface"
-                app:cardCornerRadius="@dimen/_14sdp"
-                app:cardElevation="0dp"
-                app:layout_constraintEnd_toStartOf="@id/cardSpeed"
-                app:layout_constraintStart_toEndOf="@id/cardElapsed"
-                app:layout_constraintTop_toTopOf="@id/cardElapsed">
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="@dimen/_14sdp">
-
-                    <TextView
-                        android:id="@+id/tvRemaining"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/inter_bold"
-                        android:includeFontPadding="false"
-                        android:text="@string/va_stat_remaining_default"
-                        android:textColor="@color/va_fg"
-                        android:textSize="@dimen/_16ssp"
-                        app:layout_constraintBottom_toTopOf="@id/tvRemainingLabel"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_chainStyle="packed" />
-
-                    <TextView
-                        android:id="@+id/tvRemainingLabel"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_4sdp"
-                        android:fontFamily="@font/inter"
-                        android:includeFontPadding="false"
-                        android:text="@string/va_stat_remaining_label"
-                        android:textColor="@color/va_fg2"
-                        android:textSize="@dimen/_10ssp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/tvRemaining" />
-                </androidx.constraintlayout.widget.ConstraintLayout>
             </com.google.android.material.card.MaterialCardView>
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/cardSpeed"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_4sdp"
                 app:cardBackgroundColor="@color/va_surface"
                 app:cardCornerRadius="@dimen/_14sdp"
                 app:cardElevation="0dp"
+                app:strokeWidth="0dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/cardRemaining"
+                app:layout_constraintHorizontal_weight="1"
+                app:layout_constraintStart_toEndOf="@id/cardElapsed"
                 app:layout_constraintTop_toTopOf="@id/cardElapsed">
 
-                <androidx.constraintlayout.widget.ConstraintLayout
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="vertical"
                     android:padding="@dimen/_14sdp">
 
                     <TextView
@@ -302,12 +251,7 @@
                         android:includeFontPadding="false"
                         android:text="@string/va_stat_speed_default"
                         android:textColor="@color/va_fg"
-                        android:textSize="@dimen/_16ssp"
-                        app:layout_constraintBottom_toTopOf="@id/tvSpeedLabel"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_chainStyle="packed" />
+                        android:textSize="@dimen/_16ssp" />
 
                     <TextView
                         android:id="@+id/tvSpeedLabel"
@@ -318,53 +262,37 @@
                         android:includeFontPadding="false"
                         android:text="@string/va_stat_speed_label"
                         android:textColor="@color/va_fg2"
-                        android:textSize="@dimen/_10ssp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/tvSpeed" />
-                </androidx.constraintlayout.widget.ConstraintLayout>
+                        android:textSize="@dimen/_10ssp" />
+                </LinearLayout>
+
             </com.google.android.material.card.MaterialCardView>
 
-            <View
-
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_10sdp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
 
-    <!-- ── Sticky footer: Cancel ── -->
-    <com.google.android.material.card.MaterialCardView
+    <!-- STICKY FOOTER -->
+    <LinearLayout
         android:id="@+id/footer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        app:cardBackgroundColor="@color/va_surface"
-        app:cardCornerRadius="0dp"
-        app:cardElevation="8dp"
-        app:strokeWidth="0dp">
+        android:background="@color/va_surface"
+        android:orientation="vertical"
+        android:paddingStart="@dimen/_20sdp"
+        android:paddingEnd="@dimen/_20sdp"
+        android:paddingTop="@dimen/_10sdp"
+        android:paddingBottom="@dimen/_10sdp"
+        android:layout_marginBottom="@dimen/_10sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <Button
+            android:id="@+id/btnCancel"
+            style="@style/Widget.BeamShare.Button.VaSecondary"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingStart="@dimen/_20sdp"
-            android:paddingTop="@dimen/_10sdp"
-            android:paddingEnd="@dimen/_20sdp"
-            android:paddingBottom="@dimen/_10sdp">
+            android:layout_height="@dimen/_52sdp"
+            android:text="@string/va_btn_cancel" />
 
-            <Button
-                android:id="@+id/btnCancel"
-                style="@style/Widget.BeamShare.Button.VaSecondary"
-                android:layout_width="0dp"
-                android:layout_height="@dimen/_52sdp"
-                android:text="@string/va_btn_cancel"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </com.google.android.material.card.MaterialCardView>
+    </LinearLayout>
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

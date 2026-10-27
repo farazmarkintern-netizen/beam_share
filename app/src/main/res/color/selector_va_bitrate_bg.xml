@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Bitrate chip background color: accent glow when selected, surface2 when not -->
+<!-- Bitrate chip background color: accent when selected, surface2 when not -->
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:state_checked="true" android:color="@color/va_accent_glow" />
+    <item android:state_checked="true" android:color="@color/va_accent" />
     <item android:color="@color/va_surface2" />
 </selector>

@@ -140,6 +140,8 @@ class VideoToAudioFragment : Fragment() {
     }
 
     private fun applyWindowInsets() {
+        val initialBottom = binding.root.paddingBottom
+
         ViewCompat.setOnApplyWindowInsetsListener(binding.root) { view, insets ->
             val systemBars = insets.getInsets(
                 WindowInsetsCompat.Type.systemBars()
@@ -147,7 +149,7 @@ class VideoToAudioFragment : Fragment() {
 
             view.updatePadding(
                 top = systemBars.top,
-                bottom = systemBars.bottom
+                bottom = initialBottom + systemBars.bottom
             )
 
             insets

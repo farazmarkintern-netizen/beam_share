@@ -717,4 +717,11 @@
     <string name="va_option_save_sub">Open in file manager</string>
     <string name="va_option_convert_another">Convert Another Video</string>
 
+    <string name="va_error_title">Conversion Failed</string>
+    <string name="va_error_dialog_title">Conversion Failed</string>
+    <string name="va_error_dialog_message">Something went wrong. Please try again.</string>
+    <string name="va_error_try_again">Try Again</string>
+    <string name="va_error_cancel">Cancel</string>
+    <string name="va_error_try_other_video">Try Other Video</string>
+
 </resources>

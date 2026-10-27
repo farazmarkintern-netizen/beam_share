@@ -1,20 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<androidx.coordinatorlayout.widget.CoordinatorLayout
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/va_bg"
-    tools:context=".videotoaudio.Va02FormatQualityFragment">
+    >
 
+    <!-- HEADER — never scrolls -->
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnBack"
+        style="@style/Widget.Material3.Button.IconButton"
+        android:layout_width="@dimen/_38sdp"
+        android:layout_height="@dimen/_38sdp"
+        android:layout_marginStart="@dimen/_20sdp"
+        android:layout_marginTop="@dimen/_16sdp"
+        android:scaleX="-1"
+        android:backgroundTint="@color/color_white"
+
+        app:icon="@drawable/ic_chevron_right"
+        app:iconTint="@color/va_fg2"
+        app:iconGravity="textStart"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvEyebrow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:fontFamily="@font/inter_semibold"
+        android:includeFontPadding="false"
+        android:letterSpacing="0.05"
+        android:text="@string/va_format_title"
+        android:textColor="@color/va_accent"
+        android:textSize="@dimen/_15ssp"
+        app:layout_constraintStart_toEndOf="@id/btnBack"
+        app:layout_constraintTop_toTopOf="@id/btnBack"
+        app:layout_constraintBottom_toBottomOf="@id/btnBack" />
+
+    <!-- SCROLLABLE CONTENT -->
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-
-        >
+        android:layout_height="0dp"
+        android:fillViewport="false"
+        app:layout_constraintTop_toBottomOf="@id/btnBack"
+        app:layout_constraintBottom_toTopOf="@id/footer">
 
         <LinearLayout
             android:id="@+id/scrollContent"
@@ -26,47 +59,6 @@
             android:paddingTop="@dimen/_10sdp"
             android:paddingBottom="@dimen/_10sdp">
 
-            <!-- Header row -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:layout_marginBottom="@dimen/_16sdp"
-                android:orientation="horizontal">
-
-                <!-- Back button — same as VA01 -->
-                <FrameLayout
-                    android:id="@+id/btnBack"
-                    android:layout_width="@dimen/_38sdp"
-                    android:layout_height="@dimen/_38sdp"
-                    android:background="@drawable/bg_va_back_btn"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:layout_marginEnd="@dimen/_14sdp"
-                    android:foreground="?attr/selectableItemBackgroundBorderless">
-
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:layout_width="@dimen/_25sdp"
-                        android:layout_height="@dimen/_22sdp"
-                        android:layout_gravity="center"
-                        android:scaleX="-1"
-                        android:src="@drawable/ic_chevron_right"
-                        app:tint="@color/va_fg2" />
-                </FrameLayout>
-
-                <!-- Eyebrow label — same accent color as VA01 -->
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/inter_semibold"
-                    android:includeFontPadding="false"
-                    android:letterSpacing="0.05"
-                    android:text="@string/va_format_title"
-                    android:textColor="@color/va_accent"
-                    android:textSize="@dimen/_15ssp" />
-
-            </LinearLayout>
-
             <!-- Steps pill -->
             <include
                 android:id="@+id/stepsPill"
@@ -75,12 +67,15 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/_20sdp" />
 
-            <!-- Selected file chip -->
-            <FrameLayout
+            <!-- Selected file card -->
+            <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/_20sdp"
-                android:background="@drawable/bg_va_surface_r16">
+                app:cardBackgroundColor="@color/va_surface"
+                app:cardCornerRadius="@dimen/_16sdp"
+                app:cardElevation="0dp"
+                app:strokeWidth="0dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -89,12 +84,16 @@
                     android:orientation="horizontal"
                     android:padding="@dimen/_14sdp">
 
-                    <!-- Video icon -->
-                    <FrameLayout
+                    <!-- Video icon card -->
+                    <com.google.android.material.card.MaterialCardView
                         android:layout_width="@dimen/_48sdp"
                         android:layout_height="@dimen/_48sdp"
                         android:layout_marginEnd="@dimen/_14sdp"
-                        android:background="@drawable/bg_va_icon_video_thumb">
+                        app:cardBackgroundColor="@color/va_accent"
+
+                        app:cardCornerRadius="@dimen/_12sdp"
+                        app:cardElevation="0dp"
+                        app:strokeWidth="0dp">
 
                         <androidx.appcompat.widget.AppCompatImageView
                             android:layout_width="@dimen/_22sdp"
@@ -102,7 +101,7 @@
                             android:layout_gravity="center"
                             android:src="@drawable/ic_video"
                             app:tint="@android:color/white" />
-                    </FrameLayout>
+                    </com.google.android.material.card.MaterialCardView>
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -135,10 +134,13 @@
                     </LinearLayout>
 
                     <!-- Check badge -->
-                    <FrameLayout
+                    <com.google.android.material.card.MaterialCardView
                         android:layout_width="@dimen/_28sdp"
                         android:layout_height="@dimen/_28sdp"
-                        android:background="@drawable/bg_va_check_badge">
+                        app:cardBackgroundColor="@color/va_bg"
+                        app:cardCornerRadius="@dimen/_14sdp"
+                        app:cardElevation="0dp"
+                        app:strokeWidth="0dp">
 
                         <androidx.appcompat.widget.AppCompatImageView
                             android:layout_width="@dimen/_14sdp"
@@ -146,9 +148,10 @@
                             android:layout_gravity="center"
                             android:src="@drawable/ic_check_bold"
                             app:tint="@color/va_green" />
-                    </FrameLayout>
+                    </com.google.android.material.card.MaterialCardView>
+
                 </LinearLayout>
-            </FrameLayout>
+            </com.google.android.material.card.MaterialCardView>
 
             <!-- Section: Output format label -->
             <TextView
@@ -163,58 +166,70 @@
                 android:textColor="@color/va_fg2"
                 android:textSize="@dimen/_11ssp" />
 
-            <!-- MP3 info row -->
-            <LinearLayout
+            <!-- MP3 info card -->
+            <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/_20sdp"
-                android:background="@drawable/bg_va_surface_r14"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:padding="@dimen/_14sdp">
-
-                <!-- Icon -->
-                <FrameLayout
-                    android:layout_width="@dimen/_38sdp"
-                    android:layout_height="@dimen/_38sdp"
-                    android:layout_marginEnd="@dimen/_12sdp"
-                    android:background="@drawable/bg_va_info_icon">
-
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:layout_width="@dimen/_18sdp"
-                        android:layout_height="@dimen/_18sdp"
-                        android:layout_gravity="center"
-                        android:src="@drawable/ic_music"
-                        app:tint="@color/va_accent" />
-                </FrameLayout>
+                app:cardBackgroundColor="@color/va_surface"
+                app:cardCornerRadius="@dimen/_14sdp"
+                app:cardElevation="0dp"
+                app:strokeWidth="0dp">
 
                 <LinearLayout
-                    android:layout_width="0dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/_14sdp">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/inter_bold"
-                        android:includeFontPadding="false"
-                        android:text="@string/va_format_mp3_title"
-                        android:textColor="@color/va_fg"
-                        android:textSize="@dimen/_13ssp" />
+                    <!-- Icon card -->
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="@dimen/_38sdp"
+                        android:layout_height="@dimen/_38sdp"
+                        android:layout_marginEnd="@dimen/_12sdp"
+                        app:cardBackgroundColor="@color/va_accent"
 
-                    <TextView
-                        android:layout_width="wrap_content"
+                        app:cardCornerRadius="@dimen/_10sdp"
+                        app:cardElevation="0dp"
+                        app:strokeWidth="0dp">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="@dimen/_18sdp"
+                            android:layout_height="@dimen/_18sdp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/ic_music"
+                            app:tint="@color/color_white" />
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_3sdp"
-                        android:fontFamily="@font/inter"
-                        android:includeFontPadding="false"
-                        android:lineSpacingMultiplier="1.5"
-                        android:text="@string/va_format_mp3_desc"
-                        android:textColor="@color/va_fg2"
-                        android:textSize="@dimen/_12ssp" />
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/inter_bold"
+                            android:includeFontPadding="false"
+                            android:text="@string/va_format_mp3_title"
+                            android:textColor="@color/va_fg"
+                            android:textSize="@dimen/_13ssp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_3sdp"
+                            android:fontFamily="@font/inter"
+                            android:includeFontPadding="false"
+                            android:lineSpacingMultiplier="1.5"
+                            android:text="@string/va_format_mp3_desc"
+                            android:textColor="@color/va_fg2"
+                            android:textSize="@dimen/_12ssp" />
+                    </LinearLayout>
                 </LinearLayout>
-            </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
 
             <!-- Section: Bitrate label -->
             <TextView
@@ -278,59 +293,65 @@
                     android:text="@string/va_bitrate_320" />
             </com.google.android.material.chip.ChipGroup>
 
-            <!-- Estimated size bar -->
-            <LinearLayout
+            <!-- Estimated size card -->
+            <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/bg_va_surface_r14"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:padding="@dimen/_14sdp">
+                app:cardBackgroundColor="@color/va_surface"
+                app:cardCornerRadius="@dimen/_14sdp"
+                app:cardElevation="0dp"
+                app:strokeWidth="0dp">
 
                 <LinearLayout
-                    android:layout_width="0dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/_14sdp">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/inter_semibold"
+                            android:includeFontPadding="false"
+                            android:text="@string/va_est_size_label"
+                            android:textColor="@color/va_fg2"
+                            android:textSize="@dimen/_12ssp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_2sdp"
+                            android:alpha="0.7"
+                            android:fontFamily="@font/inter"
+                            android:includeFontPadding="false"
+                            android:text="@string/va_est_size_note"
+                            android:textColor="@color/va_fg2"
+                            android:textSize="@dimen/_11ssp" />
+                    </LinearLayout>
 
                     <TextView
+                        android:id="@+id/tvEstSize"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/inter_semibold"
+                        android:fontFamily="@font/inter_bold"
                         android:includeFontPadding="false"
-                        android:text="@string/va_est_size_label"
-                        android:textColor="@color/va_fg2"
-                        android:textSize="@dimen/_12ssp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_2sdp"
-                        android:fontFamily="@font/inter"
-                        android:includeFontPadding="false"
-                        android:text="@string/va_est_size_note"
-                        android:textColor="@color/va_fg2"
-                        android:textSize="@dimen/_11ssp"
-                        android:alpha="0.7" />
+                        android:text="@string/va_est_size_default"
+                        android:textColor="@color/va_fg"
+                        android:textSize="@dimen/_22ssp" />
                 </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
 
-                <TextView
-                    android:id="@+id/tvEstSize"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/inter_bold"
-                    android:includeFontPadding="false"
-                    android:text="@string/va_est_size_default"
-                    android:textColor="@color/va_fg"
-                    android:textSize="@dimen/_22ssp" />
-            </LinearLayout>
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_10sdp"/>
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 
-    <!-- Sticky footer -->
+    <!-- STICKY FOOTER -->
     <LinearLayout
         android:id="@+id/footer"
         android:layout_width="match_parent"
@@ -341,7 +362,10 @@
         android:paddingStart="@dimen/_20sdp"
         android:paddingEnd="@dimen/_20sdp"
         android:paddingTop="@dimen/_10sdp"
-        android:paddingBottom="@dimen/_10sdp">
+        android:paddingBottom="@dimen/_10sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
 
         <Button
             android:id="@+id/btnStartConverting"
@@ -351,4 +375,4 @@
             android:text="@string/va_btn_start_converting" />
     </LinearLayout>
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

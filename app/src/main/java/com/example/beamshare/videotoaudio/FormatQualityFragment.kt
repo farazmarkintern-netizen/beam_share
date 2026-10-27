@@ -54,26 +54,20 @@ class FormatQualityFragment : Fragment() {
 
     private fun applyWindowInsets() {
         val initialFooterBottom = binding.footer.paddingBottom
-        val initialScrollBottom = binding.scrollContent.paddingBottom
 
-        ViewCompat.setOnApplyWindowInsetsListener(binding.root) { _, insets ->
-            val systemBars = insets.getInsets(
-                WindowInsetsCompat.Type.systemBars()
-            )
+        ViewCompat.setOnApplyWindowInsetsListener(binding.root) { view, insets ->
+            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
 
-            // Keep the footer above the system navigation bar.
+            // Top padding on root (for status bar)
+            view.updatePadding(top = systemBars.top)
+
+            // Footer gets nav bar inset — that's it
             binding.footer.updatePadding(
                 bottom = initialFooterBottom + systemBars.bottom
             )
 
-            // Recalculate scroll space after the footer is laid out.
-            binding.footer.post {
-                if (_binding != null && binding.footer.height > 0) {
-                    binding.scrollContent.updatePadding(
-                        bottom = initialScrollBottom + binding.footer.height
-                    )
-                }
-            }
+            // NestedScrollView is constrained to footer top, so NO extra padding needed
+            // Removing scrollContent padding was causing the extra empty space
 
             insets
         }

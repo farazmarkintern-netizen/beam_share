@@ -1,18 +1,55 @@
-<?xml version="1.0" encoding="utf-8"?>
-
-<androidx.coordinatorlayout.widget.CoordinatorLayout
+<?xml version="1.0" encoding="utf-8"?><!--
+  VA04 · Done / Success
+  Binding: FragmentVa04DoneBinding
+-->
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/va_bg"
-   >
+    tools:context=".videotoaudio.DoneFragment">
 
+    <!-- HEADER — never scrolls -->
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnBack"
+        style="@style/Widget.Material3.Button.IconButton"
+        android:layout_width="@dimen/_38sdp"
+        android:layout_height="@dimen/_38sdp"
+        android:layout_marginStart="@dimen/_20sdp"
+        android:layout_marginTop="@dimen/_16sdp"
+        android:backgroundTint="@color/color_white"
+        android:scaleX="-1"
+        app:icon="@drawable/ic_chevron_right"
+        app:iconTint="@color/va_fg2"
+        app:iconGravity="textStart"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:fontFamily="@font/inter_semibold"
+        android:includeFontPadding="false"
+        android:letterSpacing="0.05"
+        android:text="@string/va_done_title"
+        android:textColor="@color/va_accent"
+        android:textSize="@dimen/_15ssp"
+        app:layout_constraintStart_toEndOf="@id/btnBack"
+        app:layout_constraintTop_toTopOf="@id/btnBack"
+        app:layout_constraintBottom_toBottomOf="@id/btnBack" />
+
+    <!-- SCROLLABLE CONTENT -->
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="0dp"
+        android:fillViewport="false"
+        app:layout_constraintTop_toBottomOf="@id/btnBack"
+        app:layout_constraintBottom_toTopOf="@id/footer">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/scrollContent"
@@ -20,66 +57,25 @@
             android:layout_height="wrap_content"
             android:paddingStart="@dimen/_20sdp"
             android:paddingEnd="@dimen/_20sdp"
-            android:paddingTop="@dimen/_10sdp"
-            android:paddingBottom="@dimen/_10sdp">
+            android:paddingTop="@dimen/_16sdp"
+            android:paddingBottom="@dimen/_20sdp">
 
-            <!-- ── Back button ── -->
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/btnBack"
-                android:layout_width="@dimen/_38sdp"
-                android:layout_height="@dimen/_38sdp"
-                android:background="@drawable/bg_va_back_btn"
-                android:clickable="true"
-                android:focusable="true"
-                android:foreground="?attr/selectableItemBackgroundBorderless"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:layout_width="@dimen/_25sdp"
-                    android:layout_height="@dimen/_22sdp"
-                    android:scaleX="-1"
-                    android:src="@drawable/ic_chevron_right"
-                    app:tint="@color/va_fg2"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <!-- ── Screen title ── -->
-            <TextView
-                android:id="@+id/tvTitle"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_14sdp"
-                android:fontFamily="@font/inter_bold"
-                android:includeFontPadding="false"
-                android:text="@string/va_done_title"
-                android:textColor="@color/va_accent"
-                android:textSize="@dimen/_17ssp"
-                app:layout_constraintBottom_toBottomOf="@id/btnBack"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/btnBack"
-                app:layout_constraintTop_toTopOf="@id/btnBack" />
-
-            <!-- ── Steps pill ── -->
+            <!-- Steps pill -->
             <include
                 android:id="@+id/stepsPill"
                 layout="@layout/include_va_steps_pill"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_16sdp"
+                android:layout_marginBottom="@dimen/_20sdp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/btnBack" />
+                app:layout_constraintTop_toTopOf="parent" />
 
-            <!-- ── Success hero: green glow + check ring ── -->
+            <!-- Success hero: green glow -->
             <View
                 android:id="@+id/heroGlow"
                 android:layout_width="@dimen/_160sdp"
                 android:layout_height="@dimen/_160sdp"
-                android:layout_marginTop="@dimen/_20sdp"
                 android:background="@drawable/bg_va_hero_glow_green"
                 android:importantForAccessibility="no"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -108,7 +104,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <!-- ── Success labels ── -->
+            <!-- Success labels -->
             <TextView
                 android:id="@+id/tvDoneHeroTitle"
                 android:layout_width="wrap_content"
@@ -139,7 +135,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tvDoneHeroTitle" />
 
-            <!-- ── Output file card ── -->
+            <!-- Output file card -->
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/cardAudioFile"
                 android:layout_width="0dp"
@@ -228,7 +224,7 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/ivMusicIcon" />
 
-                    <!-- Stats: Size / Bitrate / Duration -->
+                    <!-- Stats row: Size / Bitrate / Duration -->
                     <TextView
                         android:id="@+id/tvOutputSize"
                         android:layout_width="0dp"
@@ -321,47 +317,35 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
 
-    <!-- ── Sticky footer: Save + Share ── -->
-    <com.google.android.material.card.MaterialCardView
+    <!-- STICKY FOOTER: Save + Share -->
+    <LinearLayout
         android:id="@+id/footer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        app:cardBackgroundColor="@color/va_surface"
-        app:cardCornerRadius="0dp"
-        app:cardElevation="8dp"
-        app:strokeWidth="0dp">
+        android:background="@color/va_surface"
+        android:orientation="vertical"
+        android:paddingStart="@dimen/_20sdp"
+        android:paddingEnd="@dimen/_20sdp"
+        android:paddingTop="@dimen/_10sdp"
+        android:paddingBottom="@dimen/_10sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <Button
+            android:id="@+id/btnFooterSave"
+            style="@style/Widget.BeamShare.Button.VaGreen"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingStart="@dimen/_20sdp"
-            android:paddingEnd="@dimen/_20sdp"
-            android:paddingTop="@dimen/_10sdp"
-            android:paddingBottom="@dimen/_10sdp">
+            android:layout_height="@dimen/_52sdp"
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:text="@string/va_btn_save_device" />
 
-            <Button
-                android:id="@+id/btnFooterSave"
-                style="@style/Widget.BeamShare.Button.VaGreen"
-                android:layout_width="0dp"
-                android:layout_height="@dimen/_52sdp"
-                android:text="@string/va_btn_save_device"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+        <Button
+            android:id="@+id/btnFooterShare"
+            style="@style/Widget.BeamShare.Button.VaSecondary"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_44sdp"
+            android:text="@string/va_btn_share_file" />
+    </LinearLayout>
 
-            <Button
-                android:id="@+id/btnFooterShare"
-                style="@style/Widget.BeamShare.Button.VaSecondary"
-                android:layout_width="0dp"
-                android:layout_height="@dimen/_44sdp"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:text="@string/va_btn_share_file"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/btnFooterSave" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </com.google.android.material.card.MaterialCardView>
-
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

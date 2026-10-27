@@ -1,91 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/va_bg"
-    android:fillViewport="true"
-    tools:context=".videotoaudio.Va01SelectVideoFragment">
+    tools:context=".videotoaudio.VideoToAudioFragment">
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <!-- HEADER — never scrolls -->
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnBack"
+        style="@style/Widget.Material3.Button.IconButton"
+        android:layout_width="@dimen/_38sdp"
+        android:backgroundTint="@color/color_white"
+        android:layout_height="@dimen/_38sdp"
+        android:layout_marginStart="@dimen/_20sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        app:icon="@drawable/ic_chevron_right"
+        app:iconTint="@color/va_fg2"
+        app:iconGravity="textStart"
+        android:scaleX="-1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvEyebrow"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_marginStart="@dimen/_10sdp"
+        android:fontFamily="@font/inter_semibold"
+        android:includeFontPadding="false"
+        android:letterSpacing="0.05"
+        android:text="@string/va_eyebrow"
+        android:textColor="@color/va_accent"
+        android:textSize="@dimen/_15ssp"
+        app:layout_constraintStart_toEndOf="@id/btnBack"
+        app:layout_constraintTop_toTopOf="@id/btnBack"
+        app:layout_constraintBottom_toBottomOf="@id/btnBack" />
 
-        <!-- ═══════════════════════════════════════
-             HERO SECTION
-             ═══════════════════════════════════════ -->
-        <androidx.constraintlayout.widget.ConstraintLayout
+    <!-- SCROLLABLE CONTENT -->
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        app:layout_constraintTop_toBottomOf="@id/btnBack"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <!-- Blue radial glow -->
-            <View
-                android:id="@+id/glowBlue"
-                android:layout_width="@dimen/_280sdp"
-                android:layout_height="@dimen/_280sdp"
-                android:background="@drawable/bg_va_hero_glow_blue"
-                android:importantForAccessibility="no"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:layout_marginTop="@dimen/_minus60sdp" />
-
-            <!-- Purple glow (top-right) -->
-            <View
-                android:id="@+id/glowPurple"
-                android:layout_width="@dimen/_180sdp"
-                android:layout_height="@dimen/_180sdp"
-                android:background="@drawable/bg_va_hero_glow_purple"
-                android:importantForAccessibility="no"
-                android:layout_marginTop="@dimen/_20sdp"
-                android:layout_marginEnd="@dimen/_minus40sdp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <!-- Back button — same style as VA02 -->
-            <FrameLayout
-                android:id="@+id/btnBack"
-                android:layout_width="@dimen/_38sdp"
-                android:layout_height="@dimen/_38sdp"
-                android:layout_marginStart="@dimen/_20sdp"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:background="@drawable/bg_va_back_btn"
-                android:clickable="true"
-                android:focusable="true"
-                android:foreground="?attr/selectableItemBackgroundBorderless"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="@id/tvEyebrow">
-
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:layout_width="@dimen/_25sdp"
-                    android:layout_height="@dimen/_22sdp"
-                    android:layout_gravity="center"
-                    android:scaleX="-1"
-                    android:src="@drawable/ic_chevron_right"
-                    app:tint="@color/va_fg2" />
-            </FrameLayout>
-
-            <!-- Eyebrow label -->
-            <TextView
-                android:id="@+id/tvEyebrow"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_10sdp"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:fontFamily="@font/inter_semibold"
-                android:includeFontPadding="false"
-                android:letterSpacing="0.05"
-                android:text="@string/va_eyebrow"
-                android:textColor="@color/va_accent"
-                android:textSize="@dimen/_15ssp"
-                app:layout_constraintStart_toEndOf="@id/btnBack"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="@id/btnBack" />
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingTop="@dimen/_16sdp">
 
             <!-- Title -->
             <TextView
@@ -93,7 +60,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_20sdp"
-                android:layout_marginTop="@dimen/_16sdp"
                 android:layout_marginBottom="@dimen/_8sdp"
                 android:fontFamily="@font/inter_bold"
                 android:textStyle="bold"
@@ -101,9 +67,7 @@
                 android:lineSpacingMultiplier="1.2"
                 android:text="@string/va_select_title"
                 android:textColor="@color/va_fg"
-                android:textSize="@dimen/_26ssp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/btnBack" />
+                android:textSize="@dimen/_26ssp" />
 
             <!-- Subtitle -->
             <TextView
@@ -111,191 +75,145 @@
                 android:layout_width="@dimen/_300sdp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_20sdp"
-                android:layout_marginBottom="@dimen/_28sdp"
+                android:layout_marginBottom="@dimen/_20sdp"
                 android:fontFamily="@font/inter"
                 android:includeFontPadding="false"
                 android:lineSpacingMultiplier="1.6"
                 android:text="@string/va_select_subtitle"
                 android:textColor="@color/va_fg2"
-                android:textSize="@dimen/_13ssp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tvHeroTitle"
-                app:layout_constraintBottom_toBottomOf="parent" />
+                android:textSize="@dimen/_13ssp" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <!-- ═══════════════════════════════════════
-             STEPS PILL
-             ═══════════════════════════════════════ -->
-        <include
-            android:id="@+id/stepsPill"
-            layout="@layout/include_va_steps_pill"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_20sdp"
-            android:layout_marginEnd="@dimen/_20sdp"
-            android:layout_marginBottom="@dimen/_24sdp" />
-
-        <!-- ═══════════════════════════════════════
-             DROP ZONE
-             ═══════════════════════════════════════ -->
-        <FrameLayout
-            android:id="@+id/dropZone"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_20sdp"
-            android:layout_marginEnd="@dimen/_20sdp"
-            android:layout_marginBottom="@dimen/_20sdp"
-            android:background="@drawable/bg_va_dropzone"
-            android:clickable="true"
-            android:focusable="true"
-            android:foreground="?attr/selectableItemBackground">
-
-            <LinearLayout
+            <!-- Steps Pill -->
+            <include
+                android:id="@+id/stepsPill"
+                layout="@layout/include_va_steps_pill"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:paddingStart="@dimen/_20sdp"
-                android:paddingEnd="@dimen/_20sdp"
-                android:paddingTop="@dimen/_36sdp"
-                android:paddingBottom="@dimen/_36sdp">
+                android:layout_marginStart="@dimen/_20sdp"
+                android:layout_marginEnd="@dimen/_20sdp"
+                android:layout_marginBottom="@dimen/_20sdp" />
 
-                <!-- Upload icon box -->
-                <FrameLayout
-                    android:layout_width="@dimen/_56sdp"
-                    android:layout_height="@dimen/_56sdp"
-                    android:layout_marginBottom="@dimen/_12sdp"
-                    android:background="@drawable/bg_va_dz_icon">
+            <!-- Drop Zone Card -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/dropZone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_20sdp"
+                android:layout_marginEnd="@dimen/_20sdp"
+                android:layout_marginBottom="@dimen/_20sdp"
+                android:clickable="true"
+                android:focusable="true"
+                app:cardBackgroundColor="@color/va_bg"
+                app:cardCornerRadius="@dimen/_16sdp"
+                app:cardElevation="0dp"
+                app:strokeColor="@color/va_accent"
+                app:strokeWidth="@dimen/_1sdp">
 
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:layout_width="@dimen/_26sdp"
-                        android:layout_height="@dimen/_26sdp"
-                        android:layout_gravity="center"
-                        android:src="@drawable/ic_va_upload"
-                        app:tint="@color/va_accent" />
-                </FrameLayout>
-
-                <TextView
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/_6sdp"
-                    android:fontFamily="@font/inter_bold"
-                    android:textStyle="bold"
-                    android:includeFontPadding="false"
-                    android:text="@string/va_dz_title"
-                    android:textColor="@color/va_fg"
-                    android:textSize="@dimen/_15ssp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/_14sdp"
-                    android:fontFamily="@font/inter"
                     android:gravity="center"
-                    android:includeFontPadding="false"
-                    android:lineSpacingMultiplier="1.5"
-                    android:text="@string/va_dz_subtitle"
-                    android:textColor="@color/va_fg2"
-                    android:textSize="@dimen/_12ssp" />
+                    android:orientation="vertical"
+                    android:paddingStart="@dimen/_20sdp"
+                    android:paddingEnd="@dimen/_20sdp"
+                    android:paddingTop="@dimen/_24sdp"
+                    android:paddingBottom="@dimen/_24sdp">
 
-                <!-- Format chips -->
-                <com.google.android.material.chip.ChipGroup
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:chipSpacingHorizontal="@dimen/_6sdp"
-                    app:chipSpacingVertical="@dimen/_4sdp"
-                    app:singleLine="false">
+                    <!-- Upload icon card -->
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="@dimen/_56sdp"
+                        android:layout_height="@dimen/_56sdp"
+                        android:layout_marginBottom="@dimen/_12sdp"
+                        app:cardBackgroundColor="@color/va_bg"
+                        app:cardCornerRadius="@dimen/_14sdp"
+                        app:cardElevation="0dp"
+                        app:strokeColor="@color/va_accent"
+                        app:strokeWidth="@dimen/_1sdp">
 
-                    <com.google.android.material.chip.Chip
-                        style="@style/Widget.BeamShare.Chip.VaFormat.Accent"
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="@dimen/_26sdp"
+                            android:layout_height="@dimen/_26sdp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/ic_va_upload"
+                            app:tint="@color/va_accent" />
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/va_fmt_mp4" />
+                        android:layout_marginBottom="@dimen/_6sdp"
+                        android:fontFamily="@font/inter_bold"
+                        android:textStyle="bold"
+                        android:includeFontPadding="false"
+                        android:text="@string/va_dz_title"
+                        android:textColor="@color/va_fg"
+                        android:textSize="@dimen/_15ssp" />
 
-                    <com.google.android.material.chip.Chip
-                        style="@style/Widget.BeamShare.Chip.VaFormat.Accent"
+                    <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/va_fmt_mov" />
+                        android:layout_marginBottom="@dimen/_14sdp"
+                        android:fontFamily="@font/inter"
+                        android:gravity="center"
+                        android:includeFontPadding="false"
+                        android:lineSpacingMultiplier="1.5"
+                        android:text="@string/va_dz_subtitle"
+                        android:textColor="@color/va_fg2"
+                        android:textSize="@dimen/_12ssp" />
 
-                    <com.google.android.material.chip.Chip
-                        style="@style/Widget.BeamShare.Chip.VaFormat"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/va_fmt_mkv" />
 
-                    <com.google.android.material.chip.Chip
-                        style="@style/Widget.BeamShare.Chip.VaFormat"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/va_fmt_avi" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
 
-                    <com.google.android.material.chip.Chip
-                        style="@style/Widget.BeamShare.Chip.VaFormat"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/va_fmt_webm" />
-                </com.google.android.material.chip.ChipGroup>
-            </LinearLayout>
-        </FrameLayout>
-
-        <!-- ═══════════════════════════════════════
-             RECENT VIDEOS
-             ═══════════════════════════════════════ -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_20sdp"
-            android:layout_marginEnd="@dimen/_20sdp"
-            android:layout_marginBottom="@dimen/_20sdp"
-            android:orientation="vertical">
-
-            <!-- Section header -->
+            <!-- Recent Videos -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/_12sdp"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
+                android:layout_marginStart="@dimen/_20sdp"
+                android:layout_marginEnd="@dimen/_20sdp"
+                android:layout_marginBottom="@dimen/_20sdp"
+                android:orientation="vertical">
 
-                <TextView
-                    android:layout_width="0dp"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/inter_bold"
-                    android:includeFontPadding="false"
-                    android:text="@string/va_recent_title"
-                    android:textColor="@color/va_fg"
-                    android:textSize="@dimen/_13ssp" />
+                    android:layout_marginBottom="@dimen/_12sdp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
 
-                <TextView
-                    android:id="@+id/tvSeeAll"
-                    android:layout_width="wrap_content"
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/inter_bold"
+                        android:includeFontPadding="false"
+                        android:text="@string/va_recent_title"
+                        android:textColor="@color/va_fg"
+                        android:textSize="@dimen/_13ssp" />
+
+                    <TextView
+                        android:id="@+id/tvSeeAll"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:fontFamily="@font/inter_semibold"
+                        android:includeFontPadding="false"
+                        android:text="@string/va_see_all"
+                        android:textColor="@color/va_accent"
+                        android:textSize="@dimen/_12ssp" />
+                </LinearLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvRecentVideos"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:fontFamily="@font/inter_semibold"
-                    android:includeFontPadding="false"
-                    android:text="@string/va_see_all"
-                    android:textColor="@color/va_accent"
-                    android:textSize="@dimen/_12ssp" />
+                    android:nestedScrollingEnabled="false"
+                    tools:itemCount="3"
+                    tools:listitem="@layout/item_va_recent_video" />
             </LinearLayout>
 
-            <!-- Recent list -->
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvRecentVideos"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:nestedScrollingEnabled="false"
-                tools:itemCount="3"
-                tools:listitem="@layout/item_va_recent_video" />
         </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
 
-        <!-- Bottom spacer -->
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_10sdp" />
-
-    </LinearLayout>
-</androidx.core.widget.NestedScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -84,10 +84,12 @@ class MainActivity : AppCompatActivity() {
                 WindowInsetsCompat.Type.systemBars()
             )
 
-            // Apply the status-bar inset consistently.
+            val isVa = ::navController.isInitialized && navController.currentDestination?.id in vaFragments
+
+            // For VA fragments, don't pad root top so VA fragment background extends behind status bar.
             view.setPadding(
                 rootLeft,
-                rootTop + bars.top,
+                if (isVa) 0 else rootTop + bars.top,
                 rootRight,
                 rootBottom
             )
@@ -96,7 +98,7 @@ class MainActivity : AppCompatActivity() {
             bottomNav.setPadding(
                 navLeft,
                 navTop,
-                navRight,
+                 navRight,
                 navBottom + if (bottomNav.visibility == View.VISIBLE) {
                     bars.bottom
                 } else {
