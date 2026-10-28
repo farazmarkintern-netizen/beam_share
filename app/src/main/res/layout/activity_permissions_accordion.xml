@@ -1,366 +1,111 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--
-  Permissions screen — Cocoon-style grouped toggle rows.
-  Each card group uses a MaterialCardView wrapper; rows inside use
-  @layout/item_permission_card_toggle (ivIcon, tvTitle, tvSubtitle, switchToggle).
-  Dividers between rows are drawn via insetDivider on a DividerItemDecoration
-  in code — no XML dividers here.
--->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/bg_screen"
-    tools:context=".permissions.PermissionsActivity">
+    android:background="@color/bs_white">
 
-    <!-- ── Sticky header ──────────────────────────────────────────────── -->
-    <LinearLayout
-        android:id="@+id/headerLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center_vertical"
-        android:paddingLeft="@dimen/_16sdp"
-        android:paddingRight="@dimen/_16sdp"
-        android:paddingTop="@dimen/_12sdp"
-        android:paddingBottom="@dimen/_12sdp"
-        android:background="@color/bg_screen"
-        android:elevation="@dimen/_2sdp">
-
-        <ImageButton
-            android:id="@+id/btnBack"
-            android:layout_width="@dimen/_36sdp"
-            android:layout_height="@dimen/_36sdp"
-            android:background="@drawable/bg_btn_back"
-            android:src="@drawable/ic_arrow_back"
-            android:contentDescription="@string/back"
-            android:padding="@dimen/_8sdp" />
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:layout_marginStart="@dimen/_12sdp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/perm_header_title"
-                android:textSize="@dimen/_17ssp"
-                android:textStyle="bold"
-                android:textColor="@color/fg_primary" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/perm_header_sub"
-                android:textSize="@dimen/_13ssp"
-                android:textColor="@color/fg_secondary"
-                android:layout_marginTop="@dimen/_2sdp" />
-
-        </LinearLayout>
-
-    </LinearLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/_1sdp"
-        android:background="@color/divider" />
-
-    <!-- ── Scrollable content ─────────────────────────────────────────── -->
+    <!-- ── Scrollable content ── -->
     <androidx.core.widget.NestedScrollView
         android:id="@+id/nestedScrollView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:fillViewport="true"
-        android:clipToPadding="false"
-        android:paddingBottom="@dimen/_16sdp">
+        android:clipToPadding="false">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingLeft="@dimen/_16sdp"
-            android:paddingRight="@dimen/_16sdp"
-            android:paddingTop="@dimen/_16sdp">
-
-            <!-- ── Privacy trust banner ──────────────────────────────── -->
-            <com.google.android.material.card.MaterialCardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/_20sdp"
-                app:cardCornerRadius="@dimen/_14sdp"
-                app:cardElevation="0dp"
-                app:strokeWidth="@dimen/_1sdp"
-                app:strokeColor="@color/accent_soft_border"
-                app:cardBackgroundColor="@color/accent_soft_bg">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:padding="@dimen/_14sdp"
-                    android:gravity="top">
-
-                    <ImageView
-                        android:layout_width="@dimen/_38sdp"
-                        android:layout_height="@dimen/_38sdp"
-                        android:src="@drawable/ic_shield_check"
-                        android:background="@drawable/bg_icon_accent"
-                        android:padding="@dimen/_9sdp"
-                        android:contentDescription="@null" />
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical"
-                        android:layout_marginStart="@dimen/_12sdp">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/perm_banner_title"
-                            android:textSize="@dimen/_13ssp"
-                            android:textStyle="bold"
-                            android:textColor="@color/fg_primary" />
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="@string/perm_banner_body"
-                            android:textSize="@dimen/_12ssp"
-                            android:textColor="@color/fg_secondary"
-                            android:layout_marginTop="@dimen/_3sdp"
-                            android:lineSpacingMultiplier="1.4" />
-
-                    </LinearLayout>
-                </LinearLayout>
-            </com.google.android.material.card.MaterialCardView>
-
-            <!-- ════════════════════════════════════════════════════════ -->
-            <!-- Wi-Fi & Network group                                   -->
-            <!-- ════════════════════════════════════════════════════════ -->
+            android:paddingHorizontal="@dimen/_20sdp"
+            android:paddingTop="@dimen/_8sdp"
+            android:paddingBottom="@dimen/_20sdp">
+            <!-- Title -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/section_wifi"
-                style="@style/SectionLabel"
-                android:layout_marginBottom="@dimen/_8sdp" />
+                android:layout_gravity="center_horizontal"
+                android:text="@string/perm_header_title"
+                android:textSize="@dimen/_22ssp"
+                android:fontFamily="@font/pjs_extra_bold"
+                android:textColor="@color/bs_dark"
+                android:gravity="center" />
 
-            <com.google.android.material.card.MaterialCardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/_20sdp"
-                app:cardCornerRadius="@dimen/_14sdp"
-                app:cardElevation="0dp"
-                app:strokeWidth="0dp"
-                app:cardBackgroundColor="@color/perm_card_bg">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <!-- Row: Wi-Fi Direct -->
-                    <include
-                        layout="@layout/item_permission_card_toggle"
-                        android:id="@+id/cardWifiDirect"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/_1sdp"
-                        android:layout_marginStart="@dimen/_70sdp"
-                        android:background="@color/divider" />
-
-                    <!-- Row: Location -->
-                    <include
-                        layout="@layout/item_permission_card_toggle"
-                        android:id="@+id/cardLocation"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
-
-                </LinearLayout>
-            </com.google.android.material.card.MaterialCardView>
-
-            <!-- ════════════════════════════════════════════════════════ -->
-            <!-- Bluetooth group                                         -->
-            <!-- ════════════════════════════════════════════════════════ -->
+            <!-- Subtitle -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/section_bluetooth"
-                style="@style/SectionLabel"
-                android:layout_marginBottom="@dimen/_8sdp" />
-
-            <com.google.android.material.card.MaterialCardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/_20sdp"
-                app:cardCornerRadius="@dimen/_14sdp"
-                app:cardElevation="0dp"
-                app:strokeWidth="0dp"
-                app:cardBackgroundColor="@color/perm_card_bg">
-
-                <!-- Row: Bluetooth -->
-                <include
-                    layout="@layout/item_permission_card_toggle"
-                    android:id="@+id/cardBluetooth"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-
-            </com.google.android.material.card.MaterialCardView>
-
-            <!-- ════════════════════════════════════════════════════════ -->
-            <!-- Files & Storage group                                   -->
-            <!-- ════════════════════════════════════════════════════════ -->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/section_storage"
-                style="@style/SectionLabel"
-                android:layout_marginBottom="@dimen/_8sdp" />
-
-            <com.google.android.material.card.MaterialCardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/_20sdp"
-                app:cardCornerRadius="@dimen/_14sdp"
-                app:cardElevation="0dp"
-                app:strokeWidth="0dp"
-                app:cardBackgroundColor="@color/perm_card_bg">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <!-- Row: Read Files -->
-                    <include
-                        layout="@layout/item_permission_card_toggle"
-                        android:id="@+id/cardReadFiles"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/_1sdp"
-                        android:layout_marginStart="@dimen/_70sdp"
-                        android:background="@color/divider" />
-
-                    <!-- Row: Save Files -->
-                    <include
-                        layout="@layout/item_permission_card_toggle"
-                        android:id="@+id/cardSaveFiles"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
-
-                </LinearLayout>
-            </com.google.android.material.card.MaterialCardView>
-
-            <!-- ════════════════════════════════════════════════════════ -->
-            <!-- Other group (Camera · Contacts · Notifications · Install)-->
-            <!-- ════════════════════════════════════════════════════════ -->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/section_camera"
-                style="@style/SectionLabel"
-                android:layout_marginBottom="@dimen/_8sdp" />
-
-            <com.google.android.material.card.MaterialCardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/_20sdp"
-                app:cardCornerRadius="@dimen/_14sdp"
-                app:cardElevation="0dp"
-                app:strokeWidth="0dp"
-                app:cardBackgroundColor="@color/perm_card_bg">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <!-- Row: Camera -->
-                    <include
-                        layout="@layout/item_permission_card_toggle"
-                        android:id="@+id/cardCamera"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/_1sdp"
-                        android:layout_marginStart="@dimen/_70sdp"
-                        android:background="@color/divider" />
-
-                    <!-- Row: Contacts -->
-                    <include
-                        layout="@layout/item_permission_card_toggle"
-                        android:id="@+id/cardContacts"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/_1sdp"
-                        android:layout_marginStart="@dimen/_70sdp"
-                        android:background="@color/divider" />
-
-                    <!-- Row: Notifications -->
-                    <include
-                        layout="@layout/item_permission_card_toggle"
-                        android:id="@+id/cardNotifications"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/_1sdp"
-                        android:layout_marginStart="@dimen/_70sdp"
-                        android:background="@color/divider" />
-
-                    <!-- Row: Install Apps -->
-                    <include
-                        layout="@layout/item_permission_card_toggle"
-                        android:id="@+id/cardInstallPackages"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
-
-                </LinearLayout>
-            </com.google.android.material.card.MaterialCardView>
-
-            <!-- ── CTA ──────────────────────────────────────────────── -->
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnGrantPermissions"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_52sdp"
-                android:text="@string/perm_btn_grant"
-                android:textSize="@dimen/_15ssp"
-                android:textStyle="bold"
-                app:cornerRadius="@dimen/_14sdp"
-                app:backgroundTint="@color/accent" />
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnSkip"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/perm_btn_skip"
+                android:layout_gravity="center_horizontal"
+                android:text="@string/perm_header_sub"
                 android:textSize="@dimen/_13ssp"
-                android:textColor="@color/fg_secondary"
-                android:layout_marginTop="@dimen/_4sdp"
-                style="@style/Widget.MaterialComponents.Button.TextButton"
-                app:backgroundTint="@android:color/transparent" />
+                android:fontFamily="@font/pjs_medium"
+                android:textColor="@color/bs_dark2"
+                android:gravity="center"
+                android:layout_marginTop="@dimen/_6sdp"
+                android:layout_marginBottom="@dimen/_20sdp" />
 
+            <!-- Hero Image -->
+            <ImageView
+                android:layout_width="@dimen/_160sdp"
+                android:layout_height="@dimen/_160sdp"
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/ic_permission_hero"
+                android:contentDescription="@null"
+                android:layout_marginBottom="@dimen/_16sdp" />
+
+
+            <!-- Permission rows -->
+            <include android:id="@+id/cardWifiDirect"   layout="@layout/item_permission_card_toggle" android:layout_width="match_parent" android:layout_height="wrap_content" />
+            <include android:id="@+id/cardLocation"     layout="@layout/item_permission_card_toggle" android:layout_width="match_parent" android:layout_height="wrap_content" />
+            <include android:id="@+id/cardBluetooth"    layout="@layout/item_permission_card_toggle" android:layout_width="match_parent" android:layout_height="wrap_content" />
+            <include android:id="@+id/cardReadFiles"    layout="@layout/item_permission_card_toggle" android:layout_width="match_parent" android:layout_height="wrap_content" />
+            <include android:id="@+id/cardSaveFiles"    layout="@layout/item_permission_card_toggle" android:layout_width="match_parent" android:layout_height="wrap_content" />
+            <include android:id="@+id/cardCamera"       layout="@layout/item_permission_card_toggle" android:layout_width="match_parent" android:layout_height="wrap_content" />
+            <include android:id="@+id/cardContacts"     layout="@layout/item_permission_card_toggle" android:layout_width="match_parent" android:layout_height="wrap_content" />
+            <include android:id="@+id/cardNotifications" layout="@layout/item_permission_card_toggle" android:layout_width="match_parent" android:layout_height="wrap_content" />
+            <include android:id="@+id/cardInstallPackages" layout="@layout/item_permission_card_toggle" android:layout_width="match_parent" android:layout_height="wrap_content" />
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
+
+    <!-- ── Bottom buttons ── -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingHorizontal="@dimen/_20sdp"
+        android:paddingTop="@dimen/_12sdp"
+        android:paddingBottom="@dimen/_10sdp"
+        android:background="@color/bs_white">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnGrantPermissions"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_52sdp"
+            android:text="@string/perm_btn_grant"
+            android:textSize="@dimen/_15ssp"
+            android:fontFamily="@font/pjs_extra_bold"
+            android:textColor="@color/bs_white"
+            android:background="@drawable/btn_next_gradient"
+            app:backgroundTint="@null"
+            app:cornerRadius="@dimen/_26sdp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnSkip"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_52sdp"
+            android:text="@string/perm_btn_skip"
+            android:textSize="@dimen/_13ssp"
+            android:textAllCaps="false"
+            android:fontFamily="@font/pjs_medium"
+            android:textColor="@color/bs_dark"
+            android:layout_marginTop="@dimen/_10sdp"
+            app:cornerRadius="@dimen/_16sdp"
+            app:strokeColor="@color/bs_dark2"
+            app:strokeWidth="1dp"
+            app:backgroundTint="@android:color/transparent" />
+
+    </LinearLayout>
 
 </LinearLayout>

@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- res/layout/activity_main.xml -->
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -19,151 +18,208 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@id/bottomNavigation" />
 
-    <!-- ====== CUSTOM BOTTOM NAVIGATION BAR ====== -->
-    <LinearLayout
+    <!-- Bottom Navigation Card -->
+    <com.google.android.material.card.MaterialCardView
         android:id="@+id/bottomNavigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:minHeight="@dimen/_56sdp"
-        android:background="@drawable/bg_bottom_nav_bar"
-        android:orientation="horizontal"
-        android:gravity="center_vertical"
-        android:paddingHorizontal="@dimen/_16sdp"
-        app:layout_constraintBottom_toBottomOf="parent">
+        android:layout_marginHorizontal="@dimen/_12sdp"
+        android:layout_marginBottom="@dimen/_12sdp"
+        app:cardCornerRadius="@dimen/_28sdp"
+        app:cardElevation="@dimen/_8sdp"
+        app:cardBackgroundColor="@color/bs_white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
 
-        <!-- Home Tab -->
-        <LinearLayout
-            android:id="@+id/navHome"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:gravity="center"
-            android:paddingVertical="@dimen/_6sdp"
-            android:clickable="true"
-            android:focusable="true">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_60sdp"
+            android:paddingHorizontal="@dimen/_8sdp">
 
-            <FrameLayout
-                android:layout_width="@dimen/_40sdp"
-                android:layout_height="@dimen/_28sdp"
-                android:layout_marginBottom="@dimen/_2sdp">
+            <!-- Home Tab -->
+            <LinearLayout
+                android:id="@+id/navHome"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:clickable="true"
+                android:focusable="true"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/navTransfers"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintHorizontal_chainStyle="spread">
 
-                <!-- Active Indicator Pill -->
-                <View
-                    android:id="@+id/indicatorHome"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/bg_nav_indicator"
-                    android:visibility="visible" />
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/_34sdp">
 
-                <ImageView
-                    android:id="@+id/iconHome"
-                    android:layout_width="@dimen/_20sdp"
-                    android:layout_height="@dimen/_20sdp"
-                    android:layout_gravity="center"
-                    android:src="@drawable/ic_home"
-                    app:tint="@color/color_primary"
-                    android:contentDescription="@string/nav_home" />
-            </FrameLayout>
+                    <View
+                        android:id="@+id/indicatorHome"
+                        android:layout_width="@dimen/_76sdp"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/bg_nav_indicator"
+                        android:visibility="visible"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent" />
 
-            <TextView
-                android:id="@+id/labelHome"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/nav_home"
-                android:textColor="@color/color_primary"
-                android:textSize="@dimen/_10ssp"
-                android:fontFamily="@font/inter_medium" />
-        </LinearLayout>
+                    <ImageView
+                        android:id="@+id/iconHome"
+                        android:layout_width="@dimen/_18sdp"
+                        android:layout_height="@dimen/_18sdp"
+                        android:src="@drawable/ic_home"
+                        app:tint="@color/bs_blue"
+                        android:contentDescription="@string/nav_home"
+                        android:layout_marginStart="@dimen/_12sdp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent" />
 
-        <!-- Transfers Tab -->
-        <LinearLayout
-            android:id="@+id/navTransfers"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:gravity="center"
-            android:paddingVertical="@dimen/_6sdp"
-            android:clickable="true"
-            android:focusable="true">
+                    <TextView
+                        android:id="@+id/labelHome"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/nav_home"
+                        android:textColor="@color/bs_blue"
+                        android:textSize="@dimen/_12ssp"
+                        android:fontFamily="@font/pjs_extra_bold"
+                        android:layout_marginStart="@dimen/_5sdp"
+                        android:layout_marginEnd="@dimen/_12sdp"
+                        app:layout_constraintStart_toEndOf="@id/iconHome"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent" />
 
-            <FrameLayout
-                android:layout_width="@dimen/_40sdp"
-                android:layout_height="@dimen/_28sdp"
-                android:layout_marginBottom="@dimen/_2sdp">
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
-                <View
-                    android:id="@+id/indicatorTransfers"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/bg_nav_indicator"
-                    android:visibility="invisible" />
+            </LinearLayout>
 
-                <ImageView
-                    android:id="@+id/iconTransfers"
-                    android:layout_width="@dimen/_20sdp"
-                    android:layout_height="@dimen/_20sdp"
-                    android:layout_gravity="center"
-                    android:src="@drawable/ic_clock"
-                    app:tint="@color/color_text_tertiary"
-                    android:contentDescription="@string/nav_transfers" />
-            </FrameLayout>
+            <!-- Transfers Tab -->
+            <LinearLayout
+                android:id="@+id/navTransfers"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:clickable="true"
+                android:focusable="true"
+                app:layout_constraintStart_toEndOf="@id/navHome"
+                app:layout_constraintEnd_toStartOf="@id/navSettings"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent">
 
-            <TextView
-                android:id="@+id/labelTransfers"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/nav_transfers"
-                android:textColor="@color/color_text_tertiary"
-                android:textSize="@dimen/_10ssp"
-                android:fontFamily="@font/inter_medium" />
-        </LinearLayout>
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/_34sdp">
 
-        <!-- Settings Tab -->
-        <LinearLayout
-            android:id="@+id/navSettings"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:gravity="center"
-            android:paddingVertical="@dimen/_6sdp"
-            android:clickable="true"
-            android:focusable="true">
+                    <View
+                        android:id="@+id/indicatorTransfers"
+                        android:layout_width="@dimen/_76sdp"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/bg_nav_indicator"
+                        android:visibility="invisible"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent" />
 
-            <FrameLayout
-                android:layout_width="@dimen/_40sdp"
-                android:layout_height="@dimen/_28sdp"
-                android:layout_marginBottom="@dimen/_2sdp">
+                    <ImageView
+                        android:id="@+id/iconTransfers"
+                        android:layout_width="@dimen/_18sdp"
+                        android:layout_height="@dimen/_18sdp"
+                        android:src="@drawable/ic_history"
+                        app:tint="@color/bs_dark2"
+                        android:contentDescription="@string/nav_transfers"
+                        android:layout_marginStart="@dimen/_12sdp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent" />
 
-                <View
-                    android:id="@+id/indicatorSettings"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/bg_nav_indicator"
-                    android:visibility="invisible" />
+                    <TextView
+                        android:id="@+id/labelTransfers"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/nav_transfers"
+                        android:textColor="@color/bs_dark2"
+                        android:textSize="@dimen/_12ssp"
+                        android:fontFamily="@font/pjs_medium"
+                        android:layout_marginStart="@dimen/_5sdp"
+                        android:layout_marginEnd="@dimen/_12sdp"
+                        app:layout_constraintStart_toEndOf="@id/iconTransfers"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent" />
 
-                <ImageView
-                    android:id="@+id/iconSettings"
-                    android:layout_width="@dimen/_20sdp"
-                    android:layout_height="@dimen/_20sdp"
-                    android:layout_gravity="center"
-                    android:src="@drawable/ic_settings"
-                    app:tint="@color/color_text_tertiary"
-                    android:contentDescription="@string/nav_settings" />
-            </FrameLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <TextView
-                android:id="@+id/labelSettings"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/nav_settings"
-                android:textColor="@color/color_text_tertiary"
-                android:textSize="@dimen/_10ssp"
-                android:fontFamily="@font/inter_medium" />
-        </LinearLayout>
+            </LinearLayout>
 
-    </LinearLayout>
+            <!-- Settings Tab -->
+            <LinearLayout
+                android:id="@+id/navSettings"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:clickable="true"
+                android:focusable="true"
+                app:layout_constraintStart_toEndOf="@id/navTransfers"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/_34sdp">
+
+                    <View
+                        android:id="@+id/indicatorSettings"
+                        android:layout_width="@dimen/_76sdp"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/bg_nav_indicator"
+                        android:visibility="invisible"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent" />
+
+                    <ImageView
+                        android:id="@+id/iconSettings"
+                        android:layout_width="@dimen/_18sdp"
+                        android:layout_height="@dimen/_18sdp"
+                        android:src="@drawable/ic_setting"
+                        app:tint="@color/bs_dark2"
+                        android:contentDescription="@string/nav_settings"
+                        android:layout_marginStart="@dimen/_12sdp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent" />
+
+                    <TextView
+                        android:id="@+id/labelSettings"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/nav_settings"
+                        android:textColor="@color/bs_dark2"
+                        android:textSize="@dimen/_12ssp"
+                        android:fontFamily="@font/pjs_medium"
+                        android:layout_marginStart="@dimen/_5sdp"
+                        android:layout_marginEnd="@dimen/_12sdp"
+                        app:layout_constraintStart_toEndOf="@id/iconSettings"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

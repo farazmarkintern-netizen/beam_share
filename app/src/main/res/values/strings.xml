@@ -34,8 +34,8 @@
     <!-- Navigation -->
     <string name="nav_home">Home</string>
     <string name="session_leave_sub">Disconnect and end this session</string>
-    <string name="nav_transfers">Transfers</string>
-    <string name="nav_settings">Settings</string>
+    <string name="nav_transfers">History</string>
+    <string name="nav_settings">Setting</string>
 
     <!-- Home -->
     <string name="home_title">BeamShare</string>
@@ -246,6 +246,9 @@
     <string name="not_now">Not Now</string>
     <string name="save">Save</string>
     <string name="sent">Sent</string>
+    <string name="send">Send</string>
+
+    <string name="receive">Receive</string>
     <string name="received">Received</string>
     <string name="completed">Completed</string>
 
@@ -313,7 +316,8 @@
     <string name="stop_receiving">Stop Receiving</string>
     <string name="grant_permission">Grant Permission</string>
     <string name="next_arrow">Next →</string>
-    <string name="splash_tagline">Fast &amp; Secure File Sharing</string>
+    <string name="splash_tagline">Transfer your  data safely and effortlessly
+in minutes</string>
     <string name="splash_loading_init">Initializing…</string>
     <string name="home_subtitle">Fast, secure, and offline file sharing</string>
     <string name="home_send_title">Send Files</string>
@@ -350,11 +354,11 @@
     <string name="enter_pairing_code">Enter Pairing Code</string>
     <string name="enter_code_desc">Enter the 6-digit code shown on the other device</string>
     <string name="wrong_code">Wrong code. Please try again.</string>
-    <string name="home_browse">BROWSE</string>
+    <string name="home_browse">All Files</string>
     <string name="home_session_active">Session active · %s</string>
 
 
-    <string name="home_greeting">Hi there 👋</string>
+    <string name="home_Beam_share">Beamshare</string>
     <string name="home_greeting_subtitle">Ready to share?</string>
     <string name="home_this_device">This device</string>
     <string name="home_wifi_on">Wi-Fi on</string>
@@ -426,17 +430,16 @@
     <string name="transfer_item_saved">Saved</string>
     <string name="home_create_group">Create Group</string>
     <string name="home_create_group_sub">Show a QR code</string>
-    <string name="home_join_group">Join Group</string>
+    <string name="home_join_group">Receive</string>
     <string name="home_join_group_sub">Scan or enter code</string>
     <string name="home_send_files">Send Files</string>
     <string name="home_send_subtitle">Tap to choose files to send</string>
     <string name="home_receive_subtitle">Waiting for files…</string>
     <string name="home_auto_accepting">Also accepting incoming files</string>
-    <string name="home_connected_to">Connected to %s</string>
     <string name="home_send_to">Send to %s</string>
-    <string name="home_session_status">● Session active</string>
-    <string name="home_session_reconnecting">● Reconnecting…</string>
-    <string name="home_session_connecting">● Connecting…</string>
+    <string name="home_session_status">Session active</string>
+    <string name="home_session_reconnecting">Reconnecting…</string>
+    <string name="home_session_connecting">Connecting…</string>
     <string name="home_unknown_device">Nearby Device</string>
 
     <!-- ============================================================= -->
@@ -502,8 +505,8 @@
     <string name="perm_header_sub">BeamShare needs these permissions to function properly</string>
     <string name="perm_banner_title">Privacy First</string>
     <string name="perm_banner_body">We respect your privacy. Permissions are only used for local file sharing.</string>
-    <string name="perm_btn_grant">Grant Permissions</string>
-    <string name="perm_btn_skip">Skip for Now</string>
+    <string name="perm_btn_grant">Allow All Permission</string>
+    <string name="perm_btn_skip">Continue</string>
     <string name="perm_footer_note">You can change permissions later in settings</string>
     <string name="section_wifi">Wi-Fi &amp; Network</string>
     <string name="section_bluetooth">Bluetooth</string>
@@ -539,14 +542,19 @@
 
     <!-- Grant button — "continue" state (all granted) -->
     <string name="perm_btn_continue">Continue</string>
-    <string name="perm_wifi_sub">Finds nearby devices for fast transfer</string>
-    <string name="perm_location_sub">Required by Android to scan for Wi-Fi peers</string>
-    <string name="perm_bluetooth_sub">Connects nearby devices via Bluetooth</string>
+    <string name="perm_wifi_sub">BeamShare uses Wifi Direct to find and
+connect nearby devices for fast file transfer</string>
+    <string name="perm_location_sub">Used to discover and connect nearby
+devices via bluetooth for file sharing</string>
+    <string name="perm_bluetooth_sub">Required to access and share files on
+your device</string>
     <string name="perm_read_files_sub">Pick files from your device to share</string>
     <string name="perm_save_files_sub">Saves received files to Downloads</string>
-    <string name="perm_camera_sub">Scan QR codes for quick device pairing</string>
-    <string name="perm_contacts_sub">Share contact cards with nearby devices</string>
-    <string name="perm_notif_sub">Shows transfer progress in background</string>
+    <string name="perm_camera_sub">Used to scan QR codes for quick device
+pairing</string>
+    <string name="perm_contacts_sub">Allows sharing contact cards with nearby
+devices</string>
+    <string name="perm_notif_sub">Get notified about incoming transfer</string>
     <string name="perm_install_sub">Install APK files from other devices</string>
 
     <string name="perm_dialog_allow">Allow</string>
@@ -570,7 +578,7 @@
     <string name="settings_notif_complete">Transfer complete</string>
     <string name="settings_notif_failed">Transfer failed</string>
 
-    <string name="home_more_tools">More Tools</string>
+    <string name="home_more_tools">More Features</string>
     <string name="home_more_tools_sub">Useful tools for your files</string>
     <string name="tool_doc_scanner">Document Scanner</string>
     <string name="tool_doc_scanner_sub">Scan and export documents</string>
@@ -578,14 +586,13 @@
     <string name="tool_private_folder_sub">Keep files private</string>
     <string name="tool_image_enhancer">Image Enhancer</string>
     <string name="tool_image_enhancer_sub">Improve image quality</string>
-    <string name="tool_video_to_audio">Video to Audio</string>
+    <string name="tool_video_to_audio">Video to mp3</string>
     <string name="tool_video_to_audio_sub">Extract audio from videos</string>
     <string name="tool_quick_share">Quick Share via Link</string>
     <string name="tool_quick_share_sub">Share files using a link</string>
     <!-- Install Packages -->
     <string name="perm_install_title">Install Packages</string>
     <string name="perm_install_desc">Install APK files received from other BeamShare devices</string>
-
 
 
     <!-- ─── Shared / navigation ──────────────────────────────────── -->
@@ -723,5 +730,17 @@
     <string name="va_error_try_again">Try Again</string>
     <string name="va_error_cancel">Cancel</string>
     <string name="va_error_try_other_video">Try Other Video</string>
+
+    <string name="onboarding_share_title">Share Files</string>
+    <string name="onboarding_share_desc">Send media and files effortlessly\nwith a powerful, fast connection</string>
+    <string name="onboarding_history_desc">Access, review, and delete your\nprevious transfer data</string>
+    <string name="onboarding_allinone_desc">Scan documents, secure private files,\nenhance images, and convert\nvideos to MP3 with ease.</string>
+    <string name="select_language">Select Language</string>
+    <string name="flag">Flag</string>
+    <string name="home_share_any_file">Share Any File</string>
+    <string name="home_share_sub">Send media or files effortlessly</string>
+    <string name="tool_quick_share_link">Quick Share Via Link</string>
+    <string name="home_disconnect">Disconnect</string>
+    <string name="home_connected_to">Connected to</string>
 
 </resources>

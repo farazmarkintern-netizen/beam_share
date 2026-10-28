@@ -10,7 +10,7 @@
 
     <!-- Semantic Colors -->
     <color name="color_green">#22C55E</color>
-    <color name="color_green_light">#14532D</color>
+
     <color name="color_orange">#F97316</color>
     <color name="color_orange_light">#431407</color>
     <color name="color_red">#EF4444</color>
@@ -103,5 +103,22 @@
     <color name="va_green">#22C55E</color>
     <color name="va_orange">#F59E0B</color>
     <color name="va_red">#EF4444</color>
+
+
+
+
+
+    <!-- BeamShare Brand Colors — Dark Mode -->
+    <color name="bs_blue">#3B82F6</color>
+    <color name="bs_teal">#06B6D4</color>
+    <color name="bs_green">#22C55E</color>
+    <color name="bs_surface">#1E293B</color>
+    <color name="bs_white">#FFFFFF</color>
+    <color name="bs_dark">#F1F5F9</color>
+    <color name="bs_dark2">#94A3B8</color>
+    <color name="bs_dark3">#313131</color>
+    <color name="bs_gray">#939393</color>
+    <color name="bs_gold">#F5C542</color>
+    <color name="bs_gold_light">#FBBF23</color>
 
 </resources>

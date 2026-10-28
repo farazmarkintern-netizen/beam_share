@@ -10,7 +10,7 @@
 
     <!-- Semantic Colors -->
     <color name="color_green">#16A34A</color>
-    <color name="color_green_light">#DCFCE7</color>
+    <color name="color_green_light">#2563EB</color>
     <color name="color_orange">#EA580C</color>
     <color name="color_orange_light">#FFF7ED</color>
     <color name="color_red">#DC2626</color>
@@ -33,7 +33,6 @@
 
     <!-- Text Colors -->
     <color name="color_text_primary">#0F172A</color>
-    <color name="color_text_secondary">#64748B</color>
     <color name="color_text_tertiary">#94A3B8</color>
     <color name="color_text_on_primary">#FFFFFF</color>
 
@@ -127,5 +126,23 @@
     <color name="va_green">#22C55E</color>
     <color name="va_orange">#F59E0B</color>
     <color name="va_red">#EF4444</color>
+
+
+
+
+    <!-- BeamShare Brand Colors — Light Mode -->
+    <color name="color_text_secondary">@color/bs_gray</color>
+    <color name="color_premium">@color/bs_gold</color>
+    <color name="bs_blue">#2563EB</color>
+    <color name="bs_teal">#06B6D4</color>
+    <color name="bs_green">#22C55E</color>
+    <color name="bs_surface">#F4F7FB</color>
+    <color name="bs_white">#FFFFFF</color>
+    <color name="bs_dark">#262424</color>
+    <color name="bs_dark2">#434040</color>
+    <color name="bs_dark3">#313131</color>       <!-- mid-dark: card borders, dividers -->
+    <color name="bs_gray">#939393</color>        <!-- secondary text, muted icons -->
+    <color name="bs_gold">#F5C542</color>        <!-- premium accent (deep gold) -->
+    <color name="bs_gold_light">#FBBF23</color> <!-- premium accent (light gold) -->
 
 </resources>

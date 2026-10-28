@@ -61,7 +61,7 @@ class PermissionsActivity : AppCompatActivity() {
             insets
         }
 
-        binding.btnBack.setOnClickListener { finish() }
+      //  binding.btnBack.setOnClickListener { finish() }
         bindAllCards()
         setupGrantButton()
     }
@@ -294,7 +294,10 @@ class PermissionsActivity : AppCompatActivity() {
         }
     }
 
-    private fun navigateNext() { finish() }
+    private fun navigateNext() {
+        startActivity(Intent(this, com.example.beamshare.ui.MainActivity::class.java))
+        finish()
+    }
 
     private fun openInstallPackagesSettings() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {

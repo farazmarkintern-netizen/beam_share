@@ -1,15 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- res/layout/activity_onboarding.xml -->
-<FrameLayout
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/main"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/color_background">
+    android:layout_height="match_parent">
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/viewPager"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
-</FrameLayout>
+    <!-- Bottom Controls overlay -->
+    <RelativeLayout
+        android:id="@+id/bottomControls"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_40sdp"
+        android:layout_marginHorizontal="@dimen/_24sdp"
+        android:layout_marginBottom="@dimen/_40sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <!-- Dots -->
+        <LinearLayout
+            android:id="@+id/dotsIndicator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_alignParentStart="true"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <View
+                android:id="@+id/dot1"
+                android:layout_width="@dimen/_22sdp"
+                android:layout_height="@dimen/_8sdp"
+                android:background="@drawable/dot_active"
+                android:layout_marginEnd="@dimen/_6sdp" />
+
+            <View
+                android:id="@+id/dot2"
+                android:layout_width="@dimen/_8sdp"
+                android:layout_height="@dimen/_8sdp"
+                android:background="@drawable/dot_inactive"
+                android:layout_marginEnd="@dimen/_6sdp" />
+
+            <View
+                android:id="@+id/dot3"
+                android:layout_width="@dimen/_8sdp"
+                android:layout_height="@dimen/_8sdp"
+                android:background="@drawable/dot_inactive" />
+
+        </LinearLayout>
+
+        <!-- NEXT Button -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnNext"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:text="@string/onboarding_next"
+            android:textColor="@color/bs_white"
+            android:textSize="@dimen/_14ssp"
+            android:paddingHorizontal="@dimen/_25sdp"
+            android:fontFamily="@font/pjs_extra_bold"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:gravity="center"
+
+            android:background="@drawable/btn_next_gradient"
+            app:backgroundTint="@null"
+            app:cornerRadius="@dimen/_22sdp" />
+
+    </RelativeLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -5,20 +5,19 @@ import android.os.Bundle
 import android.view.View
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
+import androidx.core.content.ContextCompat
 import androidx.viewpager2.widget.ViewPager2
 import com.example.beamshare.R
+import com.example.beamshare.databinding.ActivityOnboardingBinding
 import com.example.beamshare.ui.MainActivity
 
 class OnboardingActivity : AppCompatActivity() {
 
-    private lateinit var viewPager: ViewPager2
+    private lateinit var binding: ActivityOnboardingBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        // Skip onboarding if already completed
         val prefs = getSharedPreferences(PREFS_NAME, MODE_PRIVATE)
         if (prefs.getBoolean(KEY_ONBOARDING_COMPLETED, false)) {
             navigateToMain()
@@ -26,48 +25,74 @@ class OnboardingActivity : AppCompatActivity() {
         }
 
         enableEdgeToEdge()
-        setContentView(R.layout.activity_onboarding)
+        binding = ActivityOnboardingBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        val root = findViewById<View>(R.id.main)
-        ViewCompat.setOnApplyWindowInsetsListener(root) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(
-                systemBars.left,
-                systemBars.top,
-                systemBars.right,
-                systemBars.bottom
-            )
-            insets
+        binding.viewPager.adapter = OnboardingAdapter(this)
+//        binding.viewPager.isUserInputEnabled = false
+
+        binding.viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+            override fun onPageSelected(position: Int) {
+                updateDots(position)
+                binding.btnNext.text = if (position == 2) {
+                    getString(R.string.onboarding_get_started)
+                } else {
+                    getString(R.string.onboarding_next)
+                }
+            }
+        })
+
+        binding.btnNext.setOnClickListener {
+            if (binding.viewPager.currentItem < 2) {
+                binding.viewPager.currentItem += 1
+            } else {
+                finishOnboarding()
+            }
         }
+    }
 
-        viewPager = findViewById(R.id.viewPager)
-        viewPager.adapter = OnboardingAdapter(this)
-        viewPager.isUserInputEnabled = false // Disable swipe — navigate via buttons
+    private fun updateDots(position: Int) {
+        val activeDp = (22 * resources.displayMetrics.density).toInt()
+        val inactiveDp = (8 * resources.displayMetrics.density).toInt()
+
+        val dots = listOf(binding.dot1, binding.dot2, binding.dot3)
+        dots.forEachIndexed { index, dot ->
+            val params = dot.layoutParams
+            if (index == position) {
+                params.width = activeDp
+                dot.background = ContextCompat.getDrawable(this, R.drawable.dot_active)
+            } else {
+                params.width = inactiveDp
+                dot.background = ContextCompat.getDrawable(this, R.drawable.dot_inactive)
+            }
+            dot.layoutParams = params
+        }
     }
 
     fun goToNextPage() {
-        if (viewPager.currentItem < 2) {
-            viewPager.currentItem += 1
+        if (binding.viewPager.currentItem < 2) {
+            binding.viewPager.currentItem += 1
+        } else {
+            finishOnboarding()
         }
     }
 
     fun skipToComplete() {
-        viewPager.currentItem = 2
+        binding.viewPager.currentItem = 2
     }
 
     fun finishOnboarding() {
-        // Save onboarding as completed
         getSharedPreferences(PREFS_NAME, MODE_PRIVATE)
             .edit()
             .putBoolean(KEY_ONBOARDING_COMPLETED, true)
             .apply()
-
         navigateToMain()
     }
 
     private fun navigateToMain() {
-        startActivity(Intent(this, MainActivity::class.java))
+        startActivity(Intent(this, com.example.beamshare.permissions.PermissionsActivity::class.java))
         finish()
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
     }
 
     companion object {

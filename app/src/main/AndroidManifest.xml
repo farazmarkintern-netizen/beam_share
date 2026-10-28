@@ -94,7 +94,6 @@
         android:theme="@style/Theme.BeamShare"
         tools:targetApi="37">
 
-
         <!-- Group session service (persistent TCP session, bidirectional sharing) -->
         <service
             android:name=".session.GroupSessionService"
@@ -184,6 +183,10 @@
             android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".privatefolder.ForgotPinActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".language.SelectLanguageActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
     </application>

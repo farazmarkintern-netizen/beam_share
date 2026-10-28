@@ -10,9 +10,9 @@ class OnboardingAdapter(activity: FragmentActivity) : FragmentStateAdapter(activ
 
     override fun createFragment(position: Int): Fragment {
         return when (position) {
-            0 -> OnboardingWelcomeFragment()
-            1 -> OnboardingPermissionsFragment()
-            2 -> OnboardingCompleteFragment()
+            0 -> OnboardingShareFragment()
+            1 -> OnboardingHistoryFragment()
+            2 -> OnboardingAllInOneFragment()
             else -> throw IllegalArgumentException("Invalid position: $position")
         }
     }

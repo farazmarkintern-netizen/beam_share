@@ -69,44 +69,25 @@ class MainActivity : AppCompatActivity() {
         val root = findViewById<View>(R.id.main)
         val bottomNav = findViewById<View>(R.id.bottomNavigation)
 
-        val rootLeft = root.paddingLeft
-        val rootTop = root.paddingTop
-        val rootRight = root.paddingRight
-        val rootBottom = root.paddingBottom
-
-        val navLeft = bottomNav.paddingLeft
-        val navTop = bottomNav.paddingTop
-        val navRight = bottomNav.paddingRight
-        val navBottom = bottomNav.paddingBottom
-
         ViewCompat.setOnApplyWindowInsetsListener(root) { view, insets ->
-            val bars = insets.getInsets(
-                WindowInsetsCompat.Type.systemBars()
-            )
-
+            val bars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             val isVa = ::navController.isInitialized && navController.currentDestination?.id in vaFragments
 
-            // For VA fragments, don't pad root top so VA fragment background extends behind status bar.
             view.setPadding(
-                rootLeft,
-                if (isVa) 0 else rootTop + bars.top,
-                rootRight,
-                rootBottom
+                view.paddingLeft,
+                if (isVa) 0 else bars.top,
+                view.paddingRight,
+                0
             )
+            insets
+        }
 
-            // Reset padding every time, regardless of visibility.
-            bottomNav.setPadding(
-                navLeft,
-                navTop,
-                 navRight,
-                navBottom + if (bottomNav.visibility == View.VISIBLE) {
-                    bars.bottom
-                } else {
-                    0
-                }
-            )
-
-            // Allow descendants to receive insets.
+        ViewCompat.setOnApplyWindowInsetsListener(bottomNav) { view, insets ->
+            val bars = insets.getInsets(WindowInsetsCompat.Type.navigationBars())
+            val layoutParams = view.layoutParams as android.view.ViewGroup.MarginLayoutParams
+            val baseMargin = (12 * view.resources.displayMetrics.density).toInt()
+            layoutParams.bottomMargin = baseMargin + bars.bottom
+            view.layoutParams = layoutParams
             insets
         }
 

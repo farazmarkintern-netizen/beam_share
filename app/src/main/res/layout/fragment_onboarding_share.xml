@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/onbording_hero1">
+
+    <LinearLayout
+        android:id="@+id/bottomCard"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+
+        android:paddingHorizontal="@dimen/_24sdp"
+        android:paddingTop="@dimen/_24sdp"
+        android:paddingBottom="@dimen/_100sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHeight_percent="0.46">
+
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:textSize="@dimen/_26ssp"
+            android:fontFamily="@font/pjs_extra_bold"
+            android:textColor="@color/bs_dark"
+            android:includeFontPadding="false" />
+
+        <TextView
+            android:id="@+id/tvDescription"
+            android:layout_width="@dimen/_260sdp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/_12sdp"
+            android:text="@string/onboarding_share_desc"
+            android:textColor="@color/bs_dark2"
+            android:textSize="@dimen/_13ssp"
+            android:fontFamily="@font/pjs_medium"
+            android:gravity="center"
+            android:lineSpacingMultiplier="1.4"
+            android:includeFontPadding="false" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
