@@ -13,11 +13,11 @@ import android.os.IBinder
 import android.os.Looper
 import android.view.View
 import android.widget.EditText
+import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SwitchCompat
@@ -42,15 +42,12 @@ class SessionActivity : AppCompatActivity() {
         const val EXTRA_PENDING_URIS       = "extra_pending_uris"
     }
 
-    private lateinit var tvLocalDeviceName: TextView
-    private lateinit var tvRemoteDeviceName: TextView
     private lateinit var tvConnectedDuration: TextView
     private lateinit var connectionBadge: LinearLayout
     private lateinit var statusDot: View
     private lateinit var tvStatSent: TextView
     private lateinit var tvStatReceived: TextView
     private lateinit var tvStatTotal: TextView
-    private lateinit var tvRemoteLiveBadge: TextView
     private lateinit var rvSessionFiles: RecyclerView
     private lateinit var incomingBanner: LinearLayout
 
@@ -143,53 +140,24 @@ class SessionActivity : AppCompatActivity() {
         localDeviceName = intent.getStringExtra(EXTRA_LOCAL_DEVICE_NAME)
             ?: "${Build.MANUFACTURER} ${Build.MODEL}"
 
-        tvLocalDeviceName    = findViewById(R.id.tvLocalDeviceName)
-        tvRemoteDeviceName   = findViewById(R.id.tvRemoteDeviceName)
         tvConnectedDuration  = findViewById(R.id.tvConnectedDuration)
         connectionBadge      = findViewById(R.id.connectionBadge)
         statusDot            = findViewById(R.id.statusDot)
-        tvRemoteLiveBadge    = findViewById(R.id.tvRemoteLiveBadge)
+
         tvStatSent           = findViewById(R.id.tvStatSent)
         tvStatReceived       = findViewById(R.id.tvStatReceived)
         tvStatTotal          = findViewById(R.id.tvStatTotal)
         rvSessionFiles       = findViewById(R.id.rvSessionFiles)
         incomingBanner       = findViewById(R.id.incomingBanner)
 
-        tvLocalDeviceName.text = localDeviceName
-        intent.getStringExtra(EXTRA_REMOTE_DEVICE_NAME)?.let { tvRemoteDeviceName.text = it }
-
         findViewById<ImageView>(R.id.btnBack).setOnClickListener { finish() }
         findViewById<ImageView>(R.id.btnMenu).setOnClickListener { showSessionMenuDialog() }
-        findViewById<LinearLayout>(R.id.btnSendFiles).setOnClickListener {
+        findViewById<FrameLayout>(R.id.btnSendFiles).setOnClickListener {
             startActivity(Intent(this, SendFilesActivity::class.java))
         }
-        findViewById<LinearLayout>(R.id.btnEndSession).setOnClickListener {
+        findViewById<FrameLayout>(R.id.btnEndSession).setOnClickListener {
             showLeaveSessionDialog()
         }
-    }
-
-    private fun setupRecyclerView() {
-        sessionFileAdapter = SessionFileAdapter(
-            onCancel = { file ->
-                // Cancel by Long id — parse back from the String id
-                groupService?.cancelTransfer(file.id.toLongOrNull() ?: return@SessionFileAdapter)
-            },
-            onDelete = { file ->
-                SessionManager.removeTransfer(file.id.toLongOrNull() ?: return@SessionFileAdapter)
-            }
-        )
-        rvSessionFiles.layoutManager = LinearLayoutManager(this)
-        rvSessionFiles.adapter = sessionFileAdapter
-        rvSessionFiles.addItemDecoration(object : RecyclerView.ItemDecoration() {
-            override fun getItemOffsets(
-                outRect: android.graphics.Rect,
-                view: View,
-                parent: RecyclerView,
-                state: RecyclerView.State
-            ) {
-                outRect.bottom = resources.getDimensionPixelSize(com.intuit.sdp.R.dimen._8sdp)
-            }
-        })
     }
 
     private fun bindGroupService() {
@@ -224,7 +192,6 @@ class SessionActivity : AppCompatActivity() {
                     SessionManager.state.collect { state ->
                         when (state) {
                             is SessionState.Connected -> {
-                                tvRemoteDeviceName.text = state.peerName
                                 sessionStartMs = state.sinceMs
                                 startDurationTimer()
                                 setConnectionBadge(
@@ -277,27 +244,45 @@ class SessionActivity : AppCompatActivity() {
     }
 
     // ── Transfer UI ────────────────────────────────────────────────────────────
+    private fun setupRecyclerView() {
+        sessionFileAdapter = SessionFileAdapter(
+            onCancel = { transfer ->
+                groupService?.cancelTransfer(transfer.id)
+            },
+            onDelete = { transfer ->
+                SessionManager.removeTransfer(transfer.id)
+                transfer.savedPath?.let { path ->
+                    runCatching {
+                        val uri = Uri.parse(path)
+                        contentResolver.delete(uri, null, null)
+                    }
+                }
+            },
+            onPause = { transfer ->
+                groupService?.pauseTransfer(transfer.id)
+                SessionManager.setPaused(transfer.id, true)
+            },
+            onResume = { transfer ->
+                groupService?.resumeTransfer(transfer.id)
+                SessionManager.setPaused(transfer.id, false)
+            }
+        )
+        rvSessionFiles.layoutManager = LinearLayoutManager(this)
+        rvSessionFiles.adapter = sessionFileAdapter
+        rvSessionFiles.addItemDecoration(object : RecyclerView.ItemDecoration() {
+            override fun getItemOffsets(
+                outRect: android.graphics.Rect,
+                view: View,
+                parent: RecyclerView,
+                state: RecyclerView.State
+            ) {
+                outRect.bottom = resources.getDimensionPixelSize(com.intuit.sdp.R.dimen._8sdp)
+            }
+        })
+    }
 
     private fun updateTransferUI(transfers: List<LiveTransfer>) {
-        val files = transfers.map { t ->
-            SessionFile(
-                id        = t.id.toString(),   // LiveTransfer.id is Long → String
-                fileName  = t.name,
-                fileSize  = formatSize(t.size),
-                direction = if (t.direction == TransferDirection.OUT) FileDirection.SENT
-                else FileDirection.RECEIVED,
-                status    = when (t.status) {
-                    TransferStatus.ACTIVE    -> FileStatus.ACTIVE
-                    TransferStatus.COMPLETED -> FileStatus.COMPLETED
-                    TransferStatus.FAILED    -> FileStatus.FAILED
-                    TransferStatus.CANCELLED -> FileStatus.CANCELLED
-                },
-                progress  = t.progress,
-                // savedPath is a file-system path → wrap in Uri for the adapter
-                savedUri  = t.savedPath?.let { Uri.parse("file://$it") }
-            )
-        }
-        sessionFileAdapter.submitList(files)
+        sessionFileAdapter.submitList(transfers)
 
         val sentCount     = transfers.count { it.direction == TransferDirection.OUT && it.status == TransferStatus.COMPLETED }
         val receivedCount = transfers.count { it.direction == TransferDirection.IN  && it.status == TransferStatus.COMPLETED }
@@ -328,14 +313,6 @@ class SessionActivity : AppCompatActivity() {
         statusDot.setBackgroundResource(dotBg)
         tvConnectedDuration.text = text
         tvConnectedDuration.setTextColor(textColor)
-
-        val isConnected = SessionManager.state.value is SessionState.Connected
-        tvRemoteLiveBadge.text = if (isConnected) getString(R.string.session_live)
-        else getString(R.string.session_disconnected)
-        tvRemoteLiveBadge.setTextColor(if (isConnected) 0xFF16A34A.toInt() else 0xFFDC2626.toInt())
-        tvRemoteLiveBadge.setBackgroundResource(
-            if (isConnected) R.drawable.bg_badge_live else R.drawable.bg_badge_offline
-        )
     }
 
     // ── Duration timer ─────────────────────────────────────────────────────────
@@ -406,19 +383,16 @@ class SessionActivity : AppCompatActivity() {
         view.findViewById<TextView>(R.id.tvFolderPath).text =
             "${Environment.getExternalStorageDirectory()}/BeamShare/"
 
-        // ── Rename device ──────────────────────────────────────────────
         view.findViewById<LinearLayout>(R.id.menuRename).setOnClickListener {
             dialog.dismiss()
             showRenameDialog()
         }
 
-        // ── Open received folder ───────────────────────────────────────
         view.findViewById<LinearLayout>(R.id.menuOpenFolder).setOnClickListener {
             dialog.dismiss()
             openBeamShareFolder()
         }
 
-        // ── Auto-accept toggle ─────────────────────────────────────────
         val switchAutoAccept = view.findViewById<SwitchCompat>(R.id.switchAutoAccept)
         switchAutoAccept.isChecked = autoAcceptEnabled
         switchAutoAccept.setOnCheckedChangeListener { _, isChecked ->
@@ -443,7 +417,6 @@ class SessionActivity : AppCompatActivity() {
                 val newName = editText.text.toString().trim()
                 if (newName.isNotEmpty()) {
                     localDeviceName = newName
-                    tvLocalDeviceName.text = newName
                     groupService?.setDeviceName(newName)
                 }
             }
@@ -466,7 +439,6 @@ class SessionActivity : AppCompatActivity() {
             setDataAndType(uri, "resource/folder")
             addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
         }
-        // Fallback: some devices don't handle resource/folder — try Files app
         val chooser = Intent.createChooser(intent, getString(R.string.session_open_folder))
         runCatching { startActivity(chooser) }.onFailure {
             Toast.makeText(this, beamShareDir.absolutePath, Toast.LENGTH_LONG).show()

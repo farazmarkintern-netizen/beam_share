@@ -128,6 +128,11 @@ dependencies {
 
 
     // for privte pin
-    implementation("androidx.security:security-crypto:1.1.0-alpha06")
+    implementation("androidx.security:security-crypto:1.1.0")
+
+    // ML Kit Document Scanner
+    implementation("com.google.android.gms:play-services-mlkit-document-scanner:16.0.0")
+    implementation("androidx.exifinterface:exifinterface:1.4.2")
+
 }
 

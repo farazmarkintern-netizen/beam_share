@@ -126,125 +126,8 @@
             android:orientation="vertical"
             android:paddingHorizontal="@dimen/_16sdp"
             android:paddingTop="@dimen/_8sdp"
-            android:paddingBottom="@dimen/_16sdp">
+            android:paddingBottom="@dimen/_10sdp">
 
-            <!-- Devices Row -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <!-- Local device card -->
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/_6sdp"
-                    android:layout_weight="1"
-                    android:background="@drawable/bg_surface_card"
-                    android:gravity="center_horizontal"
-                    android:orientation="vertical"
-                    android:paddingHorizontal="@dimen/_12sdp"
-                    android:paddingVertical="@dimen/_14sdp">
-
-                    <FrameLayout
-                        android:layout_width="@dimen/_40sdp"
-                        android:layout_height="@dimen/_40sdp">
-
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:background="@drawable/bg_icon_circle_blue" />
-
-                        <ImageView
-                            android:layout_width="@dimen/_20sdp"
-                            android:layout_height="@dimen/_20sdp"
-                            android:layout_gravity="center"
-                            android:contentDescription="@null"
-                            android:src="@drawable/ic_phone_device"
-                            app:tint="#2563EB" />
-                    </FrameLayout>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_6sdp"
-                        android:background="@drawable/bg_badge_live"
-                        android:fontFamily="@font/inter_bold"
-                        android:paddingHorizontal="@dimen/_6sdp"
-                        android:paddingVertical="@dimen/_2sdp"
-                        android:text="@string/session_live"
-                        android:textColor="#16A34A"
-                        android:textSize="@dimen/_9ssp" />
-
-                    <TextView
-                        android:id="@+id/tvLocalDeviceName"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_4sdp"
-                        android:ellipsize="end"
-                        android:fontFamily="@font/inter_medium"
-                        android:gravity="center_horizontal"
-                        android:maxLines="1"
-                        android:textColor="@color/color_text_primary"
-                        android:textSize="@dimen/_12ssp" />
-                </LinearLayout>
-
-                <!-- Remote device card -->
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_6sdp"
-                    android:layout_weight="1"
-                    android:background="@drawable/bg_surface_card"
-                    android:gravity="center_horizontal"
-                    android:orientation="vertical"
-                    android:paddingHorizontal="@dimen/_12sdp"
-                    android:paddingVertical="@dimen/_14sdp">
-
-                    <FrameLayout
-                        android:layout_width="@dimen/_40sdp"
-                        android:layout_height="@dimen/_40sdp">
-
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:background="@drawable/bg_icon_circle_blue" />
-
-                        <ImageView
-                            android:layout_width="@dimen/_20sdp"
-                            android:layout_height="@dimen/_20sdp"
-                            android:layout_gravity="center"
-                            android:contentDescription="@null"
-                            android:src="@drawable/ic_phone_device"
-                            app:tint="#2563EB" />
-                    </FrameLayout>
-
-                    <TextView
-                        android:id="@+id/tvRemoteLiveBadge"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_6sdp"
-                        android:background="@drawable/bg_badge_live"
-                        android:fontFamily="@font/inter_bold"
-                        android:paddingHorizontal="@dimen/_6sdp"
-                        android:paddingVertical="@dimen/_2sdp"
-                        android:text="@string/session_live"
-                        android:textColor="#16A34A"
-                        android:textSize="@dimen/_9ssp" />
-
-                    <TextView
-                        android:id="@+id/tvRemoteDeviceName"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_4sdp"
-                        android:ellipsize="end"
-                        android:fontFamily="@font/inter_medium"
-                        android:gravity="center_horizontal"
-                        android:maxLines="1"
-                        android:textColor="@color/color_text_primary"
-                        android:textSize="@dimen/_12ssp" />
-                </LinearLayout>
-            </LinearLayout>
 
             <!-- Connected badge -->
             <LinearLayout
@@ -252,7 +135,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_6sdp"
                 android:background="@drawable/bg_badge_connected"
                 android:gravity="center_vertical"
                 android:paddingHorizontal="@dimen/_10sdp"
@@ -275,70 +158,99 @@
                     android:textSize="@dimen/_12ssp" />
             </LinearLayout>
 
-            <!-- Action Cards -->
+            <!-- Action Cards — hero image style -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_16sdp"
-                android:orientation="horizontal">
+                android:orientation="vertical">
 
-                <!-- Send Files -->
-                <LinearLayout
+                <!-- Send Files card -->
+                <FrameLayout
                     android:id="@+id/btnSendFiles"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/_6sdp"
-                    android:layout_weight="1"
-                    android:background="@drawable/bg_action_card_blue"
-                    android:gravity="center_horizontal"
-                    android:orientation="vertical"
-                    android:paddingVertical="@dimen/_16sdp">
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_90sdp"
+                    android:background="@drawable/bg_hero_card"
+                    android:clipToOutline="true"
+                    android:outlineProvider="background"
+                    android:layout_marginBottom="@dimen/_10sdp"
+                    >
 
                     <ImageView
-                        android:layout_width="@dimen/_28sdp"
-                        android:layout_height="@dimen/_28sdp"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
                         android:contentDescription="@null"
-                        android:src="@drawable/ic_send"
-                        app:tint="#2563EB" />
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/send_hero_card" />
 
-                    <TextView
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_8sdp"
-                        android:fontFamily="@font/inter_semibold"
-                        android:text="@string/session_send_files"
-                        android:textColor="#2563EB"
-                        android:textSize="@dimen/_13ssp" />
-                </LinearLayout>
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="@dimen/_16sdp"
+                        android:orientation="vertical">
 
-                <!-- End Session -->
-                <LinearLayout
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/inter_bold"
+                            android:text="@string/session_send_files"
+                            android:textColor="@android:color/white"
+                            android:textSize="@dimen/_16ssp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_4sdp"
+                            android:fontFamily="@font/inter"
+                            android:text="Share data with\nnearby devices easily"
+                            android:textColor="#FFFFFFCC"
+                            android:textSize="@dimen/_11ssp" />
+                    </LinearLayout>
+                </FrameLayout>
+
+                <!-- Leave Session card -->
+                <FrameLayout
                     android:id="@+id/btnEndSession"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_6sdp"
-                    android:layout_weight="1"
-                    android:background="@drawable/bg_action_card_red"
-                    android:gravity="center_horizontal"
-                    android:orientation="vertical"
-                    android:paddingVertical="@dimen/_16sdp">
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_90sdp"
+                    android:background="@drawable/bg_hero_card"
+                    android:clipToOutline="true"
+                    android:outlineProvider="background">
 
                     <ImageView
-                        android:layout_width="@dimen/_28sdp"
-                        android:layout_height="@dimen/_28sdp"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
                         android:contentDescription="@null"
-                        android:src="@drawable/ic_log_out"
-                        app:tint="#DC2626" />
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/leave_hero_card" />
 
-                    <TextView
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_8sdp"
-                        android:fontFamily="@font/inter_semibold"
-                        android:text="@string/session_leave"
-                        android:textColor="#DC2626"
-                        android:textSize="@dimen/_13ssp" />
-                </LinearLayout>
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="@dimen/_16sdp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/inter_bold"
+                            android:text="@string/session_leave"
+                            android:textColor="@android:color/white"
+                            android:textSize="@dimen/_16ssp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_4sdp"
+                            android:fontFamily="@font/inter"
+                            android:text="End your current\ndevice connection."
+                            android:textColor="#FFFFFFCC"
+                            android:textSize="@dimen/_11ssp" />
+                    </LinearLayout>
+                </FrameLayout>
+
             </LinearLayout>
 
             <!-- Stats Row -->
@@ -346,101 +258,159 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_16sdp"
-                android:background="@drawable/bg_surface_card"
                 android:orientation="horizontal"
-                android:paddingVertical="@dimen/_12sdp">
+                android:gravity="center_vertical"
+                android:weightSum="3">
 
-                <!-- Sent -->
+                <!-- Sent Card -->
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:gravity="center_horizontal"
-                    android:orientation="vertical">
+                    android:layout_marginEnd="@dimen/_5sdp"
+                    android:background="@drawable/bg_stat_card"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/_8sdp">
 
-                    <TextView
-                        android:id="@+id/tvStatSent"
+                    <FrameLayout
+                        android:layout_width="@dimen/_24sdp"
+                        android:layout_height="@dimen/_24sdp"
+                        android:layout_marginEnd="@dimen/_6sdp"
+                     >
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:contentDescription="@null"
+                            android:src="@drawable/ic_total_send" />
+                    </FrameLayout>
+
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/inter_bold"
-                        android:text="0"
-                        android:textColor="@color/color_text_primary"
-                        android:textSize="@dimen/_18ssp" />
+                        android:orientation="vertical">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/inter"
-                        android:text="@string/session_stat_sent"
-                        android:textColor="@color/color_text_tertiary"
-                        android:textSize="@dimen/_12ssp" />
+                        <TextView
+                            android:id="@+id/tvStatSent"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/inter_bold"
+                            android:text="0"
+                            android:textColor="@color/color_text_primary"
+                            android:textSize="@dimen/_16ssp"
+                            android:maxLines="1" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/inter"
+                            android:text="@string/session_stat_sent"
+                            android:textColor="@color/color_text_tertiary"
+                            android:textSize="@dimen/_11ssp" />
+                    </LinearLayout>
                 </LinearLayout>
 
-                <!-- Divider -->
-                <View
-                    android:layout_width="1dp"
-                    android:layout_height="match_parent"
-                    android:background="@color/color_divider" />
-
-                <!-- Received -->
+                <!-- Received Card -->
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:gravity="center_horizontal"
-                    android:orientation="vertical">
+                    android:layout_marginHorizontal="@dimen/_3sdp"
+                    android:background="@drawable/bg_stat_card"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/_8sdp">
 
-                    <TextView
-                        android:id="@+id/tvStatReceived"
+                    <FrameLayout
+                        android:layout_width="@dimen/_24sdp"
+                        android:layout_height="@dimen/_24sdp"
+                        android:layout_marginEnd="@dimen/_6sdp"
+                       >
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+
+                            android:contentDescription="@null"
+                            android:src="@drawable/ic_total_received" />
+                    </FrameLayout>
+
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/inter_bold"
-                        android:text="0"
-                        android:textColor="@color/color_text_primary"
-                        android:textSize="@dimen/_18ssp" />
+                        android:orientation="vertical">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/inter"
-                        android:text="@string/received"
-                        android:textColor="@color/color_text_tertiary"
-                        android:textSize="@dimen/_12ssp" />
+                        <TextView
+                            android:id="@+id/tvStatReceived"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/inter_bold"
+                            android:text="0"
+                            android:textColor="@color/color_text_primary"
+                            android:textSize="@dimen/_16ssp"
+                            android:maxLines="1" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/inter"
+                            android:text="@string/receive"
+                            android:textColor="@color/color_text_tertiary"
+                            android:textSize="@dimen/_11ssp" />
+                    </LinearLayout>
                 </LinearLayout>
 
-                <!-- Divider -->
-                <View
-                    android:layout_width="1dp"
-                    android:layout_height="match_parent"
-                    android:background="@color/color_divider" />
-
-                <!-- Total -->
+                <!-- Total Card -->
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:gravity="center_horizontal"
-                    android:orientation="vertical">
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:background="@drawable/bg_stat_card"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/_8sdp">
 
-                    <TextView
-                        android:id="@+id/tvStatTotal"
+                    <FrameLayout
+                        android:layout_width="@dimen/_24sdp"
+                        android:layout_height="@dimen/_24sdp"
+                        android:layout_marginEnd="@dimen/_6sdp"
+                     >
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:contentDescription="@null"
+                            android:src="@drawable/ic_total" />
+                    </FrameLayout>
+
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/inter_bold"
-                        android:text="0 MB"
-                        android:textColor="@color/color_text_primary"
-                        android:textSize="@dimen/_18ssp" />
+                        android:orientation="vertical">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/inter"
-                        android:text="@string/session_stat_total"
-                        android:textColor="@color/color_text_tertiary"
-                        android:textSize="@dimen/_12ssp" />
+                        <TextView
+                            android:id="@+id/tvStatTotal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/inter_bold"
+                            android:text="0 MB"
+                            android:textColor="@color/color_text_primary"
+                            android:textSize="@dimen/_14ssp"
+                            android:maxLines="1" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/inter"
+                            android:text="@string/session_stat_total"
+                            android:textColor="@color/color_text_tertiary"
+                            android:textSize="@dimen/_11ssp" />
+                    </LinearLayout>
                 </LinearLayout>
+
             </LinearLayout>
-
             <!-- THIS SESSION label -->
             <TextView
                 android:layout_width="wrap_content"

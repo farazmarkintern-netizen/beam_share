@@ -12,5 +12,6 @@ data class SessionFile(
     val direction: FileDirection,
     val status: FileStatus,
     val progress: Int,                  // 0–100
-    val savedUri: Uri? = null           // non-null once COMPLETED (for open-in-folder)
+    val savedUri: Uri? = null,          // non-null once COMPLETED (for open-in-folder)
+    val isPaused: Boolean = false       // true when ACTIVE transfer is paused
 )

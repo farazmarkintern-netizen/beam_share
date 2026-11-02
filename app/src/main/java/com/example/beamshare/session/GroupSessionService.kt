@@ -367,9 +367,20 @@ class GroupSessionService : Service() {
         Log.d(TAG, "sendUris: queued ${uris.size} files, queue size=${sendQueue.size}, isSending=$isSending")
         if (!isSending) processNextInQueue()
     }
-
     fun cancelTransfer(id: Long) {
         SessionManager.cancelTransfer(id)
+    }
+
+// ── ADD THESE TWO ──────────────────────────────────────────────────────────
+
+    fun pauseTransfer(id: Long) {
+        SessionManager.setPaused(id, true)
+        // TODO: tell SessionConnection to pause the stream when protocol supports it
+    }
+
+    fun resumeTransfer(id: Long) {
+        SessionManager.setPaused(id, false)
+        // TODO: tell SessionConnection to resume the stream when protocol supports it
     }
 
     fun leave() {

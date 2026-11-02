@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/_8sdp"
+    android:background="@drawable/bg_surface_card"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:paddingHorizontal="@dimen/_14sdp"
+    android:paddingVertical="@dimen/_12sdp">
+
+    <!-- Doc icon -->
+    <ImageView
+        android:layout_width="@dimen/_40sdp"
+        android:layout_height="@dimen/_40sdp"
+        android:contentDescription="@null"
+        android:src="@drawable/ic_file_pdf"
+       />
+
+    <!-- Name + size -->
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_12sdp"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvDocName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:fontFamily="@font/inter_semibold"
+            android:maxLines="1"
+            android:textColor="@color/color_text_primary"
+            android:textSize="@dimen/_13ssp" />
+
+        <TextView
+            android:id="@+id/tvDocSize"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_2sdp"
+            android:fontFamily="@font/inter"
+            android:textColor="@color/color_text_secondary"
+            android:textSize="@dimen/_12ssp" />
+
+    </LinearLayout>
+
+    <!-- 3-dot menu -->
+    <ImageView
+        android:id="@+id/btnDocMenu"
+        android:layout_width="@dimen/_28sdp"
+        android:layout_height="@dimen/_28sdp"
+        android:contentDescription="@null"
+        android:padding="@dimen/_4sdp"
+        android:src="@drawable/ic_more_vert"
+        app:tint="@color/color_text_secondary" />
+
+</LinearLayout>

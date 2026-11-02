@@ -22,6 +22,14 @@ object SessionManager {
         _state.value = SessionState.Idle
         _transfers.value = emptyList()
     }
+    fun setPaused(id: Long, paused: Boolean) {
+        _transfers.update { list ->
+            list.map { t ->
+                if (t.id == id) t.copy(isPaused = paused, updatedAtMs = System.currentTimeMillis())
+                else t
+            }
+        }
+    }
 
     fun setHosting(code: String, selfName: String) {
         _state.value = SessionState.Hosting(
@@ -127,4 +135,13 @@ object SessionManager {
         if (idx >= 0) list[idx] = item else list.add(item)
         _transfers.value = list
     }
+    fun updateSavedPath(id: Long, newPath: String) {
+        _transfers.update { list ->
+            list.map { t ->
+                if (t.id == id) t.copy(savedPath = newPath, updatedAtMs = System.currentTimeMillis())
+                else t
+            }
+        }
+    }
+
 }

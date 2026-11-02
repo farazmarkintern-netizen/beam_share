@@ -134,4 +134,14 @@
         <item name="android:insetBottom">0dp</item>
         <item name="elevation">0dp</item>
     </style>
+    <style name="TransparentDialog" parent="Theme.AppCompat.Dialog">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:windowAnimationStyle">@style/DialogSlideUp</item>
+    </style>
+
+    <style name="DialogSlideUp">
+        <item name="android:windowEnterAnimation">@anim/slide_up</item>
+        <item name="android:windowExitAnimation">@anim/slide_down</item>
+    </style>
 </resources>

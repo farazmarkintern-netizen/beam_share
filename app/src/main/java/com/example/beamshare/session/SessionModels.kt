@@ -34,8 +34,11 @@ data class LiveTransfer(
     val direction: TransferDirection,
     val peerName: String,
     val progress: Int = 0,
-    val transferred: Long = 0,
+    val transferred: Long = 0L,
     val status: TransferStatus = TransferStatus.ACTIVE,
     val savedPath: String? = null,
-    val updatedAtMs: Long = System.currentTimeMillis()
+    val updatedAtMs: Long = System.currentTimeMillis(),
+    val isPaused: Boolean = false
+
+
 )

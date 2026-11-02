@@ -34,12 +34,16 @@ class MainActivity : AppCompatActivity() {
     private lateinit var labelTransfers: TextView
     private lateinit var labelSettings: TextView
 
-    // VA fragment IDs — navbar hidden on these
-    private val vaFragments = setOf(
+    // Fragments where bottom nav is hidden
+    private val navHiddenFragments = setOf(
+        // VA converter
         R.id.videoToAudioFragment,
         R.id.formatQualityFragment,
         R.id.convertingFragment,
-        R.id.doneFragment
+        R.id.doneFragment,
+        // Document Scanner
+        R.id.documentScannerFragment,
+        R.id.previewSaveFragment
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -64,18 +68,18 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-
     private fun setupEdgeToEdge() {
         val root = findViewById<View>(R.id.main)
         val bottomNav = findViewById<View>(R.id.bottomNavigation)
 
         ViewCompat.setOnApplyWindowInsetsListener(root) { view, insets ->
             val bars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            val isVa = ::navController.isInitialized && navController.currentDestination?.id in vaFragments
+            val isHidden = ::navController.isInitialized &&
+                    navController.currentDestination?.id in navHiddenFragments
 
             view.setPadding(
                 view.paddingLeft,
-                if (isVa) 0 else bars.top,
+                if (isHidden) 0 else bars.top,
                 view.paddingRight,
                 0
             )
@@ -94,7 +98,6 @@ class MainActivity : AppCompatActivity() {
         ViewCompat.requestApplyInsets(root)
     }
 
-
     private fun setupNavigation() {
         val navHostFragment = supportFragmentManager
             .findFragmentById(R.id.navHostFragment) as NavHostFragment
@@ -104,9 +107,8 @@ class MainActivity : AppCompatActivity() {
         val bottomNav = findViewById<View>(R.id.bottomNavigation)
 
         navController.addOnDestinationChangedListener { _, destination, _ ->
-            if (destination.id in vaFragments) {
+            if (destination.id in navHiddenFragments) {
                 bottomNav.visibility = View.GONE
-                // Re-request insets so VA fragment gets fresh delivery
                 ViewCompat.requestApplyInsets(findViewById(R.id.main))
             } else {
                 bottomNav.visibility = View.VISIBLE

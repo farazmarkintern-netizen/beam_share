@@ -70,7 +70,7 @@
                 android:id="@+id/ivMore"
                 android:layout_width="@dimen/_24sdp"
                 android:layout_height="@dimen/_24sdp"
-                android:src="@drawable/ic_more_vertical"
+                android:src="@drawable/ic_more_vert"
                 android:padding="4dp"
                 app:tint="@color/color_text_tertiary"
                 android:contentDescription="More options"

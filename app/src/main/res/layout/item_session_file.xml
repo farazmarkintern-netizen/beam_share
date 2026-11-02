@@ -1,46 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cardRoot"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/bg_surface_card"
     android:layout_marginBottom="@dimen/_8sdp"
+    android:background="@drawable/bg_surface_card"
     android:orientation="vertical"
-    android:padding="@dimen/_12sdp">
+    android:paddingHorizontal="@dimen/_14sdp"
+    android:paddingVertical="@dimen/_12sdp">
 
-    <!-- Row 1: icon + name/size + direction badge + cancel/status -->
+    <!-- Row 1: icon + name/size/status + ivStatus + cancel + menu -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
         android:orientation="horizontal">
 
-        <!-- File type icon -->
         <FrameLayout
             android:layout_width="@dimen/_40sdp"
             android:layout_height="@dimen/_40sdp">
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/bg_icon_circle_blue" />
+
 
             <ImageView
                 android:id="@+id/ivFileIcon"
-                android:layout_width="@dimen/_20sdp"
-                android:layout_height="@dimen/_20sdp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:contentDescription="@null"
-                android:src="@drawable/ic_folder"
-                app:tint="#2563EB" />
+                android:src="@drawable/ic_file_apk"
+                />
         </FrameLayout>
 
-        <!-- Name + size -->
+        <!-- Name + size + status label -->
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/_10sdp"
+            android:layout_marginStart="@dimen/_12sdp"
+            android:layout_marginEnd="@dimen/_8sdp"
             android:layout_weight="1"
             android:orientation="vertical">
 
@@ -48,78 +46,71 @@
                 android:id="@+id/tvFileName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:ellipsize="middle"
+                android:ellipsize="end"
                 android:fontFamily="@font/inter_semibold"
                 android:maxLines="1"
                 android:textColor="@color/color_text_primary"
-                android:textSize="@dimen/_13ssp"
-                tools:text="vacation_video_4k.mp4" />
+                android:textSize="@dimen/_13ssp" />
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_2sdp"
+                android:layout_marginTop="@dimen/_3sdp"
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
-
-                <!-- Direction badge: SENT / RECEIVED -->
-                <TextView
-                    android:id="@+id/tvDirection"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/inter_bold"
-                    android:paddingHorizontal="@dimen/_6sdp"
-                    android:paddingVertical="@dimen/_2sdp"
-                    android:textSize="@dimen/_9ssp"
-                    tools:background="@drawable/bg_badge_live"
-                    tools:text="SENT"
-                    tools:textColor="#2563EB" />
 
                 <TextView
                     android:id="@+id/tvFileSize"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_6sdp"
                     android:fontFamily="@font/inter"
-                    android:textColor="@color/color_text_tertiary"
-                    android:textSize="@dimen/_11ssp"
-                    tools:text="128 MB" />
+                    android:textColor="@color/color_text_secondary"
+                    android:textSize="@dimen/_12ssp" />
+
+                <TextView
+                    android:id="@+id/tvStatus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_8sdp"
+                    android:fontFamily="@font/inter_medium"
+                    android:textSize="@dimen/_12ssp"
+                    android:visibility="gone" />
+
             </LinearLayout>
         </LinearLayout>
 
-        <!-- Right side: cancel button (active) OR status icon (done/failed) -->
-        <FrameLayout
-            android:layout_width="@dimen/_32sdp"
-            android:layout_height="@dimen/_32sdp">
+        <!-- Check / error / cancelled icon -->
+        <ImageView
+            android:id="@+id/ivStatus"
+            android:layout_width="@dimen/_22sdp"
+            android:layout_height="@dimen/_22sdp"
+            android:contentDescription="@null"
+            android:visibility="gone" />
 
-            <!-- Cancel button — shown only while ACTIVE -->
-            <ImageView
-                android:id="@+id/btnCancel"
-                android:layout_width="@dimen/_28sdp"
-                android:layout_height="@dimen/_28sdp"
-                android:layout_gravity="center"
-                android:background="?attr/selectableItemBackgroundBorderless"
-                android:contentDescription="@string/cancel"
-                android:src="@drawable/ic_error_circle"
-                android:visibility="gone"
+        <!-- Cancel button (active transfer only) -->
+        <ImageView
+            android:id="@+id/btnCancel"
+            android:layout_width="@dimen/_22sdp"
+            android:layout_height="@dimen/_22sdp"
+            android:contentDescription="@null"
+            android:src="@drawable/ic_close"
+            android:visibility="gone"
+            app:tint="@color/color_text_secondary" />
 
-                tools:visibility="visible" />
+        <!-- 3-dot menu (completed files) -->
+        <ImageView
+            android:id="@+id/btnMenu"
+            android:layout_width="@dimen/_28sdp"
+            android:layout_height="@dimen/_28sdp"
+            android:contentDescription="@null"
+            android:padding="@dimen/_4sdp"
+            android:src="@drawable/ic_more_vert"
+            android:visibility="gone"
+            app:tint="@color/color_text_secondary" />
 
-            <!-- Status icon — shown when COMPLETED or FAILED -->
-            <ImageView
-                android:id="@+id/ivStatus"
-                android:layout_width="@dimen/_22sdp"
-                android:layout_height="@dimen/_22sdp"
-                android:layout_gravity="center"
-                android:contentDescription="@null"
-                android:src="@drawable/ic_check_circle_filled"
-                android:visibility="gone"
-
-                tools:visibility="gone" />
-        </FrameLayout>
     </LinearLayout>
 
-    <!-- Row 2: progress bar + percentage — hidden when not ACTIVE -->
+    <!-- Row 2: progress bar + % (ACTIVE only) -->
     <LinearLayout
         android:id="@+id/layoutProgress"
         android:layout_width="match_parent"
@@ -127,30 +118,85 @@
         android:layout_marginTop="@dimen/_8sdp"
         android:gravity="center_vertical"
         android:orientation="horizontal"
-        android:visibility="gone"
-        tools:visibility="visible">
+        android:visibility="gone">
 
         <ProgressBar
             android:id="@+id/progressBar"
             style="@style/Widget.AppCompat.ProgressBar.Horizontal"
             android:layout_width="0dp"
-            android:layout_height="@dimen/_6sdp"
+            android:layout_height="@dimen/_4sdp"
             android:layout_weight="1"
             android:max="100"
-            android:progress="45"
-            android:progressTint="#2563EB"
-            android:progressBackgroundTint="#E2E8F0" />
+            android:progress="0"
+            android:progressTint="@color/bs_blue" />
 
         <TextView
             android:id="@+id/tvProgress"
-            android:layout_width="@dimen/_36sdp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_8sdp"
-            android:fontFamily="@font/inter_semibold"
-            android:gravity="end"
-            android:textColor="#2563EB"
-            android:textSize="@dimen/_11ssp"
-            tools:text="45%" />
+            android:fontFamily="@font/inter_medium"
+            android:textColor="@color/color_text_secondary"
+            android:textSize="@dimen/_11ssp" />
+    </LinearLayout>
+
+    <!-- Row 3: Play / Pause / Resume / Delete (RECEIVED only) -->
+    <LinearLayout
+        android:id="@+id/layoutMediaControls"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_8sdp"
+        android:gravity="end"
+        android:orientation="horizontal"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/btnPlay"
+            android:layout_width="@dimen/_32sdp"
+            android:layout_height="@dimen/_32sdp"
+            android:layout_marginEnd="@dimen/_8sdp"
+            android:background="@drawable/bg_icon_circle_blue"
+            android:contentDescription="@null"
+            android:padding="@dimen/_6sdp"
+            android:src="@drawable/ic_play"
+            android:visibility="gone"
+            app:tint="@android:color/white" />
+
+        <ImageView
+            android:id="@+id/btnPause"
+            android:layout_width="@dimen/_32sdp"
+            android:layout_height="@dimen/_32sdp"
+            android:layout_marginEnd="@dimen/_8sdp"
+            android:background="@drawable/bg_icon_circle_blue"
+            android:contentDescription="@null"
+            android:padding="@dimen/_6sdp"
+            android:src="@drawable/ic_pause"
+            android:visibility="gone"
+            app:tint="@android:color/white" />
+
+        <ImageView
+            android:id="@+id/btnResume"
+            android:layout_width="@dimen/_32sdp"
+            android:layout_height="@dimen/_32sdp"
+            android:layout_marginEnd="@dimen/_8sdp"
+            android:background="@drawable/bg_icon_circle_blue"
+            android:contentDescription="@null"
+            android:padding="@dimen/_6sdp"
+            android:src="@drawable/ic_play"
+            android:visibility="gone"
+            app:tint="@android:color/white" />
+
+        <ImageView
+            android:id="@+id/btnDelete"
+            android:layout_width="@dimen/_32sdp"
+            android:layout_height="@dimen/_32sdp"
+            android:background="@drawable/bg_icon_circle_red"
+            android:contentDescription="@null"
+            android:padding="@dimen/_6sdp"
+            android:src="@drawable/ic_delete"
+            android:visibility="gone"
+            app:tint="@android:color/white" />
+
     </LinearLayout>
 
 </LinearLayout>

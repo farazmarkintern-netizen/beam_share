@@ -244,7 +244,6 @@
     <string name="go_home">Go Home</string>
     <string name="open_settings">Open Settings</string>
     <string name="not_now">Not Now</string>
-    <string name="save">Save</string>
     <string name="sent">Sent</string>
     <string name="send">Send</string>
 
@@ -279,7 +278,6 @@
     <string name="sending_files">Sending Files</string>
     <string name="transfer_queue">Queue</string>
     <string name="back">Back</string>
-    <string name="cancel">Cancel</string>
 
     <!-- Transfer Complete -->
     <string name="transfer_complete_title">Transfer Complete</string>
@@ -742,5 +740,51 @@ devices</string>
     <string name="tool_quick_share_link">Quick Share Via Link</string>
     <string name="home_disconnect">Disconnect</string>
     <string name="home_connected_to">Connected to</string>
+    <!-- strings.xml mein add karo -->
+    <string name="doc_scanner_title">Document Scanner</string>
+    <string name="doc_import_images">Import\nImages</string>
+    <string name="doc_label">Document</string>
+    <string name="doc_camera_permission_denied">Camera permission required</string>
+    <string name="doc_capture_failed">Capture failed, try again</string>
+
+    <!-- strings.xml mein add karo -->
+    <string name="doc_crop_title">Crop</string>
+    <string name="doc_apply_filter">Apply Filter</string>
+    <string name="doc_continue">Continue</string>
+    <string name="doc_retake">Retake</string>
+    <string name="doc_filter_left">Left</string>
+    <string name="doc_filter_right">Right</string>
+
+    <!-- strings.xml mein add karo -->
+    <string name="doc_default_name">Document</string>
+    <string name="doc_add_page">Add</string>
+    <string name="doc_save_pdf">Save as PDF</string>
+    <string name="doc_save_word">Save as Word</string>
+    <string name="doc_rename_title">Rename</string>
+    <string name="save">Save</string>
+    <string name="cancel">Cancel</string>
+
+
+
+    <!-- Preview/Save screen -->
+
+    <string name="doc_rename_ok">OK</string>
+    <string name="doc_rename_cancel">Cancel</string>
+    <string name="doc_no_image">No image to save</string>
+    <string name="doc_saved_success">PDF saved successfully!</string>
+    <string name="doc_save_failed">Failed to save PDF</string>
+    <string name="doc_share_via">Share via…</string>
+
+
+
+    <string name="doc_filter_all">All</string>
+
+    <string name="doc_delete_page">Delete Page</string>
+    <string name="doc_single_page_delete_msg">Only one page. Deleting will go back.</string>
+    <string name="doc_delete_this_page">Delete this page</string>
+    <string name="doc_move_left">Move left</string>
+    <string name="doc_move_right">Move right</string>
+    <string name="doc_rename">Rename</string>
+    <string name="ok">OK</string>
 
 </resources>

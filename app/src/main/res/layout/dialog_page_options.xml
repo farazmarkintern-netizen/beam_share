@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/bg_dialog_rounded"
+    android:padding="24dp">
+
+    <!-- Icon -->
+    <LinearLayout
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/ic_file_doc"
+
+            android:contentDescription="@null" />
+
+    </LinearLayout>
+
+    <!-- Title -->
+    <TextView
+        android:id="@+id/tvDialogTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Page 1 of 3"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="#111111"
+        android:gravity="center" />
+
+    <!-- Subtitle -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="24dp"
+        android:text="What would you like to do with this page?"
+        android:textSize="13sp"
+        android:textColor="#888888"
+        android:gravity="center"
+        android:lineSpacingExtra="2dp" />
+
+    <!-- Delete button -->
+    <Button
+        android:id="@+id/optionDelete"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:text="Delete this page"
+        android:textColor="@android:color/white"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        android:background="@drawable/bg_btn_delete"
+        android:insetTop="0dp"
+        android:insetBottom="0dp" />
+
+    <!-- Move Left button -->
+    <Button
+        android:id="@+id/optionMoveLeft"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginTop="10dp"
+        android:text="Move Left"
+        android:textColor="#333333"
+        android:textSize="14sp"
+        android:background="@drawable/bg_btn_outline"
+        android:insetTop="0dp"
+        android:insetBottom="0dp" />
+
+    <!-- Move Right button -->
+    <Button
+        android:id="@+id/optionMoveRight"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginTop="10dp"
+        android:text="Move Right"
+        android:textColor="#333333"
+        android:textSize="14sp"
+        android:background="@drawable/bg_btn_outline"
+        android:insetTop="0dp"
+        android:insetBottom="0dp" />
+
+    <!-- Cancel -->
+    <TextView
+        android:id="@+id/optionCancel"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginTop="6dp"
+        android:text="Cancel"
+        android:textSize="14sp"
+        android:textColor="#888888"
+        android:gravity="center"
+        android:background="?attr/selectableItemBackground" />
+
+</LinearLayout>

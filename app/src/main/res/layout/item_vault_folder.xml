@@ -66,7 +66,7 @@
             android:id="@+id/ivFolderMore"
             android:layout_width="@dimen/_20sdp"
             android:layout_height="@dimen/_20sdp"
-            android:src="@drawable/ic_more_vertical"
+            android:src="@drawable/ic_more_vert"
             app:tint="@color/color_text_tertiary"
             android:padding="2dp"
             android:contentDescription="More"

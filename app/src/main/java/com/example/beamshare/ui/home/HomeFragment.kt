@@ -19,6 +19,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.example.beamshare.R
 import com.example.beamshare.databinding.FragmentHomeBinding
+
 import com.example.beamshare.privatefolder.PinManager
 import com.example.beamshare.privatefolder.SetupPinActivity
 import com.example.beamshare.privatefolder.UnlockPinActivity
@@ -29,6 +30,9 @@ import com.example.beamshare.ui.discovery.DeviceDiscoveryActivity
 import com.example.beamshare.ui.receive.ReceiveWaitingActivity
 import com.example.beamshare.ui.send.SendFilesActivity
 import kotlinx.coroutines.launch
+import com.example.beamshare.model.TransferDirection
+import com.example.beamshare.model.HistoryStatus
+import kotlinx.coroutines.withContext
 
 class HomeFragment : Fragment() {
 
@@ -221,7 +225,14 @@ class HomeFragment : Fragment() {
             startActivity(Intent(requireContext(), ReceiveWaitingActivity::class.java))
         }
         binding.cardReceive.setOnClickListener {
-            startActivity(Intent(requireContext(), DeviceDiscoveryActivity::class.java))
+            val state = SessionManager.state.value
+            if (state is SessionState.Connected || state is SessionState.Reconnecting) {
+                // Connected: live session + old received files dono dikhao
+                findNavController().navigate(R.id.receivedFilesFragment)
+            } else {
+                // Disconnected: device dhundho
+                startActivity(Intent(requireContext(), DeviceDiscoveryActivity::class.java))
+            }
         }
 
         // Disconnect button on hero card
@@ -244,7 +255,7 @@ class HomeFragment : Fragment() {
 
         // More Tools — Document Scanner (TODO: wire to scanner screen)
         binding.cardDocumentScanner.setOnClickListener {
-            // TODO: open document scanner
+            findNavController().navigate(R.id.documentScannerFragment)
         }
 
         // More Tools — Private Folder
