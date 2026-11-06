@@ -14,18 +14,15 @@
         android:layout_height="@dimen/_72sdp">
 
         <!-- Soft amber background circle -->
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/bg_folder_icon" />
+
 
         <ImageView
             android:id="@+id/ivFolderIcon"
-            android:layout_width="@dimen/_40sdp"
-            android:layout_height="@dimen/_40sdp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_gravity="center"
             android:src="@drawable/ic_folder"
-            app:tint="#F59E0B"
+            app:tint="@color/bs_gold"
             android:contentDescription="@null" />
     </FrameLayout>
 
@@ -41,7 +38,7 @@
         android:text="Folder"
         android:textColor="@color/color_text_primary"
         android:textSize="@dimen/_11ssp"
-        android:fontFamily="@font/inter_semibold" />
+        android:fontFamily="@font/pjs_semibold" />
 
     <!-- Item count + 3-dot row -->
     <LinearLayout
@@ -60,7 +57,7 @@
             android:text="0 items"
             android:textColor="@color/color_text_tertiary"
             android:textSize="@dimen/_10ssp"
-            android:fontFamily="@font/inter_regular" />
+            android:fontFamily="@font/pjs_regular" />
 
         <ImageView
             android:id="@+id/ivFolderMore"

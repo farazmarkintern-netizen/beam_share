@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/bs_white">
+    android:background="@color/color_background">
 
     <!-- ── Scrollable content ── -->
     <androidx.core.widget.NestedScrollView
@@ -58,7 +58,6 @@
             <!-- Permission rows -->
             <include android:id="@+id/cardWifiDirect"   layout="@layout/item_permission_card_toggle" android:layout_width="match_parent" android:layout_height="wrap_content" />
             <include android:id="@+id/cardLocation"     layout="@layout/item_permission_card_toggle" android:layout_width="match_parent" android:layout_height="wrap_content" />
-            <include android:id="@+id/cardBluetooth"    layout="@layout/item_permission_card_toggle" android:layout_width="match_parent" android:layout_height="wrap_content" />
             <include android:id="@+id/cardReadFiles"    layout="@layout/item_permission_card_toggle" android:layout_width="match_parent" android:layout_height="wrap_content" />
             <include android:id="@+id/cardSaveFiles"    layout="@layout/item_permission_card_toggle" android:layout_width="match_parent" android:layout_height="wrap_content" />
             <include android:id="@+id/cardCamera"       layout="@layout/item_permission_card_toggle" android:layout_width="match_parent" android:layout_height="wrap_content" />
@@ -77,7 +76,7 @@
         android:paddingHorizontal="@dimen/_20sdp"
         android:paddingTop="@dimen/_12sdp"
         android:paddingBottom="@dimen/_10sdp"
-        android:background="@color/bs_white">
+        android:background="@color/color_surface">
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnGrantPermissions"

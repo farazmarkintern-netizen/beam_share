@@ -145,7 +145,7 @@ class DocumentScannerFragment : Fragment() {
 
     private fun showPopupMenu(anchor: View, doc: ScannedDoc) {
         val popupView = LayoutInflater.from(requireContext())
-            .inflate(R.layout.popup_document_scanner, null)
+            .inflate(R.layout.popup_session_file_menu, null)
 
         // Measure first to get real dimensions (same as SessionFileAdapter)
         popupView.measure(
@@ -198,7 +198,7 @@ class DocumentScannerFragment : Fragment() {
             return
         }
         val uri = FileProvider.getUriForFile(
-            requireContext(), "${requireContext().packageName}.fileprovider", file
+            requireContext(), "${requireContext().packageName}.beamshare.fileprovider", file
         )
         val intent = Intent(Intent.ACTION_VIEW).apply {
             setDataAndType(uri, "application/pdf")
@@ -226,8 +226,7 @@ class DocumentScannerFragment : Fragment() {
             return
         }
         val uri = FileProvider.getUriForFile(
-            requireContext(), "${requireContext().packageName}.fileprovider", file
-        )
+            requireContext(), "${requireContext().packageName}.beamshare.fileprovider", file        )
         val intent = Intent(Intent.ACTION_SEND).apply {
             type = "application/pdf"
             putExtra(Intent.EXTRA_STREAM, uri)

@@ -2,7 +2,6 @@
 package com.example.beamshare.ui.transfers
 
 import android.content.Intent
-import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
@@ -15,7 +14,6 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
-import androidx.core.content.FileProvider
 import androidx.core.view.isGone
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
@@ -26,7 +24,6 @@ import com.example.beamshare.data.TransferHistoryRepository
 import com.example.beamshare.model.HistoryStatus
 import com.example.beamshare.model.TransferDirection
 import com.example.beamshare.model.TransferHistoryItem
-import com.example.beamshare.ui.dialog.ReceivedFileOptionsDialog
 import java.io.File
 
 class TransfersFragment : Fragment() {
@@ -84,9 +81,9 @@ class TransfersFragment : Fragment() {
         btnCancelSelection = view.findViewById(R.id.btnCancelSelection)
 
         adapter = TransferHistoryAdapter(
-            onItemClick        = { item -> showFileOptions(item) },
-            onItemLongClick    = { item -> adapter.enterSelectionMode(item) },
-            onSelectionChanged = { count -> onSelectionChanged(count) }
+            onSelectionChanged = { count -> onSelectionChanged(count) },
+            onDeleteItem       = { item -> confirmDeleteSingle(item) },
+            onRefresh          = { loadHistory(); applyCurrentFilter() }
         )
 
         rvHistory.layoutManager = LinearLayoutManager(requireContext())
@@ -222,11 +219,11 @@ class TransfersFragment : Fragment() {
     private fun applyFilterStyle(selected: TextView) {
         listOf(filterAll, filterSent, filterReceived, filterFailed).forEach { t ->
             if (t == selected) {
-                t.setBackgroundResource(R.drawable.bg_filter_pill_selected)
+                t.setBackgroundResource(R.drawable.bg_tab_selected)
                 t.setTextColor(android.graphics.Color.WHITE)
             } else {
                 t.setBackgroundResource(R.drawable.bg_filter_pill_unselected)
-                t.setTextColor(android.graphics.Color.parseColor("#64748B"))
+                t.setTextColor(androidx.core.content.ContextCompat.getColor(requireContext(), R.color.bs_gray))
             }
         }
     }
@@ -273,26 +270,6 @@ class TransfersFragment : Fragment() {
     }
 
     // ── File actions ──────────────────────────────────────────────────────────
-
-    private fun showFileOptions(item: TransferHistoryItem) {
-        val canOpenFile = item.direction == TransferDirection.RECEIVED
-                && item.status == HistoryStatus.DONE
-                && !item.filePath.isNullOrBlank()
-
-        if (!canOpenFile) {
-            // Sent / Cancelled / no path → sirf history delete
-            confirmDeleteSingle(item)
-            return
-        }
-
-        ReceivedFileOptionsDialog(
-            context             = requireContext(),
-            item                = item,
-            onOpenFile          = { openFile(item) },
-            onShowInFolder      = { showInFolder(item) },
-            onDeleteFromHistory = { confirmDeleteSingle(item) }
-        ).show()
-    }
 
     private fun confirmDeleteSingle(item: TransferHistoryItem) {
         val isReceived = item.direction == TransferDirection.RECEIVED
@@ -343,95 +320,6 @@ class TransfersFragment : Fragment() {
             if (deleted == 0) file.delete() else true
         } else {
             file.delete()
-        }
-    }
-
-    private fun openFile(item: TransferHistoryItem) {
-        val path = item.filePath
-        if (path.isNullOrBlank()) {
-            Toast.makeText(requireContext(), item.title, Toast.LENGTH_SHORT).show()
-            return
-        }
-        val file = File(path)
-        if (!file.exists()) {
-            Toast.makeText(requireContext(), "File not found: ${item.title}", Toast.LENGTH_SHORT).show()
-            return
-        }
-        try {
-            val uri: Uri = FileProvider.getUriForFile(
-                requireContext(), "${requireContext().packageName}.fileprovider", file)
-            val intent = Intent(Intent.ACTION_VIEW).apply {
-                setDataAndType(uri, getMimeType(file.name))
-                addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
-            }
-            startActivity(Intent.createChooser(intent, "Open with"))
-        } catch (e: Exception) {
-            Toast.makeText(requireContext(), "Cannot open file", Toast.LENGTH_SHORT).show()
-        }
-    }
-
-    private fun showInFolder(item: TransferHistoryItem) {
-        val path = item.filePath
-        if (path.isNullOrBlank()) {
-          // "No local file for sent items" ki jagah generic message
-            Toast.makeText(requireContext(), "File path not available", Toast.LENGTH_SHORT).show()
-            return
-        }
-        val file = File(path)
-        if (!file.exists()) {
-            Toast.makeText(requireContext(), "File not found", Toast.LENGTH_SHORT).show()
-            return
-        }
-        try {
-            val folderUri: Uri = FileProvider.getUriForFile(
-                requireContext(), "${requireContext().packageName}.fileprovider",
-                file.parentFile ?: file)
-            val intent = Intent(Intent.ACTION_VIEW).apply {
-                setDataAndType(folderUri, "resource/folder")
-                addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
-            }
-            if (intent.resolveActivity(requireContext().packageManager) != null) {
-                startActivity(intent); return
-            }
-        } catch (_: Exception) {}
-        // Fallback: open the file itself and show folder name
-        openFile(item)
-        Toast.makeText(requireContext(),
-            "Saved in: ${file.parentFile?.name ?: "BeamShare"}", Toast.LENGTH_LONG).show()
-    }
-
-    private fun getMimeType(fileName: String): String {
-        return when (fileName.substringAfterLast('.', "").lowercase()) {
-            "jpg", "jpeg" -> "image/jpeg"
-            "png"  -> "image/png"
-            "gif"  -> "image/gif"
-            "webp" -> "image/webp"
-            "heic" -> "image/heic"
-            "bmp"  -> "image/bmp"
-            "mp4"  -> "video/mp4"
-            "mkv"  -> "video/x-matroska"
-            "avi"  -> "video/x-msvideo"
-            "mov"  -> "video/quicktime"
-            "3gp"  -> "video/3gpp"
-            "webm" -> "video/webm"
-            "mp3"  -> "audio/mpeg"
-            "aac"  -> "audio/aac"
-            "flac" -> "audio/flac"
-            "wav"  -> "audio/wav"
-            "ogg"  -> "audio/ogg"
-            "m4a"  -> "audio/mp4"
-            "pdf"  -> "application/pdf"
-            "doc"  -> "application/msword"
-            "docx" -> "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
-            "xls"  -> "application/vnd.ms-excel"
-            "xlsx" -> "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-            "ppt"  -> "application/vnd.ms-powerpoint"
-            "pptx" -> "application/vnd.openxmlformats-officedocument.presentationml.presentation"
-            "txt"  -> "text/plain"
-            "csv"  -> "text/csv"
-            "apk"  -> "application/vnd.android.package-archive"
-            "vcf"  -> "text/vcard"
-            else   -> "*/*"
         }
     }
 

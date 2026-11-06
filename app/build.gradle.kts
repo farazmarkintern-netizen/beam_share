@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.ksp)
     alias(libs.plugins.hilt.android)
     alias(libs.plugins.navigation.safeargs)
+    alias(libs.plugins.google.gms.google.services)
 }
 
 android {
@@ -37,6 +38,7 @@ android {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
      }
+
 }
 
 dependencies {
@@ -45,8 +47,12 @@ dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.androidx.activity.ktx)
+    implementation(libs.androidx.credentials)
+    implementation(libs.androidx.credentials.play.services.auth)
     implementation(libs.androidx.fragment.ktx)
     implementation(libs.androidx.splashscreen)
+    implementation(libs.firebase.auth)
+    implementation(libs.googleid)
 
     // UI / Material
     implementation(libs.material)
@@ -134,5 +140,8 @@ dependencies {
     implementation("com.google.android.gms:play-services-mlkit-document-scanner:16.0.0")
     implementation("androidx.exifinterface:exifinterface:1.4.2")
 
+
+    implementation("com.amazonaws:aws-android-sdk-s3:2.75.0")
+    implementation("com.amazonaws:aws-android-sdk-core:2.75.0")
 }
 

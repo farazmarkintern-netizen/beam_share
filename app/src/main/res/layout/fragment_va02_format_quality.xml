@@ -10,19 +10,13 @@
 
     <!-- HEADER — never scrolls -->
 
-    <com.google.android.material.button.MaterialButton
+    <ImageView
         android:id="@+id/btnBack"
-        style="@style/Widget.Material3.Button.IconButton"
-        android:layout_width="@dimen/_38sdp"
-        android:layout_height="@dimen/_38sdp"
+        android:layout_width="@dimen/_30sdp"
+        android:layout_height="@dimen/_30sdp"
         android:layout_marginStart="@dimen/_20sdp"
-        android:layout_marginTop="@dimen/_16sdp"
-        android:scaleX="-1"
-        android:backgroundTint="@color/color_white"
-
-        app:icon="@drawable/ic_chevron_right"
-        app:iconTint="@color/va_fg2"
-        app:iconGravity="textStart"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:src="@drawable/back_press"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -31,7 +25,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_10sdp"
-        android:fontFamily="@font/inter_semibold"
+        android:fontFamily="@font/pjs_semibold"
         android:includeFontPadding="false"
         android:letterSpacing="0.05"
         android:text="@string/va_format_title"
@@ -114,7 +108,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:ellipsize="end"
-                            android:fontFamily="@font/inter_bold"
+                            android:fontFamily="@font/pjs_bold"
                             android:includeFontPadding="false"
                             android:maxLines="1"
                             android:textColor="@color/va_fg"
@@ -126,7 +120,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/_3sdp"
-                            android:fontFamily="@font/inter"
+                            android:fontFamily="@font/pjs_regular"
                             android:includeFontPadding="false"
                             android:textColor="@color/va_fg2"
                             android:textSize="@dimen/_11ssp"
@@ -158,12 +152,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/_14sdp"
-                android:fontFamily="@font/inter_bold"
+                android:fontFamily="@font/pjs_bold"
                 android:includeFontPadding="false"
                 android:letterSpacing="0.08"
                 android:text="@string/va_section_format"
                 android:textAllCaps="true"
-                android:textColor="@color/va_fg2"
+                android:textColor="@color/va_fg"
                 android:textSize="@dimen/_11ssp" />
 
             <!-- MP3 info card -->
@@ -211,7 +205,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/inter_bold"
+                            android:fontFamily="@font/pjs_bold"
                             android:includeFontPadding="false"
                             android:text="@string/va_format_mp3_title"
                             android:textColor="@color/va_fg"
@@ -221,7 +215,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/_3sdp"
-                            android:fontFamily="@font/inter"
+                            android:fontFamily="@font/pjs_regular"
                             android:includeFontPadding="false"
                             android:lineSpacingMultiplier="1.5"
                             android:text="@string/va_format_mp3_desc"
@@ -236,12 +230,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/_14sdp"
-                android:fontFamily="@font/inter_bold"
+                android:fontFamily="@font/pjs_bold"
                 android:includeFontPadding="false"
                 android:letterSpacing="0.08"
                 android:text="@string/va_section_bitrate"
                 android:textAllCaps="true"
-                android:textColor="@color/va_fg2"
+                android:textColor="@color/va_fg"
                 android:textSize="@dimen/_11ssp" />
 
             <!-- Bitrate chip group -->
@@ -318,7 +312,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/inter_semibold"
+                            android:fontFamily="@font/pjs_semibold"
                             android:includeFontPadding="false"
                             android:text="@string/va_est_size_label"
                             android:textColor="@color/va_fg2"
@@ -329,7 +323,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/_2sdp"
                             android:alpha="0.7"
-                            android:fontFamily="@font/inter"
+                            android:fontFamily="@font/pjs_regular"
                             android:includeFontPadding="false"
                             android:text="@string/va_est_size_note"
                             android:textColor="@color/va_fg2"
@@ -340,7 +334,7 @@
                         android:id="@+id/tvEstSize"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/inter_bold"
+                        android:fontFamily="@font/pjs_bold"
                         android:includeFontPadding="false"
                         android:text="@string/va_est_size_default"
                         android:textColor="@color/va_fg"

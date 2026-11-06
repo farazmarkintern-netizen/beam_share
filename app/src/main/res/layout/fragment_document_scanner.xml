@@ -31,22 +31,20 @@
 
                 <ImageView
                     android:id="@+id/btnBack"
-                    android:layout_width="@dimen/_36sdp"
-                    android:layout_height="@dimen/_36sdp"
-                    android:background="@drawable/bg_browse_item"
+                    android:layout_width="@dimen/_30sdp"
+                    android:layout_height="@dimen/_30sdp"
                     android:contentDescription="@null"
-                    android:padding="@dimen/_8sdp"
-                    android:src="@drawable/ic_arrow_back"
+                    android:src="@drawable/back_press"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:tint="@color/color_text_primary" />
+                     />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/inter_semibold"
-                    android:text="Document Scanner"
+                    android:fontFamily="@font/pjs_semibold"
+                    android:text="@string/tool_doc_scanner"
                     android:textColor="@color/color_text_primary"
                     android:textSize="@dimen/_16ssp"
                     app:layout_constraintStart_toStartOf="parent"
@@ -66,7 +64,6 @@
                 app:cardElevation="0dp"
                 app:cardBackgroundColor="@android:color/transparent">
 
-                <!-- Hero image -->
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -74,63 +71,66 @@
                     android:scaleType="centerCrop"
                     android:src="@drawable/document_hero" />
 
-                <!-- Text overlay — left 55% only -->
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#4D000000" />
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical"
                     android:gravity="center_vertical"
                     android:paddingStart="@dimen/_14sdp"
-                    android:paddingEnd="@dimen/_100sdp"
-                    android:paddingVertical="@dimen/_12sdp">
+                    android:paddingEnd="@dimen/_80sdp"
+                    android:paddingVertical="@dimen/_10sdp">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/inter_bold"
-                        android:text="Document\nScanner"
+                        android:fontFamily="@font/pjs_bold"
+                        android:text="@string/doc_scanner_title_multiline"
                         android:textColor="@android:color/white"
                         android:textSize="@dimen/_15ssp"
                         android:maxLines="2"
-                        android:lineSpacingMultiplier="1.15" />
+                        android:lineSpacingMultiplier="1.005" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_3sdp"
-                        android:fontFamily="@font/inter"
-                        android:text="Scan documents instantly and save them as digital files."
+                        android:fontFamily="@font/pjs_regular"
+                        android:text="@string/doc_scanner_desc"
                         android:textColor="#CCFFFFFF"
                         android:textSize="@dimen/_9ssp"
                         android:maxLines="2"
-                        android:lineSpacingMultiplier="1.2" />
+                        android:lineSpacingMultiplier="1.05" />
 
                     <TextView
                         android:id="@+id/btnScanNow"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="@dimen/_28sdp"
                         android:layout_marginTop="@dimen/_8sdp"
                         android:background="@drawable/bg_rounded_pill"
                         android:clickable="true"
                         android:focusable="true"
-                        android:fontFamily="@font/inter_semibold"
-                        android:paddingHorizontal="@dimen/_12sdp"
-                        android:paddingVertical="@dimen/_5sdp"
-                        android:text="Scan Now"
+                        android:fontFamily="@font/pjs_semibold"
+                        android:paddingHorizontal="@dimen/_14sdp"
+                        android:text="@string/doc_scanner_scan_now"
                         android:textColor="@color/bs_blue"
-                        android:textSize="@dimen/_11ssp" />
+                        android:textSize="@dimen/_10ssp"
+                        android:gravity="center"
+                        android:textAllCaps="false" />
 
                 </LinearLayout>
 
-            </com.google.android.material.card.MaterialCardView>
-            <!-- ===== RECENTS LABEL ===== -->
-            <TextView
+            </com.google.android.material.card.MaterialCardView>            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_16sdp"
                 android:layout_marginTop="@dimen/_18sdp"
-                android:fontFamily="@font/inter_semibold"
-                android:text="Recents"
+                android:fontFamily="@font/pjs_semibold"
+                android:text="@string/doc_scanner_recents"
                 android:textColor="@color/color_text_primary"
                 android:textSize="@dimen/_14ssp" />
 
@@ -145,18 +145,18 @@
                 android:visibility="gone">
 
                 <ImageView
-                    android:layout_width="@dimen/_64sdp"
-                    android:layout_height="@dimen/_64sdp"
+                    android:layout_width="@dimen/_90sdp"
+                    android:layout_height="@dimen/_90sdp"
                     android:contentDescription="@null"
-                    android:src="@drawable/ic_document"
-                    app:tint="@color/color_text_secondary" />
+                    android:src="@drawable/ic_no_doc"
+                   />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_12sdp"
-                    android:fontFamily="@font/inter_medium"
-                    android:text="No scanned documents yet"
+                    android:fontFamily="@font/pjs_medium"
+                    android:text="@string/doc_scanner_empty"
                     android:textColor="@color/color_text_secondary"
                     android:textSize="@dimen/_13ssp" />
 

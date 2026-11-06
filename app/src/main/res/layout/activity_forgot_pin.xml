@@ -18,19 +18,18 @@
 
         <FrameLayout
             android:id="@+id/btnBack"
-            android:layout_width="@dimen/_40sdp"
-            android:layout_height="@dimen/_40sdp"
-            android:background="@drawable/bg_pin_key_dark"
+            android:layout_width="@dimen/_30sdp"
+            android:layout_height="@dimen/_30sdp"
             android:clickable="true"
             android:focusable="true">
 
             <ImageView
-                android:layout_width="@dimen/_18sdp"
-                android:layout_height="@dimen/_18sdp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_gravity="center"
-                android:src="@drawable/ic_arrow_back"
-                app:tint="@android:color/white"
-                android:contentDescription="@null" />
+                android:contentDescription="@null"
+                android:src="@drawable/back_press"
+                 />
         </FrameLayout>
 
         <TextView
@@ -38,10 +37,10 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="Forgot PIN"
+            android:text="@string/forgot_pin_title"
             android:textColor="@android:color/white"
             android:textSize="@dimen/_15ssp"
-            android:fontFamily="@font/inter_bold" />
+            android:fontFamily="@font/pjs_bold" />
 
         <View
             android:layout_width="@dimen/_40sdp"
@@ -75,10 +74,10 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="@dimen/_16sdp"
-        android:text="Answer Security Question"
+        android:text="@string/forgot_pin_subtitle"
         android:textColor="@android:color/white"
         android:textSize="@dimen/_18ssp"
-        android:fontFamily="@font/inter_bold" />
+        android:fontFamily="@font/pjs_bold" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -86,10 +85,10 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="@dimen/_6sdp"
         android:gravity="center"
-        android:text="Answer correctly to reset your PIN\nwithout losing your files"
+        android:text="@string/forgot_pin_hint"
         android:textColor="@color/private_accent_light"
         android:textSize="@dimen/_13ssp"
-        android:fontFamily="@font/inter_medium" />
+        android:fontFamily="@font/pjs_medium" />
 
     <!-- Question text -->
     <TextView
@@ -102,8 +101,8 @@
         android:padding="@dimen/_14sdp"
         android:textColor="@android:color/white"
         android:textSize="@dimen/_14ssp"
-        android:fontFamily="@font/inter_medium"
-        android:text="Loading question…" />
+        android:fontFamily="@font/pjs_medium"
+        android:text="@string/forgot_pin_loading" />
 
     <!-- Answer input -->
     <com.google.android.material.textfield.TextInputLayout
@@ -122,7 +121,7 @@
             android:textColor="@android:color/white"
             android:textColorHint="@color/private_accent_light"
             android:textSize="@dimen/_14ssp"
-            android:fontFamily="@font/inter" />
+            android:fontFamily="@font/pjs_regular" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <!-- Error message -->
@@ -132,11 +131,11 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="@dimen/_8sdp"
-        android:textColor="#EF4444"
+        android:textColor="@color/color_red"
         android:textSize="@dimen/_12ssp"
-        android:fontFamily="@font/inter_medium"
+        android:fontFamily="@font/pjs_medium"
         android:visibility="gone"
-        android:text="Wrong answer. Try again." />
+        android:text="@string/forgot_pin_wrong_answer" />
 
     <!-- Verify button -->
     <LinearLayout
@@ -154,10 +153,10 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Verify &amp; Reset PIN"
+            android:text="@string/forgot_pin_verify_btn"
             android:textColor="@android:color/white"
             android:textSize="@dimen/_14ssp"
-            android:fontFamily="@font/inter_semibold" />
+            android:fontFamily="@font/pjs_semibold" />
     </LinearLayout>
 
     <!-- Destructive reset fallback (only shown if no security question set) -->
@@ -167,10 +166,10 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="@dimen/_16sdp"
-        android:text="Reset and delete all files"
-        android:textColor="#EF4444"
+        android:text="@string/forgot_pin_reset_delete"
+        android:textColor="@color/color_red"
         android:textSize="@dimen/_12ssp"
-        android:fontFamily="@font/inter_medium"
+        android:fontFamily="@font/pjs_medium"
         android:clickable="true"
         android:focusable="true"
         android:visibility="gone" />

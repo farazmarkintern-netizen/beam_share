@@ -36,7 +36,7 @@
                 android:id="@+id/ivThumbnail"
                 android:layout_width="@dimen/_44sdp"
                 android:layout_height="@dimen/_44sdp"
-                android:background="@drawable/bg_va_surface_r10"
+                android:background="@drawable/bg_va_surface_r14"
                 android:scaleType="centerCrop"
                 tools:src="@color/va_surface2" />
 
@@ -67,7 +67,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
-                android:fontFamily="@font/inter_semibold"
+                android:fontFamily="@font/pjs_semibold"
                 android:includeFontPadding="false"
                 android:maxLines="1"
                 android:textColor="@color/va_fg"
@@ -79,7 +79,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_2sdp"
-                android:fontFamily="@font/inter"
+                android:fontFamily="@font/pjs_regular"
                 android:includeFontPadding="false"
                 android:textColor="@color/va_fg2"
                 android:textSize="@dimen/_11ssp"

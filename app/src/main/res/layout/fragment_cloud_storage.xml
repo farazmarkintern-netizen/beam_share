@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/root_cloud_storage"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bs_surface">
+
+    <!-- Top Bar -->
+    <ImageButton
+        android:id="@+id/btn_back"
+        android:layout_width="@dimen/_30sdp"
+        android:layout_height="@dimen/_30sdp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:contentDescription="@string/cloud_back"
+        android:src="@drawable/back_press"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="16dp"
+      />
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/cloud_title"
+        android:textSize="18sp"
+        android:fontFamily="@font/pjs_semibold"
+        android:textColor="@color/bs_dark"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/btn_back"
+        app:layout_constraintBottom_toBottomOf="@id/btn_back" />
+
+    <!-- Upload Card -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card_upload"
+        android:layout_width="0dp"
+        android:layout_height="170dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="24dp"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="4dp"
+        app:strokeWidth="0dp"
+        app:layout_constraintTop_toBottomOf="@id/btn_back"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <!-- Background Image -->
+            <ImageView
+                android:id="@+id/img_upload_bg"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@drawable/img_cloud_upload"
+                android:contentDescription="@null" />
+
+            <!-- Semi-transparent overlay for text readability -->
+
+
+            <TextView
+                android:id="@+id/tv_upload_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/cloud_upload_title"
+                android:textSize="20sp"
+                android:fontFamily="@font/pjs_bold"
+                android:textColor="@color/bs_white"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="140dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_upload_subtitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/cloud_upload_subtitle"
+                android:textSize="12sp"
+                android:fontFamily="@font/pjs_regular"
+                android:textColor="#CCffffff"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="6dp"
+                android:layout_marginEnd="140dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_upload_title"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_upload_data"
+                android:layout_width="wrap_content"
+                android:layout_height="38dp"
+                android:text="@string/cloud_upload_btn"
+                android:textSize="13sp"
+                android:fontFamily="@font/pjs_semibold"
+                android:textColor="@color/bs_dark"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                app:backgroundTint="@color/color_surface"
+                app:cornerRadius="20dp"
+                app:strokeWidth="0dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginBottom="20dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- Explore / Cloud Storage Card -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card_explore"
+        android:layout_width="0dp"
+        android:layout_height="170dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="16dp"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="4dp"
+        app:strokeWidth="0dp"
+        app:layout_constraintTop_toBottomOf="@id/card_upload"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <!-- Background Image -->
+            <ImageView
+                android:id="@+id/img_explore_bg"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@drawable/img_cloud_storage"
+                android:contentDescription="@null" />
+
+            <!-- Semi-transparent overlay for text readability -->
+
+
+            <TextView
+                android:id="@+id/tv_explore_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/cloud_explore_title"
+                android:textSize="20sp"
+                android:fontFamily="@font/pjs_bold"
+                android:textColor="@color/bs_white"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="140dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_explore_subtitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/cloud_explore_subtitle"
+                android:textSize="12sp"
+                android:fontFamily="@font/pjs_regular"
+                android:textColor="@color/color_white"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="6dp"
+                android:layout_marginEnd="140dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_explore_title"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_explore"
+                android:layout_width="wrap_content"
+                android:layout_height="38dp"
+                android:text="@string/cloud_explore_btn"
+                android:textSize="13sp"
+                android:fontFamily="@font/pjs_semibold"
+                android:textColor="@color/bs_dark"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                app:backgroundTint="@color/color_surface"
+                app:cornerRadius="20dp"
+                app:strokeWidth="0dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginBottom="20dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

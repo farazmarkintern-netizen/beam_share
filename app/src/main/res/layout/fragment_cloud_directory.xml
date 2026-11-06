@@ -1,0 +1,421 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/root_cloud_directory"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_background"
+    android:fillViewport="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="@dimen/_20sdp"
+        android:paddingBottom="@dimen/_32sdp">
+
+        <!-- ═══════════════════════════════════════════════════
+             HEADER — avatar + name
+        ════════════════════════════════════════════════════ -->
+        <FrameLayout
+            android:id="@+id/layoutAvatar"
+            android:layout_width="@dimen/_44sdp"
+            android:layout_height="@dimen/_44sdp"
+            android:background="@drawable/bg_avatar_circle"
+            android:layout_marginTop="@dimen/_20sdp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/tvAvatarInitial"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="W"
+                android:textColor="@color/bs_white"
+                android:textSize="@dimen/_18ssp"
+                android:fontFamily="@font/pjs_bold" />
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/tvUserName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Wahaj Khan"
+            android:textColor="@color/color_text_primary"
+            android:textSize="@dimen/_15ssp"
+            android:fontFamily="@font/pjs_bold"
+            android:layout_marginStart="@dimen/_12sdp"
+            app:layout_constraintStart_toEndOf="@id/layoutAvatar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/layoutAvatar"
+            app:layout_constraintBottom_toTopOf="@id/tvCloudSubtitle"
+            app:layout_constraintVertical_chainStyle="packed" />
+
+        <TextView
+            android:id="@+id/tvCloudSubtitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/cloud_title"
+            android:textColor="@color/color_text_secondary"
+            android:textSize="@dimen/_12ssp"
+            android:fontFamily="@font/pjs_regular"
+            android:layout_marginStart="@dimen/_12sdp"
+            android:layout_marginTop="@dimen/_2sdp"
+            app:layout_constraintStart_toEndOf="@id/layoutAvatar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvUserName"
+            app:layout_constraintBottom_toBottomOf="@id/layoutAvatar" />
+
+        <!-- ═══════════════════════════════════════════════════
+             STORAGE INFO CARD
+        ════════════════════════════════════════════════════ -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardStorageInfo"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_20sdp"
+            app:cardCornerRadius="@dimen/_16sdp"
+            app:strokeWidth="0dp"
+            app:cardBackgroundColor="@color/color_surface"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layoutAvatar">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/_20sdp">
+
+                <TextView
+                    android:id="@+id/tvStorageTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/cloud_title"
+                    android:textColor="@color/color_text_primary"
+                    android:textSize="@dimen/_15ssp"
+                    android:fontFamily="@font/pjs_semibold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <View
+                    android:id="@+id/viewTitleUnderline"
+                    android:layout_width="@dimen/_32sdp"
+                    android:layout_height="@dimen/_3sdp"
+                    android:background="@color/bs_blue"
+                    android:layout_marginTop="@dimen/_4sdp"
+                    app:layout_constraintStart_toStartOf="@id/tvStorageTitle"
+                    app:layout_constraintTop_toBottomOf="@id/tvStorageTitle" />
+
+                <!-- Total row -->
+                <View
+                    android:id="@+id/dotTotal"
+                    android:layout_width="@dimen/_8sdp"
+                    android:layout_height="@dimen/_8sdp"
+                    android:background="@drawable/bg_dot_blue_circle"
+                    android:layout_marginTop="@dimen/_16sdp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/viewTitleUnderline" />
+
+                <TextView
+                    android:id="@+id/tvTotal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/cloud_dir_total"
+                    android:textColor="@color/color_text_primary"
+                    android:textSize="@dimen/_12ssp"
+                    android:fontFamily="@font/pjs_medium"
+                    android:layout_marginStart="@dimen/_8sdp"
+                    app:layout_constraintStart_toEndOf="@id/dotTotal"
+                    app:layout_constraintTop_toTopOf="@id/dotTotal"
+                    app:layout_constraintBottom_toBottomOf="@id/dotTotal" />
+
+                <!-- Used row -->
+                <View
+                    android:id="@+id/dotUsed"
+                    android:layout_width="@dimen/_8sdp"
+                    android:layout_height="@dimen/_8sdp"
+                    android:background="@drawable/bg_dot_teal_circle"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/dotTotal" />
+
+                <TextView
+                    android:id="@+id/tvUsed"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/cloud_dir_used"
+                    android:textColor="@color/color_text_primary"
+                    android:textSize="@dimen/_12ssp"
+                    android:fontFamily="@font/pjs_medium"
+                    android:layout_marginStart="@dimen/_8sdp"
+                    app:layout_constraintStart_toEndOf="@id/dotUsed"
+                    app:layout_constraintTop_toTopOf="@id/dotUsed"
+                    app:layout_constraintBottom_toBottomOf="@id/dotUsed" />
+
+                <!-- Circular progress (right side) -->
+                <FrameLayout
+                    android:id="@+id/layoutProgress"
+                    android:layout_width="@dimen/_80sdp"
+                    android:layout_height="@dimen/_80sdp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent">
+
+                    <com.google.android.material.progressindicator.CircularProgressIndicator
+                        android:id="@+id/progressStorage"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        app:trackThickness="@dimen/_8sdp"
+                        app:indicatorColor="@color/bs_teal"
+                        app:trackColor="@color/bs_blue_light"
+                        app:indicatorSize="@dimen/_80sdp"
+                        android:progress="50" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:orientation="vertical"
+                        android:gravity="center">
+
+                        <TextView
+                            android:id="@+id/tvProgressPercent"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="50%"
+                            android:textColor="@color/color_text_primary"
+                            android:textSize="@dimen/_14ssp"
+                            android:fontFamily="@font/pjs_bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/cloud_dir_used_label"
+                            android:textColor="@color/color_text_secondary"
+                            android:textSize="@dimen/_10ssp"
+                            android:fontFamily="@font/pjs_regular" />
+                    </LinearLayout>
+                </FrameLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- ═══════════════════════════════════════════════════
+             CATEGORY CARD
+             Row 1: Images · Videos · Audios  (spread chain)
+             Row 2:        Contacts · Documents  (packed, centred)
+        ════════════════════════════════════════════════════ -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardCategories"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_20sdp"
+            app:cardCornerRadius="@dimen/_16sdp"
+            app:strokeWidth="0dp"
+            app:cardBackgroundColor="@color/color_surface"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cardStorageInfo">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/_16sdp"
+                android:paddingBottom="@dimen/_16sdp">
+
+                <!-- ── Row 1 ─────────────────────────────────── -->
+
+                <LinearLayout
+                    android:id="@+id/categoryImages"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:padding="@dimen/_8sdp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:stateListAnimator="@null"
+                    android:foreground="?attr/selectableItemBackground"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/categoryVideos"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintHorizontal_chainStyle="spread">
+
+                    <ImageView
+                        android:layout_width="@dimen/_52sdp"
+                        android:layout_height="@dimen/_52sdp"
+                        android:src="@drawable/ic_file_cloud_image"
+                        android:contentDescription="@null" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/cloud_dir_images"
+                        android:textColor="@color/color_text_primary"
+                        android:textSize="@dimen/_12ssp"
+                        android:fontFamily="@font/pjs_medium"
+                        android:layout_marginTop="@dimen/_8sdp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/categoryVideos"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:padding="@dimen/_8sdp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:stateListAnimator="@null"
+                    android:foreground="?attr/selectableItemBackground"
+                    app:layout_constraintStart_toEndOf="@id/categoryImages"
+                    app:layout_constraintEnd_toStartOf="@id/categoryAudios"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <ImageView
+                        android:layout_width="@dimen/_52sdp"
+                        android:layout_height="@dimen/_52sdp"
+                        android:src="@drawable/ic_file_cloud_video"
+                        android:contentDescription="@null" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/cloud_dir_videos"
+                        android:textColor="@color/color_text_primary"
+                        android:textSize="@dimen/_12ssp"
+                        android:fontFamily="@font/pjs_medium"
+                        android:layout_marginTop="@dimen/_8sdp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/categoryAudios"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:padding="@dimen/_8sdp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:stateListAnimator="@null"
+                    android:foreground="?attr/selectableItemBackground"
+                    app:layout_constraintStart_toEndOf="@id/categoryVideos"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <ImageView
+                        android:layout_width="@dimen/_52sdp"
+                        android:layout_height="@dimen/_52sdp"
+                        android:src="@drawable/ic_file_cloud_audio"
+                        android:contentDescription="@null" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/cloud_dir_audios"
+                        android:textColor="@color/color_text_primary"
+                        android:textSize="@dimen/_12ssp"
+                        android:fontFamily="@font/pjs_medium"
+                        android:layout_marginTop="@dimen/_8sdp" />
+                </LinearLayout>
+
+                <!-- ── Row 2 (centred) ────────────────────────── -->
+
+                <LinearLayout
+                    android:id="@+id/categoryContacts"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:padding="@dimen/_8sdp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:stateListAnimator="@null"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    app:layout_constraintWidth_percent="0.333"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/categoryDocuments"
+                    app:layout_constraintTop_toBottomOf="@id/categoryImages"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintHorizontal_chainStyle="packed"
+                    app:layout_constraintHorizontal_bias="0.5">
+
+                    <ImageView
+                        android:layout_width="@dimen/_52sdp"
+                        android:layout_height="@dimen/_52sdp"
+                        android:src="@drawable/ic_file_cloud_contact"
+                        android:contentDescription="@null" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/cloud_dir_contacts"
+                        android:textColor="@color/color_text_primary"
+                        android:textSize="@dimen/_12ssp"
+                        android:fontFamily="@font/pjs_medium"
+                        android:layout_marginTop="@dimen/_8sdp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/categoryDocuments"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:padding="@dimen/_8sdp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:stateListAnimator="@null"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    app:layout_constraintWidth_percent="0.333"
+                    app:layout_constraintStart_toEndOf="@id/categoryContacts"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/categoryVideos"
+                    app:layout_constraintBottom_toBottomOf="parent">
+
+                    <ImageView
+                        android:layout_width="@dimen/_52sdp"
+                        android:layout_height="@dimen/_52sdp"
+                        android:src="@drawable/ic_file_cloud_document"
+                        android:contentDescription="@null" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/cloud_dir_documents"
+                        android:textColor="@color/color_text_primary"
+                        android:textSize="@dimen/_12ssp"
+                        android:fontFamily="@font/pjs_medium"
+                        android:layout_marginTop="@dimen/_8sdp" />
+                </LinearLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- ═══════════════════════════════════════════════════
+             UPLOAD BUTTON
+        ════════════════════════════════════════════════════ -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnUploadToCloud"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_52sdp"
+            android:text="@string/cloud_upload_title"
+            android:textColor="@color/bs_white"
+            android:textSize="@dimen/_14ssp"
+            android:fontFamily="@font/pjs_semibold"
+            android:layout_marginTop="@dimen/_32sdp"
+            android:background="@drawable/btn_next_gradient"
+            app:backgroundTint="@null"
+            app:cornerRadius="@dimen/_28sdp"
+            app:strokeWidth="0dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cardCategories" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.core.widget.NestedScrollView>

@@ -43,7 +43,14 @@ class MainActivity : AppCompatActivity() {
         R.id.doneFragment,
         // Document Scanner
         R.id.documentScannerFragment,
-        R.id.previewSaveFragment
+        R.id.previewSaveFragment,
+        // Cloud module
+        R.id.cloudStorageFragment,
+        R.id.cloudDirectoryFragment,
+        R.id.cloudLoginFragment,
+        R.id.cloudUploadingFragment,
+        // Private folder (Activities handle their own UI; add any nav fragments here if added later)
+        R.id.receivedFilesFragment
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -5,16 +5,6 @@
     <string name="app_name">BeamShare</string>
 
     <!-- Onboarding Permissions -->
-    <string name="perm_wifi_name">Nearby Wi-Fi Devices</string>
-    <string name="perm_bluetooth_name">Bluetooth</string>
-    <string name="perm_storage_name">Files &amp; Storage</string>
-    <string name="perm_storage_desc">Required to access and share files on your device</string>
-    <string name="perm_camera_name">Camera</string>
-    <string name="perm_contacts_name">Contacts</string>
-    <string name="perm_notifications_name">Notifications</string>
-    <string name="perm_notifications_desc">Get notified about incoming transfers</string>
-    <string name="perm_badge_required">Required</string>
-    <string name="perm_badge_optional">Optional</string>
     <!-- Add these to your res/values/strings.xml -->
 
     <!-- Session menu / incoming dialog -->
@@ -33,141 +23,44 @@
     <string name="session_progress_pct">%1$d%%</string>
     <!-- Navigation -->
     <string name="nav_home">Home</string>
-    <string name="session_leave_sub">Disconnect and end this session</string>
     <string name="nav_transfers">History</string>
     <string name="nav_settings">Setting</string>
 
     <!-- Home -->
-    <string name="home_title">BeamShare</string>
-    <string name="home_send">Send</string>
-    <string name="home_receive">Receive</string>
-    <string name="home_send_desc">Share files with nearby devices</string>
-    <string name="home_receive_desc">Get files from other devices</string>
-    <string name="home_recent_transfers">Recent Transfers</string>
-    <string name="home_see_all">See All</string>
 
     <!-- Onboarding -->
-    <string name="onboarding_welcome_title">Welcome to BeamShare</string>
-    <string name="onboarding_welcome_desc">Share files quickly and easily with nearby devices</string>
-    <string name="onboarding_permissions_title">Permissions</string>
-    <string name="onboarding_permissions_desc">BeamShare needs a few permissions to work properly</string>
     <string name="onboarding_complete_title">You\'re All Set!</string>
     <string name="onboarding_complete_desc">Start sharing files with nearby devices</string>
     <string name="onboarding_next">Next</string>
     <string name="onboarding_get_started">Get Started</string>
-    <string name="onboarding_skip">Skip</string>
 
     <!-- Send Files -->
     <string name="send_files_title">Select Files</string>
-    <string name="send_files_send">Send</string>
-    <string name="send_selected">%d selected</string>
-    <string name="send_total_size">Total: %s</string>
-    <string name="tab_photos">Photos</string>
-    <string name="tab_videos">Videos</string>
-    <string name="tab_music">Music</string>
-    <string name="tab_apps">Apps</string>
-    <string name="tab_documents">Documents</string>
-    <string name="tab_contacts">Contacts</string>
 
     <!-- Device Discovery -->
-    <string name="discovery_title">Find Device</string>
-    <string name="tab_scan_qr">Scan QR</string>
-    <string name="tab_enter_code">Enter Code</string>
-    <string name="discovery_nearby_devices">Nearby Devices</string>
-    <string name="discovery_scanning">Scanning for devices…</string>
-    <string name="discovery_connect">Connect</string>
-    <string name="discovery_connecting">Connecting…</string>
-    <string name="discovery_enter_code_title">Enter 6-digit Code</string>
-    <string name="discovery_enter_code_desc">Enter the code shown on the receiving device</string>
-    <string name="discovery_invalid_code">Invalid code. Please try again.</string>
-    <string name="discovery_no_devices_title">No Devices Found</string>
-    <string name="discovery_no_devices_desc">Make sure the other device has BeamShare open and is set to receive.</string>
-    <string name="discovery_scan_again">Scan Again</string>
-    <string name="discovery_use_code">Use code instead</string>
 
     <!-- Receive Waiting -->
-    <string name="receive_title">Receive Files</string>
-    <string name="receive_your_qr">Your QR Code</string>
-    <string name="receive_pairing_code">Pairing Code</string>
-    <string name="receive_device_name">Your Device</string>
-    <string name="receive_waiting">Waiting for sender…</string>
-    <string name="receive_stop">Stop Receiving</string>
 
     <!-- Transfer Progress -->
-    <string name="transfer_progress_title">Transferring</string>
-    <string name="transfer_sending">Sending…</string>
-    <string name="transfer_receiving">Receiving…</string>
-    <string name="transfer_speed">%s/s</string>
-    <string name="transfer_time_remaining">%s remaining</string>
-    <string name="transfer_queue_title">Queue</string>
-    <string name="transfer_of">%1$d of %2$d</string>
 
     <!-- Transfer Results -->
-    <string name="result_success_title">Transfer Complete!</string>
-    <string name="result_success_subtitle">All files transferred successfully</string>
-    <string name="result_error_title">Transfer Failed</string>
-    <string name="result_error_subtitle">Something went wrong during transfer</string>
-    <string name="result_partial_title">Partially Transferred</string>
-    <string name="result_partial_subtitle">Some files could not be transferred</string>
-    <string name="result_view_files">View Files</string>
-    <string name="result_share_again">Share Again</string>
-    <string name="result_done">Done</string>
-    <string name="result_try_again">Try Again</string>
-    <string name="result_go_home">Go Home</string>
-    <string name="result_retry_failed">Retry Failed</string>
-    <string name="result_error_details">Error Details</string>
-    <string name="result_failed_files">Failed Files</string>
 
     <!-- Transfer History -->
-    <string name="history_title">Transfer History</string>
     <string name="history_filter_all">All</string>
     <string name="history_filter_sent">Sent</string>
     <string name="history_filter_received">Received</string>
     <string name="history_filter_failed">Failed</string>
-    <string name="history_status_done">Done</string>
-    <string name="history_status_failed">Failed</string>
-    <string name="history_status_cancelled">Cancelled</string>
-    <string name="history_sent_to">Sent to %s</string>
-    <string name="history_received_from">Received from %s</string>
-    <string name="history_files_count">%d files</string>
 
     <!-- Transfers Empty State -->
-    <string name="transfers_empty">Your transfer history will appear here</string>
-    <string name="transfers_no_transfers">No transfers yet</string>
 
     <!-- Dialogs -->
-    <string name="dialog_cancel_title">Cancel Transfer?</string>
-    <string name="dialog_cancel_message">This will stop the current transfer. Files already transferred will be kept.</string>
-    <string name="dialog_cancel_yes">Yes, Cancel</string>
-    <string name="dialog_cancel_keep">Keep Transferring</string>
 
-    <string name="dialog_stop_title">Stop Receiving?</string>
-    <string name="dialog_stop_message">You will no longer be visible to nearby devices. Any pending connections will be dropped.</string>
-    <string name="dialog_stop_yes">Stop Receiving</string>
-    <string name="dialog_stop_keep">Keep Waiting</string>
 
-    <string name="dialog_timeout_title">Connection Timed Out</string>
-    <string name="dialog_timeout_message">Could not establish a connection with the other device. Make sure both devices are on the same network.</string>
 
-    <string name="dialog_declined_title">Transfer Declined</string>
-    <string name="dialog_declined_message">The receiving device declined your transfer request. You can try sending to a different device.</string>
-    <string name="dialog_declined_send_other">Send to Another Device</string>
 
-    <string name="dialog_install_title">Allow App Installation</string>
-    <string name="dialog_install_message">To install shared apps, you need to allow installation from unknown sources in your device settings.</string>
-    <string name="dialog_install_open_settings">Open Settings</string>
-    <string name="dialog_install_not_now">Not Now</string>
 
-    <string name="dialog_connection_lost_title">Connection Lost</string>
-    <string name="dialog_connection_lost_message">The connection was interrupted during transfer. Your progress has been saved and you can retry.</string>
-    <string name="dialog_retry">Retry</string>
-    <string name="dialog_cancel">Cancel</string>
 
     <!-- Bottom Sheets -->
-    <string name="sheet_split_apk_title">Split APK Detected</string>
-    <string name="sheet_split_apk_message">This app uses a split APK format. It may not install correctly on the receiving device if it has a different CPU architecture or screen density.</string>
-    <string name="sheet_split_apk_send">Send Anyway</string>
-    <string name="sheet_split_apk_remove">Remove from Selection</string>
 
     <string name="sheet_edit_name_title">Edit Device Name</string>
     <string name="sheet_edit_name_desc">This name will be visible to other devices</string>
@@ -181,75 +74,29 @@
     <string name="sheet_method_recommended">Recommended</string>
     <string name="sheet_method_hotspot">Hotspot</string>
     <string name="sheet_method_hotspot_desc">Good speed · Creates a hotspot</string>
-    <string name="sheet_method_bluetooth">Bluetooth</string>
-    <string name="sheet_method_bluetooth_desc">Slower · Works everywhere</string>
 
-    <string name="sheet_details_title">Transfer Details</string>
-    <string name="sheet_details_file">File</string>
-    <string name="sheet_details_direction">Direction</string>
-    <string name="sheet_details_device">Device</string>
-    <string name="sheet_details_size">Size</string>
-    <string name="sheet_details_speed">Speed</string>
-    <string name="sheet_details_duration">Duration</string>
-    <string name="sheet_details_method">Method</string>
-    <string name="sheet_details_status">Status</string>
 
-    <string name="sheet_incoming_title">Incoming Transfer</string>
-    <string name="sheet_incoming_info">wants to send %1$d file%2$s (%3$s)</string>
-    <string name="sheet_incoming_accept">Accept</string>
-    <string name="sheet_incoming_decline">Decline</string>
 
     <!-- Can\'t Connect -->
-    <string name="cant_connect_title">Can\'t Connect</string>
-    <string name="cant_connect_message">Unable to establish a connection with the other device. Please make sure both devices are nearby and try again.</string>
-    <string name="cant_connect_try_again">Try Again</string>
 
     <!-- Camera Permission -->
-    <string name="camera_denied_title">Camera Permission Required</string>
     <string name="camera_denied_message">Camera access is needed to scan QR codes. Please grant permission in your device settings.</string>
-    <string name="camera_denied_settings">Open Settings</string>
-    <string name="camera_denied_use_code">Enter code instead</string>
 
     <!-- Banners -->
-    <string name="banner_wifi_direct_unavailable">Wi-Fi Direct is not available on this device</string>
-    <string name="banner_bluetooth_off">Bluetooth is turned off</string>
-    <string name="banner_wifi_off">Wi-Fi is turned off</string>
-    <string name="banner_storage_full">Storage is full. Free up space to receive files.</string>
-    <string name="banner_wifi_permission">Wi-Fi permission is required for nearby sharing</string>
-    <string name="banner_turn_on">Turn On</string>
-    <string name="banner_manage">Manage</string>
-    <string name="banner_grant">Grant</string>
 
     <!-- Toasts -->
-    <string name="toast_failed_send">Failed to send files. Please try again.</string>
-    <string name="toast_file_too_large">File is too large to transfer.</string>
-    <string name="toast_export_failed">Couldn\'t export the file. Check storage permissions.</string>
-    <string name="toast_install_failed">App installation failed.</string>
-    <string name="toast_contacts_saved">%d contact(s) saved successfully.</string>
-    <string name="toast_transfer_cancelled">Transfer cancelled.</string>
     <string name="toast_device_name_saved">Device name updated.</string>
 
     <!-- Settings -->
-    <string name="settings_title">Settings</string>
     <string name="settings_device_name">Device Name</string>
     <string name="settings_connection_method">Default Connection</string>
     <string name="settings_save_location">Save Location</string>
-    <string name="settings_auto_accept">Auto-Accept Transfers</string>
-    <string name="settings_notifications">Notifications</string>
-    <string name="settings_about">About</string>
     <string name="settings_version">Version</string>
 
     <!-- Common -->
-    <string name="try_again">Try Again</string>
-    <string name="go_home">Go Home</string>
-    <string name="open_settings">Open Settings</string>
-    <string name="not_now">Not Now</string>
-    <string name="sent">Sent</string>
     <string name="send">Send</string>
 
     <string name="receive">Receive</string>
-    <string name="received">Received</string>
-    <string name="completed">Completed</string>
 
 
     <!-- Send Files Empty States -->
@@ -275,39 +122,20 @@
     <string name="storage_permission_needed">Storage Permission Required</string>
     <string name="storage_permission_desc">Allow access to storage to browse and share files.</string>
 
-    <string name="sending_files">Sending Files</string>
-    <string name="transfer_queue">Queue</string>
     <string name="back">Back</string>
 
     <!-- Transfer Complete -->
-    <string name="transfer_complete_title">Transfer Complete</string>
-    <string name="transfer_complete_desc">All files sent successfully</string>
-    <string name="transfer_complete_desc_format">%d files sent successfully</string>
 
     <!-- Transfer Failed -->
-    <string name="transfer_failed_title">Transfer Failed</string>
-    <string name="transfer_failed_desc">Could not complete the transfer</string>
-    <string name="home_connected_label">Connected to</string>
 
     <!-- Transfer Partial -->
-    <string name="transfer_partial_title">Partial Transfer</string>
-    <string name="transfer_partial_desc">Some files could not be sent</string>
-    <string name="transfer_partial_desc_format">%1$d of %2$d files sent successfully</string>
 
     <!-- Result Actions -->
-    <string name="view_files">View Files</string>
-    <string name="share_again">Share Again</string>
     <string name="done">Done</string>
-    <string name="retry_failed_files">Retry Failed Files</string>
 
     <!-- Error Details -->
-    <string name="show_error_details">Show error details</string>
-    <string name="hide_error_details">Hide error details</string>
-    <string name="failed_files_count">Failed files</string>
-    <string name="failed_files_count_format">%d files failed</string>
 
     <!-- Additional UI Strings -->
-    <string name="receive_files">Receive Files</string>
     <string name="qr_code">QR Code</string>
     <string name="pairing_code">Pairing Code</string>
     <string name="waiting_for_sender">Waiting for sender…</string>
@@ -316,54 +144,28 @@
     <string name="next_arrow">Next →</string>
     <string name="splash_tagline">Transfer your  data safely and effortlessly
 in minutes</string>
-    <string name="splash_loading_init">Initializing…</string>
-    <string name="home_subtitle">Fast, secure, and offline file sharing</string>
-    <string name="home_send_title">Send Files</string>
-    <string name="home_receive_title">Receive Files</string>
-    <string name="home_browse_files">BROWSE FILES</string>
-    <string name="home_cat_photos">Photos</string>
-    <string name="home_cat_videos">Videos</string>
-    <string name="home_cat_music">Music</string>
-    <string name="home_cat_documents">Documents</string>
-    <string name="home_cat_apps">Apps</string>
-    <string name="home_cat_contacts">Contacts</string>
     <string name="onboarding_chip_files">Files</string>
     <string name="onboarding_chip_apps">Apps</string>
     <string name="onboarding_chip_contacts">Contacts</string>
     <string name="onboarding_start_sharing">Start Sharing</string>
-    <string name="onboarding_permissions_subtitle">BeamShare needs the following permissions to connect and transfer files with nearby devices.</string>
-    <string name="onboarding_allow_permissions">Allow Permissions</string>
-    <string name="settings_coming_soon">Coming soon</string>
 
 
-    <string name="next">Next</string>
-    <string name="previous">Previous</string>
 
     <string name="connect">Connect</string>
     <string name="connecting">Connecting…</string>
-    <string name="select_device">Select Device</string>
     <string name="close">Close</string>
     <string name="scan_qr">Scan QR</string>
     <string name="enter_code">Enter Code</string>
     <string name="point_camera_at_qr">Point camera at QR code</string>
-    <string name="nearby_devices">Nearby Devices</string>
-    <string name="type_code_instead">Type code instead</string>
     <string name="searching_for_devices">Searching for devices…</string>
     <string name="enter_pairing_code">Enter Pairing Code</string>
-    <string name="enter_code_desc">Enter the 6-digit code shown on the other device</string>
-    <string name="wrong_code">Wrong code. Please try again.</string>
     <string name="home_browse">All Files</string>
-    <string name="home_session_active">Session active · %s</string>
 
 
-    <string name="home_Beam_share">Beamshare</string>
-    <string name="home_greeting_subtitle">Ready to share?</string>
     <string name="home_this_device">This device</string>
     <string name="home_wifi_on">Wi-Fi on</string>
-    <string name="home_total_shared">%s shared</string>
 
 
-    <string name="back_to_session">Back to session</string>
 
     <string name="transfers_title">Transfers</string>
     <string name="transfers_empty_title">No transfers yet</string>
@@ -380,20 +182,9 @@ in minutes</string>
     <string name="receive_screen_title">Receive</string>
     <string name="receive_instruction">Scan this on the sending phone, or type the code below.</string>
     <string name="receive_visible_as">Visible as this name</string>
-    <string name="receive_code_verified">Code verified</string>
-    <string name="receive_auto_accept">Auto-accept files from this device during the session</string>
-    <string name="receive_decline">Decline</string>
-    <string name="receive_accept">Accept</string>
-    <string name="receive_connected_title">Connected!</string>
-    <string name="receive_connected_desc">You and %s can now send files both ways. The connection stays on until one of you leaves.</string>
-    <string name="receive_link_label">Link</string>
-    <string name="receive_est_speed">Est. speed</string>
-    <string name="receive_open_session">Open session</string>
     <string name="receive_stop_title">Stop Receiving?</string>
     <string name="receive_stop_desc">You will no longer be visible to nearby devices. Any pending connections will be dropped.</string>
     <string name="receive_keep_waiting">Keep Waiting</string>
-    <string name="session_live">LIVE</string>
-    <string name="session_ready_to_receive">Ready to receive</string>
     <string name="session_stat_sent">Sent</string>u
     <string name="session_stat_total">Total</string>
     <string name="session_this_session">THIS SESSION</string>
@@ -406,35 +197,12 @@ in minutes</string>
     <string name="connected">Connected</string>
     <string name="session_reconnecting">Reconnecting…</string>
     <string name="session_connecting">Connecting…</string>
-    <string name="session_interrupted">Interrupted</string>
     <string name="session_disconnected">Disconnected</string>
     <string name="session_home_title">Session</string>
     <string name="session_send_files">Send files</string>
     <string name="session_options">SESSION OPTIONS</string>
     <string name="session_leave">Leave session</string>
-    <string name="session_method_label">Wi-Fi Direct</string>
 
-    <string name="transfer_to_device">to %s</string>
-    <string name="transfer_from_device">from %s</string>
-    <string name="transfer_saving_to">Saving to Downloads/BeamShare/Images</string>
-    <string name="transfer_file_count">%1$d of %2$d</string>
-    <string name="transfer_mbps">Mbps</string>
-    <string name="transfer_time_left">Left</string>
-    <string name="transfer_total_sent">Sent</string>
-    <string name="transfer_total_received">Received</string>
-    <string name="transfer_incoming">Incoming</string>
-    <string name="transfer_cancel_action">Cancel transfer</string>
-    <string name="transfer_item_done">Done</string>
-    <string name="transfer_item_saved">Saved</string>
-    <string name="home_create_group">Create Group</string>
-    <string name="home_create_group_sub">Show a QR code</string>
-    <string name="home_join_group">Receive</string>
-    <string name="home_join_group_sub">Scan or enter code</string>
-    <string name="home_send_files">Send Files</string>
-    <string name="home_send_subtitle">Tap to choose files to send</string>
-    <string name="home_receive_subtitle">Waiting for files…</string>
-    <string name="home_auto_accepting">Also accepting incoming files</string>
-    <string name="home_send_to">Send to %s</string>
     <string name="home_session_status">Session active</string>
     <string name="home_session_reconnecting">Reconnecting…</string>
     <string name="home_session_connecting">Connecting…</string>
@@ -447,16 +215,8 @@ in minutes</string>
     <!-- ============================================================= -->
 
     <!-- Home: connected banner -->
-    <string name="home_group_active">Group active · %1$d phones</string>
-    <string name="home_with_peer">With %1$s · %2$s</string>
-    <string name="home_just_now">just now</string>
-    <string name="home_minutes">%1$d min</string>
 
     <!-- Home: hero pill + send card -->
-    <string name="home_not_in_group">Not in a group</string>
-    <string name="home_to_group">To everyone in the group</string>
-    <string name="home_send_while_receiving">You can send while receiving</string>
-    <string name="home_connect_first">Create or join a group first</string>
     <string name="select_all">Select All</string>
     <!-- Home: LIVE NOW card -->
     <!-- Add these strings to your existing strings.xml -->
@@ -466,62 +226,30 @@ in minutes</string>
     <string name="dialog_delete_history">Delete from history</string>
     <!-- "cancel" likely already exists; add if not: -->
     <!-- <string name="cancel">Cancel</string> -->
-    <string name="live_now">LIVE NOW</string>
-    <string name="live_more_transfers">+%1$d more · View all</string>
     <string name="live_from">From %1$s</string>
     <string name="live_to">To %1$s</string>
     <!-- Add this ONE line to strings.xml (alongside perm_badge_required / perm_badge_optional which already exist) -->
-    <string name="perm_badge_granted">Granted</string>
 
     <!-- Send Files: group subtitle -->
-    <string name="send_to_group_subtitle">To everyone in the group</string>
-    <string name="direction_sent">SENT</string>
-    <string name="direction_received">RECEIVED</string>
-    <string name="delete_transfer_title">Delete transfer?</string>
-    <string name="delete_transfer_message">Remove "%1$s" from history?</string>
-    <string name="delete">Delete</string>
-    <string name="file_not_found">File not found</string>
-    <string name="no_app_to_open">No app to open this file</string>
 
-    <string name="perm_wifi_desc1">Finds nearby devices and establishes a peer-to-peer connection for fast local file transfer without internet.</string>
-    <string name="perm_bt_desc">Discovers nearby devices via Bluetooth. Required on Android 12+ for peer discovery.</string>
-    <string name="perm_read_desc">Lets you pick photos, videos, and documents from your device to share with session members.</string>
-    <string name="perm_save_desc">Saves received files to your Downloads folder. Without this, files are kept in-app only.</string>
-    <string name="perm_camera_desc2">Used to scan QR codes for quick device pairing. Not used for photos.</string>
-    <string name="perm_denied">R.color.perm_denied</string>
 
     <string name="perm_wifi_title">Nearby Wi-Fi Devices</string>
     <string name="perm_location_title">Location</string>
-    <string name="perm_bt_title">Bluetooth</string>
-    <string name="perm_read_title">Read Files</string>
-    <string name="perm_save_title">Save Files</string>
     <string name="perm_camera_title">Camera</string>
     <string name="perm_notif_title">Notifications</string>
 
 
     <string name="perm_header_title">Required Permissions</string>
     <string name="perm_header_sub">BeamShare needs these permissions to function properly</string>
-    <string name="perm_banner_title">Privacy First</string>
-    <string name="perm_banner_body">We respect your privacy. Permissions are only used for local file sharing.</string>
     <string name="perm_btn_grant">Allow All Permission</string>
     <string name="perm_btn_skip">Continue</string>
-    <string name="perm_footer_note">You can change permissions later in settings</string>
-    <string name="section_wifi">Wi-Fi &amp; Network</string>
-    <string name="section_bluetooth">Bluetooth</string>
-    <string name="section_storage">Files &amp; Storage</string>
-    <string name="section_camera">Camera</string>
-    <string name="section_notif">Notifications</string>
     <string name="transfers_search_hint">Search by name, type or device…</string>
 
     <!-- Add these strings to your existing res/values/strings.xml -->
 
     <!-- Section labels -->
-    <string name="section_contacts">CONTACTS</string>
-    <string name="section_install_apps">INSTALL APPS</string>
 
     <!-- Bluetooth Advertise -->
-    <string name="perm_bt_advertise_title">Bluetooth Advertise</string>
-    <string name="perm_bt_advertise_desc">Make BeamShare discoverable to nearby devices via Bluetooth</string>
 
     <!-- ── PermissionsActivity toggle cards — missing strings ──────────── -->
 
@@ -530,7 +258,6 @@ in minutes</string>
     <!-- Location -->
 
     <!-- Bluetooth -->
-    <string name="perm_bluetooth_title">Bluetooth</string>
 
     <!-- Read Files -->
     <string name="perm_read_files_title">Read Files</string>
@@ -544,8 +271,6 @@ in minutes</string>
 connect nearby devices for fast file transfer</string>
     <string name="perm_location_sub">Used to discover and connect nearby
 devices via bluetooth for file sharing</string>
-    <string name="perm_bluetooth_sub">Required to access and share files on
-your device</string>
     <string name="perm_read_files_sub">Pick files from your device to share</string>
     <string name="perm_save_files_sub">Saves received files to Downloads</string>
     <string name="perm_camera_sub">Used to scan QR codes for quick device
@@ -555,16 +280,12 @@ devices</string>
     <string name="perm_notif_sub">Get notified about incoming transfer</string>
     <string name="perm_install_sub">Install APK files from other devices</string>
 
-    <string name="perm_dialog_allow">Allow</string>
-    <string name="perm_dialog_cancel">Not Now</string>
-    <string name="perm_dialog_open_settings">Open Settings</string>
     <string name="perm_status_granted">Granted</string>
     <string name="perm_status_required">Required</string>
 
     <!-- Dialog descriptions (longer text) -->
     <string name="perm_wifi_desc">BeamShare uses Wi-Fi Direct to find and connect nearby devices for fast file transfer without internet.</string>
     <string name="perm_location_desc">Android requires location access to scan for nearby Wi-Fi devices. BeamShare does not track your location.</string>
-    <string name="perm_bluetooth_desc">Used to discover and connect nearby devices via Bluetooth for file sharing.</string>
     <string name="perm_read_files_desc">Allows you to pick images, videos, and audio files from your device to share.</string>
     <string name="perm_save_files_desc">Saves received files directly to your Downloads folder.</string>
     <string name="perm_camera_desc">Used to scan QR codes for quick device pairing without manual setup.</string>
@@ -577,17 +298,9 @@ devices</string>
     <string name="settings_notif_failed">Transfer failed</string>
 
     <string name="home_more_tools">More Features</string>
-    <string name="home_more_tools_sub">Useful tools for your files</string>
     <string name="tool_doc_scanner">Document Scanner</string>
-    <string name="tool_doc_scanner_sub">Scan and export documents</string>
     <string name="tool_private_folder">Private Folder</string>
-    <string name="tool_private_folder_sub">Keep files private</string>
-    <string name="tool_image_enhancer">Image Enhancer</string>
-    <string name="tool_image_enhancer_sub">Improve image quality</string>
-    <string name="tool_video_to_audio">Video to mp3</string>
-    <string name="tool_video_to_audio_sub">Extract audio from videos</string>
-    <string name="tool_quick_share">Quick Share via Link</string>
-    <string name="tool_quick_share_sub">Share files using a link</string>
+<string name="tool_video_to_audio">Video to mp3</string>
     <!-- Install Packages -->
     <string name="perm_install_title">Install Packages</string>
     <string name="perm_install_desc">Install APK files received from other BeamShare devices</string>
@@ -595,7 +308,6 @@ devices</string>
 
     <!-- ─── Shared / navigation ──────────────────────────────────── -->
     <string name="va_eyebrow">Video to Audio</string>
-    <string name="va_badge_mp3">MP3</string>
     <string name="va_see_all">See all</string>
 
     <!-- Steps pill -->
@@ -613,18 +325,12 @@ devices</string>
     <string name="va_dz_subtitle">or browse from your gallery</string>
 
     <!-- Format chips -->
-    <string name="va_fmt_mp4">MP4</string>
-    <string name="va_fmt_mov">MOV</string>
-    <string name="va_fmt_mkv">MKV</string>
-    <string name="va_fmt_avi">AVI</string>
-    <string name="va_fmt_webm">WEBM</string>
 
     <!-- Recent section -->
     <string name="va_recent_title">Recent videos</string>
 
     <!-- ─── VA02 · Format &amp; Quality ──────────────────────────────── -->
     <string name="va_format_title">Format &amp; Quality</string>
-    <string name="va_format_subtitle">Step 2 of 4 — Choose your output settings</string>
 
     <!-- Section labels -->
     <string name="va_section_format">Output Format</string>
@@ -646,17 +352,14 @@ devices</string>
     <string name="va_est_size_note">Based on source duration</string>
     <string name="va_est_size_default">~26 MB</string>
     <!-- Dynamic: use getString(R.string.va_est_size_value, "~26 MB") or set directly via binding -->
-    <string name="va_est_size_value">%1$s</string>
 
     <!-- ─── VA03 · Converting ──────────────────────────────────────── -->
     <string name="va_converting_title">Converting…</string>
-    <string name="va_converting_subtitle">Step 3 of 4 — Please keep the app open</string>
 
     <!-- Progress ring -->
     <string name="va_progress_percent_default">70%</string>
     <string name="va_progress_label">complete</string>
     <!-- Dynamic: use String.format or binding -->
-    <string name="va_progress_percent_format">%1$d%%</string>
 
     <!-- Status -->
     <string name="va_status_encoding">Encoding MP3…</string>
@@ -665,23 +368,15 @@ devices</string>
     <!-- Stats -->
     <string name="va_stat_elapsed_label">Elapsed</string>
     <string name="va_stat_elapsed_default">0:12</string>
-    <string name="va_stat_remaining_label">Remaining</string>
-    <string name="va_stat_remaining_default">~0:05</string>
     <string name="va_stat_speed_label">Speed</string>
     <string name="va_stat_speed_default">3.2×</string>
 
     <!-- Process log section -->
-    <string name="va_log_title">Process log</string>
 
     <!-- Log step labels (set in adapter) -->
-    <string name="va_log_step_demux">Demuxing audio stream</string>
-    <string name="va_log_step_decode">Decoding AAC frames</string>
-    <string name="va_log_step_encode">Encoding MP3 @ 192 kbps</string>
-    <string name="va_log_step_write">Writing output file</string>
 
     <!-- ─── VA04 · Done ───────────────────────────────────────────── -->
     <string name="va_done_title">Conversion Complete</string>
-    <string name="va_done_subtitle">Step 4 of 4 — Your file is ready!</string>
 
     <string name="va_done_hero_title">Conversion Done!</string>
     <string name="va_done_hero_sub">Your MP3 file is ready to use</string>
@@ -692,25 +387,14 @@ devices</string>
     <string name="va_stat_duration">Duration</string>
 
     <!-- Action grid -->
-    <string name="va_action_save">Save to Device</string>
-    <string name="va_action_share">Share File</string>
-    <string name="va_action_open_player">Open in Player</string>
-    <string name="va_action_convert_more">Convert More</string>
 
     <!-- ─── Buttons ───────────────────────────────────────────────── -->
-    <string name="va_btn_browse">Browse Files</string>
     <string name="va_btn_start_converting">Start Converting</string>
     <string name="va_btn_cancel">Cancel</string>
     <string name="va_btn_save_device">Save to Device</string>
     <string name="va_btn_share_file">Share File</string>
-    <string name="va_share_title">Share MP3 Audio</string>
 
     <!-- ─── Accessibility ─────────────────────────────────────────── -->
-    <string name="va_cd_back">Go back</string>
-    <string name="va_cd_drop_zone">Tap to select a video file</string>
-    <string name="va_cd_thumbnail">Video thumbnail</string>
-    <string name="va_cd_check_icon">Selected</string>
-    <string name="va_cd_progress">Conversion progress: %1$d%%</string>
 
 
     <string name="va_audio_options_title">Audio File Options</string>
@@ -722,69 +406,165 @@ devices</string>
     <string name="va_option_save_sub">Open in file manager</string>
     <string name="va_option_convert_another">Convert Another Video</string>
 
-    <string name="va_error_title">Conversion Failed</string>
-    <string name="va_error_dialog_title">Conversion Failed</string>
-    <string name="va_error_dialog_message">Something went wrong. Please try again.</string>
-    <string name="va_error_try_again">Try Again</string>
-    <string name="va_error_cancel">Cancel</string>
-    <string name="va_error_try_other_video">Try Other Video</string>
 
-    <string name="onboarding_share_title">Share Files</string>
     <string name="onboarding_share_desc">Send media and files effortlessly\nwith a powerful, fast connection</string>
     <string name="onboarding_history_desc">Access, review, and delete your\nprevious transfer data</string>
-    <string name="onboarding_allinone_desc">Scan documents, secure private files,\nenhance images, and convert\nvideos to MP3 with ease.</string>
+    <string name="onboarding_allinone_desc">Scan documents, secure private files,\nand convert videos to MP3 with ease.</string>
     <string name="select_language">Select Language</string>
     <string name="flag">Flag</string>
     <string name="home_share_any_file">Share Any File</string>
     <string name="home_share_sub">Send media or files effortlessly</string>
-    <string name="tool_quick_share_link">Quick Share Via Link</string>
     <string name="home_disconnect">Disconnect</string>
     <string name="home_connected_to">Connected to</string>
     <!-- strings.xml mein add karo -->
-    <string name="doc_scanner_title">Document Scanner</string>
-    <string name="doc_import_images">Import\nImages</string>
-    <string name="doc_label">Document</string>
-    <string name="doc_camera_permission_denied">Camera permission required</string>
-    <string name="doc_capture_failed">Capture failed, try again</string>
 
     <!-- strings.xml mein add karo -->
-    <string name="doc_crop_title">Crop</string>
-    <string name="doc_apply_filter">Apply Filter</string>
-    <string name="doc_continue">Continue</string>
-    <string name="doc_retake">Retake</string>
-    <string name="doc_filter_left">Left</string>
-    <string name="doc_filter_right">Right</string>
 
     <!-- strings.xml mein add karo -->
     <string name="doc_default_name">Document</string>
     <string name="doc_add_page">Add</string>
     <string name="doc_save_pdf">Save as PDF</string>
-    <string name="doc_save_word">Save as Word</string>
-    <string name="doc_rename_title">Rename</string>
     <string name="save">Save</string>
     <string name="cancel">Cancel</string>
 
 
-
     <!-- Preview/Save screen -->
 
-    <string name="doc_rename_ok">OK</string>
-    <string name="doc_rename_cancel">Cancel</string>
-    <string name="doc_no_image">No image to save</string>
-    <string name="doc_saved_success">PDF saved successfully!</string>
-    <string name="doc_save_failed">Failed to save PDF</string>
-    <string name="doc_share_via">Share via…</string>
 
 
 
-    <string name="doc_filter_all">All</string>
-
-    <string name="doc_delete_page">Delete Page</string>
-    <string name="doc_single_page_delete_msg">Only one page. Deleting will go back.</string>
-    <string name="doc_delete_this_page">Delete this page</string>
-    <string name="doc_move_left">Move left</string>
-    <string name="doc_move_right">Move right</string>
     <string name="doc_rename">Rename</string>
     <string name="ok">OK</string>
+
+
+    <!-- Add these to your res/values/strings.xml -->
+
+    <string name="cloud_title">Cloud Storage</string>
+    <string name="cloud_back">Back</string>
+    <string name="cloud_upload_title">Upload data to Cloud</string>
+    <string name="cloud_upload_subtitle">Back up your files securely and access them anytime</string>
+    <string name="cloud_upload_btn">Upload Data</string>
+    <string name="cloud_explore_title">Cloud Storage</string>
+    <string name="cloud_explore_subtitle">See your files in the cloud and restore easily</string>
+    <string name="cloud_explore_btn">Explore</string>
+
+    <!-- Cloud Directory -->
+    <string name="cloud_dir_total">Total: 200 GB</string>
+    <string name="cloud_dir_used">Used: 100 GB</string>
+    <string name="cloud_dir_used_label">Used</string>
+    <string name="cloud_dir_images">Images</string>
+    <string name="cloud_dir_videos">Videos</string>
+    <string name="cloud_dir_audios">Audios</string>
+    <string name="cloud_dir_contacts">Contacts</string>
+    <string name="cloud_dir_documents">Documents</string>
+
+
+    <!-- Add these to res/values/strings.xml -->
+
+    <string name="cloud_agree_btn">Agree &amp; Continue</string>
+    <string name="cloud_permission_desc">This app enables you to securely backup your photos, videos, audio files, contacts, and other important data from your phone to our protected cloud servers. Your email address is stored securely on our servers for account registration, user authentication, and seamless data restoration from the cloud.</string>
+    <string name="cloud_privacy_note">If you agree to our Privacy Policy, Press \'Agree &amp; Continue\'</string>
+    <!-- Add these to res/values/strings.xml -->
+    <string name="permission_title">Permission</string>
+    <string name="permission_media_desc">App requires Media permission to access media in this phone. Please allow permissions to continue.</string>
+    <string name="permission_cancel">Cancel</string>
+    <string name="permission_allow">Allow</string>
+
+    <!-- Add to res/values/strings.xml -->
+    <string name="cloud_signin_subtitle">Sign in with your Gmail account to backup your files securely</string>
+    <string name="cloud_signin_btn">Sign in with Google</string>
+    <string name="cloud_cancel">Cancel</string>
+    <!-- Add to res/values/strings.xml -->
+    <string name="cloud_upload_complete_title">Uploading Complete</string>
+    <string name="cloud_upload_complete_desc">Your file is successfully uploaded and stored in cloud storage</string>
+    <string name="cloud_done">Done</string>
+    <!-- TODO: Remove or change this placeholder text -->
+
+    <!-- Can't Connect -->
+    <string name="cant_connect_title">Can\'t Connect</string>
+    <string name="cant_connect_message">Unable to establish a connection with the other device. Please make sure both devices are nearby and try again.</string>
+    <string name="cant_connect_try_again">Try Again</string>
+    <string name="cant_connect_go_home">Go Home</string>
+
+    <!-- Forgot PIN -->
+    <string name="forgot_pin_title">Forgot PIN</string>
+    <string name="forgot_pin_subtitle">Answer Security Question</string>
+    <string name="forgot_pin_hint">Answer correctly to reset your PIN\nwithout losing your files</string>
+    <string name="forgot_pin_loading">Loading question…</string>
+    <string name="forgot_pin_reset_delete">Reset and delete all files</string>
+    <string name="forgot_pin_verify_btn">Verify &amp; Reset PIN</string>
+    <string name="forgot_pin_wrong_answer">Wrong answer. Try again.</string>
+
+    <!-- Private Folder Vault -->
+    <string name="vault_title">Folder Lock</string>
+    <string name="vault_encrypted_label">Encrypted · Files visible only after unlock</string>
+    <string name="vault_import_btn">Import</string>
+    <string name="vault_import_files_btn">Import Files</string>
+    <string name="vault_no_files">No files yet</string>
+    <string name="vault_no_files_sub">Import files to keep them\nprivate and encrypted</string>
+    <string name="vault_import_from_files">Import from Files</string>
+    <string name="vault_import_from_gallery">Import from Gallery</string>
+
+    <!-- Session -->
+    <string name="session_share_desc">Share data with\nnearby devices easily</string>
+    <string name="session_end_desc">End your current\ndevice connection.</string>
+
+    <!-- Setup PIN -->
+    <string name="setup_pin_title">Set Up PIN</string>
+    <string name="setup_pin_create">Create a 4-digit PIN</string>
+    <string name="setup_pin_confirm">Confirm you remember this PIN</string>
+    <string name="setup_pin_desc">You\'ll use this to unlock\nyour private folder</string>
+
+    <!-- Security Question -->
+    <string name="security_question_title">Security Question</string>
+    <string name="security_question_add_title">Add a Recovery Question</string>
+    <string name="security_question_desc">If you forget your PIN, you can recover\naccess without losing your files</string>
+    <string name="security_question_choose">Choose a question</string>
+    <string name="security_question_your_answer">Your answer</string>
+    <string name="security_question_save_btn">Save &amp; Continue</string>
+    <string name="security_question_skip">Skip for now</string>
+
+    <!-- Unlock PIN -->
+    <string name="unlock_pin_title">Private Folder</string>
+    <string name="unlock_pin_locked">Private Folder is locked</string>
+    <string name="unlock_pin_enter">Enter your PIN</string>
+    <string name="unlock_pin_forgot">Forgot PIN?</string>
+    <string name="unlock_pin_fingerprint">Use Fingerprint 🖐</string>
+
+    <!-- Connection Lost Dialog -->
+    <string name="connection_lost_title">Connection Lost</string>
+    <string name="connection_lost_message">The connection was interrupted during transfer. Your progress has been saved and you can retry.</string>
+    <string name="connection_lost_retry">Retry</string>
+
+    <!-- Document Scanner Page Options Dialog -->
+    <string name="doc_page_options_question">What would you like to do with this page?</string>
+    <string name="doc_page_delete">Delete this page</string>
+    <string name="doc_page_move_left">Move Left</string>
+    <string name="doc_page_move_right">Move Right</string>
+
+    <!-- Document Scanner Fragment -->
+    <string name="doc_scanner_title_multiline">Document\nScanner</string>
+    <string name="doc_scanner_empty">No scanned documents yet</string>
+    <string name="doc_scanner_recents">Recents</string>
+    <string name="doc_scanner_desc">Scan documents instantly and save them as digital files.</string>
+    <string name="doc_scanner_scan_now">Scan Now</string>
+
+    <!-- Received Files -->
+    <string name="received_files_title">Received Files</string>
+
+    <!-- Settings Sections -->
+    <string name="settings_section_device">DEVICE</string>
+    <string name="settings_section_transfer">TRANSFER</string>
+    <string name="settings_section_notifications">NOTIFICATIONS</string>
+    <string name="settings_section_permissions">PERMISSIONS</string>
+    <string name="settings_permissions_label">Permissions</string>
+    <string name="settings_checking">Checking…</string>
+    <string name="settings_section_about">ABOUT</string>
+
+    <!-- Popup Menus -->
+    <string name="popup_preview">Preview</string>
+    <string name="popup_rename">Rename</string>
+    <string name="popup_share">Share</string>
+    <string name="popup_delete">Delete</string>
 
 </resources>

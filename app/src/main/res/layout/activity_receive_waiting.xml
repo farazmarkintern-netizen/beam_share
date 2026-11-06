@@ -21,8 +21,8 @@
             android:layout_height="@dimen/_24sdp"
             android:layout_centerVertical="true"
             android:contentDescription="@string/back"
-            android:src="@drawable/ic_arrow_back"
-            app:tint="@color/color_text_primary" />
+            android:src="@drawable/back_press"
+            />
 
         <TextView
             android:layout_width="wrap_content"
@@ -30,20 +30,12 @@
             android:layout_centerVertical="true"
             android:layout_marginStart="@dimen/_12sdp"
             android:layout_toEndOf="@id/btnBack"
-            android:fontFamily="@font/inter_semibold"
+            android:fontFamily="@font/pjs_semibold"
             android:text="@string/receive_screen_title"
             android:textColor="@color/color_text_primary"
             android:textSize="@dimen/_16ssp" />
 
-        <ImageView
-            android:id="@+id/btnMenu"
-            android:layout_width="@dimen/_24sdp"
-            android:layout_height="@dimen/_24sdp"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
-            android:contentDescription="@null"
-            android:src="@drawable/ic_more_vert"
-            app:tint="@color/color_text_primary" />
+
     </RelativeLayout>
 
     <!-- Content -->
@@ -66,7 +58,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/inter"
+                android:fontFamily="@font/pjs_regular"
                 android:gravity="center"
                 android:text="@string/receive_instruction"
                 android:textColor="@color/color_text_secondary"
@@ -94,7 +86,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_20sdp"
-                android:fontFamily="@font/inter"
+                android:fontFamily="@font/pjs_regular"
                 android:letterSpacing="0.05"
                 android:text="@string/pairing_code"
                 android:textAllCaps="true"
@@ -107,7 +99,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_4sdp"
-                android:fontFamily="@font/inter_bold"
+                android:fontFamily="@font/pjs_bold"
                 android:letterSpacing="0.15"
                 android:text="000 000"
                 android:textColor="@color/color_text_primary"
@@ -155,7 +147,7 @@
                         android:id="@+id/tvDeviceName"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/inter_medium"
+                        android:fontFamily="@font/pjs_medium"
                         android:textColor="@color/color_text_primary"
                         android:textSize="@dimen/_14ssp" />
 
@@ -163,7 +155,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_2sdp"
-                        android:fontFamily="@font/inter"
+                        android:fontFamily="@font/pjs_regular"
                         android:text="@string/receive_visible_as"
                         android:textColor="@color/color_text_secondary"
                         android:textSize="@dimen/_12ssp" />
@@ -189,9 +181,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_6sdp"
-                    android:fontFamily="@font/inter_medium"
+                    android:fontFamily="@font/pjs_medium"
                     android:text="@string/waiting_for_sender"
-                    android:textColor="#F59E0B"
+                    android:textColor="@color/bs_gold"
                     android:textSize="@dimen/_13ssp" />
             </LinearLayout>
 
@@ -208,7 +200,7 @@
                 android:layout_height="@dimen/_44sdp"
                 android:layout_marginTop="@dimen/_24sdp"
                 android:background="@drawable/bg_button_outlined"
-                android:fontFamily="@font/inter_semibold"
+                android:fontFamily="@font/pjs_semibold"
                 android:gravity="center"
                 android:text="@string/stop_receiving"
                 android:textColor="@color/color_text_primary"

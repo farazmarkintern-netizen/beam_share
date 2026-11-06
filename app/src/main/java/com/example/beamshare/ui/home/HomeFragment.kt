@@ -19,7 +19,6 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.example.beamshare.R
 import com.example.beamshare.databinding.FragmentHomeBinding
-
 import com.example.beamshare.privatefolder.PinManager
 import com.example.beamshare.privatefolder.SetupPinActivity
 import com.example.beamshare.privatefolder.UnlockPinActivity
@@ -32,7 +31,6 @@ import com.example.beamshare.ui.send.SendFilesActivity
 import kotlinx.coroutines.launch
 import com.example.beamshare.model.TransferDirection
 import com.example.beamshare.model.HistoryStatus
-import kotlinx.coroutines.withContext
 
 class HomeFragment : Fragment() {
 
@@ -78,7 +76,6 @@ class HomeFragment : Fragment() {
     private fun setupHeroCard() {
         binding.tvDeviceName.text = Build.MODEL
     }
-
 
     // ──────────────────────────────────────────────────────────────────────────
     // Session state observer
@@ -169,7 +166,6 @@ class HomeFragment : Fragment() {
             binding.tvDeviceName.typeface = resources.getFont(R.font.pjs_extra_bold)
             binding.tvDeviceName.setTextColor(ContextCompat.getColor(requireContext(), android.R.color.white))
 
-            // Hide pill, show timer + disconnect
             binding.pillWifi.visibility = View.GONE
             binding.tvSessionTimer.visibility = View.VISIBLE
             binding.tvSessionTimer.text = statusText.ifEmpty { getString(R.string.home_session_status) }
@@ -187,7 +183,6 @@ class HomeFragment : Fragment() {
             binding.tvDeviceName.typeface = resources.getFont(R.font.pjs_extra_bold)
             binding.tvDeviceName.setTextColor(ContextCompat.getColor(requireContext(), android.R.color.white))
 
-            // Show pill, hide timer + disconnect
             binding.pillWifi.visibility = View.VISIBLE
             binding.tvSessionTimer.visibility = View.GONE
             binding.btnDisconnect.visibility = View.GONE
@@ -227,10 +222,8 @@ class HomeFragment : Fragment() {
         binding.cardReceive.setOnClickListener {
             val state = SessionManager.state.value
             if (state is SessionState.Connected || state is SessionState.Reconnecting) {
-                // Connected: live session + old received files dono dikhao
                 findNavController().navigate(R.id.receivedFilesFragment)
             } else {
-                // Disconnected: device dhundho
                 startActivity(Intent(requireContext(), DeviceDiscoveryActivity::class.java))
             }
         }
@@ -253,12 +246,12 @@ class HomeFragment : Fragment() {
             openSendFiles(SendFilesActivity.Category.PHOTOS)
         }
 
-        // More Tools — Document Scanner (TODO: wire to scanner screen)
+        // Document Scanner
         binding.cardDocumentScanner.setOnClickListener {
             findNavController().navigate(R.id.documentScannerFragment)
         }
 
-        // More Tools — Private Folder
+        // Private Folder
         binding.cardPrivateFolder.setOnClickListener {
             val intent = if (PinManager.isPinSet(requireContext())) {
                 Intent(requireContext(), UnlockPinActivity::class.java)
@@ -267,20 +260,14 @@ class HomeFragment : Fragment() {
             }
             startActivity(intent)
         }
-
-        // More Tools — Image Enhancer (TODO: wire to enhancer screen)
-        binding.cardImageEnhancer.setOnClickListener {
-            // TODO: open image enhancer
-        }
-
-        // More Tools — Video to Audio (MP3 converter)
+        // Video to Audio
         binding.cardVideoToAudio.setOnClickListener {
             findNavController().navigate(R.id.videoToAudioFragment)
         }
 
-        // Quick Share Via Link (bottom full-width card)
-        binding.liveTransfersCard.setOnClickListener {
-            // TODO: open quick share link screen
+        // Cloud Storage ← UPDATED
+        binding.cardCloudStorage.setOnClickListener {
+            findNavController().navigate(R.id.action_home_to_cloudStorage)
         }
     }
 
@@ -302,17 +289,18 @@ class HomeFragment : Fragment() {
         }
         startActivity(intent)
     }
+
     private fun setupTopBar() {
         val full = "Beamshare"
         val span = SpannableString(full)
         span.setSpan(
             ForegroundColorSpan(ContextCompat.getColor(requireContext(), R.color.bs_dark)),
-            0, 4,  // "Beam"
+            0, 4,
             Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
         )
         span.setSpan(
             ForegroundColorSpan(ContextCompat.getColor(requireContext(), R.color.bs_blue)),
-            4, full.length,  // "share"
+            4, full.length,
             Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
         )
         binding.tvAppTitle.text = span

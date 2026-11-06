@@ -31,7 +31,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ellipsize="end"
-            android:fontFamily="@font/inter_semibold"
+            android:fontFamily="@font/pjs_semibold"
             android:maxLines="1"
             android:textColor="@color/color_text_primary"
             android:textSize="@dimen/_13ssp" />
@@ -41,7 +41,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_2sdp"
-            android:fontFamily="@font/inter"
+            android:fontFamily="@font/pjs_regular"
             android:textColor="@color/color_text_secondary"
             android:textSize="@dimen/_12ssp" />
 
@@ -55,6 +55,6 @@
         android:contentDescription="@null"
         android:padding="@dimen/_4sdp"
         android:src="@drawable/ic_more_vert"
-        app:tint="@color/color_text_secondary" />
+         />
 
 </LinearLayout>

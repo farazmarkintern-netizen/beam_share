@@ -40,13 +40,14 @@
             android:imeOptions="actionDone" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <com.google.android.material.button.MaterialButton
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnSaveDeviceName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:text="@string/sheet_edit_name_save"
+        android:background="@drawable/btn_next_gradient"
         android:textAllCaps="false"
-        app:cornerRadius="12dp" />
+       />
 
 </LinearLayout>

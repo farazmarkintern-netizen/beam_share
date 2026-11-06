@@ -13,15 +13,15 @@
         android:id="@+id/viewIconBg"
         android:layout_width="@dimen/_40sdp"
         android:layout_height="@dimen/_40sdp"
-        android:background="@drawable/bg_icon_circle_blue">
+       >
 
         <ImageView
             android:id="@+id/ivFileIcon"
-            android:layout_width="@dimen/_20sdp"
-            android:layout_height="@dimen/_20sdp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_gravity="center"
             android:contentDescription="@null"
-            android:src="@drawable/ic_document" />
+            android:src="@drawable/ic_file_doc" />
 
         <ImageView
             android:id="@+id/ivAppIcon"
@@ -36,7 +36,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:fontFamily="@font/inter_semibold"
+            android:fontFamily="@font/pjs_semibold"
             android:textColor="@color/color_white"
             android:textSize="@dimen/_14ssp"
             android:visibility="gone" />
@@ -56,7 +56,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ellipsize="end"
-            android:fontFamily="@font/inter_medium"
+            android:fontFamily="@font/pjs_medium"
             android:maxLines="1"
             android:textColor="@color/color_text_primary"
             android:textSize="@dimen/_13ssp" />
@@ -66,7 +66,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_2sdp"
-            android:fontFamily="@font/inter"
+            android:fontFamily="@font/pjs_regular"
             android:textColor="@color/color_text_secondary"
             android:textSize="@dimen/_11ssp" />
 

@@ -50,7 +50,7 @@
                 android:ellipsize="middle"
                 android:textColor="@color/color_text_primary"
                 android:textSize="@dimen/_13ssp"
-                android:fontFamily="@font/inter_semibold"
+                android:fontFamily="@font/pjs_semibold"
                 tools:text="IMG_2041.jpg" />
 
             <TextView
@@ -62,7 +62,7 @@
                 android:ellipsize="end"
                 android:textColor="@color/color_text_secondary"
                 android:textSize="@dimen/_10ssp"
-                android:fontFamily="@font/inter_medium"
+                android:fontFamily="@font/pjs_medium"
                 tools:text="From Galaxy S24 · 3.1 MB" />
         </LinearLayout>
 
@@ -73,7 +73,7 @@
             android:layout_marginStart="@dimen/_8sdp"
             android:textColor="@color/color_primary"
             android:textSize="@dimen/_12ssp"
-            android:fontFamily="@font/inter_bold"
+            android:fontFamily="@font/pjs_bold"
             tools:text="72%" />
     </LinearLayout>
 

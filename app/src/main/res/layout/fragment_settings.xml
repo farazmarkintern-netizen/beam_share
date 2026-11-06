@@ -23,7 +23,7 @@
             android:paddingRight="@dimen/_20sdp"
             android:paddingTop="@dimen/_12sdp"
             android:paddingBottom="@dimen/_6sdp"
-            android:text="DEVICE"
+            android:text="@string/settings_section_device"
             android:textSize="@dimen/_11ssp"
             android:letterSpacing="0.12"
             android:textColor="?attr/colorPrimary"
@@ -108,7 +108,7 @@
             android:paddingRight="@dimen/_20sdp"
             android:paddingTop="@dimen/_20sdp"
             android:paddingBottom="@dimen/_6sdp"
-            android:text="TRANSFER"
+            android:text="@string/settings_section_transfer"
             android:textSize="@dimen/_11ssp"
             android:letterSpacing="0.12"
             android:textColor="?attr/colorPrimary"
@@ -266,7 +266,7 @@
             android:paddingRight="@dimen/_20sdp"
             android:paddingTop="@dimen/_20sdp"
             android:paddingBottom="@dimen/_6sdp"
-            android:text="NOTIFICATIONS"
+            android:text="@string/settings_section_notifications"
             android:textSize="@dimen/_11ssp"
             android:letterSpacing="0.12"
             android:textColor="?attr/colorPrimary"
@@ -379,7 +379,7 @@
             android:paddingRight="@dimen/_20sdp"
             android:paddingTop="@dimen/_20sdp"
             android:paddingBottom="@dimen/_6sdp"
-            android:text="PERMISSIONS"
+            android:text="@string/settings_section_permissions"
             android:textSize="@dimen/_11ssp"
             android:letterSpacing="0.12"
             android:textColor="?attr/colorPrimary"
@@ -416,7 +416,7 @@
                     android:layout_height="@dimen/_40sdp"
                     app:cardCornerRadius="@dimen/_12sdp"
                     app:cardElevation="0dp"
-                    app:cardBackgroundColor="#7C3AED">
+                    app:cardBackgroundColor="@color/bs_blue">
                     <ImageView
                         android:layout_width="@dimen/_24sdp"
                         android:layout_height="@dimen/_24sdp"
@@ -434,7 +434,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Permissions"
+                        android:text="@string/settings_permissions_label"
                         android:textSize="@dimen/_15ssp"
                         android:textStyle="bold"
                         android:textColor="?attr/colorOnSurface" />
@@ -445,7 +445,7 @@
                         android:textSize="@dimen/_13ssp"
                         android:textColor="?attr/colorOnSurfaceVariant"
                         android:layout_marginTop="@dimen/_2sdp"
-                        android:text="Checking…" />
+                        android:text="@string/settings_checking" />
                 </LinearLayout>
 
                 <ImageView
@@ -453,6 +453,251 @@
                     android:layout_height="@dimen/_20sdp"
                     android:src="@drawable/ic_chevron_right"
                     app:tint="?attr/colorOnSurfaceVariant" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- ══ MISC OPTIONS ═══════════════════════════════════════════════════ -->
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_16sdp"
+            android:layout_marginRight="@dimen/_16sdp"
+            android:layout_marginTop="@dimen/_16sdp"
+            android:layout_marginBottom="@dimen/_4sdp"
+            app:cardCornerRadius="@dimen/_16sdp"
+            app:cardElevation="0dp"
+            app:cardBackgroundColor="?attr/colorSurface"
+            app:strokeWidth="@dimen/_1sdp"
+            app:strokeColor="@color/card_border">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <!-- Select Language -->
+                <LinearLayout
+                    android:id="@+id/rowSelectLanguage"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingLeft="@dimen/_16sdp"
+                    android:paddingRight="@dimen/_16sdp"
+                    android:paddingTop="@dimen/_14sdp"
+                    android:paddingBottom="@dimen/_14sdp"
+                    android:gravity="center_vertical"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?attr/selectableItemBackground">
+
+                    <ImageView
+                        android:layout_width="@dimen/_28sdp"
+                        android:layout_height="@dimen/_28sdp"
+                        android:src="@drawable/ic_select_language"
+                        android:contentDescription="@null" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginStart="@dimen/_14sdp"
+                        android:text="Select Language"
+                        android:textSize="@dimen/_15ssp"
+                        android:textStyle="bold"
+                        android:textColor="?attr/colorOnSurface" />
+
+                    <ImageView
+                        android:layout_width="@dimen/_20sdp"
+                        android:layout_height="@dimen/_20sdp"
+                        android:src="@drawable/ic_chevron_right"
+                        app:tint="?attr/colorOnSurfaceVariant"
+                        android:contentDescription="@null" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_1sdp"
+                    android:layout_marginLeft="@dimen/_16sdp"
+                    android:layout_marginRight="@dimen/_16sdp"
+                    android:background="@color/divider" />
+
+                <!-- Rate Us -->
+                <LinearLayout
+                    android:id="@+id/rowRateUs"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingLeft="@dimen/_16sdp"
+                    android:paddingRight="@dimen/_16sdp"
+                    android:paddingTop="@dimen/_14sdp"
+                    android:paddingBottom="@dimen/_14sdp"
+                    android:gravity="center_vertical"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?attr/selectableItemBackground">
+
+                    <ImageView
+                        android:layout_width="@dimen/_28sdp"
+                        android:layout_height="@dimen/_28sdp"
+                        android:src="@drawable/ic_rate_us"
+                        android:contentDescription="@null" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginStart="@dimen/_14sdp"
+                        android:text="Rate Us"
+                        android:textSize="@dimen/_15ssp"
+                        android:textStyle="bold"
+                        android:textColor="?attr/colorOnSurface" />
+
+                    <ImageView
+                        android:layout_width="@dimen/_20sdp"
+                        android:layout_height="@dimen/_20sdp"
+                        android:src="@drawable/ic_chevron_right"
+                        app:tint="?attr/colorOnSurfaceVariant"
+                        android:contentDescription="@null" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_1sdp"
+                    android:layout_marginLeft="@dimen/_16sdp"
+                    android:layout_marginRight="@dimen/_16sdp"
+                    android:background="@color/divider" />
+
+                <!-- Share App -->
+                <LinearLayout
+                    android:id="@+id/rowShareApp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingLeft="@dimen/_16sdp"
+                    android:paddingRight="@dimen/_16sdp"
+                    android:paddingTop="@dimen/_14sdp"
+                    android:paddingBottom="@dimen/_14sdp"
+                    android:gravity="center_vertical"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?attr/selectableItemBackground">
+
+                    <ImageView
+                        android:layout_width="@dimen/_28sdp"
+                        android:layout_height="@dimen/_28sdp"
+                        android:src="@drawable/ic_share_app"
+                        android:contentDescription="@null" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginStart="@dimen/_14sdp"
+                        android:text="Share App"
+                        android:textSize="@dimen/_15ssp"
+                        android:textStyle="bold"
+                        android:textColor="?attr/colorOnSurface" />
+
+                    <ImageView
+                        android:layout_width="@dimen/_20sdp"
+                        android:layout_height="@dimen/_20sdp"
+                        android:src="@drawable/ic_chevron_right"
+                        app:tint="?attr/colorOnSurfaceVariant"
+                        android:contentDescription="@null" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_1sdp"
+                    android:layout_marginLeft="@dimen/_16sdp"
+                    android:layout_marginRight="@dimen/_16sdp"
+                    android:background="@color/divider" />
+
+                <!-- More Apps -->
+                <LinearLayout
+                    android:id="@+id/rowMoreApps"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingLeft="@dimen/_16sdp"
+                    android:paddingRight="@dimen/_16sdp"
+                    android:paddingTop="@dimen/_14sdp"
+                    android:paddingBottom="@dimen/_14sdp"
+                    android:gravity="center_vertical"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?attr/selectableItemBackground">
+
+                    <ImageView
+                        android:layout_width="@dimen/_28sdp"
+                        android:layout_height="@dimen/_28sdp"
+                        android:src="@drawable/ic_more_app"
+                        android:contentDescription="@null" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginStart="@dimen/_14sdp"
+                        android:text="More Apps"
+                        android:textSize="@dimen/_15ssp"
+                        android:textStyle="bold"
+                        android:textColor="?attr/colorOnSurface" />
+
+                    <ImageView
+                        android:layout_width="@dimen/_20sdp"
+                        android:layout_height="@dimen/_20sdp"
+                        android:src="@drawable/ic_chevron_right"
+                        app:tint="?attr/colorOnSurfaceVariant"
+                        android:contentDescription="@null" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_1sdp"
+                    android:layout_marginLeft="@dimen/_16sdp"
+                    android:layout_marginRight="@dimen/_16sdp"
+                    android:background="@color/divider" />
+
+                <!-- Privacy Policy -->
+                <LinearLayout
+                    android:id="@+id/rowPrivacyPolicy"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingLeft="@dimen/_16sdp"
+                    android:paddingRight="@dimen/_16sdp"
+                    android:paddingTop="@dimen/_14sdp"
+                    android:paddingBottom="@dimen/_14sdp"
+                    android:gravity="center_vertical"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?attr/selectableItemBackground">
+
+                    <ImageView
+                        android:layout_width="@dimen/_28sdp"
+                        android:layout_height="@dimen/_28sdp"
+                        android:src="@drawable/ic_privacy_policy"
+                        android:contentDescription="@null" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginStart="@dimen/_14sdp"
+                        android:text="Privacy Policy"
+                        android:textSize="@dimen/_15ssp"
+                        android:textStyle="bold"
+                        android:textColor="?attr/colorOnSurface" />
+
+                    <ImageView
+                        android:layout_width="@dimen/_20sdp"
+                        android:layout_height="@dimen/_20sdp"
+                        android:src="@drawable/ic_chevron_right"
+                        app:tint="?attr/colorOnSurfaceVariant"
+                        android:contentDescription="@null" />
+                </LinearLayout>
+
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
@@ -464,7 +709,7 @@
             android:paddingRight="@dimen/_20sdp"
             android:paddingTop="@dimen/_20sdp"
             android:paddingBottom="@dimen/_6sdp"
-            android:text="ABOUT"
+            android:text="@string/settings_section_about"
             android:textSize="@dimen/_11ssp"
             android:letterSpacing="0.12"
             android:textColor="?attr/colorPrimary"

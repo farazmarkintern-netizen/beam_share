@@ -13,7 +13,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/_20sdp"
-        android:fontFamily="@font/inter_semibold"
+        android:fontFamily="@font/pjs_semibold"
         android:letterSpacing="0.05"
         android:text="@string/session_options"
         android:textAllCaps="true"
@@ -49,7 +49,7 @@
                 android:id="@+id/tvRenameTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/inter_medium"
+                android:fontFamily="@font/pjs_medium"
                 android:text="@string/session_rename_device"
                 android:textColor="@color/color_text_primary"
                 android:textSize="@dimen/_14ssp" />
@@ -59,7 +59,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_1sdp"
-                android:fontFamily="@font/inter"
+                android:fontFamily="@font/pjs_regular"
                 android:textColor="@color/color_text_tertiary"
                 android:textSize="@dimen/_12ssp" />
         </LinearLayout>
@@ -94,7 +94,7 @@
                 android:id="@+id/tvOpenFolderTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/inter_medium"
+                android:fontFamily="@font/pjs_medium"
                 android:text="@string/session_open_folder"
                 android:textColor="@color/color_text_primary"
                 android:textSize="@dimen/_14ssp" />
@@ -104,7 +104,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_1sdp"
-                android:fontFamily="@font/inter"
+                android:fontFamily="@font/pjs_regular"
                 android:textColor="@color/color_text_tertiary"
                 android:textSize="@dimen/_12ssp" />
         </LinearLayout>
@@ -133,7 +133,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_14sdp"
             android:layout_weight="1"
-            android:fontFamily="@font/inter_medium"
+            android:fontFamily="@font/pjs_medium"
             android:text="@string/session_auto_accept"
             android:textColor="@color/color_text_primary"
             android:textSize="@dimen/_14ssp" />

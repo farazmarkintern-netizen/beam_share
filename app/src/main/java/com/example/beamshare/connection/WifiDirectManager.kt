@@ -188,15 +188,26 @@ class WifiDirectManager(private val context: Context) {
         }
 
         Log.d(TAG, "connectToDevice: ${device.deviceName} (${device.deviceAddress})")
+        _connectionState.value = ConnectionState.Connecting(device.deviceName ?: "Unknown")
 
-        // FIX: use WPS Push-Button Connect (PBC) so no PIN / password dialog appears.
-        // Without this, some devices default to WPS_PIN and show a PIN entry screen.
+        // First remove any existing group to prevent BUSY / ERROR conflicts
+        manager?.removeGroup(channel, object : WifiP2pManager.ActionListener {
+            override fun onSuccess() {
+                Log.d(TAG, "connectToDevice: removed old group, proceeding to connect")
+                proceedWithConnect(device)
+            }
+            override fun onFailure(reason: Int) {
+                Log.d(TAG, "connectToDevice: removeGroup reason=$reason, proceeding to connect anyway")
+                proceedWithConnect(device)
+            }
+        })
+    }
+
+    private fun proceedWithConnect(device: WifiP2pDevice) {
         val config = WifiP2pConfig().apply {
             deviceAddress = device.deviceAddress
             wps.setup = WpsInfo.PBC
         }
-
-        _connectionState.value = ConnectionState.Connecting(device.deviceName ?: "Unknown")
 
         try {
             manager?.connect(channel, config, object : WifiP2pManager.ActionListener {
@@ -205,7 +216,12 @@ class WifiDirectManager(private val context: Context) {
                 }
                 override fun onFailure(reason: Int) {
                     Log.e(TAG, "connectToDevice: FAILED to ${device.deviceName}, reason=$reason")
-                    _connectionState.value = ConnectionState.Error("Connection failed (code $reason)")
+                    val errorMsg = when (reason) {
+                        WifiP2pManager.BUSY -> "System busy. Try toggling Wi-Fi off & on."
+                        WifiP2pManager.ERROR -> "Internal error. Ensure Location is ON."
+                        else -> "Connection failed (code $reason)"
+                    }
+                    _connectionState.value = ConnectionState.Error(errorMsg)
                 }
             })
         } catch (e: SecurityException) {

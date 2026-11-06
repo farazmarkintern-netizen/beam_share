@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_dialog_rounded"
+    android:paddingStart="@dimen/_24sdp"
+    android:paddingEnd="@dimen/_24sdp"
+    android:paddingTop="@dimen/_28sdp"
+    android:paddingBottom="@dimen/_20sdp">
+
+    <!-- Icon container -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/iconCard"
+        android:layout_width="@dimen/_64sdp"
+        android:layout_height="@dimen/_64sdp"
+        app:cardCornerRadius="@dimen/_20sdp"
+        app:cardElevation="0dp"
+        app:cardBackgroundColor="@color/perm_bluetooth_bg"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <ImageView
+            android:layout_width="@dimen/_36sdp"
+            android:layout_height="@dimen/_36sdp"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_wifi"
+            app:tint="@color/perm_bluetooth"
+            android:contentDescription="@null" />
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- Title -->
+    <TextView
+        android:id="@+id/tvNearbyPermTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_14sdp"
+        android:fontFamily="@font/pjs_bold"
+        android:text="Nearby Devices Access"
+        android:textColor="@color/color_text_primary"
+        android:textSize="@dimen/_16ssp"
+        app:layout_constraintTop_toBottomOf="@id/iconCard"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Description -->
+    <TextView
+        android:id="@+id/tvNearbyPermDesc"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_8sdp"
+        android:fontFamily="@font/pjs_regular"
+        android:gravity="center"
+        android:lineSpacingMultiplier="1.4"
+        android:text="BeamShare needs access to nearby Wi-Fi devices to discover and connect to the other device using the pairing code."
+        android:textColor="@color/color_text_secondary"
+        android:textSize="@dimen/_13ssp"
+        app:layout_constraintTop_toBottomOf="@id/tvNearbyPermTitle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Divider -->
+    <View
+        android:id="@+id/divider"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/_1sdp"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:background="@color/color_divider"
+        app:layout_constraintTop_toBottomOf="@id/tvNearbyPermDesc"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Not Now button -->
+    <TextView
+        android:id="@+id/btnNearbyPermCancel"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/_44sdp"
+        android:layout_marginTop="@dimen/_16sdp"
+        android:layout_marginEnd="@dimen/_6sdp"
+        android:background="@drawable/bg_btn_cancel_outline"
+        android:fontFamily="@font/pjs_semibold"
+        android:gravity="center"
+        android:text="Not Now"
+        android:textColor="@color/color_text_primary"
+        android:textSize="@dimen/_14ssp"
+        app:layout_constraintTop_toBottomOf="@id/divider"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/btnNearbyPermAllow" />
+
+    <!-- Allow button -->
+    <TextView
+        android:id="@+id/btnNearbyPermAllow"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/_44sdp"
+        android:layout_marginTop="@dimen/_16sdp"
+        android:layout_marginStart="@dimen/_6sdp"
+        android:background="@drawable/btn_next_gradient"
+        android:fontFamily="@font/pjs_semibold"
+        android:gravity="center"
+        android:text="Allow"
+        android:textColor="@color/bs_white"
+        android:textSize="@dimen/_14ssp"
+        app:layout_constraintTop_toBottomOf="@id/divider"
+        app:layout_constraintStart_toEndOf="@id/btnNearbyPermCancel"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

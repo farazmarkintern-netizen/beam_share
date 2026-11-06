@@ -8,7 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.core.graphics.toColorInt
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -74,10 +74,10 @@ class FileListAdapter(
                     val icon = itemView.context.packageManager.getApplicationIcon(pkg)
                     ivAppIcon.setImageDrawable(icon)
                 } catch (_: Exception) {
-                    ivAppIcon.setImageResource(R.drawable.ic_apps)
+                    ivAppIcon.setImageResource(R.drawable.ic_file_apk)
                 }
             } else {
-                ivAppIcon.setImageResource(R.drawable.ic_apps)
+                ivAppIcon.setImageResource(R.drawable.ic_file_apk)
             }
         }
 
@@ -102,11 +102,11 @@ class FileListAdapter(
             ivAppIcon.visibility = View.GONE
             tvInitials.visibility = View.GONE
 
-            ivFileIcon.setImageResource(R.drawable.ic_music)
+            ivFileIcon.setImageResource(R.drawable.ic_file_audio)
             val bg = viewIconBg.background as? GradientDrawable
                 ?: GradientDrawable().also { viewIconBg.background = it }
             bg.shape = GradientDrawable.OVAL
-            bg.setColor("#F3E8FF".toColorInt())
+            bg.setColor(ContextCompat.getColor(itemView.context, R.color.bs_blue_light))
         }
 
         private fun bindContactItem(file: MediaFile) {
@@ -122,15 +122,15 @@ class FileListAdapter(
                 .joinToString("")
             tvInitials.text = initials
 
-            val avatarColors = arrayOf(
-                "#2563EB", "#DC2626", "#16A34A", "#9333EA",
-                "#EA580C", "#0891B2", "#D946EF", "#CA8A04"
+            val avatarColorRes = arrayOf(
+                R.color.bs_blue, R.color.color_red, R.color.bs_green, R.color.bs_teal,
+                R.color.bs_gold, R.color.bs_dark2, R.color.bs_teal, R.color.bs_gold
             )
-            val colorIndex = abs(file.name.hashCode()) % avatarColors.size
+            val colorIndex = abs(file.name.hashCode()) % avatarColorRes.size
             val bg = viewIconBg.background as? GradientDrawable
                 ?: GradientDrawable().also { viewIconBg.background = it }
             bg.shape = GradientDrawable.OVAL
-            bg.setColor(avatarColors[colorIndex].toColorInt())
+            bg.setColor(ContextCompat.getColor(itemView.context, avatarColorRes[colorIndex]))
         }
 
         private fun bindGenericItem() {
@@ -138,7 +138,7 @@ class FileListAdapter(
             ivFileIcon.visibility = View.VISIBLE
             ivAppIcon.visibility = View.GONE
             tvInitials.visibility = View.GONE
-            ivFileIcon.setImageResource(R.drawable.ic_document)
+            ivFileIcon.setImageResource(R.drawable.ic_file_doc)
         }
 
         private fun updateCheckbox(id: Long) {
@@ -150,25 +150,26 @@ class FileListAdapter(
         }
 
         private fun getDocIconAndColor(mimeType: String, name: String): Pair<Int, Int> {
+            val ctx = itemView.context
             val lowerName = name.lowercase(Locale.ROOT)
             return when {
                 mimeType.contains("pdf") || lowerName.endsWith(".pdf") ->
-                    R.drawable.ic_doc_pdf to "#FEE2E2".toColorInt()
+                    R.drawable.ic_file_pdf to ContextCompat.getColor(ctx, R.color.bs_surface)
 
                 mimeType.contains("word") || lowerName.endsWith(".docx") || lowerName.endsWith(".doc") ->
-                    R.drawable.ic_doc_word to "#DBEAFE".toColorInt()
+                    R.drawable.ic_file_doc to ContextCompat.getColor(ctx, R.color.bs_blue_light)
 
                 mimeType.contains("excel") || mimeType.contains("spreadsheet")
                         || lowerName.endsWith(".xlsx") || lowerName.endsWith(".xls") || lowerName.endsWith(".csv") ->
-                    R.drawable.ic_doc_excel to "#DCFCE7".toColorInt()
+                    R.drawable.ic_file_excel to ContextCompat.getColor(ctx, R.color.bs_surface)
 
                 mimeType.contains("presentation") || lowerName.endsWith(".pptx") || lowerName.endsWith(".ppt") ->
-                    R.drawable.ic_doc_ppt to "#FEF3C7".toColorInt()
+                    R.drawable.ic_file_ppt to ContextCompat.getColor(ctx, R.color.bs_surface)
 
                 mimeType.contains("text") || lowerName.endsWith(".txt") ->
-                    R.drawable.ic_document to "#F1F5F9".toColorInt()
+                    R.drawable.ic_file_txt to ContextCompat.getColor(ctx, R.color.bs_surface)
 
-                else -> R.drawable.ic_document to "#EEF2FF".toColorInt()
+                else -> R.drawable.ic_file_doc to ContextCompat.getColor(ctx, R.color.bs_blue_light)
             }
         }
 

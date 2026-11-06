@@ -2,6 +2,6 @@
 <!-- Action icon background: 15% orange alpha tinted rounded square (Convert More) -->
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
     android:shape="rectangle">
-    <solid android:color="#26F59E0B" />
+    <solid android:color="@color/bs_surface" />
     <corners android:radius="10dp" />
 </shape>

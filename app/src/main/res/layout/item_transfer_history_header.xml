@@ -3,7 +3,7 @@
     android:id="@+id/tvDateHeader"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:fontFamily="@font/inter_semibold"
+    android:fontFamily="@font/pjs_semibold"
     android:letterSpacing="0.05"
     android:paddingHorizontal="@dimen/_16sdp"
     android:paddingTop="@dimen/_16sdp"

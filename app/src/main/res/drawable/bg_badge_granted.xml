@@ -2,6 +2,6 @@
 <!-- res/drawable/bg_badge_granted.xml -->
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
     android:shape="rectangle">
-    <solid android:color="#27AE60" />
+    <solid android:color="@color/bs_green" />
     <corners android:radius="100dp" />
 </shape>

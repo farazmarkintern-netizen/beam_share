@@ -32,7 +32,7 @@
         android:text="Page 1 of 3"
         android:textSize="18sp"
         android:textStyle="bold"
-        android:textColor="#111111"
+        android:textColor="@color/color_text_primary"
         android:gravity="center" />
 
     <!-- Subtitle -->
@@ -41,9 +41,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="24dp"
-        android:text="What would you like to do with this page?"
+        android:text="@string/doc_page_options_question"
         android:textSize="13sp"
-        android:textColor="#888888"
+        android:textColor="@color/color_text_secondary"
         android:gravity="center"
         android:lineSpacingExtra="2dp" />
 
@@ -52,11 +52,11 @@
         android:id="@+id/optionDelete"
         android:layout_width="match_parent"
         android:layout_height="48dp"
-        android:text="Delete this page"
+        android:text="@string/doc_page_delete"
         android:textColor="@android:color/white"
         android:textSize="14sp"
         android:textStyle="bold"
-        android:background="@drawable/bg_btn_delete"
+        android:background="@drawable/bg_button_danger"
         android:insetTop="0dp"
         android:insetBottom="0dp" />
 
@@ -66,8 +66,8 @@
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:layout_marginTop="10dp"
-        android:text="Move Left"
-        android:textColor="#333333"
+        android:text="@string/doc_page_move_left"
+        android:textColor="@color/color_text_primary"
         android:textSize="14sp"
         android:background="@drawable/bg_btn_outline"
         android:insetTop="0dp"
@@ -79,8 +79,8 @@
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:layout_marginTop="10dp"
-        android:text="Move Right"
-        android:textColor="#333333"
+        android:text="@string/doc_page_move_right"
+        android:textColor="@color/color_text_primary"
         android:textSize="14sp"
         android:background="@drawable/bg_btn_outline"
         android:insetTop="0dp"
@@ -92,9 +92,9 @@
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:layout_marginTop="6dp"
-        android:text="Cancel"
+        android:text="@string/cancel"
         android:textSize="14sp"
-        android:textColor="#888888"
+        android:textColor="@color/color_text_secondary"
         android:gravity="center"
         android:background="?attr/selectableItemBackground" />
 

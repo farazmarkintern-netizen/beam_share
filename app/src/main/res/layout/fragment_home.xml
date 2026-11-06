@@ -59,8 +59,8 @@
             app:layout_constraintEnd_toEndOf="parent">
 
             <ImageView
-                android:layout_width="@dimen/_22sdp"
-                android:layout_height="@dimen/_22sdp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:src="@drawable/ic_premium"
                 android:contentDescription="@null" />
@@ -170,7 +170,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_16sdp"
                     android:layout_marginBottom="@dimen/_10sdp"
-                    android:background="@drawable/bg_disconnect_btn"
+                    android:background="@drawable/bg_rounded_pill"
                     android:text="@string/home_disconnect"
                     android:textColor="@color/bs_dark"
                     android:textSize="@dimen/_11ssp"
@@ -205,7 +205,7 @@
                 android:layout_height="@dimen/_60sdp"
                 app:cardCornerRadius="@dimen/_16sdp"
                 app:cardElevation="0dp"
-                app:cardBackgroundColor="@color/bs_white"
+                app:cardBackgroundColor="@color/color_surface"
                 android:clickable="true"
                 android:focusable="true"
                 app:layout_constraintStart_toStartOf="parent"
@@ -250,7 +250,7 @@
                 android:layout_height="@dimen/_60sdp"
                 app:cardCornerRadius="@dimen/_16sdp"
                 app:cardElevation="0dp"
-                app:cardBackgroundColor="@color/bs_white"
+                app:cardBackgroundColor="@color/color_surface"
                 android:clickable="true"
                 android:focusable="true"
                 app:layout_constraintStart_toEndOf="@id/cardSend"
@@ -314,7 +314,7 @@
             android:layout_marginTop="@dimen/_8sdp"
             app:cardCornerRadius="@dimen/_14sdp"
             app:cardElevation="0dp"
-            app:cardBackgroundColor="@color/bs_white"
+            app:cardBackgroundColor="@color/color_surface"
             android:clickable="true"
             android:focusable="true"
             app:layout_constraintTop_toBottomOf="@id/tvAllFilesLabel"
@@ -395,7 +395,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/cardQuickShare" />
 
-        <!-- Row 1: Document Scanner | Private Folder -->
+        <!-- Row 1: Cloud Storage | Private Folder -->
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/featuresRow1"
             android:layout_width="0dp"
@@ -407,12 +407,12 @@
             app:layout_constraintEnd_toEndOf="parent">
 
             <com.google.android.material.card.MaterialCardView
-                android:id="@+id/cardDocumentScanner"
+                android:id="@+id/cardCloudStorage"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/_100sdp"
                 app:cardCornerRadius="@dimen/_14sdp"
                 app:cardElevation="0dp"
-                app:cardBackgroundColor="@color/bs_white"
+                app:cardBackgroundColor="@color/color_surface"
                 android:clickable="true"
                 android:focusable="true"
                 app:layout_constraintStart_toStartOf="parent"
@@ -426,12 +426,12 @@
                     android:padding="@dimen/_14sdp">
 
                     <ImageView
-                        android:id="@+id/icDocScanner"
+                        android:id="@+id/icCloudStorage"
                         android:layout_width="@dimen/_40sdp"
                         android:layout_height="@dimen/_40sdp"
-                        android:contentDescription="@null"
+                        android:src="@drawable/ic_cloud_storage"
                         android:scaleType="fitCenter"
-                        android:src="@drawable/ic_document_scanner"
+                        android:contentDescription="@null"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -440,13 +440,15 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_8sdp"
-                        android:text="@string/tool_doc_scanner"
+                        android:fontFamily="@font/pjs_semibold"
+                        android:gravity="center"
+                        android:maxLines="2"
+                        android:text="@string/cloud_title"
                         android:textColor="@color/color_text_primary"
                         android:textSize="@dimen/_12ssp"
-                        android:fontFamily="@font/pjs_semibold"
-                        android:maxLines="1"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/icDocScanner" />
+                        app:layout_constraintEnd_toEndOf="@+id/icCloudStorage"
+                        app:layout_constraintStart_toStartOf="@+id/icCloudStorage"
+                        app:layout_constraintTop_toBottomOf="@id/icCloudStorage" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </com.google.android.material.card.MaterialCardView>
@@ -457,10 +459,10 @@
                 android:layout_height="@dimen/_100sdp"
                 app:cardCornerRadius="@dimen/_14sdp"
                 app:cardElevation="0dp"
-                app:cardBackgroundColor="@color/bs_white"
+                app:cardBackgroundColor="@color/color_surface"
                 android:clickable="true"
                 android:focusable="true"
-                app:layout_constraintStart_toEndOf="@id/cardDocumentScanner"
+                app:layout_constraintStart_toEndOf="@id/cardCloudStorage"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 android:layout_marginStart="6dp">
@@ -485,12 +487,14 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_8sdp"
+                        android:fontFamily="@font/pjs_semibold"
+                        android:gravity="center"
+                        android:maxLines="2"
                         android:text="@string/tool_private_folder"
                         android:textColor="@color/color_text_primary"
                         android:textSize="@dimen/_12ssp"
-                        android:fontFamily="@font/pjs_semibold"
-                        android:maxLines="2"
-                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="@+id/icPrivateFolder"
+                        app:layout_constraintStart_toStartOf="@+id/icPrivateFolder"
                         app:layout_constraintTop_toBottomOf="@id/icPrivateFolder" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
@@ -498,24 +502,26 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <!-- Row 2: Image Enhancer | Video to mp3 -->
+        <!-- Row 2: Document Scanner | Video to mp3 -->
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/featuresRow2"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/_16sdp"
             android:layout_marginTop="@dimen/_8sdp"
+            android:layout_marginBottom="@dimen/_16sdp"
             app:layout_constraintTop_toBottomOf="@id/featuresRow1"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent">
 
             <com.google.android.material.card.MaterialCardView
-                android:id="@+id/cardImageEnhancer"
+                android:id="@+id/cardDocumentScanner"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/_100sdp"
                 app:cardCornerRadius="@dimen/_14sdp"
                 app:cardElevation="0dp"
-                app:cardBackgroundColor="@color/bs_white"
+                app:cardBackgroundColor="@color/color_surface"
                 android:clickable="true"
                 android:focusable="true"
                 app:layout_constraintStart_toStartOf="parent"
@@ -529,12 +535,12 @@
                     android:padding="@dimen/_14sdp">
 
                     <ImageView
-                        android:id="@+id/icImageEnhancer"
+                        android:id="@+id/icDocScanner"
                         android:layout_width="@dimen/_40sdp"
                         android:layout_height="@dimen/_40sdp"
                         android:contentDescription="@null"
                         android:scaleType="fitCenter"
-                        android:src="@drawable/ic_image_enhancer"
+                        android:src="@drawable/ic_document_scanner_home"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -543,13 +549,15 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_8sdp"
-                        android:text="@string/tool_image_enhancer"
+                        android:fontFamily="@font/pjs_semibold"
+                        android:gravity="center"
+                        android:maxLines="1"
+                        android:text="@string/tool_doc_scanner"
                         android:textColor="@color/color_text_primary"
                         android:textSize="@dimen/_12ssp"
-                        android:fontFamily="@font/pjs_semibold"
-                        android:maxLines="2"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/icImageEnhancer" />
+                        app:layout_constraintEnd_toEndOf="@+id/icDocScanner"
+                        app:layout_constraintStart_toStartOf="@+id/icDocScanner"
+                        app:layout_constraintTop_toBottomOf="@id/icDocScanner" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </com.google.android.material.card.MaterialCardView>
@@ -560,10 +568,10 @@
                 android:layout_height="@dimen/_100sdp"
                 app:cardCornerRadius="@dimen/_14sdp"
                 app:cardElevation="0dp"
-                app:cardBackgroundColor="@color/bs_white"
+                app:cardBackgroundColor="@color/color_surface"
                 android:clickable="true"
                 android:focusable="true"
-                app:layout_constraintStart_toEndOf="@id/cardImageEnhancer"
+                app:layout_constraintStart_toEndOf="@id/cardDocumentScanner"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 android:layout_marginStart="6dp">
@@ -588,105 +596,19 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_8sdp"
+                        android:fontFamily="@font/pjs_semibold"
+                        android:gravity="center"
+                        android:maxLines="2"
                         android:text="@string/tool_video_to_audio"
                         android:textColor="@color/color_text_primary"
                         android:textSize="@dimen/_12ssp"
-                        android:fontFamily="@font/pjs_semibold"
-                        android:maxLines="2"
-                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="@+id/icVideoToAudio"
+                        app:layout_constraintStart_toStartOf="@+id/icVideoToAudio"
                         app:layout_constraintTop_toBottomOf="@id/icVideoToAudio" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </com.google.android.material.card.MaterialCardView>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <!-- Quick Share Via Link (full width) -->
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/liveTransfersCard"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/_70sdp"
-            android:layout_marginHorizontal="@dimen/_16sdp"
-            android:layout_marginTop="@dimen/_8sdp"
-            android:layout_marginBottom="@dimen/_16sdp"
-            app:cardCornerRadius="@dimen/_14sdp"
-            app:cardElevation="0dp"
-            app:cardBackgroundColor="@color/bs_white"
-            android:clickable="true"
-            android:focusable="true"
-            app:layout_constraintTop_toBottomOf="@id/featuresRow2"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:paddingHorizontal="@dimen/_14sdp">
-
-                <ImageView
-                    android:id="@+id/icQuickShareLink"
-                    android:layout_width="@dimen/_40sdp"
-                    android:layout_height="@dimen/_40sdp"
-                    android:src="@drawable/ic_quick_share"
-                    android:scaleType="fitCenter"
-                    android:contentDescription="@null"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent" />
-
-                <TextView
-                    android:id="@+id/tvMoreTransfers"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_12sdp"
-                    android:text="@string/tool_quick_share_link"
-                    android:textColor="@color/color_text_primary"
-                    android:textSize="@dimen/_12ssp"
-                    android:fontFamily="@font/pjs_semibold"
-                    app:layout_constraintStart_toEndOf="@id/icQuickShareLink"
-                    app:layout_constraintEnd_toStartOf="@id/ivArrowLink"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toTopOf="@id/tvQuickShareSub" />
-
-                <TextView
-                    android:id="@+id/tvQuickShareSub"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_12sdp"
-                    android:layout_marginTop="2dp"
-                    android:text="@string/home_share_sub"
-                    android:textColor="@color/color_text_secondary"
-                    android:textSize="@dimen/_11ssp"
-                    android:fontFamily="@font/pjs_medium"
-                    app:layout_constraintStart_toEndOf="@id/icQuickShareLink"
-                    app:layout_constraintEnd_toStartOf="@id/ivArrowLink"
-                    app:layout_constraintTop_toBottomOf="@id/tvMoreTransfers"
-                    app:layout_constraintBottom_toBottomOf="parent" />
-
-                <ImageView
-                    android:id="@+id/ivArrowLink"
-                    android:layout_width="@dimen/_16sdp"
-                    android:layout_height="@dimen/_16sdp"
-                    android:src="@drawable/ic_chevron_right"
-                    app:tint="@color/color_text_secondary"
-                    android:contentDescription="@null"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent" />
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rvLiveTransfers"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:visibility="gone"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </com.google.android.material.card.MaterialCardView>
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

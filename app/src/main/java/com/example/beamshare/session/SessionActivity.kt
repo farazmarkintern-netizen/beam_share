@@ -205,7 +205,7 @@ class SessionActivity : AppCompatActivity() {
                             is SessionState.Reconnecting -> {
                                 handler.removeCallbacks(durationRunnable)
                                 setConnectionBadge(
-                                    R.drawable.bg_badge_reconnecting,
+                                    R.drawable.bg_banner_warning,
                                     R.drawable.bg_dot_amber,
                                     getString(R.string.session_reconnecting),
                                     0xFFD97706.toInt()
@@ -213,7 +213,7 @@ class SessionActivity : AppCompatActivity() {
                             }
                             is SessionState.Hosting, is SessionState.Joining -> {
                                 setConnectionBadge(
-                                    R.drawable.bg_badge_reconnecting,
+                                    R.drawable.bg_banner_warning,
                                     R.drawable.bg_dot_amber,
                                     getString(R.string.session_connecting),
                                     0xFFD97706.toInt()
@@ -432,8 +432,7 @@ class SessionActivity : AppCompatActivity() {
 
         val uri = androidx.core.content.FileProvider.getUriForFile(
             this,
-            "${packageName}.provider",
-            beamShareDir
+            "${packageName}.beamshare.fileprovider",            beamShareDir
         )
         val intent = Intent(Intent.ACTION_VIEW).apply {
             setDataAndType(uri, "resource/folder")

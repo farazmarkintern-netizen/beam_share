@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <resources>
 
     <!-- ============================================================
@@ -45,8 +45,8 @@
         <item name="colorControlHighlight">@color/color_ripple</item>
 
         <!-- Text appearance overrides (Inter font) -->
-        <item name="android:fontFamily">@font/inter</item>
-        <item name="fontFamily">@font/inter</item>
+        <item name="android:fontFamily">@font/pjs_regular</item>
+        <item name="fontFamily">@font/pjs_regular</item>
 
         <!-- Material component styles -->
         <item name="materialButtonStyle">@style/Widget.BeamShare.Button</item>
@@ -67,42 +67,42 @@
 
     <!-- Screen titles — 24sp Bold -->
     <style name="TextAppearance.BeamShare.Headline" parent="TextAppearance.Material3.HeadlineSmall">
-        <item name="android:fontFamily">@font/inter_bold</item>
+        <item name="android:fontFamily">@font/pjs_bold</item>
         <item name="android:textSize">24sp</item>
         <item name="android:textColor">@color/color_text_primary</item>
     </style>
 
     <!-- Section headers — 18sp SemiBold -->
     <style name="TextAppearance.BeamShare.Title" parent="TextAppearance.Material3.TitleMedium">
-        <item name="android:fontFamily">@font/inter_semibold</item>
+        <item name="android:fontFamily">@font/pjs_semibold</item>
         <item name="android:textSize">18sp</item>
         <item name="android:textColor">@color/color_text_primary</item>
     </style>
 
     <!-- Card titles / list items — 16sp SemiBold -->
     <style name="TextAppearance.BeamShare.Subtitle" parent="TextAppearance.Material3.TitleSmall">
-        <item name="android:fontFamily">@font/inter_semibold</item>
+        <item name="android:fontFamily">@font/pjs_semibold</item>
         <item name="android:textSize">16sp</item>
         <item name="android:textColor">@color/color_text_primary</item>
     </style>
 
     <!-- Body text — 14sp Regular -->
     <style name="TextAppearance.BeamShare.Body" parent="TextAppearance.Material3.BodyMedium">
-        <item name="android:fontFamily">@font/inter</item>
+        <item name="android:fontFamily">@font/pjs_regular</item>
         <item name="android:textSize">14sp</item>
         <item name="android:textColor">@color/color_text_primary</item>
     </style>
 
     <!-- Secondary / caption — 12sp Regular -->
     <style name="TextAppearance.BeamShare.Caption" parent="TextAppearance.Material3.BodySmall">
-        <item name="android:fontFamily">@font/inter</item>
+        <item name="android:fontFamily">@font/pjs_regular</item>
         <item name="android:textSize">12sp</item>
         <item name="android:textColor">@color/color_text_secondary</item>
     </style>
 
     <!-- Label / overline — 11sp Medium CAPS -->
     <style name="TextAppearance.BeamShare.Label" parent="TextAppearance.Material3.LabelSmall">
-        <item name="android:fontFamily">@font/inter_medium</item>
+        <item name="android:fontFamily">@font/pjs_medium</item>
         <item name="android:textSize">11sp</item>
         <item name="android:textColor">@color/color_text_tertiary</item>
         <item name="android:textAllCaps">true</item>
@@ -111,7 +111,7 @@
 
     <!-- Button text — 16sp SemiBold -->
     <style name="TextAppearance.BeamShare.Button" parent="TextAppearance.Material3.LabelLarge">
-        <item name="android:fontFamily">@font/inter_semibold</item>
+        <item name="android:fontFamily">@font/pjs_semibold</item>
         <item name="android:textSize">16sp</item>
     </style>
 
@@ -120,7 +120,7 @@
 
     <!-- Primary filled button (Send / Receive) -->
     <style name="Widget.BeamShare.Button" parent="Widget.Material3.Button">
-        <item name="android:fontFamily">@font/inter_semibold</item>
+        <item name="android:fontFamily">@font/pjs_semibold</item>
         <item name="android:textSize">16sp</item>
         <item name="android:textAllCaps">false</item>
         <item name="android:insetTop">0dp</item>
@@ -137,7 +137,7 @@
 
     <!-- Outlined button -->
     <style name="Widget.BeamShare.Button.Outlined" parent="Widget.Material3.Button.OutlinedButton">
-        <item name="android:fontFamily">@font/inter_semibold</item>
+        <item name="android:fontFamily">@font/pjs_semibold</item>
         <item name="android:textSize">16sp</item>
         <item name="android:textAllCaps">false</item>
         <item name="android:minHeight">52dp</item>
@@ -152,7 +152,7 @@
 
     <!-- Text button (Cancel, Skip) -->
     <style name="Widget.BeamShare.Button.Text" parent="Widget.Material3.Button.TextButton">
-        <item name="android:fontFamily">@font/inter_semibold</item>
+        <item name="android:fontFamily">@font/pjs_semibold</item>
         <item name="android:textSize">14sp</item>
         <item name="android:textAllCaps">false</item>
         <item name="android:textColor">@color/color_primary</item>
@@ -221,12 +221,12 @@
     </style>
 
     <style name="TextAppearance.BeamShare.BottomNav.Active" parent="TextAppearance.Material3.LabelMedium">
-        <item name="android:fontFamily">@font/inter_semibold</item>
+        <item name="android:fontFamily">@font/pjs_semibold</item>
         <item name="android:textSize">12sp</item>
     </style>
 
     <style name="TextAppearance.BeamShare.BottomNav.Inactive" parent="TextAppearance.Material3.LabelMedium">
-        <item name="android:fontFamily">@font/inter</item>
+        <item name="android:fontFamily">@font/pjs_regular</item>
         <item name="android:textSize">12sp</item>
     </style>
 
@@ -249,7 +249,7 @@
     <!-- ====================  CHIPS  ==================== -->
 
     <style name="Widget.BeamShare.Chip" parent="Widget.Material3.Chip.Filter">
-        <item name="android:fontFamily">@font/inter_medium</item>
+        <item name="android:fontFamily">@font/pjs_medium</item>
         <item name="android:textSize">13sp</item>
         <item name="chipCornerRadius">20dp</item>
         <item name="chipMinHeight">36dp</item>
@@ -261,7 +261,7 @@
 
     <!-- Category chip (Images, Videos, etc.) -->
     <style name="Widget.BeamShare.Chip.Category" parent="Widget.Material3.Chip.Assist">
-        <item name="android:fontFamily">@font/inter_medium</item>
+        <item name="android:fontFamily">@font/pjs_medium</item>
         <item name="android:textSize">12sp</item>
         <item name="chipCornerRadius">12dp</item>
         <item name="chipMinHeight">32dp</item>
@@ -280,7 +280,7 @@
     </style>
 
     <style name="Widget.BeamShare.Button.Dialog" parent="Widget.Material3.Button.TextButton.Dialog">
-        <item name="android:fontFamily">@font/inter_semibold</item>
+        <item name="android:fontFamily">@font/pjs_semibold</item>
         <item name="android:textColor">@color/color_primary</item>
     </style>
 
@@ -297,7 +297,7 @@
     </style>
 
     <style name="Widget.BeamShare.Snackbar.Text" parent="Widget.Material3.Snackbar.TextView">
-        <item name="android:fontFamily">@font/inter</item>
+        <item name="android:fontFamily">@font/pjs_regular</item>
         <item name="android:textSize">14sp</item>
     </style>
 

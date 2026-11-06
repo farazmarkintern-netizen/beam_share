@@ -121,7 +121,7 @@ class DoneFragment : Fragment() {
         )
         // VA04: all 4 steps done
         dots.forEach { dot ->
-            dot.setBackgroundResource(R.drawable.bg_va_step_dot_done)
+            dot.setBackgroundResource(R.drawable.bg_va_log_dot_done)
             dot.setTextColor(android.graphics.Color.WHITE)
         }
     }
@@ -214,7 +214,7 @@ class DoneFragment : Fragment() {
         } else {
             FileProvider.getUriForFile(
                 requireContext(),
-                "${requireContext().packageName}.fileprovider",
+                "${requireContext().packageName}.beamshare.fileprovider",
                 File(result.outputPath)
             )
         }
@@ -261,7 +261,7 @@ class DoneFragment : Fragment() {
         } else {
             FileProvider.getUriForFile(
                 requireContext(),
-                "${requireContext().packageName}.fileprovider",
+                "${requireContext().packageName}.beamshare.fileprovider",
                 File(result.outputPath)
             )
         }

@@ -10,7 +10,12 @@
         android:id="@+id/homeFragment"
         android:name="com.example.beamshare.ui.home.HomeFragment"
         android:label="Home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+
+        <action
+            android:id="@+id/action_home_to_cloudStorage"
+            app:destination="@id/cloudStorageFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/transfersFragment"
@@ -105,4 +110,68 @@
 
     </fragment>
 
+
+
+
+
+
+
+    <!-- Cloud Storage -->
+    <fragment
+        android:id="@+id/cloudStorageFragment"
+        android:name="com.example.beamshare.cloud.CloudStorageFragment"
+        android:label="Cloud Storage"
+        tools:layout="@layout/fragment_cloud_storage">
+
+        <action
+            android:id="@+id/action_cloudStorageFragment_to_cloudLoginFragment"
+            app:destination="@id/cloudLoginFragment" />
+
+        <action
+            android:id="@+id/action_cloudStorageFragment_to_cloudUploadingFragment"
+            app:destination="@id/cloudUploadingFragment" />
+
+        <action
+            android:id="@+id/action_cloudStorageFragment_to_cloudDirectoryFragment"
+            app:destination="@id/cloudDirectoryFragment" />
+    </fragment>
+
+    <!-- Cloud Directory -->
+    <fragment
+        android:id="@+id/cloudDirectoryFragment"
+        android:name="com.example.beamshare.cloud.CloudDirectoryFragment"
+        android:label="Cloud Directory"
+        tools:layout="@layout/fragment_cloud_directory">
+
+        <action
+            android:id="@+id/action_cloudDirectoryFragment_to_cloudLoginFragment"
+            app:destination="@id/cloudLoginFragment" />
+
+        <action
+            android:id="@+id/action_cloudDirectoryFragment_to_cloudStorageFragment"
+            app:destination="@id/cloudStorageFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/cloudUploadingFragment"
+        android:name="com.example.beamshare.cloud.CloudUploadingFragment"
+        android:label="Uploading"
+        tools:layout="@layout/fragment_cloud_uploading">
+
+        <argument
+            android:name="fileUri"
+            app:argType="string"
+            android:defaultValue="" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/cloudLoginFragment"
+        android:name="com.example.beamshare.cloud.CloudLoginFragment"
+        android:label="Cloud Login"
+        tools:layout="@layout/fragment_cloud_login">
+
+        <action
+            android:id="@+id/action_cloudLoginFragment_to_cloudUploadingFragment"
+            app:destination="@id/cloudUploadingFragment" />
+    </fragment>
 </navigation>

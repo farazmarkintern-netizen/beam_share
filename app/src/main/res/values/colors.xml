@@ -1,148 +1,96 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- res/values/colors.xml — Light Theme Colors -->
 <resources>
 
-    <!-- Primary Brand -->
-    <color name="color_primary">#2563EB</color>
-    <color name="color_primary_light">#DBEAFE</color>
-    <color name="color_primary_dark">#1D4ED8</color>
-    <color name="color_primary_tint">#EFF6FF</color>
-
-    <!-- Semantic Colors -->
-    <color name="color_green">#16A34A</color>
-    <color name="color_green_light">#2563EB</color>
-    <color name="color_orange">#EA580C</color>
-    <color name="color_orange_light">#FFF7ED</color>
-    <color name="color_red">#DC2626</color>
-    <color name="color_red_light">#FEF2F2</color>
-    <color name="color_red_tint">#FEF2F2</color>
-    <color name="color_purple">#9333EA</color>
-    <color name="color_purple_light">#F3E8FF</color>
-
-    <!-- Backgrounds & Surfaces -->
-    <color name="color_background">#F8FAFC</color>
-    <color name="color_surface">#FFFFFF</color>
-    <color name="color_surface_elevated">#F1F5F9</color>
-    <color name="color_splash_bg">#2563EB</color>
-    <color name="color_splash">#2563EB</color>
-    <color name="color_white">#FFFFFF</color>
-
-    <!-- Borders & Dividers -->
-    <color name="color_border">#E2E8F0</color>
-    <color name="color_divider">#F1F5F9</color>
-
-    <!-- Text Colors -->
-    <color name="color_text_primary">#0F172A</color>
-    <color name="color_text_tertiary">#94A3B8</color>
-    <color name="color_text_on_primary">#FFFFFF</color>
-
-    <!-- Bottom Nav -->
-    <color name="color_nav_active">#2563EB</color>
-    <color name="color_nav_inactive">#94A3B8</color>
-
-    <!-- Status Bar -->
-    <color name="color_status_bar">#F8FAFC</color>
-
-    <!-- Ripple / Press -->
-    <color name="color_ripple">#1A2563EB</color>
-
-    <!-- Card Tints (for category icons on Home) -->
-    <color name="color_tint_blue">#EFF6FF</color>
-    <color name="color_tint_green">#F0FDF4</color>
-    <color name="color_tint_purple">#FAF5FF</color>
-    <color name="color_tint_orange">#FFF7ED</color>
-    <color name="color_tint_red">#FEF2F2</color>
-
-    <!-- Progress Bar -->
-    <color name="color_progress_track">#E2E8F0</color>
-    <color name="color_progress_fill">#2563EB</color>
-    <color name="color_primary_10">#1A2563EB</color>
-
-    <!-- Overlay -->
-    <color name="color_overlay">#80000000</color>
-    <color name="perm_card_bg">#FFFFFF</color>
-    <color name="perm_chip_bg">#F1F5F9</color>
-
-    <color name="bg_screen">#F8FAFC</color>
-    <color name="fg_primary">#0F172A</color>
-    <color name="fg_secondary">#64748B</color>
-    <color name="fg_tertiary">#94A3B8</color>
-    <color name="card_border">#E2E8F0</color>
-    <color name="accent">#2563EB</color>
-    <color name="accent_soft_border">#93C5FD</color>
-    <color name="perm_denied">#DC2626</color>
-
-    <color name="perm_wifi">#2563EB</color>
-    <color name="perm_wifi_bg">#DBEAFE</color>
-    <color name="perm_location">#16A34A</color>
-    <color name="perm_location_bg">#DCFCE7</color>
-    <color name="perm_bluetooth">#9333EA</color>
-    <color name="perm_bluetooth_bg">#F3E8FF</color>
-    <color name="perm_storage">#EA580C</color>
-    <color name="perm_storage_bg">#FFF7ED</color>
-    <color name="perm_save">#0D9488</color>
-    <color name="perm_save_bg">#CCFBF1</color>
-    <color name="perm_camera">#E11D48</color>
-    <color name="perm_camera_bg">#FFE4E6</color>
-    <color name="perm_notif">#D97706</color>
-    <color name="perm_notif_bg">#FEF3C7</color>
-    <color name="divider">#E2E8F0</color>
-    <color name="accent_soft_bg">#EFF6FF</color>
-    <!-- Add these color tokens to your existing res/values/colors.xml -->
-    <!-- (or res/values/colors_perm.xml if that's where the others live) -->
-
-    <!-- Contacts -->
-    <color name="perm_contacts">#8B5CF6</color>       <!-- purple -->
-    <color name="perm_contacts_bg">#EDE9FE</color>    <!-- light purple -->
-    <!-- themes.xml (light) mein -->
-
-    <!-- Install Apps -->
-    <color name="perm_install">#0EA5E9</color>        <!-- sky blue -->
-    <color name="perm_install_bg">#E0F2FE</color>     <!-- light sky -->
-
-    <!-- Dark Theme Fallback Colors for Perm Custom Attrs -->
-    <color name="perm_card_bg_dark">#1E293B</color>
-    <color name="fg_primary_dark">#F1F5F9</color>
-    <color name="fg_secondary_dark">#94A3B8</color>
-
-    <color name="brand_primary">#2563EB</color>
-    <color name="private_accent">#7C3AED</color>
-    <color name="tool_video_accent">#EA580C</color>
-    <color name="private_bg_dark">#1E1B4B</color>
-    <color name="private_accent_light">#A78BFA</color>
-    <color name="color_card_background">#FFFFFF</color>
-
-    <!-- Video to Audio Colors (Light) -->
-    <color name="va_bg">#F0F2FA</color>
-    <color name="va_surface">#FFFFFF</color>
-    <color name="va_surface2">#EEF1FB</color>
-    <color name="va_fg">#111420</color>
-    <color name="va_fg2">#6B7280</color>
-    <color name="va_border">#E2E6F3</color>
-    <color name="va_card_border">#D8DDEF</color>
-    <color name="va_accent">#4F7EFF</color>
-    <color name="va_accent2">#7B5CFF</color>
-    <color name="va_accent_glow">#294F7EFF</color>
-    <color name="va_green">#22C55E</color>
-    <color name="va_orange">#F59E0B</color>
-    <color name="va_red">#EF4444</color>
-
-
-
-
-    <!-- BeamShare Brand Colors — Light Mode -->
-    <color name="color_text_secondary">@color/bs_gray</color>
-    <color name="color_premium">@color/bs_gold</color>
+    <!-- ── Brand Palette (12 canonical colors) ──────────────────── -->
     <color name="bs_blue">#2563EB</color>
     <color name="bs_teal">#06B6D4</color>
     <color name="bs_green">#22C55E</color>
-    <color name="bs_surface">#F4F7FB</color>
-    <color name="bs_white">#FFFFFF</color>
     <color name="bs_dark">#262424</color>
     <color name="bs_dark2">#434040</color>
-    <color name="bs_dark3">#313131</color>       <!-- mid-dark: card borders, dividers -->
-    <color name="bs_gray">#939393</color>        <!-- secondary text, muted icons -->
-    <color name="bs_gold">#F5C542</color>        <!-- premium accent (deep gold) -->
-    <color name="bs_gold_light">#FBBF23</color> <!-- premium accent (light gold) -->
+    <color name="bs_dark3">#313131</color>
+    <color name="bs_blue_light">#D7E0FF</color>
+    <color name="bs_surface">#F4F7FB</color>
+    <color name="bs_white">#FFFFFF</color>
+    <color name="bs_gray">#939393</color>
+    <color name="bs_gold">#F5C542</color>
+    <color name="bs_gold_light">#FBBF23</color>
+
+    <!-- ── Semantic Tokens — Light Mode ─────────────────────────── -->
+
+    <!-- Primary -->
+    <color name="color_primary">#2563EB</color>
+    <color name="color_primary_light">#D7E0FF</color>
+    <color name="color_primary_dark">#2563EB</color>
+    <color name="color_primary_tint">#F4F7FB</color>
+    <color name="color_primary_10">#D7E0FF</color>
+    <color name="accent">#2563EB</color>
+    <color name="brand_primary">#2563EB</color>
+
+    <!-- Semantic States -->
+    <color name="color_green">@color/bs_green</color>
+    <color name="color_red">#DC2626</color>
+    <color name="perm_denied">@color/color_red</color>
+    <color name="fg_secondary">@color/bs_dark2</color>
+    <color name="color_red_tint">#F4F7FB</color>
+
+    <!-- Backgrounds -->
+    <color name="color_background">#F4F7FB</color>
+    <color name="color_surface">#FFFFFF</color>
+    <color name="color_surface_elevated">#D7E0FF</color>
+    <color name="color_card_background">#FFFFFF</color>
+    <color name="color_splash">#2563EB</color>
+    <color name="color_white">#FFFFFF</color>
+    <color name="bg_screen">#F4F7FB</color>
+
+    <!-- Borders & Dividers -->
+    <color name="color_border">#D7E0FF</color>
+    <color name="color_divider">#D7E0FF</color>
+    <color name="card_border">#D7E0FF</color>
+    <color name="divider">#D7E0FF</color>
+
+    <!-- Text -->
+    <color name="color_text_primary">#262424</color>
+    <color name="color_text_secondary">@color/bs_gray</color>
+    <color name="color_text_tertiary">#939393</color>
+    <color name="fg_tertiary">#939393</color>
+
+    <!-- Navigation -->
+    <color name="color_nav_active">#2563EB</color>
+    <color name="color_nav_inactive">#939393</color>
+
+    <!-- Ripple -->
+    <color name="color_ripple">#D7E0FF</color>
+
+    <!-- Progress -->
+    <color name="color_progress_track">#D7E0FF</color>
+    <color name="color_progress_fill">#2563EB</color>
+
+    <!-- Permission icon colors -->
+    <color name="perm_wifi">#2563EB</color>
+    <color name="perm_wifi_bg">#D7E0FF</color>
+    <color name="perm_bluetooth">#06B6D4</color>
+    <color name="perm_bluetooth_bg">#D7E0FF</color>
+    <color name="perm_storage">#F5C542</color>
+    <color name="perm_storage_bg">#F4F7FB</color>
+    <color name="perm_notif">#F5C542</color>
+    <color name="perm_notif_bg">#F4F7FB</color>
+
+    <!-- Private Folder -->
+    <color name="private_accent">#06B6D4</color>
+    <color name="private_accent_light">#D7E0FF</color>
+    <color name="private_bg_dark">#262424</color>
+
+    <!-- Video-to-Audio -->
+    <color name="va_bg">#F4F7FB</color>
+    <color name="va_surface">#FFFFFF</color>
+    <color name="va_surface2">#D7E0FF</color>
+    <color name="va_fg">#262424</color>
+    <color name="va_fg2">#5C6475</color>
+    <color name="va_border">#D7E0FF</color>
+    <color name="va_card_border">#D7E0FF</color>
+    <color name="va_accent">#2563EB</color>
+    <color name="va_accent_glow">#D7E0FF</color>
+    <color name="va_green">#22C55E</color>
+    <color name="va_orange">#F5C542</color>
 
 </resources>

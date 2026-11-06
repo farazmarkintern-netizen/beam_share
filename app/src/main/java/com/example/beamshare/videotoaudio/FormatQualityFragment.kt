@@ -87,7 +87,7 @@ class FormatQualityFragment : Fragment() {
                 dot.setBackgroundResource(R.drawable.bg_va_step_dot_active)
                 dot.setTextColor(android.graphics.Color.WHITE)
             } else if (index + 1 < activeStep) {
-                dot.setBackgroundResource(R.drawable.bg_va_step_dot_done)
+                dot.setBackgroundResource(R.drawable.bg_va_log_dot_done)
                 dot.setTextColor(android.graphics.Color.WHITE)
             } else {
                 dot.setBackgroundResource(R.drawable.bg_va_step_dot_inactive)

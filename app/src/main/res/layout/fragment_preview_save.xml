@@ -22,14 +22,12 @@
 
         <ImageView
             android:id="@+id/btnBack"
-            android:layout_width="@dimen/_36sdp"
-            android:layout_height="@dimen/_36sdp"
+            android:layout_width="@dimen/_30sdp"
+            android:layout_height="@dimen/_30sdp"
             android:contentDescription="@null"
-            android:padding="@dimen/_6sdp"
-            android:src="@drawable/ic_arrow_back"
+            android:src="@drawable/back_press"
             android:clickable="true"
             android:focusable="true"
-            app:tint="@color/color_text_primary"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent" />
@@ -85,7 +83,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_8sdp"
         android:background="@drawable/bg_page_badge"
-        android:fontFamily="@font/inter_semibold"
+        android:fontFamily="@font/pjs_semibold"
         android:paddingHorizontal="@dimen/_10sdp"
         android:paddingVertical="@dimen/_4sdp"
         android:text="1 / 1"
@@ -189,16 +187,15 @@
             android:textSize="@dimen/_13ssp"
             android:fontFamily="@font/pjs_semibold"
             android:insetTop="0dp"
-            android:textAllCaps="false"
             android:insetBottom="0dp"
-            app:icon="@drawable/ic_document"
-            app:iconTint="@android:color/white"
+            android:textAllCaps="false"
+            android:background="@drawable/btn_next_gradient"
+            app:icon="@drawable/ic_file_doc"
             app:iconGravity="textStart"
             app:iconPadding="@dimen/_8sdp"
+            app:iconTint="@null"
             app:backgroundTint="@null"
-            android:background="@drawable/btn_next_gradient"
             app:cornerRadius="100dp"
-            style="@style/Widget.MaterialComponents.Button" />
-    </LinearLayout>
+            style="@style/Widget.MaterialComponents.Button" />    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

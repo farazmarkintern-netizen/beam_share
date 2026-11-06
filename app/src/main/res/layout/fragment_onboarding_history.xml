@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:orientation="vertical"
-        android:background="@drawable/bg_bottom_card"
+        android:background="@drawable/bg_bottom_sheet"
         android:paddingHorizontal="@dimen/_24sdp"
         android:paddingTop="@dimen/_24sdp"
         android:paddingBottom="@dimen/_100sdp"

@@ -15,28 +15,28 @@
             android:layout_height="@dimen/_90sdp"
             android:layout_margin="@dimen/_2sdp"
             android:layout_weight="1"
-            android:background="#E2E8F0" />
+            android:background="@color/color_border" />
 
         <View
             android:layout_width="0dp"
             android:layout_height="@dimen/_90sdp"
             android:layout_margin="@dimen/_2sdp"
             android:layout_weight="1"
-            android:background="#E2E8F0" />
+            android:background="@color/color_border" />
 
         <View
             android:layout_width="0dp"
             android:layout_height="@dimen/_90sdp"
             android:layout_margin="@dimen/_2sdp"
             android:layout_weight="1"
-            android:background="#E2E8F0" />
+            android:background="@color/color_border" />
 
         <View
             android:layout_width="0dp"
             android:layout_height="@dimen/_90sdp"
             android:layout_margin="@dimen/_2sdp"
             android:layout_weight="1"
-            android:background="#E2E8F0" />
+            android:background="@color/color_border" />
     </LinearLayout>
 
     <LinearLayout
@@ -49,28 +49,28 @@
             android:layout_height="@dimen/_90sdp"
             android:layout_margin="@dimen/_2sdp"
             android:layout_weight="1"
-            android:background="#E2E8F0" />
+            android:background="@color/color_border" />
 
         <View
             android:layout_width="0dp"
             android:layout_height="@dimen/_90sdp"
             android:layout_margin="@dimen/_2sdp"
             android:layout_weight="1"
-            android:background="#E2E8F0" />
+            android:background="@color/color_border" />
 
         <View
             android:layout_width="0dp"
             android:layout_height="@dimen/_90sdp"
             android:layout_margin="@dimen/_2sdp"
             android:layout_weight="1"
-            android:background="#E2E8F0" />
+            android:background="@color/color_border" />
 
         <View
             android:layout_width="0dp"
             android:layout_height="@dimen/_90sdp"
             android:layout_margin="@dimen/_2sdp"
             android:layout_weight="1"
-            android:background="#E2E8F0" />
+            android:background="@color/color_border" />
     </LinearLayout>
 
     <LinearLayout
@@ -83,28 +83,28 @@
             android:layout_height="@dimen/_90sdp"
             android:layout_margin="@dimen/_2sdp"
             android:layout_weight="1"
-            android:background="#E2E8F0" />
+            android:background="@color/color_border" />
 
         <View
             android:layout_width="0dp"
             android:layout_height="@dimen/_90sdp"
             android:layout_margin="@dimen/_2sdp"
             android:layout_weight="1"
-            android:background="#E2E8F0" />
+            android:background="@color/color_border" />
 
         <View
             android:layout_width="0dp"
             android:layout_height="@dimen/_90sdp"
             android:layout_margin="@dimen/_2sdp"
             android:layout_weight="1"
-            android:background="#E2E8F0" />
+            android:background="@color/color_border" />
 
         <View
             android:layout_width="0dp"
             android:layout_height="@dimen/_90sdp"
             android:layout_margin="@dimen/_2sdp"
             android:layout_weight="1"
-            android:background="#E2E8F0" />
+            android:background="@color/color_border" />
     </LinearLayout>
 
 </LinearLayout>

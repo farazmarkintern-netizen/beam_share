@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <resources>
 
     <!-- ============================================================
@@ -49,8 +49,8 @@
         <item name="colorControlHighlight">@color/color_ripple</item>
 
         <!-- Font -->
-        <item name="android:fontFamily">@font/inter</item>
-        <item name="fontFamily">@font/inter</item>
+        <item name="android:fontFamily">@font/pjs_regular</item>
+        <item name="fontFamily">@font/pjs_regular</item>
 
         <!-- Component styles (same names, dark colors auto-applied via colors-night) -->
         <item name="materialButtonStyle">@style/Widget.BeamShare.Button</item>

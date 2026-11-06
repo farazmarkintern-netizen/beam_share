@@ -26,7 +26,7 @@
             android:layout_gravity="center"
             android:contentDescription="@null"
             android:src="@drawable/ic_stop_circle"
-            app:tint="#EF4444" />
+            app:tint="@color/color_red" />
     </FrameLayout>
 
     <TextView
@@ -34,7 +34,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="@dimen/_12sdp"
-        android:fontFamily="@font/inter_bold"
+        android:fontFamily="@font/pjs_bold"
         android:text="@string/receive_stop_title"
         android:textColor="@color/color_text_primary"
         android:textSize="@dimen/_16ssp" />
@@ -44,7 +44,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="@dimen/_8sdp"
-        android:fontFamily="@font/inter"
+        android:fontFamily="@font/pjs_regular"
         android:gravity="center"
         android:text="@string/receive_stop_desc"
         android:textColor="@color/color_text_secondary"
@@ -64,7 +64,7 @@
             android:layout_marginEnd="@dimen/_8sdp"
             android:layout_weight="1"
             android:background="@drawable/bg_button_outlined"
-            android:fontFamily="@font/inter_semibold"
+            android:fontFamily="@font/pjs_semibold"
             android:gravity="center"
             android:text="@string/receive_keep_waiting"
             android:textColor="@color/color_text_primary"
@@ -77,7 +77,7 @@
             android:layout_marginStart="@dimen/_8sdp"
             android:layout_weight="1"
             android:background="@drawable/bg_button_danger"
-            android:fontFamily="@font/inter_semibold"
+            android:fontFamily="@font/pjs_semibold"
             android:gravity="center"
             android:text="@string/stop_receiving"
             android:textColor="@android:color/white"

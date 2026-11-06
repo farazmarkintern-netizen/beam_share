@@ -101,37 +101,6 @@
             android:layout_marginTop="2dp" />
     </LinearLayout>
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="?attr/colorOutlineVariant" />
 
-    <!-- Bluetooth -->
-    <LinearLayout
-        android:id="@+id/optionBluetooth"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:paddingVertical="14dp"
-        android:layout_marginBottom="8dp"
-        android:clickable="true"
-        android:focusable="true"
-        android:background="?attr/selectableItemBackground">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/sheet_method_bluetooth"
-            android:textSize="15sp"
-            android:textStyle="bold"
-            android:textColor="?attr/colorOnSurface" />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/sheet_method_bluetooth_desc"
-            android:textSize="12sp"
-            android:textColor="?attr/colorOnSurfaceVariant"
-            android:layout_marginTop="2dp" />
-    </LinearLayout>
 
 </LinearLayout>

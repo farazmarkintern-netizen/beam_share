@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "76646506484",
+    "project_id": "beam-share-a3128",
+    "storage_bucket": "beam-share-a3128.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:76646506484:android:ead1ed5f143e5f389723a1",
+        "android_client_info": {
+          "package_name": "com.example.beamshare"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "76646506484-rebv0sl0ltrk48l0hqkl5jtfapeccec9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC_qc4uDs6I325eNw0U2YwDDo8NF656ojE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "76646506484-rebv0sl0ltrk48l0hqkl5jtfapeccec9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

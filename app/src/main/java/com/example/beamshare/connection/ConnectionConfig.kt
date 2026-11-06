@@ -18,6 +18,7 @@ data class ConnectionConfig(
 
     companion object {
         const val DEFAULT_PORT = 8778
+        const val UDP_DISCOVERY_PORT = 8779
         const val QR_PREFIX = "BEAMSHARE:"
         const val MODE_WIFIDIRECT = "WIFIDIRECT"
         const val MODE_IP = "IP"

@@ -22,6 +22,7 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.example.beamshare.R
 import com.example.beamshare.databinding.FragmentPreviewSaveBinding
+import java.util.UUID
 import com.google.mlkit.vision.documentscanner.GmsDocumentScanning
 import com.google.mlkit.vision.documentscanner.GmsDocumentScanningResult
 import com.google.mlkit.vision.documentscanner.GmsDocumentScannerOptions
@@ -231,7 +232,7 @@ class PreviewSaveFragment : Fragment() {
             val params = ViewGroup.MarginLayoutParams(size, size)
             params.setMargins(margin, 0, margin, 0)
             dot.layoutParams = params
-            dot.setImageResource(R.drawable.dot_inactive)
+            dot.setImageResource(R.drawable.dot_page_inactive)
             binding.dotsIndicator.addView(dot)
         }
     }
@@ -241,7 +242,7 @@ class PreviewSaveFragment : Fragment() {
         for (i in 0 until container.childCount) {
             val dot = container.getChildAt(i) as? ImageView ?: continue
             dot.setImageResource(
-                if (i == activeIndex) R.drawable.dot_active else R.drawable.dot_inactive
+                if (i == activeIndex) R.drawable.dot_page_active else R.drawable.dot_page_inactive
             )
         }
         updateCounter(activeIndex)
@@ -269,6 +270,15 @@ class PreviewSaveFragment : Fragment() {
             .ifBlank { "Document_${System.currentTimeMillis()}" }
         try {
             val file = createPdfFile(pages, docName)
+            ScannedDocRepository.getInstance(requireContext()).add(
+                ScannedDoc(
+                    id        = UUID.randomUUID().toString(),
+                    name      = file.nameWithoutExtension,
+                    filePath  = file.absolutePath,
+                    sizeBytes = file.length(),
+                    dateStamp = ScannedDocRepository.dateStamp()
+                )
+            )
             Toast.makeText(requireContext(), "Saved: ${file.name}", Toast.LENGTH_SHORT).show()
         } catch (e: Exception) {
             Toast.makeText(requireContext(), "Save failed: ${e.message}", Toast.LENGTH_SHORT).show()
@@ -298,7 +308,7 @@ class PreviewSaveFragment : Fragment() {
                 .ifBlank { "Document_${System.currentTimeMillis()}" }
             val file = createPdfFile(pages, docName)
             val uri = FileProvider.getUriForFile(
-                requireContext(), "${requireContext().packageName}.fileprovider", file
+                requireContext(), "${requireContext().packageName}.beamshare.fileprovider", file
             )
             val intent = Intent(Intent.ACTION_SEND).apply {
                 type = "application/pdf"

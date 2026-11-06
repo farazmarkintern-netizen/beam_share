@@ -25,14 +25,14 @@
                 android:id="@+id/viewIconBg"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@drawable/bg_vault_file_icon" />
+                android:background="@drawable/bg_stat_card" />
 
             <ImageView
                 android:id="@+id/ivFileIcon"
-                android:layout_width="@dimen/_32sdp"
-                android:layout_height="@dimen/_32sdp"
+                android:layout_width="@dimen/_45sdp"
+                android:layout_height="@dimen/_45sdp"
                 android:layout_gravity="center"
-                android:src="@drawable/ic_document"
+                android:src="@drawable/ic_file_doc"
                 android:contentDescription="@null" />
         </FrameLayout>
 
@@ -45,7 +45,7 @@
             android:ellipsize="end"
             android:textColor="@color/color_text_primary"
             android:textSize="@dimen/_11ssp"
-            android:fontFamily="@font/inter_semibold"
+            android:fontFamily="@font/pjs_semibold"
             android:text="filename.pdf" />
 
         <!-- File size + 3-dot menu row -->
@@ -64,7 +64,7 @@
                 android:text="1.2 MB"
                 android:textColor="@color/color_text_tertiary"
                 android:textSize="@dimen/_10ssp"
-                android:fontFamily="@font/inter_regular" />
+                android:fontFamily="@font/pjs_regular" />
 
             <ImageView
                 android:id="@+id/ivMore"

@@ -61,11 +61,7 @@ class SettingsFragment : Fragment() {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU)
                 add(Manifest.permission.NEARBY_WIFI_DEVICES)
             add(Manifest.permission.ACCESS_FINE_LOCATION)
-            // Bluetooth (Android 12+)
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-                add(Manifest.permission.BLUETOOTH_SCAN)
-                add(Manifest.permission.BLUETOOTH_CONNECT)
-            }
+
             // Storage
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
                 add(Manifest.permission.READ_MEDIA_IMAGES)
@@ -162,6 +158,46 @@ class SettingsFragment : Fragment() {
         binding.cardPermissions.setOnClickListener {
             startActivity(Intent(requireContext(), PermissionsActivity::class.java))
         }
+
+        binding.rowSelectLanguage.setOnClickListener {
+            startActivity(Intent(Settings.ACTION_LOCALE_SETTINGS))
+        }
+
+        binding.rowRateUs.setOnClickListener {
+            val pkg = requireContext().packageName
+            runCatching {
+                startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=$pkg")))
+            }.onFailure {
+                startActivity(Intent(Intent.ACTION_VIEW,
+                    Uri.parse("https://play.google.com/store/apps/details?id=$pkg")))
+            }
+        }
+
+        binding.rowShareApp.setOnClickListener {
+            val pkg = requireContext().packageName
+            val shareIntent = Intent(Intent.ACTION_SEND).apply {
+                type = "text/plain"
+                putExtra(Intent.EXTRA_TEXT,
+                    "Check out BeamShare: https://play.google.com/store/apps/details?id=$pkg")
+            }
+            startActivity(Intent.createChooser(shareIntent, "Share BeamShare via"))
+        }
+
+        binding.rowMoreApps.setOnClickListener {
+            runCatching {
+                startActivity(Intent(Intent.ACTION_VIEW,
+                    Uri.parse("market://search?q=pub:BeamShare")))
+            }.onFailure {
+                startActivity(Intent(Intent.ACTION_VIEW,
+                    Uri.parse("https://play.google.com/store/search?q=pub:BeamShare")))
+            }
+        }
+
+        binding.rowPrivacyPolicy.setOnClickListener {
+            val pkg = requireContext().packageName
+            startActivity(Intent(Intent.ACTION_VIEW,
+                Uri.parse("https://play.google.com/store/apps/details?id=$pkg")))
+        }
     }
 
     // ── Permission summary (replaces old badge rows) ───────────────────────
@@ -241,9 +277,7 @@ class SettingsFragment : Fragment() {
         v.findViewById<View>(R.id.optionHotspot).setOnClickListener {
             pick(getString(R.string.sheet_method_hotspot))
         }
-        v.findViewById<View>(R.id.optionBluetooth).setOnClickListener {
-            pick(getString(R.string.sheet_method_bluetooth))
-        }
+
 
         sheet.show()
     }

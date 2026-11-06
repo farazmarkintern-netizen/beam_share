@@ -25,7 +25,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:fontFamily="@font/inter_bold"
+                android:fontFamily="@font/pjs_bold"
                 android:text="@string/transfers_title"
                 android:textColor="@color/color_text_primary"
                 android:textSize="@dimen/_20ssp" />
@@ -79,7 +79,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:layout_marginLeft="@dimen/_8sdp"
-                android:fontFamily="@font/inter_medium"
+                android:fontFamily="@font/pjs_medium"
                 android:text="0 selected"
                 android:textColor="@android:color/white"
                 android:textSize="@dimen/_14ssp" />
@@ -92,7 +92,7 @@
                 android:paddingRight="@dimen/_10sdp"
                 android:paddingTop="@dimen/_6sdp"
                 android:paddingBottom="@dimen/_6sdp"
-                android:fontFamily="@font/inter_medium"
+                android:fontFamily="@font/pjs_medium"
                 android:text="@string/select_all"
                 android:textColor="@android:color/white"
                 android:textSize="@dimen/_13ssp"
@@ -146,7 +146,7 @@
                     android:layout_marginLeft="@dimen/_36sdp"
                     android:layout_marginRight="@dimen/_8sdp"
                     android:background="@android:color/transparent"
-                    android:fontFamily="@font/inter"
+                    android:fontFamily="@font/pjs_regular"
                     android:hint="@string/transfers_search_hint"
                     android:imeOptions="actionSearch"
                     android:inputType="text"
@@ -178,8 +178,8 @@
                     android:id="@+id/filterAll"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/bg_filter_pill_selected"
-                    android:fontFamily="@font/inter_medium"
+                    android:background="@drawable/bg_tab_selected"
+                    android:fontFamily="@font/pjs_medium"
                     android:paddingLeft="@dimen/_14sdp"
                     android:paddingRight="@dimen/_14sdp"
                     android:paddingTop="@dimen/_6sdp"
@@ -194,7 +194,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_8sdp"
                     android:background="@drawable/bg_filter_pill_unselected"
-                    android:fontFamily="@font/inter_medium"
+                    android:fontFamily="@font/pjs_medium"
                     android:paddingLeft="@dimen/_14sdp"
                     android:paddingRight="@dimen/_14sdp"
                     android:paddingTop="@dimen/_6sdp"
@@ -209,7 +209,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_8sdp"
                     android:background="@drawable/bg_filter_pill_unselected"
-                    android:fontFamily="@font/inter_medium"
+                    android:fontFamily="@font/pjs_medium"
                     android:paddingLeft="@dimen/_14sdp"
                     android:paddingRight="@dimen/_14sdp"
                     android:paddingTop="@dimen/_6sdp"
@@ -224,7 +224,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_8sdp"
                     android:background="@drawable/bg_filter_pill_unselected"
-                    android:fontFamily="@font/inter_medium"
+                    android:fontFamily="@font/pjs_medium"
                     android:paddingLeft="@dimen/_14sdp"
                     android:paddingRight="@dimen/_14sdp"
                     android:paddingTop="@dimen/_6sdp"
@@ -241,6 +241,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
+            android:layout_marginHorizontal="@dimen/_16sdp"
             android:clipToPadding="false" />
 
         <!-- ====== EMPTY STATE ====== -->
@@ -260,7 +261,7 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@drawable/bg_empty_state_circle" />
+                    android:background="@drawable/bg_perm_icon_circle" />
 
                 <ImageView
                     android:layout_width="@dimen/_32sdp"
@@ -276,7 +277,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_16sdp"
-                android:fontFamily="@font/inter_bold"
+                android:fontFamily="@font/pjs_bold"
                 android:text="@string/transfers_empty_title"
                 android:textColor="@color/color_text_primary"
                 android:textSize="@dimen/_16ssp" />
@@ -286,7 +287,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_4sdp"
-                android:fontFamily="@font/inter"
+                android:fontFamily="@font/pjs_regular"
                 android:text="@string/transfers_empty_subtitle"
                 android:textColor="@color/color_text_secondary"
                 android:textSize="@dimen/_12ssp" />
@@ -302,7 +303,7 @@
                 android:drawablePadding="6dp"
                 android:drawableTint="@android:color/white"
                 android:focusable="true"
-                android:fontFamily="@font/inter_bold"
+                android:fontFamily="@font/pjs_bold"
                 android:gravity="center"
                 android:paddingLeft="@dimen/_20sdp"
                 android:paddingRight="@dimen/_20sdp"

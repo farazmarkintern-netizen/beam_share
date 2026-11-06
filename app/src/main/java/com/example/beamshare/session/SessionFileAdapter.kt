@@ -128,7 +128,11 @@ class SessionFileAdapter(
                     btnMenu.setOnClickListener { showCustomMenu(it, transfer, isSent) }
 
                     itemView.setOnClickListener {
-                        transfer.savedPath?.let { openFile(itemView, it) }
+                        if (!isSent) {
+                            showCustomMenu(it, transfer, isSent)
+                        } else {
+                            transfer.savedPath?.let { path -> openFile(itemView, path) }
+                        }
                     }
                 }
 
@@ -138,6 +142,8 @@ class SessionFileAdapter(
                     tvStatus.visibility = View.VISIBLE
                     tvStatus.text = "Failed"
                     tvStatus.setTextColor(0xFFDC2626.toInt())
+                    btnMenu.visibility = View.VISIBLE
+                    btnMenu.setOnClickListener { showCustomMenu(it, transfer, true) }
                     itemView.setOnClickListener(null)
                 }
 
@@ -148,6 +154,8 @@ class SessionFileAdapter(
                     tvStatus.visibility = View.VISIBLE
                     tvStatus.text = "Cancelled"
                     tvStatus.setTextColor(0xFFD97706.toInt())
+                    btnMenu.visibility = View.VISIBLE
+                    btnMenu.setOnClickListener { showCustomMenu(it, transfer, true) }
                     itemView.setOnClickListener(null)
                 }
             }

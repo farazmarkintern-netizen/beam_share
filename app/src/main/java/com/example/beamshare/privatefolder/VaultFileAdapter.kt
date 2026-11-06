@@ -1,7 +1,6 @@
 package com.example.beamshare.privatefolder
 
 import android.content.Context
-import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,6 +8,7 @@ import android.widget.ImageView
 import android.widget.PopupMenu
 import android.widget.TextView
 import androidx.cardview.widget.CardView
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.beamshare.R
 import java.io.File
@@ -27,17 +27,6 @@ class VaultFileAdapter(
         private const val TYPE_FOLDER = 0
         private const val TYPE_FILE   = 1
     }
-
-    // Colorful card backgrounds cycling through blue/green/yellow/purple/orange
-    private val cardColors = listOf(
-        "#EEF2FF", "#F0FDF4", "#FEFCE8", "#F5F3FF", "#FFF7ED"
-    )
-    private val cardColorsDark = listOf(
-        "#1E1B4B", "#064E3B", "#422006", "#2E1065", "#431407"
-    )
-    private val iconTints = listOf(
-        "#6366F1", "#22C55E", "#EAB308", "#A855F7", "#F97316"
-    )
 
     // ── ViewHolders ────────────────────────────────────────────────────────────
 
@@ -74,7 +63,7 @@ class VaultFileAdapter(
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val file = files[position]
         if (holder is FolderViewHolder) bindFolder(holder, file)
-        else if (holder is FileViewHolder) bindFile(holder, file, position)
+        else if (holder is FileViewHolder) bindFile(holder, file)
     }
 
     override fun getItemCount() = files.size
@@ -102,19 +91,9 @@ class VaultFileAdapter(
 
     // ── Bind file ──────────────────────────────────────────────────────────────
 
-    private fun bindFile(holder: FileViewHolder, file: File, position: Int) {
-        val colorIdx = position % cardColors.size
-        val isDark = (context.resources.configuration.uiMode
-                and android.content.res.Configuration.UI_MODE_NIGHT_MASK) ==
-                android.content.res.Configuration.UI_MODE_NIGHT_YES
-
-        try {
-            holder.iconBg.setBackgroundColor(
-                Color.parseColor(if (isDark) cardColorsDark[colorIdx] else cardColors[colorIdx])
-            )
-            holder.icon.setImageResource(getIconForFile(file))
-            holder.icon.setColorFilter(Color.parseColor(iconTints[colorIdx]))
-        } catch (_: Exception) {}
+    private fun bindFile(holder: FileViewHolder, file: File) {
+        holder.icon.clearColorFilter()
+        holder.icon.setImageResource(getIconForFile(file))
 
         holder.name.text = file.name
         holder.size.text = formatSize(file.length())
@@ -146,12 +125,17 @@ class VaultFileAdapter(
     private fun getIconForFile(file: File): Int {
         if (file.isDirectory) return R.drawable.ic_folder
         return when (file.extension.lowercase()) {
-            "jpg", "jpeg", "png", "gif", "webp", "bmp", "heic" -> R.drawable.ic_photo
-            "mp4", "mov", "avi", "mkv", "3gp"                  -> R.drawable.ic_video
-            "mp3", "wav", "flac", "aac", "m4a", "ogg"          -> R.drawable.ic_music
-            "pdf", "doc", "docx", "txt", "odt"                  -> R.drawable.ic_document
-            "zip", "rar", "tar", "gz"                           -> R.drawable.ic_document
-            else                                                -> R.drawable.ic_document
+            "jpg", "jpeg", "png", "gif", "webp", "bmp", "heic" -> R.drawable.ic_file_image
+            "mp4", "mov", "avi", "mkv", "3gp", "webm"           -> R.drawable.ic_file_video
+            "mp3", "wav", "flac", "aac", "m4a", "ogg"          -> R.drawable.ic_file_audio
+            "pdf"                                               -> R.drawable.ic_file_pdf
+            "doc", "docx"                                       -> R.drawable.ic_file_doc
+            "xls", "xlsx"                                       -> R.drawable.ic_file_excel
+            "ppt", "pptx"                                       -> R.drawable.ic_file_ppt
+            "txt"                                               -> R.drawable.ic_file_txt
+            "zip", "rar", "7z", "tar", "gz"                     -> R.drawable.ic_file_zip
+            "apk"                                               -> R.drawable.ic_file_apk
+            else                                                -> R.drawable.ic_file_doc
         }
     }
 

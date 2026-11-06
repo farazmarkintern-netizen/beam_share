@@ -92,32 +92,21 @@ class PermissionsActivity : AppCompatActivity() {
         add(PermissionData(
             permName           = "ACCESS_FINE_LOCATION",
             icon               = R.drawable.ic_location,
-            iconTint           = R.color.perm_location,
-            iconBg             = R.color.perm_location_bg,
+            iconTint           = R.color.perm_wifi,
+            iconBg             = R.color.perm_wifi_bg,
             title              = R.string.perm_location_title,
             subtitle           = R.string.perm_location_sub,
             dialogDesc         = R.string.perm_location_desc,
             runtimePermissions = listOf(ACCESS_FINE_LOCATION, ACCESS_COARSE_LOCATION)
         ))
 
-        add(PermissionData(
-            permName           = "BLUETOOTH_SCAN",
-            icon               = R.drawable.ic_bluetooth,
-            iconTint           = R.color.perm_bluetooth,
-            iconBg             = R.color.perm_bluetooth_bg,
-            title              = R.string.perm_bluetooth_title,
-            subtitle           = R.string.perm_bluetooth_sub,
-            dialogDesc         = R.string.perm_bluetooth_desc,
-            runtimePermissions = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S)
-                listOf(BLUETOOTH_SCAN, BLUETOOTH_CONNECT)
-            else emptyList()
-        ))
+
 
         add(PermissionData(
             permName           = "READ_MEDIA_*",
             icon               = R.drawable.ic_folder,
-            iconTint           = R.color.perm_storage,
-            iconBg             = R.color.perm_storage_bg,
+            iconTint           = R.color.perm_wifi,
+            iconBg             = R.color.perm_wifi_bg,
             title              = R.string.perm_read_files_title,
             subtitle           = R.string.perm_read_files_sub,
             dialogDesc         = R.string.perm_read_files_desc,
@@ -131,8 +120,8 @@ class PermissionsActivity : AppCompatActivity() {
         add(PermissionData(
             permName           = "WRITE_EXTERNAL_STORAGE",
             icon               = R.drawable.ic_save,
-            iconTint           = R.color.perm_save,
-            iconBg             = R.color.perm_save_bg,
+            iconTint           = R.color.perm_wifi,
+            iconBg             = R.color.perm_wifi_bg,
             title              = R.string.perm_save_files_title,
             subtitle           = R.string.perm_save_files_sub,
             dialogDesc         = R.string.perm_save_files_desc,
@@ -144,8 +133,8 @@ class PermissionsActivity : AppCompatActivity() {
         add(PermissionData(
             permName           = "CAMERA",
             icon               = R.drawable.ic_camera,
-            iconTint           = R.color.perm_camera,
-            iconBg             = R.color.perm_camera_bg,
+            iconTint           = R.color.perm_wifi,
+            iconBg             = R.color.perm_wifi_bg,
             title              = R.string.perm_camera_title,
             subtitle           = R.string.perm_camera_sub,
             dialogDesc         = R.string.perm_camera_desc,
@@ -155,8 +144,8 @@ class PermissionsActivity : AppCompatActivity() {
         add(PermissionData(
             permName           = "READ_CONTACTS",
             icon               = R.drawable.ic_contacts,
-            iconTint           = R.color.perm_contacts,
-            iconBg             = R.color.perm_contacts_bg,
+            iconTint           = R.color.perm_wifi,
+            iconBg             = R.color.perm_wifi_bg,
             title              = R.string.perm_contacts_title,
             subtitle           = R.string.perm_contacts_sub,
             dialogDesc         = R.string.perm_contacts_desc,
@@ -166,8 +155,8 @@ class PermissionsActivity : AppCompatActivity() {
         add(PermissionData(
             permName           = "POST_NOTIFICATIONS",
             icon               = R.drawable.ic_notifications,
-            iconTint           = R.color.perm_notif,
-            iconBg             = R.color.perm_notif_bg,
+            iconTint           = R.color.perm_wifi,
+            iconBg             = R.color.perm_wifi_bg,
             title              = R.string.perm_notif_title,
             subtitle           = R.string.perm_notif_sub,
             dialogDesc         = R.string.perm_notif_desc,
@@ -179,8 +168,8 @@ class PermissionsActivity : AppCompatActivity() {
         add(PermissionData(
             permName           = "REQUEST_INSTALL_PACKAGES",
             icon               = R.drawable.ic_install_package,
-            iconTint           = R.color.perm_install,
-            iconBg             = R.color.perm_install_bg,
+            iconTint           = R.color.perm_wifi,
+            iconBg             = R.color.perm_wifi_bg,
             title              = R.string.perm_install_title,
             subtitle           = R.string.perm_install_sub,
             dialogDesc         = R.string.perm_install_desc,
@@ -195,7 +184,6 @@ class PermissionsActivity : AppCompatActivity() {
         val cardBindings = listOf(
             binding.cardWifiDirect,
             binding.cardLocation,
-            binding.cardBluetooth,
             binding.cardReadFiles,
             binding.cardSaveFiles,
             binding.cardCamera,

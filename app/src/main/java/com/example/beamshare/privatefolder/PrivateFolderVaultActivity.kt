@@ -409,7 +409,7 @@ class PrivateFolderVaultActivity : AppCompatActivity() {
         }
         // Open file via FileProvider
         try {
-            val uri = FileProvider.getUriForFile(this, "${packageName}.fileprovider", file)
+            val uri = FileProvider.getUriForFile(this, "${packageName}.beamshare.fileprovider", file)
             val mime = contentResolver.getType(uri) ?: "*/*"
             startActivity(Intent(Intent.ACTION_VIEW).apply {
                 setDataAndType(uri, mime)
@@ -482,7 +482,7 @@ class PrivateFolderVaultActivity : AppCompatActivity() {
 
     private fun shareFile(file: File) {
         try {
-            val uri = FileProvider.getUriForFile(this, "${packageName}.fileprovider", file)
+            val uri = FileProvider.getUriForFile(this, "${packageName}.beamshare.fileprovider", file)
             startActivity(Intent.createChooser(
                 Intent(Intent.ACTION_SEND).apply {
                     type = contentResolver.getType(uri) ?: "*/*"

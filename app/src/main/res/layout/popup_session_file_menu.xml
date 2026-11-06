@@ -29,8 +29,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_12sdp"
-            android:fontFamily="@font/inter_medium"
-            android:text="Preview"
+            android:fontFamily="@font/pjs_medium"
+            android:text="@string/popup_preview"
             android:textColor="@color/color_text_primary"
             android:textSize="@dimen/_13ssp" />
 
@@ -57,8 +57,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_12sdp"
-            android:fontFamily="@font/inter_medium"
-            android:text="Rename"
+            android:fontFamily="@font/pjs_medium"
+            android:text="@string/popup_rename"
             android:textColor="@color/color_text_primary"
             android:textSize="@dimen/_13ssp" />
 
@@ -85,8 +85,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_12sdp"
-            android:fontFamily="@font/inter_medium"
-            android:text="Share"
+            android:fontFamily="@font/pjs_medium"
+            android:text="@string/popup_share"
             android:textColor="@color/color_text_primary"
             android:textSize="@dimen/_13ssp" />
 
@@ -121,8 +121,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_12sdp"
-            android:fontFamily="@font/inter_medium"
-            android:text="Delete"
+            android:fontFamily="@font/pjs_medium"
+            android:text="@string/popup_delete"
             android:textColor="#DC2626"
             android:textSize="@dimen/_13ssp" />
 

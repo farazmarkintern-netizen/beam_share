@@ -20,8 +20,8 @@
             android:layout_height="@dimen/_24sdp"
             android:layout_centerVertical="true"
             android:contentDescription="@string/back"
-            android:src="@drawable/ic_arrow_back"
-            app:tint="@color/color_text_primary" />
+            android:src="@drawable/back_press"
+          />
 
         <TextView
             android:layout_width="wrap_content"
@@ -29,7 +29,7 @@
             android:layout_centerVertical="true"
             android:layout_marginStart="@dimen/_12sdp"
             android:layout_toEndOf="@id/btnBack"
-            android:fontFamily="@font/inter_semibold"
+            android:fontFamily="@font/pjs_semibold"
             android:text="@string/session_home_title"
             android:textColor="@color/color_text_primary"
             android:textSize="@dimen/_16ssp" />
@@ -89,7 +89,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
-                android:fontFamily="@font/inter_semibold"
+                android:fontFamily="@font/pjs_semibold"
                 android:maxLines="1"
                 android:textColor="@android:color/white"
                 android:textSize="@dimen/_13ssp" />
@@ -98,7 +98,7 @@
                 android:id="@+id/tvBannerSubtitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/inter"
+                android:fontFamily="@font/pjs_regular"
                 android:textColor="#FFFFFFCC"
                 android:textSize="@dimen/_12ssp" />
         </LinearLayout>
@@ -107,7 +107,7 @@
             android:id="@+id/tvBannerProgress"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/inter_bold"
+            android:fontFamily="@font/pjs_bold"
             android:textColor="@android:color/white"
             android:textSize="@dimen/_16ssp" />
     </LinearLayout>
@@ -152,9 +152,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_6sdp"
-                    android:fontFamily="@font/inter_medium"
+                    android:fontFamily="@font/pjs_medium"
                     android:text="@string/connected"
-                    android:textColor="#16A34A"
+                    android:textColor="@color/bs_green"
                     android:textSize="@dimen/_12ssp" />
             </LinearLayout>
 
@@ -193,7 +193,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/inter_bold"
+                            android:fontFamily="@font/pjs_bold"
                             android:text="@string/session_send_files"
                             android:textColor="@android:color/white"
                             android:textSize="@dimen/_16ssp" />
@@ -202,8 +202,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/_4sdp"
-                            android:fontFamily="@font/inter"
-                            android:text="Share data with\nnearby devices easily"
+                            android:fontFamily="@font/pjs_regular"
+                            android:text="@string/session_share_desc"
                             android:textColor="#FFFFFFCC"
                             android:textSize="@dimen/_11ssp" />
                     </LinearLayout>
@@ -235,7 +235,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/inter_bold"
+                            android:fontFamily="@font/pjs_bold"
                             android:text="@string/session_leave"
                             android:textColor="@android:color/white"
                             android:textSize="@dimen/_16ssp" />
@@ -244,8 +244,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/_4sdp"
-                            android:fontFamily="@font/inter"
-                            android:text="End your current\ndevice connection."
+                            android:fontFamily="@font/pjs_regular"
+                            android:text="@string/session_end_desc"
                             android:textColor="#FFFFFFCC"
                             android:textSize="@dimen/_11ssp" />
                     </LinearLayout>
@@ -295,7 +295,7 @@
                             android:id="@+id/tvStatSent"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/inter_bold"
+                            android:fontFamily="@font/pjs_bold"
                             android:text="0"
                             android:textColor="@color/color_text_primary"
                             android:textSize="@dimen/_16ssp"
@@ -304,7 +304,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/inter"
+                            android:fontFamily="@font/pjs_regular"
                             android:text="@string/session_stat_sent"
                             android:textColor="@color/color_text_tertiary"
                             android:textSize="@dimen/_11ssp" />
@@ -345,7 +345,7 @@
                             android:id="@+id/tvStatReceived"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/inter_bold"
+                            android:fontFamily="@font/pjs_bold"
                             android:text="0"
                             android:textColor="@color/color_text_primary"
                             android:textSize="@dimen/_16ssp"
@@ -354,7 +354,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/inter"
+                            android:fontFamily="@font/pjs_regular"
                             android:text="@string/receive"
                             android:textColor="@color/color_text_tertiary"
                             android:textSize="@dimen/_11ssp" />
@@ -394,7 +394,7 @@
                             android:id="@+id/tvStatTotal"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/inter_bold"
+                            android:fontFamily="@font/pjs_bold"
                             android:text="0 MB"
                             android:textColor="@color/color_text_primary"
                             android:textSize="@dimen/_14ssp"
@@ -403,7 +403,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/inter"
+                            android:fontFamily="@font/pjs_regular"
                             android:text="@string/session_stat_total"
                             android:textColor="@color/color_text_tertiary"
                             android:textSize="@dimen/_11ssp" />
@@ -417,7 +417,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_20sdp"
                 android:layout_marginBottom="@dimen/_8sdp"
-                android:fontFamily="@font/inter_semibold"
+                android:fontFamily="@font/pjs_semibold"
                 android:letterSpacing="0.05"
                 android:text="@string/session_this_session"
                 android:textAllCaps="true"

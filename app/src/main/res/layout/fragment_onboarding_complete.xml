@@ -12,7 +12,7 @@
         android:id="@+id/checkContainer"
         android:layout_width="@dimen/_100sdp"
         android:layout_height="@dimen/_100sdp"
-        android:background="@drawable/bg_checkmark_circle"
+        android:background="@drawable/bg_va_log_dot_done"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -38,7 +38,7 @@
         android:text="@string/onboarding_complete_title"
         android:textColor="@color/color_text_primary"
         android:textSize="@dimen/_22ssp"
-        android:fontFamily="@font/inter_bold"
+        android:fontFamily="@font/pjs_bold"
         app:layout_constraintTop_toBottomOf="@id/checkContainer"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
@@ -53,7 +53,7 @@
         android:text="@string/onboarding_complete_desc"
         android:textColor="@color/color_text_secondary"
         android:textSize="@dimen/_12ssp"
-        android:fontFamily="@font/inter"
+        android:fontFamily="@font/pjs_regular"
         android:textAlignment="center"
         android:lineSpacingExtra="@dimen/_2sdp"
         app:layout_constraintTop_toBottomOf="@id/tvTitle"
@@ -76,7 +76,7 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/bg_chip_category"
+            android:background="@drawable/bg_tab_unselected"
             android:paddingHorizontal="@dimen/_14sdp"
             android:paddingVertical="@dimen/_7sdp"
             android:gravity="center_vertical"
@@ -97,14 +97,14 @@
                 android:text="@string/onboarding_chip_files"
                 android:textColor="@color/color_text_secondary"
                 android:textSize="@dimen/_11ssp"
-                android:fontFamily="@font/inter_medium" />
+                android:fontFamily="@font/pjs_medium" />
         </LinearLayout>
 
         <!-- Apps Chip -->
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/bg_chip_category"
+            android:background="@drawable/bg_tab_unselected"
             android:paddingHorizontal="@dimen/_14sdp"
             android:paddingVertical="@dimen/_7sdp"
             android:gravity="center_vertical"
@@ -125,14 +125,14 @@
                 android:text="@string/onboarding_chip_apps"
                 android:textColor="@color/color_text_secondary"
                 android:textSize="@dimen/_11ssp"
-                android:fontFamily="@font/inter_medium" />
+                android:fontFamily="@font/pjs_medium" />
         </LinearLayout>
 
         <!-- Contacts Chip -->
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/bg_chip_category"
+            android:background="@drawable/bg_tab_unselected"
             android:paddingHorizontal="@dimen/_14sdp"
             android:paddingVertical="@dimen/_7sdp"
             android:gravity="center_vertical"
@@ -152,7 +152,7 @@
                 android:text="@string/onboarding_chip_contacts"
                 android:textColor="@color/color_text_secondary"
                 android:textSize="@dimen/_11ssp"
-                android:fontFamily="@font/inter_medium" />
+                android:fontFamily="@font/pjs_medium" />
         </LinearLayout>
 
     </LinearLayout>
@@ -200,7 +200,7 @@
         android:text="@string/onboarding_start_sharing"
         android:textColor="@color/color_white"
         android:textSize="@dimen/_14ssp"
-        android:fontFamily="@font/inter_semibold"
+        android:fontFamily="@font/pjs_semibold"
         android:insetTop="0dp"
         android:insetBottom="0dp"
         app:backgroundTint="@color/color_primary"

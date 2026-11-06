@@ -18,19 +18,20 @@
 
         <FrameLayout
             android:id="@+id/btnBack"
-            android:layout_width="@dimen/_40sdp"
-            android:layout_height="@dimen/_40sdp"
-            android:background="@drawable/bg_pin_key_dark"
+            android:layout_width="@dimen/_24sdp"
+            android:layout_height="@dimen/_24sdp"
+            android:paddingStart="@dimen/_5sdp"
+            android:paddingEnd="@dimen/_1sdp"
             android:clickable="true"
             android:focusable="true">
 
             <ImageView
-                android:layout_width="@dimen/_18sdp"
-                android:layout_height="@dimen/_18sdp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_gravity="center"
-                android:src="@drawable/ic_arrow_back"
-                app:tint="@android:color/white"
-                android:contentDescription="@null" />
+                android:src="@drawable/backpress_black"
+                android:contentDescription="@null"
+                app:tint="@color/bs_white" />
         </FrameLayout>
 
         <TextView
@@ -38,10 +39,10 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="Private Folder"
+            android:text="@string/unlock_pin_title"
             android:textColor="@android:color/white"
             android:textSize="@dimen/_15ssp"
-            android:fontFamily="@font/inter_bold" />
+            android:fontFamily="@font/pjs_bold" />
 
         <View
             android:layout_width="@dimen/_40sdp"
@@ -87,20 +88,20 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_16sdp"
-                android:text="Enter your PIN"
+                android:text="@string/unlock_pin_enter"
                 android:textColor="@android:color/white"
                 android:textSize="@dimen/_20ssp"
-                android:fontFamily="@font/inter_bold" />
+                android:fontFamily="@font/pjs_bold" />
 
             <TextView
                 android:id="@+id/tvSubtitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_4sdp"
-                android:text="Private Folder is locked"
+                android:text="@string/unlock_pin_locked"
                 android:textColor="@color/private_accent_light"
                 android:textSize="@dimen/_12ssp"
-                android:fontFamily="@font/inter_medium" />
+                android:fontFamily="@font/pjs_medium" />
 
             <!-- PIN dots -->
             <LinearLayout
@@ -272,10 +273,10 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Use Fingerprint 🖐"
+                    android:text="@string/unlock_pin_fingerprint"
                     android:textColor="@android:color/white"
                     android:textSize="@dimen/_14ssp"
-                    android:fontFamily="@font/inter_semibold" />
+                    android:fontFamily="@font/pjs_semibold" />
             </LinearLayout>
 
             <!-- Forgot PIN -->
@@ -285,10 +286,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_12sdp"
                 android:layout_marginBottom="@dimen/_16sdp"
-                android:text="Forgot PIN?"
+                android:text="@string/unlock_pin_forgot"
                 android:textColor="@color/color_text_secondary"
                 android:textSize="@dimen/_12ssp"
-                android:fontFamily="@font/inter_medium"
+                android:fontFamily="@font/pjs_medium"
                 android:clickable="true"
                 android:focusable="true" />
 

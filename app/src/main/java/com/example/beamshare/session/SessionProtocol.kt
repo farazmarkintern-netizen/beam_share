@@ -38,6 +38,7 @@ object SessionProtocol {
         const val FILE_CHUNK: Int = 11  // long id, int len, bytes[len]
         const val FILE_DONE: Int = 12   // long id
         const val FILE_CANCEL: Int = 13 // long id
+        const val FILE_RESUME: Int = 14 // long id, long offset
         const val PING: Int = 20        // (no body)
         const val PONG: Int = 21        // (no body)
         const val LEAVE: Int = 30       // (no body)

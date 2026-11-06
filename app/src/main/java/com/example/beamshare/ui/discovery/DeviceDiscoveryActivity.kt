@@ -1,9 +1,12 @@
 package com.example.beamshare.ui.discovery
 
 import android.Manifest
+import android.app.Dialog
+import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
+import android.net.wifi.WifiManager
 import android.net.wifi.p2p.WifiP2pDevice
 import android.os.Build
 import android.os.Bundle
@@ -14,7 +17,11 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
+import java.net.DatagramPacket
+import java.net.DatagramSocket
+import java.net.InetAddress
 import androidx.activity.result.contract.ActivityResultContracts
+import kotlinx.coroutines.delay
 import androidx.appcompat.app.AppCompatActivity
 import androidx.camera.view.PreviewView
 import androidx.core.content.ContextCompat
@@ -39,8 +46,10 @@ import com.example.beamshare.session.SessionActivity
 import com.example.beamshare.session.SessionManager
 import com.example.beamshare.session.SessionState
 import com.example.beamshare.ui.MainActivity
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class DeviceDiscoveryActivity : AppCompatActivity() {
 
@@ -60,6 +69,8 @@ class DeviceDiscoveryActivity : AppCompatActivity() {
     private lateinit var codeInputs: List<EditText>
     private lateinit var previewView: PreviewView
 
+    private lateinit var tvSearchingLabel: TextView
+
     private lateinit var deviceAdapter: NearbyDeviceAdapter
     private var isQRTabActive = true
 
@@ -70,6 +81,8 @@ class DeviceDiscoveryActivity : AppCompatActivity() {
 
     private var pendingDeviceName = ""
     private var pendingPairingCode = ""
+    // Nearby device the user tapped — used to try Wi-Fi Direct alongside UDP
+    private var pendingNearbyDevice: WifiP2pDevice? = null
 
     private var selectedFileUris: ArrayList<Uri> = arrayListOf()
     private var selectedFileNames: ArrayList<String> = arrayListOf()
@@ -77,6 +90,8 @@ class DeviceDiscoveryActivity : AppCompatActivity() {
 
     // Guard against navigating twice if state fires multiple times
     private var navigatedToSession = false
+    // Guard against starting the session service twice (UDP + Wi-Fi Direct race)
+    private var sessionStarted = false
 
     // The coroutine that waits for SessionManager.Connected state
     private var sessionWatchJob: Job? = null
@@ -96,6 +111,16 @@ class DeviceDiscoveryActivity : AppCompatActivity() {
             switchToEnterCode()
             Toast.makeText(this, R.string.camera_denied_message, Toast.LENGTH_LONG).show()
         }
+    }
+
+    private val nearbyPermissionLauncher = registerForActivityResult(
+        ActivityResultContracts.RequestPermission()
+    ) { granted ->
+        if (granted) {
+            startPeerDiscovery()
+        }
+        // Either way, attempt UDP discovery (works without Wi-Fi Direct permission)
+        discoverHostViaUdp(pendingPairingCode)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -134,6 +159,7 @@ class DeviceDiscoveryActivity : AppCompatActivity() {
         enterCodeNormalHeader = findViewById(R.id.enterCodeNormalHeader)
         enterCodeErrorHeader = findViewById(R.id.enterCodeErrorHeader)
         previewView = findViewById(R.id.cameraPreview)
+        tvSearchingLabel = findViewById(R.id.tvSearchingLabel)
 
         codeInputs = listOf(
             findViewById(R.id.etCode1), findViewById(R.id.etCode2),
@@ -170,11 +196,12 @@ class DeviceDiscoveryActivity : AppCompatActivity() {
 
     private fun switchToScanQR() {
         isQRTabActive = true
-        tabScanQR.setBackgroundResource(R.drawable.bg_tab_selected)
+        tabScanQR.setBackgroundResource(R.drawable.btn_next_gradient)
         tabScanQR.setTextColor(getColor(android.R.color.white))
         tabScanQR.setTypeface(null, android.graphics.Typeface.BOLD)
         tabEnterCode.setBackgroundResource(R.drawable.bg_tab_unselected)
         tabEnterCode.setTextColor(getColor(R.color.color_text_secondary))
+        tabEnterCode.setTypeface(null, android.graphics.Typeface.NORMAL)
         scannerContainer.isVisible = true
         bottomSection.isVisible = true
         enterCodeSection.isGone = true
@@ -183,11 +210,12 @@ class DeviceDiscoveryActivity : AppCompatActivity() {
 
     private fun switchToEnterCode() {
         isQRTabActive = false
-        tabEnterCode.setBackgroundResource(R.drawable.bg_tab_selected)
+        tabEnterCode.setBackgroundResource(R.drawable.btn_next_gradient)
         tabEnterCode.setTextColor(getColor(android.R.color.white))
         tabEnterCode.setTypeface(null, android.graphics.Typeface.BOLD)
         tabScanQR.setBackgroundResource(R.drawable.bg_tab_unselected)
         tabScanQR.setTextColor(getColor(R.color.color_text_secondary))
+        tabScanQR.setTypeface(null, android.graphics.Typeface.NORMAL)
         scannerContainer.isGone = true
         bottomSection.isGone = true
         enterCodeSection.isVisible = true
@@ -195,7 +223,6 @@ class DeviceDiscoveryActivity : AppCompatActivity() {
         currentCodeIndex = 0
         highlightCurrentBox()
     }
-
     private fun setupNearbyDevices() {
         deviceAdapter = NearbyDeviceAdapter { device -> connectToNearbyDevice(device) }
         rvNearbyDevices.layoutManager = LinearLayoutManager(this)
@@ -250,7 +277,13 @@ class DeviceDiscoveryActivity : AppCompatActivity() {
     private fun initWifiDirect() {
         wifiDirectManager = WifiDirectManager(applicationContext)
         wifiDirectManager.initialize()
-        wifiDirectManager.discoverPeers()
+
+        // Show searching spinner immediately
+        searchingState.isVisible = true
+        rvNearbyDevices.isGone = true
+        tvSearchingLabel.isVisible = true
+
+        startPeerDiscovery()
 
         lifecycleScope.launch {
             wifiDirectManager.peers.collect { peerList ->
@@ -265,6 +298,10 @@ class DeviceDiscoveryActivity : AppCompatActivity() {
                     searchingState.isGone = true
                     rvNearbyDevices.isVisible = true
                     deviceAdapter.submitList(nearbyDevices)
+                } else {
+                    rvNearbyDevices.isGone = true
+                    searchingState.isVisible = true
+                    deviceAdapter.submitList(emptyList())
                 }
             }
         }
@@ -273,10 +310,28 @@ class DeviceDiscoveryActivity : AppCompatActivity() {
             wifiDirectManager.connectionState.collect { state ->
                 when (state) {
                     is ConnectionState.Connected -> onDeviceConnected(state.groupOwnerAddress, state.isGroupOwner)
-                    is ConnectionState.Error -> Toast.makeText(this@DeviceDiscoveryActivity, state.message, Toast.LENGTH_LONG).show()
+                    is ConnectionState.Error -> { /* errors shown only on explicit connect attempt */ }
                     else -> {}
                 }
             }
+        }
+
+        // Wi-Fi Direct discovery auto-stops after ~2 minutes; restart every 90 seconds
+        lifecycleScope.launch {
+            while (true) {
+                delay(90_000)
+                if (!navigatedToSession) startPeerDiscovery()
+            }
+        }
+    }
+
+    private fun startPeerDiscovery() {
+        val nearbyPerm = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU)
+            Manifest.permission.NEARBY_WIFI_DEVICES
+        else
+            Manifest.permission.ACCESS_FINE_LOCATION
+        if (ContextCompat.checkSelfPermission(this, nearbyPerm) == PackageManager.PERMISSION_GRANTED) {
+            wifiDirectManager.discoverPeers()
         }
     }
 
@@ -352,30 +407,127 @@ class DeviceDiscoveryActivity : AppCompatActivity() {
     }
 
     private fun connectToNearbyDevice(device: NearbyDevice) {
-        val updatedList = deviceAdapter.currentList.map {
-            if (it.id == device.id) it.copy(isConnecting = true) else it
-        }
-        deviceAdapter.submitList(updatedList)
-
         val p2pDevice = wifiDirectManager.peers.value.find { it.deviceAddress == device.id }
         if (p2pDevice != null) {
+            pendingNearbyDevice = p2pDevice
             pendingDeviceName = p2pDevice.deviceName ?: device.name
-            wifiDirectManager.connectToDevice(p2pDevice)
-        } else {
-            Toast.makeText(this, "Device no longer available", Toast.LENGTH_SHORT).show()
         }
+        // Switch to Enter Code tab so the user can type the code shown on the other device
+        switchToEnterCode()
+        Toast.makeText(
+            this,
+            "Enter the code shown on ${device.name}",
+            Toast.LENGTH_LONG
+        ).show()
     }
 
     private fun connectWithCode(code: String) {
         pendingPairingCode = code
-        val peers = wifiDirectManager.peers.value
-        if (peers.isNotEmpty()) {
-            pendingDeviceName = peers.first().deviceName ?: "Unknown device"
-            wifiDirectManager.connectToDevice(peers.first())
-        } else {
-            showCodeError()
+        val nearbyPerm = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU)
+            Manifest.permission.NEARBY_WIFI_DEVICES
+        else
+            Manifest.permission.ACCESS_FINE_LOCATION
+
+        if (ContextCompat.checkSelfPermission(this, nearbyPerm) != PackageManager.PERMISSION_GRANTED) {
+            showNearbyPermissionDialog()
+            return
+        }
+
+        // If the user tapped a specific nearby device, try Wi-Fi Direct to it in parallel
+        // with UDP discovery — whichever handshakes correctly with the code wins.
+        val nearby = pendingNearbyDevice
+        if (nearby != null) {
+            wifiDirectManager.connectToDevice(nearby)
+        }
+        discoverHostViaUdp(code)
+    }
+
+    private fun showNearbyPermissionDialog() {
+        val dialog = Dialog(this, R.style.TransparentDialog)
+        dialog.setContentView(R.layout.dialog_nearby_permission)
+        dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+        dialog.window?.setLayout(
+            (resources.displayMetrics.widthPixels * 0.9).toInt(),
+            android.view.ViewGroup.LayoutParams.WRAP_CONTENT
+        )
+        dialog.setCanceledOnTouchOutside(false)
+
+        dialog.findViewById<TextView>(R.id.btnNearbyPermCancel).setOnClickListener {
+            dialog.dismiss()
+            // Try UDP discovery anyway — works without nearby permission
+            discoverHostViaUdp(pendingPairingCode)
+        }
+        dialog.findViewById<TextView>(R.id.btnNearbyPermAllow).setOnClickListener {
+            dialog.dismiss()
+            val perm = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU)
+                Manifest.permission.NEARBY_WIFI_DEVICES
+            else
+                Manifest.permission.ACCESS_FINE_LOCATION
+            nearbyPermissionLauncher.launch(perm)
+        }
+        dialog.show()
+    }
+
+    private fun discoverHostViaUdp(code: String) {
+        Toast.makeText(this, "Searching for device…", Toast.LENGTH_SHORT).show()
+        lifecycleScope.launch(Dispatchers.IO) {
+            var socket: DatagramSocket? = null
+            try {
+                socket = DatagramSocket()
+                socket.broadcast = true
+                socket.soTimeout = 10_000
+                val msg = "BEAMSHARE_FIND:$code".toByteArray()
+                val port = ConnectionConfig.UDP_DISCOVERY_PORT
+
+                val broadcastAddresses = mutableListOf<InetAddress>()
+                broadcastAddresses.add(InetAddress.getByName("255.255.255.255"))
+                // Also try subnet-directed broadcast for routers that block 255.255.255.255
+                getSubnetBroadcastAddress()?.let { broadcastAddresses.add(it) }
+
+                repeat(5) {
+                    for (addr in broadcastAddresses) {
+                        runCatching { socket.send(DatagramPacket(msg, msg.size, addr, port)) }
+                    }
+                    Thread.sleep(400)
+                }
+
+                val respBuf = ByteArray(256)
+                val respPkt = DatagramPacket(respBuf, respBuf.size)
+                socket.receive(respPkt)
+                val resp = String(respPkt.data, 0, respPkt.length).trim()
+                val prefix = "BEAMSHARE_HERE:$code:"
+                if (resp.startsWith(prefix)) {
+                    val ip = resp.removePrefix(prefix)
+                    Log.i(TAG, "UDP discovery found host at $ip")
+                    withContext(Dispatchers.Main) {
+                        startSessionAndWait {
+                            GroupSessionService.joinIp(this@DeviceDiscoveryActivity, code, ip)
+                        }
+                    }
+                } else {
+                    withContext(Dispatchers.Main) { showCodeError() }
+                }
+            } catch (e: Exception) {
+                Log.w(TAG, "UDP discovery failed: ${e.message}")
+                withContext(Dispatchers.Main) { showCodeError() }
+            } finally {
+                socket?.close()
+            }
         }
     }
+
+    private fun getSubnetBroadcastAddress(): InetAddress? = try {
+        @Suppress("DEPRECATION")
+        val wm = applicationContext.getSystemService(Context.WIFI_SERVICE) as WifiManager
+        @Suppress("DEPRECATION")
+        val dhcp = wm.dhcpInfo
+        val ip = dhcp.ipAddress
+        val mask = dhcp.netmask
+        val broadcast = (ip and mask) or (mask.inv())
+        // DhcpInfo stores addresses as little-endian int; convert bytes manually
+        val bytes = ByteArray(4) { i -> ((broadcast shr (i * 8)) and 0xFF).toByte() }
+        InetAddress.getByAddress(bytes)
+    } catch (_: Exception) { null }
 
     private fun onDeviceConnected(groupOwnerAddress: String, isGroupOwner: Boolean) {
         // Wi-Fi Direct group formed — use TCP direct to the group owner
@@ -394,7 +546,8 @@ class DeviceDiscoveryActivity : AppCompatActivity() {
      * toast and the screen stays until we know the result.
      */
     private fun startSessionAndWait(startAction: () -> Unit) {
-        if (navigatedToSession) return
+        if (navigatedToSession || sessionStarted) return
+        sessionStarted = true
         Log.i(TAG, "startSessionAndWait: launching service + watching SessionManager")
         try {
             startAction()

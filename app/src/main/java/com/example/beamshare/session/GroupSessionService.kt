@@ -29,8 +29,13 @@ import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
+import java.net.DatagramPacket
+import java.net.DatagramSocket
+import java.net.Inet4Address
 import java.net.InetSocketAddress
+import java.net.NetworkInterface
 import java.net.ServerSocket
 import java.net.Socket
 import java.util.UUID
@@ -116,6 +121,7 @@ class GroupSessionService : Service() {
 
     private var connection: SessionConnection? = null
     private var sessionCode: String = ""
+    private var discoverySocket: DatagramSocket? = null
     private val selfName: String get() = "${Build.MANUFACTURER} ${Build.MODEL}"
 
     // ── Reconnect state ──────────────────────────────────────────────────────
@@ -203,7 +209,7 @@ class GroupSessionService : Service() {
                 server = ServerSocket().apply {
                     reuseAddress = true
                     bind(InetSocketAddress(ConnectionConfig.DEFAULT_PORT))
-                    soTimeout = 60_000
+                    soTimeout = 120_000
                 }
                 Log.i(TAG, "acceptClient: ServerSocket bound — waiting for client…")
                 val socket = server.accept()
@@ -269,7 +275,60 @@ class GroupSessionService : Service() {
         Log.i(TAG, "  code = '$code'")
         Log.i(TAG, "  port = ${ConnectionConfig.DEFAULT_PORT}")
         acceptClient(code)
+        startUdpDiscoveryResponder(code)
     }
+
+    private fun startUdpDiscoveryResponder(code: String) {
+        scope.launch(Dispatchers.IO) {
+            try {
+                // reuseAddress must be set BEFORE bind
+                val socket = DatagramSocket(null).apply { reuseAddress = true }
+                socket.bind(InetSocketAddress(ConnectionConfig.UDP_DISCOVERY_PORT))
+                discoverySocket = socket
+                val buf = ByteArray(256)
+                while (isActive) {
+                    val pkt = DatagramPacket(buf, buf.size)
+                    socket.receive(pkt)
+                    val msg = String(pkt.data, 0, pkt.length).trim()
+                    if (msg == "BEAMSHARE_FIND:$code") {
+                        // Reply with the local IP that is on the same subnet as the sender,
+                        // so the sender can reach us even if we have multiple interfaces.
+                        val myIp = getIpForSender(pkt.address) ?: getLocalIpAddress() ?: continue
+                        Log.i(TAG, "UDP discovery: sender=${pkt.address.hostAddress} → replying with $myIp")
+                        val reply = "BEAMSHARE_HERE:$code:$myIp".toByteArray()
+                        socket.send(DatagramPacket(reply, reply.size, pkt.address, pkt.port))
+                    }
+                }
+            } catch (_: Exception) { /* closed on stopEverything */ }
+        }
+    }
+
+    /** Returns the local IPv4 address on the same subnet as [senderAddr], or null if none found. */
+    private fun getIpForSender(senderAddr: java.net.InetAddress): String? = try {
+        val senderBytes = senderAddr.address
+        val senderInt = senderBytes.fold(0) { acc, b -> (acc shl 8) or (b.toInt() and 0xFF) }
+        NetworkInterface.getNetworkInterfaces()?.asSequence()
+            ?.filter { it.isUp && !it.isLoopback }
+            ?.flatMap { it.interfaceAddresses.asSequence() }
+            ?.filter { it.address is Inet4Address }
+            ?.firstOrNull { ifAddr ->
+                val prefix = ifAddr.networkPrefixLength.toInt()
+                val mask = if (prefix == 0) 0 else (-1 shl (32 - prefix))
+                val localBytes = ifAddr.address.address
+                val localInt = localBytes.fold(0) { acc, b -> (acc shl 8) or (b.toInt() and 0xFF) }
+                (localInt and mask) == (senderInt and mask)
+            }
+            ?.address?.hostAddress
+    } catch (_: Exception) { null }
+
+    private fun getLocalIpAddress(): String? = try {
+        NetworkInterface.getNetworkInterfaces()?.asSequence()
+            ?.filter { it.isUp && !it.isLoopback }
+            ?.flatMap { it.inetAddresses.asSequence() }
+            ?.filterIsInstance<Inet4Address>()
+            ?.firstOrNull { !it.isLoopbackAddress }
+            ?.hostAddress
+    } catch (_: Exception) { null }
 
     private fun startJoiningIp(code: String, host: String, port: Int) {
         isHost = false
@@ -634,6 +693,8 @@ class GroupSessionService : Service() {
         sendQueue.clear()
         isSending = false
         connection = null
+        runCatching { discoverySocket?.close() }
+        discoverySocket = null
         runCatching { wifi.disconnect() }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             stopForeground(STOP_FOREGROUND_REMOVE)

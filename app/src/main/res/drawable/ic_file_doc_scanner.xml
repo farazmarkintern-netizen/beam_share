@@ -1,0 +1,47 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    android:width="44dp"
+    android:height="44dp"
+    android:viewportWidth="44"
+    android:viewportHeight="44">
+  <path
+      android:pathData="M10,0L34,0A10,10 0,0 1,44 10L44,34A10,10 0,0 1,34 44L10,44A10,10 0,0 1,0 34L0,10A10,10 0,0 1,10 0z">
+    <aapt:attr name="android:fillColor">
+      <gradient
+          android:startX="22"
+          android:startY="0"
+          android:endX="22"
+          android:endY="44"
+          android:type="linear">
+        <item android:offset="0" android:color="#FF2563EB"/>
+        <item android:offset="1" android:color="#FF06B6D4"/>
+      </gradient>
+    </aapt:attr>
+  </path>
+  <!-- Document outline with corner fold (evenOdd = only border visible) -->
+  <path
+      android:pathData="M30.954,30.186C30.954,30.932 30.657,31.648 30.13,32.176C29.602,32.703 28.886,32.999 28.14,33H15.861C15.115,33 14.399,32.703 13.871,32.176C13.344,31.648 13.048,30.932 13.047,30.186V13.814C13.047,13.068 13.344,12.352 13.871,11.824C14.399,11.297 15.115,11.001 15.861,11H24.646C25.121,11 25.577,11.188 25.912,11.525L30.429,16.042C30.766,16.377 30.954,16.833 30.954,17.307V30.186ZM28.954,30.186V17.307L24.559,12.791V16.372C24.559,16.643 24.666,16.904 24.858,17.096C25.05,17.288 25.31,17.395 25.582,17.395H29.163L24.559,12.791ZM15.047,30.186V13.814C15.047,13.552 15.149,13.3 15.332,13.117C15.515,12.934 15.763,12.832 16.025,12.832H23.559V16.372C23.559,16.907 23.772,17.42 24.151,17.799C24.53,18.178 25.043,18.395 25.582,18.395H29.954V30.186C29.954,30.448 29.852,30.7 29.669,30.883C29.486,31.066 29.234,31.168 28.972,31.168H15.027C14.765,31.168 14.513,31.066 14.33,30.883C14.147,30.7 14.047,30.448 15.047,30.186Z"
+      android:fillColor="#ffffff"
+      android:fillType="evenOdd"/>
+  <!-- Scanner scan line (horizontal bar) -->
+  <path
+      android:pathData="M15,20.5 H29 V23 H15 Z"
+      android:fillColor="#ffffff"
+      android:fillAlpha="0.9"/>
+  <!-- Corner bracket — top-left -->
+  <path
+      android:pathData="M15,13 H18 V14.5 H16.5 V17 H15 Z"
+      android:fillColor="#ffffff"/>
+  <!-- Corner bracket — top-right -->
+  <path
+      android:pathData="M29,13 H26 V14.5 H27.5 V17 H29 Z"
+      android:fillColor="#ffffff"/>
+  <!-- Corner bracket — bottom-left -->
+  <path
+      android:pathData="M15,31 H18 V29.5 H16.5 V27 H15 Z"
+      android:fillColor="#ffffff"/>
+  <!-- Corner bracket — bottom-right -->
+  <path
+      android:pathData="M29,31 H26 V29.5 H27.5 V27 H29 Z"
+      android:fillColor="#ffffff"/>
+</vector>

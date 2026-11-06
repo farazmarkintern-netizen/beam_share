@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bs_surface">
+
+    <!-- Upload Cloud Icon -->
+    <ImageView
+        android:id="@+id/imgUploadingIcon"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:src="@drawable/ic_cloud_upload_anim"
+        android:scaleType="fitCenter"
+        android:contentDescription="@null"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/tvUploadingTitle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintVertical_chainStyle="packed"
+        android:layout_marginBottom="24dp" />
+
+    <!-- "Uploading to Cloud" title -->
+    <TextView
+        android:id="@+id/tvUploadingTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="22sp"
+        android:fontFamily="@font/pjs_bold"
+        android:textColor="@color/bs_dark"
+        app:layout_constraintTop_toBottomOf="@id/imgUploadingIcon"
+        app:layout_constraintBottom_toTopOf="@id/progressBarUpload"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="20dp">
+
+        <!-- "Uploading to" normal, "Cloud" blue -->
+        <requestFocus />
+    </TextView>
+
+    <!-- Progress Bar -->
+    <ProgressBar
+        android:id="@+id/progressBarUpload"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="0dp"
+        android:layout_height="6dp"
+        android:layout_marginHorizontal="40dp"
+        android:progressDrawable="@drawable/bg_upload_progress"
+        android:max="100"
+        android:progress="30"
+        app:layout_constraintTop_toBottomOf="@id/tvUploadingTitle"
+        app:layout_constraintBottom_toTopOf="@id/tvUploadSize"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="8dp" />
+
+    <!-- File size text -->
+    <TextView
+        android:id="@+id/tvUploadSize"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="17.77 MB / 155.93 MB"
+        android:textSize="12sp"
+        android:fontFamily="@font/pjs_regular"
+        android:textColor="@color/bs_gray"
+        app:layout_constraintTop_toBottomOf="@id/progressBarUpload"
+        app:layout_constraintBottom_toTopOf="@id/btnCancelUpload"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="32dp" />
+
+    <!-- Cancel Button -->
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnCancelUpload"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:text="@string/cloud_cancel"
+        android:textSize="15sp"
+        android:fontFamily="@font/pjs_semibold"
+        android:textColor="@color/bs_white"
+        android:background="@drawable/btn_next_gradient"
+        android:stateListAnimator="@null"
+        android:layout_marginHorizontal="40dp"
+        app:layout_constraintTop_toBottomOf="@id/tvUploadSize"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
